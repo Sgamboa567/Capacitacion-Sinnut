@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apertura de Caja - Capacitación Sinnut ERP</title>
-    <link rel="stylesheet" href="../../../../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
     <!-- Estilos específicos para el módulo -->
     <style>
         /* Estilos adicionales para iframe */
@@ -108,7 +108,7 @@
     <div class="main-container animate-in">
         <!-- Logo y navegación -->
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--spacing-lg); flex-wrap: wrap; gap: var(--spacing-md);">
-            <img src="../../../../assets/images/Logos/Logo Completo Negro.png" 
+            <img src="../../assets/images/Logos/Logo Completo Negro.png" 
                  alt="Logo Institucional" 
                  style="height: 50px;"
                  loading="lazy">
@@ -116,102 +116,133 @@
 
         <!-- Navegación breadcrumb -->
         <nav class="nav-breadcrumb">
-            <a href="../index.html">Inicio</a>
+            <a href="../../index.html">Inicio</a>
             <span class="separator">|</span>
             <a href="introduccion-contabilidad.html">Introducción</a>
             <span class="separator">|</span>
-            <a href="#video1">Video 1</a>
-            <span class="separator">|</span>
-            <a href="#video2">Video 2</a>
-            <span class="separator">|</span>
-            <a href="#practica">Práctica</a>
+            <span style="color: var(--accent-color); font-weight: bold;">Apertura de Caja</span>
         </nav>
 
-        <!-- Header del módulo -->
-        <header class="header" style="margin-bottom: var(--spacing-xl);">
-            <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">🌅</div>
-            <h1>Apertura de Caja</h1>
-            <p>Aprende paso a paso cómo realizar correctamente la apertura de caja en Sinnut ERP. Este proceso es fundamental para iniciar las operaciones diarias de manera organizada y controlada.</p>
+        <!-- Header del módulo mejorado -->
+        <header class="header" style="margin-bottom: var(--spacing-xl); text-align: center; background: linear-gradient(135deg, #e8f5e8 0%, #f0fff4 100%); padding: var(--spacing-xl); border-radius: var(--border-radius-lg); border-left: 5px solid #50b67a;">
+            <div style="font-size: 4rem; margin-bottom: var(--spacing-md); filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));">🌅</div>
+            <h1 style="color: #50b67a; font-size: 2.2rem; margin-bottom: var(--spacing-md);">Apertura de Caja en Sinnut ERP</h1>
+            <p style="font-size: 1.1rem; color: #333; line-height: 1.6; max-width: 800px; margin: 0 auto;">
+                Domina el proceso que <strong>inicia tu día productivo</strong>. La apertura correcta de caja es la base para un control financiero perfecto y operaciones sin contratiempos.
+            </p>
+            <div style="margin-top: var(--spacing-lg); display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
+                <span style="background: #50b67a; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: bold;">🎬 2 Videos</span>
+                <span style="background: #2E86AB; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: bold;">✋ Práctico</span>
+                <span style="background: #c59d5f; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: bold;">⏱️ 20 min</span>
+            </div>
         </header>
 
-        <!-- Información del tiempo -->
-        <div class="alert info">
-            ⏱ <strong>Duración estimada:</strong> 25-30 minutos | 
-            📹 <strong>2 videos instructivos</strong> | 
-            ✅ <strong>Ejercicio práctico</strong>
-        </div>
-
-        <!-- Progress Tracker -->
-        <div class="progress-tracker">
-            <h3 style="color: var(--primary-color); margin-bottom: var(--spacing-md);">📊 Progreso del Módulo</h3>
-            <div class="progress-bar">
-                <div class="progress-fill" id="moduleProgress"></div>
+        <!-- Información del tiempo mejorada -->
+        <div style="background: linear-gradient(135deg, #e8f5e8 0%, #f0fff4 100%); border: 2px solid #50b67a; border-radius: var(--border-radius-lg); padding: var(--spacing-lg); text-align: center; margin: var(--spacing-xl) 0;">
+            <div style="font-size: 2rem; margin-bottom: var(--spacing-sm);">📊</div>
+            <h3 style="color: #50b67a; margin-bottom: var(--spacing-md);">Contenido del Módulo</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-md);">
+                <div style="text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: bold; color: #50b67a;">2</div>
+                    <div style="font-size: 0.9rem; color: #666;">Videos Tutorial</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: bold; color: #50b67a;">5</div>
+                    <div style="font-size: 0.9rem; color: #666;">Pasos Prácticos</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 1.5rem; font-weight: bold; color: #50b67a;">20 min</div>
+                    <div style="font-size: 0.9rem; color: #666;">Duración Total</div>
+                </div>
             </div>
-            <p id="progressText">0% completado - ¡Comencemos!</p>
+            <p style="color: #50b67a; font-weight: bold; margin: 0;">🎯 Al final sabrás abrir la caja sin errores en menos de 5 minutos</p>
         </div>
 
-        <!-- Objetivos del módulo -->
+        <!-- Progress Tracker mejorado -->
+        <div style="background: white; border-radius: var(--border-radius-lg); padding: var(--spacing-lg); margin: var(--spacing-xl) 0; border: 1px solid #e9ecef; box-shadow: var(--shadow-light);">
+            <h3 style="color: #50b67a; margin-bottom: var(--spacing-md); display: flex; align-items: center; gap: var(--spacing-sm);">
+                <span>�</span> Tu Progreso en Este Módulo
+            </h3>
+            <div style="background: #e9ecef; border-radius: 10px; overflow: hidden; margin-bottom: var(--spacing-sm);">
+                <div style="height: 12px; background: linear-gradient(135deg, #50b67a 0%, #45a069 100%); width: 0%; transition: width 0.5s ease;" id="moduleProgress"></div>
+            </div>
+            <p id="progressText" style="margin: 0; color: #666; font-size: 0.9rem;">0% completado - ¡Empecemos con el primer video!</p>
+        </div>
+
+        <!-- Objetivos del módulo mejorados -->
         <section class="section">
-            <h2>🎯 Objetivos de Aprendizaje</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-md);">
-                <div class="checklist-item" id="objetivo1">
-                    <span class="step-indicator">1</span>
-                    <div>
-                        <strong>Entender el proceso de apertura</strong>
-                        <p style="margin: var(--spacing-xs) 0 0 0; color: var(--text-secondary); font-size: 0.9rem;">Conocer los pasos necesarios para abrir la caja correctamente</p>
+            <h2 style="color: #50b67a; border-bottom: 3px solid #50b67a; padding-bottom: 10px; margin-bottom: var(--spacing-lg);">🎯 Lo que Aprenderás</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-md);">
+                <div style="background: linear-gradient(135deg, #e8f5e8 0%, #f0fff4 100%); padding: var(--spacing-lg); border-radius: var(--border-radius-lg); border-left: 4px solid #50b67a; transition: var(--transition-normal);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='var(--shadow-medium)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    <div style="display: flex; align-items: center; gap: var(--spacing-md); margin-bottom: var(--spacing-sm);">
+                        <div style="background: #50b67a; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">1</div>
+                        <strong style="color: #50b67a; font-size: 1.1rem;">Proceso Completo</strong>
                     </div>
+                    <p style="margin: 0; color: #333; font-size: 0.95rem; line-height: 1.5;">
+                        Dominar cada paso de la apertura desde el acceso al sistema hasta la confirmación final.
+                    </p>
                 </div>
-                <div class="checklist-item" id="objetivo2">
-                    <span class="step-indicator">2</span>
-                    <div>
-                        <strong>Dominar la interfaz de Sinnut</strong>
-                        <p style="margin: var(--spacing-xs) 0 0 0; color: var(--text-secondary); font-size: 0.9rem;">Navegar eficientemente en el módulo de apertura</p>
+                
+                <div style="background: linear-gradient(135deg, #e3f2fd 0%, #f1f8ff 100%); padding: var(--spacing-lg); border-radius: var(--border-radius-lg); border-left: 4px solid #2E86AB; transition: var(--transition-normal);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='var(--shadow-medium)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    <div style="display: flex; align-items: center; gap: var(--spacing-md); margin-bottom: var(--spacing-sm);">
+                        <div style="background: #2E86AB; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">2</div>
+                        <strong style="color: #2E86AB; font-size: 1.1rem;">Navegación Experta</strong>
                     </div>
+                    <p style="margin: 0; color: #333; font-size: 0.95rem; line-height: 1.5;">
+                        Moverse eficientemente por la interfaz de Sinnut sin pérdida de tiempo.
+                    </p>
                 </div>
-                <div class="checklist-item" id="objetivo3">
-                    <span class="step-indicator">3</span>
-                    <div>
-                        <strong>Aplicar los conocimientos</strong>
-                        <p style="margin: var(--spacing-xs) 0 0 0; color: var(--text-secondary); font-size: 0.9rem;">Realizar una apertura de caja completa de forma autónoma</p>
+                
+                <div style="background: linear-gradient(135deg, #fff3e0 0%, #fef7ec 100%); padding: var(--spacing-lg); border-radius: var(--border-radius-lg); border-left: 4px solid #c59d5f; transition: var(--transition-normal);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='var(--shadow-medium)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    <div style="display: flex; align-items: center; gap: var(--spacing-md); margin-bottom: var(--spacing-sm);">
+                        <div style="background: #c59d5f; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">3</div>
+                        <strong style="color: #c59d5f; font-size: 1.1rem;">Ejecución Perfecta</strong>
                     </div>
+                    <p style="margin: 0; color: #333; font-size: 0.95rem; line-height: 1.5;">
+                        Realizar aperturas sin errores en menos de 5 minutos, con total confianza.
+                    </p>
                 </div>
             </div>
         </section>
 
         <!-- Video 1: Introducción al proceso -->
         <section id="video1" class="section">
-            <div class="video-card">
+            <div style="background: white; border-radius: var(--border-radius-lg); padding: var(--spacing-xl); margin: var(--spacing-xl) 0; border-left: 5px solid #50b67a; box-shadow: var(--shadow-medium);">
                 <div style="display: flex; align-items: center; margin-bottom: var(--spacing-lg);">
-                    <span class="step-indicator">1</span>
+                    <div style="background: linear-gradient(135deg, #50b67a 0%, #45a069 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.5rem; margin-right: var(--spacing-md);">1</div>
                     <div>
-                        <h2 style="margin: 0; color: var(--primary-color);">Video 1: Introducción al Proceso de Apertura</h2>
-                        <p style="margin: var(--spacing-xs) 0 0 0; color: var(--text-secondary);">Conceptos básicos y navegación inicial en Sinnut</p>
+                        <h2 style="margin: 0; color: #50b67a; font-size: 1.6rem;">Preparación y Acceso al Sistema</h2>
+                        <p style="margin: var(--spacing-xs) 0 0 0; color: #666; font-size: 1rem;">Fundamentos y navegación inicial en Sinnut ERP</p>
                     </div>
                 </div>
                 
-                <div class="video-container">
-                    <video id="video1Player" controls preload="metadata" poster="../../../assets/images/video-placeholder.jpg">
+                <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin: var(--spacing-lg) 0; background: #f8f9fa; border-radius: var(--border-radius-md); overflow: hidden; box-shadow: var(--shadow-medium);">
+                    <video id="video1Player" controls preload="metadata" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                         <source src="../../assets/videos/Caja/apertura-caja/2025-09-04 16-27-28 (Copy).mp4" type="video/mp4">
-                        <p>Tu navegador no soporta videos HTML5. 
-                           <a href="../../assets/videos/Caja/apertura-caja/2025-09-04 16-27-28 (Copy).mp4" download>Descargar video</a>
-                        </p>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #666;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">📹</div>
+                            <p>Tu navegador no soporta videos HTML5.</p>
+                            <a href="../../assets/videos/Caja/apertura-caja/2025-09-04 16-27-28 (Copy).mp4" download style="color: #50b67a; text-decoration: none; font-weight: bold;">📥 Descargar video</a>
+                        </div>
                     </video>
                 </div>
                 
-                <div class="important-note">
-                    <h4 style="color: var(--accent-color); margin-bottom: var(--spacing-md);">📝 Puntos Clave del Video 1:</h4>
-                    <ul style="margin: 0; padding-left: 20px; line-height: 1.6;">
-                        <li>Acceso al módulo de apertura de caja en Sinnut</li>
-                        <li>Verificación de permisos y configuraciones iniciales</li>
-                        <li>Interfaz principal del módulo contable</li>
-                        <li>Preparación del entorno de trabajo</li>
+                <div style="background: #f8fff9; border-left: 4px solid #50b67a; padding: var(--spacing-lg); border-radius: var(--border-radius-md); margin: var(--spacing-lg) 0;">
+                    <h4 style="color: #50b67a; margin-bottom: var(--spacing-md); display: flex; align-items: center; gap: var(--spacing-sm);">
+                        <span>📝</span> Puntos Clave del Video 1
+                    </h4>
+                    <ul style="margin: 0; padding-left: 20px; line-height: 1.7; color: #333;">
+                        <li><strong>Acceso seguro:</strong> Cómo ingresar al módulo de apertura de caja</li>
+                        <li><strong>Verificaciones iniciales:</strong> Permisos y configuraciones necesarias</li>
+                        <li><strong>Interfaz principal:</strong> Conoce los elementos de la pantalla</li>
+                        <li><strong>Preparación:</strong> Qué tener listo antes de empezar</li>
                     </ul>
                 </div>
                 
-                <div style="text-align: center; margin-top: var(--spacing-lg);">
-                    <label style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-sm); cursor: pointer; font-weight: 500;">
-                        <input type="checkbox" id="video1Complete" onchange="updateProgress()">
-                        <span>✅ He completado el Video 1</span>
+                <div style="text-align: center; margin-top: var(--spacing-lg); padding: var(--spacing-md); background: #f8fff9; border-radius: var(--border-radius-md); border: 2px dashed #50b67a;">
+                    <label style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-sm); cursor: pointer; font-weight: 500; font-size: 1.1rem; color: #50b67a;">
+                        <input type="checkbox" id="video1Complete" onchange="updateProgress()" style="transform: scale(1.2);">
+                        <span>✅ He completado y entendido el Video 1</span>
                     </label>
                 </div>
             </div>
@@ -219,16 +250,47 @@
 
         <!-- Video 2: Proceso paso a paso -->
         <section id="video2" class="section">
-            <div class="video-card">
+            <div style="background: white; border-radius: var(--border-radius-lg); padding: var(--spacing-xl); margin: var(--spacing-xl) 0; border-left: 5px solid #2E86AB; box-shadow: var(--shadow-medium);">
                 <div style="display: flex; align-items: center; margin-bottom: var(--spacing-lg);">
-                    <span class="step-indicator">2</span>
+                    <div style="background: linear-gradient(135deg, #2E86AB 0%, #236d8b 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.5rem; margin-right: var(--spacing-md);">2</div>
                     <div>
-                        <h2 style="margin: 0; color: var(--primary-color);">Video 2: Apertura de Caja Paso a Paso</h2>
-                        <p style="margin: var(--spacing-xs) 0 0 0; color: var(--text-secondary);">Demostración práctica del proceso completo</p>
+                        <h2 style="margin: 0; color: #2E86AB; font-size: 1.6rem;">Apertura de Caja Paso a Paso</h2>
+                        <p style="margin: var(--spacing-xs) 0 0 0; color: #666; font-size: 1rem;">Demostración práctica del proceso completo</p>
                     </div>
                 </div>
                 
-                <div class="video-container">
+                <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin: var(--spacing-lg) 0; background: #f8f9fa; border-radius: var(--border-radius-md); overflow: hidden; box-shadow: var(--shadow-medium);">
+                    <video id="video2Player" controls preload="metadata" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        <source src="../../assets/videos/Caja/apertura-caja/2025-09-04 17-04-32 (Copy).mp4" type="video/mp4">
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #666;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">📹</div>
+                            <p>Tu navegador no soporta videos HTML5.</p>
+                            <a href="../../assets/videos/Caja/apertura-caja/2025-09-04 17-04-32 (Copy).mp4" download style="color: #2E86AB; text-decoration: none; font-weight: bold;">📥 Descargar video</a>
+                        </div>
+                    </video>
+                </div>
+                
+                <div style="background: #f4f8fb; border-left: 4px solid #2E86AB; padding: var(--spacing-lg); border-radius: var(--border-radius-md); margin: var(--spacing-lg) 0;">
+                    <h4 style="color: #2E86AB; margin-bottom: var(--spacing-md); display: flex; align-items: center; gap: var(--spacing-sm);">
+                        <span>🎯</span> Puntos Clave del Video 2
+                    </h4>
+                    <ul style="margin: 0; padding-left: 20px; line-height: 1.7; color: #333;">
+                        <li><strong>Ejecución práctica:</strong> Apertura real en tiempo real</li>
+                        <li><strong>Registro de efectivo:</strong> Cómo ingresar el dinero inicial</li>
+                        <li><strong>Validaciones:</strong> Qué verificar antes de confirmar</li>
+                        <li><strong>Confirmación final:</strong> Completar el proceso correctamente</li>
+                        <li><strong>Consejos expertos:</strong> Trucos para evitar errores comunes</li>
+                    </ul>
+                </div>
+                
+                <div style="text-align: center; margin-top: var(--spacing-lg); padding: var(--spacing-md); background: #f4f8fb; border-radius: var(--border-radius-md); border: 2px dashed #2E86AB;">
+                    <label style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-sm); cursor: pointer; font-weight: 500; font-size: 1.1rem; color: #2E86AB;">
+                        <input type="checkbox" id="video2Complete" onchange="updateProgress()" style="transform: scale(1.2);">
+                        <span>✅ He completado y entendido el Video 2</span>
+                    </label>
+                </div>
+            </div>
+        </section>
                     <video id="video2Player" controls preload="metadata" poster="../../../assets/images/video-placeholder.jpg">
                         <source src="../../assets/videos/Caja/apertura-caja/2025-09-04 17-04-32 (Copy).mp4" type="video/mp4">
                         <p>Tu navegador no soporta videos HTML5. 
@@ -360,7 +422,7 @@
     </div>
 
     <!-- JavaScript principal -->
-    <script src="../../../../../assets/js/main.js"></script>
+    <script src="../../assets/js/main.js"></script>
     <script>
         // Variables de progreso
         let moduleProgress = 0;
