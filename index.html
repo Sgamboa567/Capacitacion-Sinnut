@@ -810,15 +810,15 @@
                 
                 <div class="header-stats">
                     <div class="stat-item">
-                        <span class="stat-number">6</span>
+                        <span class="stat-number">3</span>
                         <span class="stat-label">Módulos</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">24</span>
+                        <span class="stat-number">15</span>
                         <span class="stat-label">Lecciones</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">8h</span>
+                        <span class="stat-number">6h</span>
                         <span class="stat-label">Duración</span>
                     </div>
                 </div>
@@ -921,85 +921,8 @@
                 Módulos de Capacitación
             </h2>
 
-            <!-- Módulo 1: Introducción -->
+            <!-- Módulo 1: Contabilidad -->
             <div class="module-card" style="animation-delay: 0.1s">
-                <div class="module-header" onclick="toggleModule('intro')">
-                    <div class="module-title-wrapper">
-                        <div class="module-icon" style="background: linear-gradient(135deg, #22c55e, #16a34a);">
-                            <i class="fas fa-play-circle"></i>
-                        </div>
-                        <div class="module-title-text">
-                            <h3>Introducción al Sistema</h3>
-                            <p class="module-description">Conceptos básicos y navegación inicial</p>
-                        </div>
-                    </div>
-                    <div class="module-meta">
-                        <span><i class="fas fa-clock"></i> 45 min</span>
-                        <span><i class="fas fa-layer-group"></i> 2 lecciones</span>
-                        <span class="module-toggle" id="toggle-intro">
-                            <i class="fas fa-chevron-down"></i>
-                        </span>
-                    </div>
-                </div>
-                <div class="module-content" id="content-intro">
-                    <div class="module-lessons">
-                        <div class="lesson-card">
-                            <div class="lesson-header">
-                                <div class="lesson-icon" style="background: linear-gradient(135deg, #22c55e, #16a34a);">
-                                    <i class="fas fa-rocket"></i>
-                                </div>
-                                <h4 class="lesson-title">Introducción al Sistema</h4>
-                            </div>
-                            <p class="lesson-description">
-                                Aprende los conceptos fundamentales del ERP Sinnut, su arquitectura y las ventajas 
-                                que ofrece para la gestión empresarial moderna.
-                            </p>
-                            <div class="lesson-footer">
-                                <div class="lesson-meta">
-                                    <span class="meta-item">
-                                        <i class="fas fa-clock"></i> 25 min
-                                    </span>
-                                    <span class="meta-item">
-                                        <i class="fas fa-eye"></i> Principiante
-                                    </span>
-                                </div>
-                                <a href="Introduccion/Pagina-inicio.html" class="btn btn-primary">
-                                    <i class="fas fa-play"></i> Comenzar
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="lesson-card">
-                            <div class="lesson-header">
-                                <div class="lesson-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
-                                    <i class="fas fa-compass"></i>
-                                </div>
-                                <h4 class="lesson-title">Navegación y Menús</h4>
-                            </div>
-                            <p class="lesson-description">
-                                Familiarízate con la interfaz del sistema, aprende a navegar entre módulos 
-                                y utiliza eficientemente las herramientas de navegación.
-                            </p>
-                            <div class="lesson-footer">
-                                <div class="lesson-meta">
-                                    <span class="meta-item">
-                                        <i class="fas fa-clock"></i> 20 min
-                                    </span>
-                                    <span class="meta-item">
-                                        <i class="fas fa-eye"></i> Principiante
-                                    </span>
-                                </div>
-                                <a href="modulos/navegacion/navegacion-basica.html" class="btn btn-primary">
-                                    <i class="fas fa-play"></i> Comenzar
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Módulo 2: Contabilidad -->
-            <div class="module-card" style="animation-delay: 0.2s">
                 <div class="module-header" onclick="toggleModule('contabilidad')">
                     <div class="module-title-wrapper">
                         <div class="module-icon" style="background: linear-gradient(135deg, #0D2339, #1a3b5c);">
@@ -1011,7 +934,7 @@
                         </div>
                     </div>
                     <div class="module-meta">
-                        <span><i class="fas fa-clock"></i> 2.5 hrs</span>
+                        <span><i class="fas fa-clock"></i> 2 hrs</span>
                         <span><i class="fas fa-layer-group"></i> 5 lecciones</span>
                         <span class="module-toggle" id="toggle-contabilidad">
                             <i class="fas fa-chevron-down"></i>
@@ -1028,19 +951,15 @@
                                 <h4 class="lesson-title">Introducción a Contabilidad</h4>
                             </div>
                             <p class="lesson-description">
-                                Conceptos fundamentales del módulo contable, configuración inicial y 
-                                panorama general de las funcionalidades disponibles.
+                                Conceptos fundamentales del módulo contable y panorama general de funcionalidades.
                             </p>
                             <div class="lesson-footer">
                                 <div class="lesson-meta">
                                     <span class="meta-item">
                                         <i class="fas fa-clock"></i> 15 min
                                     </span>
-                                    <span class="meta-item">
-                                        <i class="fas fa-eye"></i> Intermedio
-                                    </span>
                                 </div>
-                                <a href="modulos/contabilidad/introduccion-contabilidad.html" class="btn btn-primary">
+                                <a href="Introduccion/Pagina-inicio.html" class="btn btn-primary">
                                     <i class="fas fa-play"></i> Comenzar
                                 </a>
                             </div>
@@ -1054,20 +973,16 @@
                                 <h4 class="lesson-title">Apertura de Caja</h4>
                             </div>
                             <p class="lesson-description">
-                                Aprende el proceso completo de apertura de caja diaria, registro de fondos 
-                                iniciales y configuración de denominaciones.
+                                Proceso completo de apertura de caja diaria con registro de fondos iniciales.
                             </p>
                             <div class="lesson-footer">
                                 <div class="lesson-meta">
-                                    <span class="meta-item">
-                                        <i class="fas fa-clock"></i> 35 min
-                                    </span>
                                     <span class="meta-item">
                                         <i class="fas fa-video"></i> Con videos
                                     </span>
                                 </div>
                                 <a href="modulos/contabilidad/apertura-caja.html" class="btn btn-success">
-                                    <i class="fas fa-play"></i> Comenzar
+                                    <i class="fas fa-play"></i> Ver Lección
                                 </a>
                             </div>
                         </div>
@@ -1080,72 +995,16 @@
                                 <h4 class="lesson-title">Arqueo de Caja</h4>
                             </div>
                             <p class="lesson-description">
-                                Domina el proceso de verificación y conciliación de efectivo, 
-                                detección de diferencias y documentación de resultados.
+                                Verificación y conciliación de efectivo con detección de diferencias.
                             </p>
                             <div class="lesson-footer">
                                 <div class="lesson-meta">
-                                    <span class="meta-item">
-                                        <i class="fas fa-clock"></i> 40 min
-                                    </span>
                                     <span class="meta-item">
                                         <i class="fas fa-video"></i> Con videos
                                     </span>
                                 </div>
                                 <a href="modulos/contabilidad/arqueo-caja.html" class="btn btn-success">
-                                    <i class="fas fa-play"></i> Comenzar
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="lesson-card">
-                            <div class="lesson-header">
-                                <div class="lesson-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
-                                    <i class="fas fa-file-invoice"></i>
-                                </div>
-                                <h4 class="lesson-title">Gestión de Facturas</h4>
-                            </div>
-                            <p class="lesson-description">
-                                Creación, edición y gestión completa de facturas de venta y compra, 
-                                incluyendo configuración de impuestos y descuentos.
-                            </p>
-                            <div class="lesson-footer">
-                                <div class="lesson-meta">
-                                    <span class="meta-item">
-                                        <i class="fas fa-clock"></i> 50 min
-                                    </span>
-                                    <span class="meta-item">
-                                        <i class="fas fa-tools"></i> Práctico
-                                    </span>
-                                </div>
-                                <a href="modulos/contabilidad/facturas/gestion-facturas.html" class="btn btn-primary">
-                                    <i class="fas fa-play"></i> Comenzar
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="lesson-card">
-                            <div class="lesson-header">
-                                <div class="lesson-icon" style="background: linear-gradient(135deg, #0D2339, #1a3b5c);">
-                                    <i class="fas fa-trophy"></i>
-                                </div>
-                                <h4 class="lesson-title">Finalización del Módulo</h4>
-                            </div>
-                            <p class="lesson-description">
-                                Evaluación final del módulo de contabilidad, resumen de competencias 
-                                adquiridas y certificación de conocimientos.
-                            </p>
-                            <div class="lesson-footer">
-                                <div class="lesson-meta">
-                                    <span class="meta-item">
-                                        <i class="fas fa-clock"></i> 30 min
-                                    </span>
-                                    <span class="meta-item">
-                                        <i class="fas fa-award"></i> Evaluación
-                                    </span>
-                                </div>
-                                <a href="modulos/contabilidad/fin-modulo-contabilidad.html" class="btn btn-success">
-                                    <i class="fas fa-trophy"></i> Finalizar
+                                    <i class="fas fa-play"></i> Ver Lección
                                 </a>
                             </div>
                         </div>
@@ -1153,50 +1012,188 @@
                 </div>
             </div>
 
-            <!-- Módulo 3: Caja (Simplificado para mostrar estructura) -->
-            <div class="module-card" style="animation-delay: 0.3s">
-                <div class="module-header" onclick="toggleModule('caja')">
+            <!-- Módulo 2: Contratos -->
+            <div class="module-card" style="animation-delay: 0.2s">
+                <div class="module-header" onclick="toggleModule('contratos')">
                     <div class="module-title-wrapper">
-                        <div class="module-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
-                            <i class="fas fa-cash-register"></i>
+                        <div class="module-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                            <i class="fas fa-file-contract"></i>
                         </div>
                         <div class="module-title-text">
-                            <h3>Gestión de Caja</h3>
-                            <p class="module-description">Operaciones diarias de caja y efectivo</p>
+                            <h3>Módulo de Contratos</h3>
+                            <p class="module-description">Gestión completa de contratos y documentos</p>
                         </div>
                     </div>
                     <div class="module-meta">
-                        <span><i class="fas fa-clock"></i> 1.5 hrs</span>
-                        <span><i class="fas fa-layer-group"></i> 3 lecciones</span>
-                        <span class="module-toggle" id="toggle-caja">
+                        <span><i class="fas fa-clock"></i> 2 hrs</span>
+                        <span><i class="fas fa-layer-group"></i> 5 lecciones</span>
+                        <span class="module-toggle" id="toggle-contratos">
                             <i class="fas fa-chevron-down"></i>
                         </span>
                     </div>
                 </div>
-                <div class="module-content" id="content-caja">
+                <div class="module-content" id="content-contratos">
                     <div class="module-lessons">
                         <div class="lesson-card">
                             <div class="lesson-header">
-                                <div class="lesson-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
-                                    <i class="fas fa-cash-register"></i>
+                                <div class="lesson-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                                    <i class="fas fa-play-circle"></i>
                                 </div>
-                                <h4 class="lesson-title">Arqueo de Caja Básico</h4>
+                                <h4 class="lesson-title">Introducción a Contratos</h4>
                             </div>
                             <p class="lesson-description">
-                                Fundamentos del proceso de arqueo, conteo físico y registro 
-                                de movimientos de efectivo diarios.
+                                Fundamentos del módulo de contratos y configuración inicial del sistema.
                             </p>
                             <div class="lesson-footer">
                                 <div class="lesson-meta">
                                     <span class="meta-item">
-                                        <i class="fas fa-clock"></i> 30 min
-                                    </span>
-                                    <span class="meta-item">
-                                        <i class="fas fa-eye"></i> Básico
+                                        <i class="fas fa-clock"></i> 20 min
                                     </span>
                                 </div>
-                                <a href="Caja/Arqueo-caja.html" class="btn btn-primary">
+                                <a href="Introduccion/Pagina-inicio.html" class="btn btn-primary">
                                     <i class="fas fa-play"></i> Comenzar
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card">
+                            <div class="lesson-header">
+                                <div class="lesson-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
+                                    <i class="fas fa-file-plus"></i>
+                                </div>
+                                <h4 class="lesson-title">Creación de Contratos</h4>
+                            </div>
+                            <p class="lesson-description">
+                                Aprende a crear, configurar y gestionar nuevos contratos en el sistema.
+                            </p>
+                            <div class="lesson-footer">
+                                <div class="lesson-meta">
+                                    <span class="meta-item">
+                                        <i class="fas fa-tools"></i> Práctico
+                                    </span>
+                                </div>
+                                <a href="modulos/contratos/creacion-contratos.html" class="btn btn-primary">
+                                    <i class="fas fa-play"></i> Ver Lección
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card">
+                            <div class="lesson-header">
+                                <div class="lesson-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                                    <i class="fas fa-edit"></i>
+                                </div>
+                                <h4 class="lesson-title">Gestión y Seguimiento</h4>
+                            </div>
+                            <p class="lesson-description">
+                                Administra contratos existentes, realiza seguimiento y actualizaciones.
+                            </p>
+                            <div class="lesson-footer">
+                                <div class="lesson-meta">
+                                    <span class="meta-item">
+                                        <i class="fas fa-chart-line"></i> Avanzado
+                                    </span>
+                                </div>
+                                <a href="modulos/contratos/gestion-contratos.html" class="btn btn-primary">
+                                    <i class="fas fa-play"></i> Ver Lección
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Módulo 3: Facturas -->
+            <div class="module-card" style="animation-delay: 0.3s">
+                <div class="module-header" onclick="toggleModule('facturas')">
+                    <div class="module-title-wrapper">
+                        <div class="module-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
+                        <div class="module-title-text">
+                            <h3>Módulo de Facturas</h3>
+                            <p class="module-description">Facturación y gestión de documentos fiscales</p>
+                        </div>
+                    </div>
+                    <div class="module-meta">
+                        <span><i class="fas fa-clock"></i> 2 hrs</span>
+                        <span><i class="fas fa-layer-group"></i> 5 lecciones</span>
+                        <span class="module-toggle" id="toggle-facturas">
+                            <i class="fas fa-chevron-down"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="module-content" id="content-facturas">
+                    <div class="module-lessons">
+                        <div class="lesson-card">
+                            <div class="lesson-header">
+                                <div class="lesson-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+                                    <i class="fas fa-play-circle"></i>
+                                </div>
+                                <h4 class="lesson-title">Introducción a Facturas</h4>
+                            </div>
+                            <p class="lesson-description">
+                                Conceptos básicos de facturación y configuración del módulo.
+                            </p>
+                            <div class="lesson-footer">
+                                <div class="lesson-meta">
+                                    <span class="meta-item">
+                                        <i class="fas fa-clock"></i> 15 min
+                                    </span>
+                                </div>
+                                <a href="Introduccion/Pagina-inicio.html" class="btn btn-primary">
+                                    <i class="fas fa-play"></i> Comenzar
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card">
+                            <div class="lesson-header">
+                                <div class="lesson-icon" style="background: linear-gradient(135deg, #22c55e, #16a34a);">
+                                    <i class="fas fa-plus-circle"></i>
+                                </div>
+                                <h4 class="lesson-title">Creación de Facturas</h4>
+                            </div>
+                            <p class="lesson-description">
+                                Aprende a crear facturas de venta y compra con todos los detalles fiscales.
+                            </p>
+                            <div class="lesson-footer">
+                                <div class="lesson-meta">
+                                    <span class="meta-item">
+                                        <i class="fas fa-tools"></i> Práctico
+                                    </span>
+                                </div>
+                                <a href="modulos/facturas/creacion-facturas.html" class="btn btn-primary">
+                                    <i class="fas fa-play"></i> Ver Lección
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="lesson-card">
+                            <div class="lesson-header">
+                                <div class="lesson-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <h4 class="lesson-title">Consulta y Reportes</h4>
+                            </div>
+                            <p class="lesson-description">
+                                Consulta facturas existentes y genera reportes fiscales y contables.
+                            </p>
+                            <div class="lesson-footer">
+                                <div class="lesson-meta">
+                                    <span class="meta-item">
+                                        <i class="fas fa-chart-bar"></i> Reportes
+                                    </span>
+                                </div>
+                                <a href="modulos/facturas/consultas-reportes.html" class="btn btn-primary">
+                                    <i class="fas fa-play"></i> Ver Lección
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
                                 </a>
                             </div>
                         </div>
@@ -1205,43 +1202,13 @@
             </div>
 
             <!-- Próximamente - Módulos adicionales -->
-            <div class="module-card" style="animation-delay: 0.4s; opacity: 0.7;">
-                <div class="module-header">
-                    <div class="module-title-wrapper">
-                        <div class="module-icon" style="background: linear-gradient(135deg, #6b7280, #4b5563);">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="module-title-text">
-                            <h3>Próximamente: Inventarios</h3>
-                            <p class="module-description">Control de stock y gestión de almacenes</p>
-                        </div>
-                    </div>
-                    <div class="module-meta">
-                        <span><i class="fas fa-clock"></i> En desarrollo</span>
-                        <span class="btn btn-secondary">
-                            <i class="fas fa-hourglass-half"></i> Próximamente
-                        </span>
-                    </div>
+            <div class="alert alert-info">
+                <div class="alert-icon">
+                    <i class="fas fa-info-circle"></i>
                 </div>
-            </div>
-
-            <div class="module-card" style="animation-delay: 0.5s; opacity: 0.7;">
-                <div class="module-header">
-                    <div class="module-title-wrapper">
-                        <div class="module-icon" style="background: linear-gradient(135deg, #6b7280, #4b5563);">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="module-title-text">
-                            <h3>Próximamente: Reportes</h3>
-                            <p class="module-description">Generación y análisis de informes</p>
-                        </div>
-                    </div>
-                    <div class="module-meta">
-                        <span><i class="fas fa-clock"></i> En desarrollo</span>
-                        <span class="btn btn-secondary">
-                            <i class="fas fa-hourglass-half"></i> Próximamente
-                        </span>
-                    </div>
+                <div>
+                    <strong>Próximos Módulos:</strong> Inventarios, Reportes y módulos adicionales estarán disponibles próximamente. 
+                    Completa los módulos actuales para estar preparado para las nuevas funcionalidades.
                 </div>
             </div>
         </section>
@@ -1360,9 +1327,9 @@
                     <h4>Tiempo Invertido</h4>
                     <p>Controla el tiempo dedicado a tu capacitación</p>
                     <div style="margin-top: 15px;">
-                        <span style="font-size: 1.5rem; font-weight: 600; color: #f59e0b;">2h 30m</span>
+                        <span class="stat-number">2h 30m</span>
                         <br>
-                        <span style="font-size: 0.875rem; color: #6b7280;">de 8h totales</span>
+                        <span style="font-size: 0.875rem; color: #6b7280;">de 6h totales</span>
                     </div>
                 </div>
             </div>
@@ -1399,7 +1366,7 @@
                     </h4>
                     <p>Versión del sistema: 2.0.1</p>
                     <p>Última actualización: Septiembre 2025</p>
-                    <p>Módulos disponibles: 6</p>
+                    <p>Módulos disponibles: 3</p>
                 </div>
             </div>
 
