@@ -16,7 +16,7 @@ Plataforma de aprendizaje integral para el dominio del sistema empresarial Sinnu
 
 ### 🚀 Demo en Vivo
 
-- **GitHub Pages**: [https://sgamboa567.github.io/capacitacion-sinnut](https://sgamboa567.github.io/capacitacion-sinnut)
+- **GitHub Pages**: [https://sgamboa567.github.io/Capacitacion-Sinnut](https://sgamboa567.github.io/Capacitacion-Sinnut)
 - **Para Canvas LMS**: Usar la URL anterior en un iframe
 
 ### 📁 Estructura del Proyecto
@@ -118,7 +118,7 @@ Para integrar en Canvas LMS:
 ```html
 <div style="width: 100%; height: 800px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
   <iframe 
-    src="https://sgamboa567.github.io/capacitacion-sinnut"
+    src="https://sgamboa567.github.io/Capacitacion-Sinnut"
     width="100%" 
     height="100%" 
     frameborder="0"
@@ -201,8 +201,8 @@ Si deseas contribuir al proyecto:
 ### 📞 Soporte
 
 - **Email**: soporte.ti@oroexpress.com.co
-- **Issues**: [GitHub Issues](https://github.com/sgamboa567/capacitacion-sinnut/issues)
-- **Documentación**: [Wiki del proyecto](https://github.com/sgamboa567/capacitacion-sinnut/wiki)
+- **Issues**: [GitHub Issues](https://github.com/Sgamboa567/Capacitacion-Sinnut/issues)
+- **Documentación**: [Wiki del proyecto](https://github.com/Sgamboa567/Capacitacion-Sinnut/wiki)
 
 ### 📄 Licencia
 
