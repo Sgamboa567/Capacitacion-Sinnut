@@ -3,401 +3,728 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Módulo 1: Arqueo de Caja - Capacitación Sinnut ERP</title>
-    <link rel="stylesheet" href="../../assets/css/main.css">
-    <!-- Estilos específicos para el módulo -->
+    <title>Arqueo de Caja - Curso Sinnut ERP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
     <style>
-        /* Estilos adicionales para iframe */
-        body { 
-            background: transparent;
-            overflow-x: hidden;
+        :root {
+            --primary-color: #0D2339;
+            --primary-light: #1a3b5c;
+            --primary-dark: #051119;
+            --success-color: #22c55e;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --info-color: #3b82f6;
+            --neutral-50: #f8fafc;
+            --neutral-100: #f1f5f9;
+            --neutral-200: #e2e8f0;
+            --neutral-500: #64748b;
+            --neutral-600: #475569;
+            --neutral-700: #334155;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 0.75rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
-        .main-container {
-            box-shadow: none;
-            border: 1px solid var(--border-color);
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .video-wrapper {
-            background: var(--gradient-background);
-            border-left: 4px solid var(--secondary-color);
-            padding: var(--spacing-lg);
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--neutral-50);
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--spacing-md);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            border-radius: var(--radius-xl);
             text-align: center;
-            border-radius: var(--border-radius-md);
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translateX(-20px) translateY(-20px); }
+            50% { transform: translateX(20px) translateY(20px); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            font-size: 1.125rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto var(--spacing-lg);
+        }
+
+        .header-badges {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        /* Navigation */
+        .nav-breadcrumb {
+            background: white;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            font-size: 0.875rem;
+        }
+
+        .nav-breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-breadcrumb a:hover {
+            color: var(--primary-light);
+        }
+
+        .separator {
+            margin: 0 var(--spacing-sm);
+            color: var(--neutral-500);
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: var(--neutral-200);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: var(--spacing-sm) 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success-color) 0%, #16a34a 100%);
+            border-radius: 6px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        /* Section */
+        .section {
+            background: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--neutral-200);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        /* Video Container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: var(--neutral-100);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
             margin: var(--spacing-lg) 0;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Steps */
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+
+        .step {
+            background: white;
+            border: 2px solid var(--neutral-200);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .step:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .step-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.7;
+        }
+
+        /* Alerts */
+        .alert {
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            margin: var(--spacing-lg) 0;
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-md);
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #eff6ff;
+            border-color: var(--info-color);
+            color: #1e40af;
+        }
+
+        .alert-success {
+            background: #f0fdf4;
+            border-color: var(--success-color);
+            color: #166534;
+        }
+
+        .alert-warning {
+            background: #fffbeb;
+            border-color: var(--warning-color);
+            color: #92400e;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success-color) 0%, #16a34a 100%);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Checkbox */
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md);
+            background: var(--neutral-50);
+            border-radius: var(--radius-md);
+            margin-top: var(--spacing-md);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .checkbox-container:hover {
+            background: var(--neutral-100);
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--success-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--spacing-sm);
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header-badges {
+                justify-content: center;
+            }
+            
+            .step-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Completion */
+        .completion-card {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 2px solid var(--success-color);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+            text-align: center;
+            margin-top: var(--spacing-xl);
+        }
+
+        .completion-icon {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-lg);
         }
     </style>
 </head>
 <body>
-    <div class="main-container animate-in">
-        <!-- Logo y navegación -->
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--spacing-lg); flex-wrap: wrap; gap: var(--spacing-md);">
-            <img src="../../assets/images/Logos/Logo Completo Negro.png" 
-                 alt="Logo Institucional" 
-                 style="height: 50px;"
-                 loading="lazy">
-        </div>
-
-        <!-- Navegación breadcrumb -->
+    <div class="container animate-in">
+        <!-- Navigation -->
         <nav class="nav-breadcrumb">
-            <a href="../../index.html">Inicio</a>
-            <span class="separator">|</span>
-            <a href="introduccion-contabilidad.html">Introducción</a>
-            <span class="separator">|</span>
-            <a href="apertura-caja.html">Apertura</a>
-            <span class="separator">|</span>
-            <span style="color: var(--accent-color); font-weight: bold;">Arqueo de Caja</span>
+            <a href="../../index.html"><i class="fas fa-home"></i> Inicio</a>
+            <span class="separator">•</span>
+            <a href="introduccion-contabilidad.html">Contabilidad</a>
+            <span class="separator">•</span>
+            <span style="color: var(--primary-color); font-weight: 600;">Arqueo de Caja</span>
         </nav>
 
-        <!-- Header del módulo mejorado -->
-        <header class="header" style="margin-bottom: var(--spacing-xl); text-align: center; background: linear-gradient(135deg, #fff3e0 0%, #fef7ec 100%); padding: var(--spacing-xl); border-radius: var(--border-radius-lg); border-left: 5px solid #c59d5f;">
-            <div style="font-size: 4rem; margin-bottom: var(--spacing-md); filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));">🧾</div>
-            <h1 style="color: #c59d5f; font-size: 2.2rem; margin-bottom: var(--spacing-md);">Arqueo de Caja en Sinnut ERP</h1>
-            <p style="font-size: 1.1rem; color: #333; line-height: 1.6; max-width: 800px; margin: 0 auto;">
-                Domina el proceso que <strong>cierra tu día con precisión total</strong>. El arqueo correcto es la garantía de que tus números están perfectos y tu negocio bajo control.
-            </p>
-            <div style="margin-top: var(--spacing-lg); display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
-                <span style="background: #c59d5f; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: bold;">🎬 1 Video</span>
-                <span style="background: #50b67a; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: bold;">📋 5 Pasos</span>
-                <span style="background: #2E86AB; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: bold;">⏱️ 35 min</span>
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-calculator"></i> Arqueo de Caja</h1>
+                <p>Aprende a realizar el proceso de arqueo de caja de manera eficiente y precisa en el sistema Sinnut ERP</p>
+                <div class="header-badges">
+                    <div class="badge">
+                        <i class="fas fa-video"></i>
+                        Video Tutorial
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-clock"></i>
+                        15 minutos
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-list-check"></i>
+                        4 Pasos
+                    </div>
+                </div>
             </div>
         </header>
 
-        <!-- Información del tiempo mejorada -->
-        <div style="background: linear-gradient(135deg, #fff3e0 0%, #fef7ec 100%); border: 2px solid #c59d5f; border-radius: var(--border-radius-lg); padding: var(--spacing-lg); text-align: center; margin: var(--spacing-xl) 0;">
-            <div style="font-size: 2rem; margin-bottom: var(--spacing-sm);">⏰</div>
-            <h3 style="color: #c59d5f; margin-bottom: var(--spacing-md);">Tiempos del Proceso</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-md);">
-                <div style="text-align: center;">
-                    <div style="font-size: 1.5rem; font-weight: bold; color: #c59d5f;">2 min</div>
-                    <div style="font-size: 0.9rem; color: #666;">Operación Real</div>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 1.5rem; font-weight: bold; color: #c59d5f;">15 min</div>
-                    <div style="font-size: 0.9rem; color: #666;">Aprendizaje</div>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 1.5rem; font-weight: bold; color: #c59d5f;">35 min</div>
-                    <div style="font-size: 0.9rem; color: #666;">Módulo Completo</div>
-                </div>
-            </div>
-            <p style="color: #c59d5f; font-weight: bold; margin: 0;">🎯 Meta: Arqueo perfecto en 2 minutos o menos</p>
-        </div>
-
-        <!-- Progress Tracker -->
-        <div style="background: white; border-radius: var(--border-radius-lg); padding: var(--spacing-lg); margin: var(--spacing-xl) 0; border: 1px solid #e9ecef; box-shadow: var(--shadow-light);">
-            <h3 style="color: #c59d5f; margin-bottom: var(--spacing-md); display: flex; align-items: center; gap: var(--spacing-sm);">
-                <span>📊</span> Tu Progreso en Este Módulo
+        <!-- Progress -->
+        <div class="progress-container">
+            <h3 style="color: var(--primary-color); margin-bottom: var(--spacing-sm);">
+                <i class="fas fa-chart-line"></i> Tu Progreso
             </h3>
-            <div style="background: #e9ecef; border-radius: 10px; overflow: hidden; margin-bottom: var(--spacing-sm);">
-                <div style="height: 12px; background: linear-gradient(135deg, #c59d5f 0%, #b8935a 100%); width: 0%; transition: width 0.5s ease;" id="moduleProgress"></div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
             </div>
-            <p id="progressText" style="margin: 0; color: #666; font-size: 0.9rem;">0% completado - ¡Empecemos con el video tutorial!</p>
+            <p id="progressText" style="margin-top: var(--spacing-sm); color: var(--text-secondary);">
+                0% completado - Comienza viendo el video tutorial
+            </p>
         </div>
 
-        <!-- Por qué es importante -->
+        <!-- Introduction -->
         <section class="section">
-            <h2 style="color: #c59d5f; border-bottom: 3px solid #c59d5f; padding-bottom: 10px; margin-bottom: var(--spacing-lg);">🎯 ¿Por qué es crucial hacer un buen arqueo?</h2>
-            
-            <div style="background: linear-gradient(135deg, #fff3e0 0%, #fef7ec 100%); padding: var(--spacing-xl); border-radius: var(--border-radius-lg); border-left: 5px solid #c59d5f; margin-bottom: var(--spacing-lg);">
-                <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: var(--spacing-md); color: #333;">
-                    El arqueo de caja es <strong>tu auditoría diaria</strong>. Es el momento donde verificas que cada peso que debería estar en caja, efectivamente está ahí. 
-                    <strong>Es tu tranquilidad al final del día.</strong>
-                </p>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-md); margin-top: var(--spacing-lg);">
-                    <div style="background: white; padding: var(--spacing-md); border-radius: var(--border-radius-md); box-shadow: var(--shadow-light);">
-                        <div style="font-size: 1.5rem; margin-bottom: var(--spacing-sm);">💰</div>
-                        <strong style="color: #c59d5f;">Control Total</strong>
-                        <p style="margin: var(--spacing-xs) 0 0 0; font-size: 0.9rem; color: #666;">Sabes exactamente cuánto dinero tienes y de dónde viene cada peso</p>
-                    </div>
-                    
-                    <div style="background: white; padding: var(--spacing-md); border-radius: var(--border-radius-md); box-shadow: var(--shadow-light);">
-                        <div style="font-size: 1.5rem; margin-bottom: var(--spacing-sm);">🔍</div>
-                        <strong style="color: #c59d5f;">Detección Temprana</strong>
-                        <p style="margin: var(--spacing-xs) 0 0 0; font-size: 0.9rem; color: #666;">Identificas discrepancias antes de que se conviertan en problemas mayores</p>
-                    </div>
-                    
-                    <div style="background: white; padding: var(--spacing-md); border-radius: var(--border-radius-md); box-shadow: var(--shadow-light);">
-                        <div style="font-size: 1.5rem; margin-bottom: var(--spacing-sm);">😴</div>
-                        <strong style="color: #c59d5f;">Tranquilidad</strong>
-                        <p style="margin: var(--spacing-xs) 0 0 0; font-size: 0.9rem; color: #666;">Duermes tranquilo sabiendo que tu negocio está bajo control</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Video tutorial -->
-        <section id="video" class="section">
-            <div style="background: white; border-radius: var(--border-radius-lg); padding: var(--spacing-xl); margin: var(--spacing-xl) 0; border-left: 5px solid #c59d5f; box-shadow: var(--shadow-medium);">
-                <div style="display: flex; align-items: center; margin-bottom: var(--spacing-lg);">
-                    <div style="background: linear-gradient(135deg, #c59d5f 0%, #b8935a 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.5rem; margin-right: var(--spacing-md);">🎬</div>
-                    <div>
-                        <h2 style="margin: 0; color: #c59d5f; font-size: 1.8rem;">Arqueo de Caja: Tutorial Completo</h2>
-                        <p style="margin: var(--spacing-xs) 0 0 0; color: #666; font-size: 1rem;">Observa el proceso completo desde el inicio hasta el final</p>
-                    </div>
-                </div>
-                
-                <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin: var(--spacing-lg) 0; background: #f8f9fa; border-radius: var(--border-radius-md); overflow: hidden; box-shadow: var(--shadow-medium);">
-                    <video id="videoPlayer" controls preload="metadata" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
-                        <source src="../../assets/videos/Caja/arqueo-caja/2025-09-04 16-00-55 (Copy).mp4" type="video/mp4">
-                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #666;">
-                            <div style="font-size: 3rem; margin-bottom: 1rem;">📹</div>
-                            <p>Tu navegador no soporta videos HTML5.</p>
-                            <a href="../../assets/videos/Caja/arqueo-caja/2025-09-04 16-00-55 (Copy).mp4" download style="color: #c59d5f; text-decoration: none; font-weight: bold;">📥 Descargar video</a>
-                        </div>
-                    </video>
-                </div>
-                
-                <div style="background: #fef9f1; border-left: 4px solid #c59d5f; padding: var(--spacing-lg); border-radius: var(--border-radius-md); margin: var(--spacing-lg) 0;">
-                    <h4 style="color: #c59d5f; margin-bottom: var(--spacing-md); display: flex; align-items: center; gap: var(--spacing-sm);">
-                        <span>💡</span> Observa Especialmente
-                    </h4>
-                    <ul style="margin: 0; padding-left: 20px; line-height: 1.7; color: #333;">
-                        <li><strong>Navegación rápida:</strong> Cómo llegar al módulo en segundos</li>
-                        <li><strong>Registro preciso:</strong> Técnica para contar y registrar sin errores</li>
-                        <li><strong>Verificación automática:</strong> Cómo Sinnut calcula las diferencias</li>
-                        <li><strong>Resolución de discrepancias:</strong> Qué hacer si no cuadra</li>
-                        <li><strong>Confirmación final:</strong> Cómo cerrar el proceso correctamente</li>
-                    </ul>
-                </div>
-                
-                <div style="text-align: center; margin-top: var(--spacing-lg); padding: var(--spacing-md); background: #fef9f1; border-radius: var(--border-radius-md); border: 2px dashed #c59d5f;">
-                    <label style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-sm); cursor: pointer; font-weight: 500; font-size: 1.1rem; color: #c59d5f;">
-                        <input type="checkbox" id="videoComplete" onchange="updateProgress()" style="transform: scale(1.2);">
-                        <span>✅ He visto el video completo y entiendo el proceso</span>
-                    </label>
-                </div>
-            </div>
-        </section>
-
-        <!-- Pasos del proceso mejorados -->
-        <section id="pasos" class="section">
-            <h2 style="color: #c59d5f; border-bottom: 3px solid #c59d5f; padding-bottom: 10px; margin-bottom: var(--spacing-lg); text-align: center;">📋 Los 5 Pasos para un Arqueo Perfecto</h2>
-            
-            <p style="text-align: center; font-size: 1.1rem; color: #666; margin-bottom: var(--spacing-xl);">
-                Sigue estos pasos exactamente y tendrás tu arqueo listo en 2 minutos. <strong>Sin errores, sin estrés.</strong>
+            <h2><i class="fas fa-lightbulb"></i> ¿Qué es el Arqueo de Caja?</h2>
+            <p style="font-size: 1.125rem; line-height: 1.7; margin-bottom: var(--spacing-lg);">
+                El arqueo de caja es el proceso de verificación y conciliación del efectivo y otros medios de pago 
+                que se encuentran físicamente en caja contra los registros del sistema.
             </p>
             
-            <div style="display: flex; flex-direction: column; gap: var(--spacing-lg);">
-                <!-- Paso 1 -->
-                <div style="background: white; border-radius: var(--border-radius-lg); padding: var(--spacing-xl); border-left: 5px solid #50b67a; box-shadow: var(--shadow-light); transition: var(--transition-normal);" onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='var(--shadow-medium)'" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='var(--shadow-light)'">
-                    <div style="display: flex; align-items: flex-start; gap: var(--spacing-lg);">
-                        <div style="background: linear-gradient(135deg, #50b67a 0%, #45a069 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.5rem; flex-shrink: 0;">1</div>
-                        <div style="flex: 1;">
-                            <h3 style="margin: 0 0 var(--spacing-sm) 0; color: #50b67a; font-size: 1.3rem;">Accede al Módulo</h3>
-                            <p style="color: #333; font-size: 1rem; line-height: 1.6; margin-bottom: var(--spacing-md);">
-                                <strong>Navega a:</strong> Gestión de Contabilidad → Arqueo de Caja
-                            </p>
-                            <div style="background: #f8fff9; padding: var(--spacing-md); border-radius: var(--border-radius-sm); border-left: 3px solid #50b67a;">
-                                <p style="margin: 0; font-size: 0.9rem; color: #50b67a;"><strong>💡 Tip:</strong> Usa el buscador del menú escribiendo "arqueo" para llegar más rápido</p>
-                            </div>
-                            <div style="text-align: center; margin-top: var(--spacing-md);">
-                                <label style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-sm); cursor: pointer; font-weight: 500; color: #50b67a;">
-                                    <input type="checkbox" id="step1Complete" onchange="updateProgress()">
-                                    <span>✅ Completé el Paso 1</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Paso 2 -->
-                <div style="background: white; border-radius: var(--border-radius-lg); padding: var(--spacing-xl); border-left: 5px solid #2E86AB; box-shadow: var(--shadow-light); transition: var(--transition-normal);" onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='var(--shadow-medium)'" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='var(--shadow-light)'">
-                    <div style="display: flex; align-items: flex-start; gap: var(--spacing-lg);">
-                        <div style="background: linear-gradient(135deg, #2E86AB 0%, #236d8b 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.5rem; flex-shrink: 0;">2</div>
-                        <div style="flex: 1;">
-                            <h3 style="margin: 0 0 var(--spacing-sm) 0; color: #2E86AB; font-size: 1.3rem;">Inicia Nuevo Arqueo</h3>
-                            <p style="color: #333; font-size: 1rem; line-height: 1.6; margin-bottom: var(--spacing-md);">
-                                <strong>Haz clic en el botón "+"</strong> para crear un nuevo registro de arqueo
-                            </p>
-                            <div style="background: #f4f8fb; padding: var(--spacing-md); border-radius: var(--border-radius-sm); border-left: 3px solid #2E86AB;">
-                                <p style="margin: 0; font-size: 0.9rem; color: #2E86AB;"><strong>💡 Tip:</strong> El botón "+" generalmente está en la esquina superior derecha</p>
-                            </div>
-                            <div style="text-align: center; margin-top: var(--spacing-md);">
-                                <label style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-sm); cursor: pointer; font-weight: 500; color: #2E86AB;">
-                                    <input type="checkbox" id="step2Complete" onchange="updateProgress()">
-                                    <span>✅ Completé el Paso 2</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Paso 3 -->
-                <div style="background: white; border-radius: var(--border-radius-lg); padding: var(--spacing-xl); border-left: 5px solid #c59d5f; box-shadow: var(--shadow-light); transition: var(--transition-normal);" onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='var(--shadow-medium)'" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='var(--shadow-light)'">
-                    <div style="display: flex; align-items: flex-start; gap: var(--spacing-lg);">
-                        <div style="background: linear-gradient(135deg, #c59d5f 0%, #b8935a 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.5rem; flex-shrink: 0;">3</div>
-                        <div style="flex: 1;">
-                            <h3 style="margin: 0 0 var(--spacing-sm) 0; color: #c59d5f; font-size: 1.3rem;">Cuenta y Registra el Efectivo</h3>
-                            <p style="color: #333; font-size: 1rem; line-height: 1.6; margin-bottom: var(--spacing-md);">
-                                <strong>Cuenta físicamente</strong> todo el efectivo en caja y <strong>registra la cantidad exacta</strong> en el campo correspondiente
-                            </p>
-                            <div style="background: #fef9f1; padding: var(--spacing-md); border-radius: var(--border-radius-sm); border-left: 3px solid #c59d5f;">
-                                <p style="margin: 0; font-size: 0.9rem; color: #c59d5f;"><strong>💡 Tip:</strong> Cuenta dos veces para asegurar precisión. Incluye billetes, monedas y todo el efectivo disponible</p>
-                            </div>
-                            <div style="text-align: center; margin-top: var(--spacing-md);">
-                                <label style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-sm); cursor: pointer; font-weight: 500; color: #c59d5f;">
-                                    <input type="checkbox" id="step3Complete" onchange="updateProgress()">
-                                    <span>✅ Completé el Paso 3</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Paso 4 -->
-                <div style="background: white; border-radius: var(--border-radius-lg); padding: var(--spacing-xl); border-left: 5px solid #8e24aa; box-shadow: var(--shadow-light); transition: var(--transition-normal);" onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='var(--shadow-medium)'" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='var(--shadow-light)'">
-                    <div style="display: flex; align-items: flex-start; gap: var(--spacing-lg);">
-                        <div style="background: linear-gradient(135deg, #8e24aa 0%, #7b1fa2 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.5rem; flex-shrink: 0;">4</div>
-                        <div style="flex: 1;">
-                            <h3 style="margin: 0 0 var(--spacing-sm) 0; color: #8e24aa; font-size: 1.3rem;">Revisa la Diferencia</h3>
-                            <p style="color: #333; font-size: 1rem; line-height: 1.6; margin-bottom: var(--spacing-md);">
-                                <strong>Sinnut calculará automáticamente</strong> si hay diferencias entre lo registrado en el sistema y lo que contaste físicamente
-                            </p>
-                            <div style="background: #f3e5f5; padding: var(--spacing-md); border-radius: var(--border-radius-sm); border-left: 3px solid #8e24aa;">
-                                <p style="margin: 0; font-size: 0.9rem; color: #8e24aa;"><strong>💡 Tip:</strong> Si hay diferencias, verifica primero que contaste bien. Luego revisa si falta registrar alguna venta o gasto</p>
-                            </div>
-                            <div style="text-align: center; margin-top: var(--spacing-md);">
-                                <label style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-sm); cursor: pointer; font-weight: 500; color: #8e24aa;">
-                                    <input type="checkbox" id="step4Complete" onchange="updateProgress()">
-                                    <span>✅ Completé el Paso 4</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Paso 5 -->
-                <div style="background: white; border-radius: var(--border-radius-lg); padding: var(--spacing-xl); border-left: 5px solid #ff5722; box-shadow: var(--shadow-light); transition: var(--transition-normal);" onmouseover="this.style.transform='translateX(10px)'; this.style.boxShadow='var(--shadow-medium)'" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='var(--shadow-light)'">
-                    <div style="display: flex; align-items: flex-start; gap: var(--spacing-lg);">
-                        <div style="background: linear-gradient(135deg, #ff5722 0%, #e64a19 100%); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.5rem; flex-shrink: 0;">5</div>
-                        <div style="flex: 1;">
-                            <h3 style="margin: 0 0 var(--spacing-sm) 0; color: #ff5722; font-size: 1.3rem;">Confirma y Finaliza</h3>
-                            <p style="color: #333; font-size: 1rem; line-height: 1.6; margin-bottom: var(--spacing-md);">
-                                <strong>Haz clic en "Guardar" o "Confirmar"</strong> para finalizar el arqueo. El sistema registrará todo automáticamente
-                            </p>
-                            <div style="background: #fff3e0; padding: var(--spacing-md); border-radius: var(--border-radius-sm); border-left: 3px solid #ff5722;">
-                                <p style="margin: 0; font-size: 0.9rem; color: #ff5722;"><strong>💡 Tip:</strong> Una vez confirmado, ya no podrás modificar este arqueo. Asegúrate de que todo esté correcto</p>
-                            </div>
-                            <div style="text-align: center; margin-top: var(--spacing-md);">
-                                <label style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-sm); cursor: pointer; font-weight: 500; color: #ff5722;">
-                                    <input type="checkbox" id="step5Complete" onchange="updateProgress()">
-                                    <span>✅ Completé el Paso 5</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle" style="font-size: 1.5rem;"></i>
+                <div>
+                    <strong>Objetivo:</strong> Garantizar que los valores físicos coincidan exactamente con los 
+                    registros contables del sistema, detectando y corrigiendo cualquier diferencia.
                 </div>
             </div>
+        </section>
+
+        <!-- Video Tutorial -->
+        <section class="section">
+            <h2><i class="fas fa-play-circle"></i> Video Tutorial</h2>
+            <p style="margin-bottom: var(--spacing-lg); color: var(--text-secondary);">
+                Observa el proceso completo de arqueo de caja paso a paso
+            </p>
             
-            <!-- Resumen final -->
-            <div id="completionMessage" style="display: none; background: linear-gradient(135deg, #e8f5e8 0%, #f0fff4 100%); border: 3px solid #50b67a; border-radius: var(--border-radius-lg); padding: var(--spacing-xl); text-align: center; margin-top: var(--spacing-xl);">
-                <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">🎉</div>
-                <h3 style="color: #50b67a; margin-bottom: var(--spacing-md);">¡Excelente! Dominas el Arqueo de Caja</h3>
-                <p style="color: #333; font-size: 1.1rem; margin-bottom: var(--spacing-lg);">
-                    Has completado todos los pasos. Ahora puedes realizar arqueos perfectos en 2 minutos o menos.
-                </p>
-                <a href="fin-modulo-contabilidad.html" style="background: #50b67a; color: white; padding: var(--spacing-md) var(--spacing-xl); text-decoration: none; border-radius: var(--border-radius-md); font-weight: bold; font-size: 1.1rem; transition: var(--transition-normal); display: inline-block;" onmouseover="this.style.backgroundColor='#45a069'; this.style.transform='translateY(-2px)'" onmouseout="this.style.backgroundColor='#50b67a'; this.style.transform='translateY(0)'">
-                    🎓 Finalizar Módulo de Contabilidad
-                </a>
+            <div class="video-container">
+                <video id="videoPlayer" controls preload="metadata">
+                    <source src="../../assets/videos/Caja/arqueo-caja/2025-09-04 16-00-55 (Copy).mp4" type="video/mp4">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: var(--warning-color); margin-bottom: var(--spacing-md);"></i>
+                        <p>Video no disponible. Contacta con soporte técnico.</p>
+                    </div>
+                </video>
+            </div>
+
+            <div class="checkbox-container" onclick="toggleVideoCheck()">
+                <input type="checkbox" id="videoWatched" onchange="updateProgress()">
+                <label for="videoWatched" style="cursor: pointer; font-weight: 500;">
+                    <i class="fas fa-check-circle" style="color: var(--success-color);"></i>
+                    He visto el video completo
+                </label>
             </div>
         </section>
-                    <strong>Paso 3:</strong> Registra los valores de las cajas.
-                    <div style="margin-top: var(--spacing-sm); padding: var(--spacing-sm); background: rgba(80, 182, 122, 0.1); border-radius: var(--border-radius-sm); font-size: 0.9rem;">
-                        💰 <em>Ingresa cuidadosamente los montos en efectivo, cheques y otros medios de pago</em>
-                    </div>
-                </div>
+
+        <!-- Steps -->
+        <section class="section">
+            <h2><i class="fas fa-list-ol"></i> Pasos del Proceso</h2>
+            <p style="margin-bottom: var(--spacing-xl); color: var(--text-secondary);">
+                Sigue estos pasos para realizar un arqueo de caja exitoso
+            </p>
+
+            <div class="steps-container">
+                <!-- Step 1 -->
                 <div class="step">
-                    <strong>Paso 4:</strong> Confirma el saldo final y genera el reporte de arqueo.
-                    <div style="margin-top: var(--spacing-sm); padding: var(--spacing-sm); background: rgba(80, 182, 122, 0.1); border-radius: var(--border-radius-sm); font-size: 0.9rem;">
-                        ✅ <em>Revisa que todos los datos estén correctos antes de confirmar</em>
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Acceder al Módulo</div>
+                    </div>
+                    <div class="step-description">
+                        Navega a <strong>Gestión de Contabilidad</strong> → <strong>Arqueo de Caja</strong> 
+                        desde el menú principal del sistema.
+                    </div>
+                    <div class="alert alert-info">
+                        <i class="fas fa-lightbulb"></i>
+                        <div>
+                            <strong>Consejo:</strong> Puedes usar el buscador del menú escribiendo "arqueo" 
+                            para acceder más rápidamente.
+                        </div>
+                    </div>
+                    <div class="checkbox-container" onclick="toggleStepCheck(1)">
+                        <input type="checkbox" id="step1" onchange="updateProgress()">
+                        <label for="step1" style="cursor: pointer;">Completé el paso 1</label>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Crear Nuevo Arqueo</div>
+                    </div>
+                    <div class="step-description">
+                        Haz clic en el botón <strong>"+"</strong> o <strong>"Nuevo"</strong> para iniciar 
+                        un nuevo proceso de arqueo de caja.
+                    </div>
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <strong>Importante:</strong> Asegúrate de tener todos los documentos y efectivo 
+                            disponibles antes de iniciar el proceso.
+                        </div>
+                    </div>
+                    <div class="checkbox-container" onclick="toggleStepCheck(2)">
+                        <input type="checkbox" id="step2" onchange="updateProgress()">
+                        <label for="step2" style="cursor: pointer;">Completé el paso 2</label>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Contar y Registrar</div>
+                    </div>
+                    <div class="step-description">
+                        Cuenta físicamente todo el efectivo, cheques y otros medios de pago en caja. 
+                        Registra cada cantidad en los campos correspondientes del sistema.
+                    </div>
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Buena práctica:</strong> Cuenta dos veces para asegurar la precisión 
+                            y organiza el dinero por denominaciones.
+                        </div>
+                    </div>
+                    <div class="checkbox-container" onclick="toggleStepCheck(3)">
+                        <input type="checkbox" id="step3" onchange="updateProgress()">
+                        <label for="step3" style="cursor: pointer;">Completé el paso 3</label>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Verificar y Confirmar</div>
+                    </div>
+                    <div class="step-description">
+                        Revisa las diferencias calculadas automáticamente por el sistema. 
+                        Si todo está correcto, confirma el arqueo para finalizar el proceso.
+                    </div>
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <strong>Diferencias:</strong> Si hay discrepancias, verifica el conteo y 
+                            revisa si falta registrar alguna transacción antes de confirmar.
+                        </div>
+                    </div>
+                    <div class="checkbox-container" onclick="toggleStepCheck(4)">
+                        <input type="checkbox" id="step4" onchange="updateProgress()">
+                        <label for="step4" style="cursor: pointer;">Completé el paso 4</label>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Lista de verificación -->
-        <section class="section" style="background: linear-gradient(135deg, #fff9e6 0%, #f0f8ff 100%); border-left: 4px solid var(--accent-color);">
-            <h3 style="color: var(--accent-color);">✅ Lista de Verificación</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-md);">
-                <label style="display: flex; align-items: center; gap: var(--spacing-sm); cursor: pointer;">
-                    <input type="checkbox" style="transform: scale(1.2);">
-                    <span>Acceso al módulo de contabilidad</span>
-                </label>
-                <label style="display: flex; align-items: center; gap: var(--spacing-sm); cursor: pointer;">
-                    <input type="checkbox" style="transform: scale(1.2);">
-                    <span>Permisos para crear arqueo</span>
-                </label>
-                <label style="display: flex; align-items: center; gap: var(--spacing-sm); cursor: pointer;">
-                    <input type="checkbox" style="transform: scale(1.2);">
-                    <span>Valores de caja contados</span>
-                </label>
-                <label style="display: flex; align-items: center; gap: var(--spacing-sm); cursor: pointer;">
-                    <input type="checkbox" style="transform: scale(1.2);">
-                    <span>Documentos de respaldo</span>
-                </label>
-            </div>
-        </section>
-
-        <!-- Recursos interactivos -->
-        <section id="recursos" class="section">
-            <h3>📂 Recursos interactivos</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-lg); text-align: center;">
-                <div style="background: var(--card-background); padding: var(--spacing-lg); border-radius: var(--border-radius-lg); border: 2px solid var(--border-color); transition: var(--transition-normal);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-medium)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                    <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">📄</div>
-                    <h4 style="margin-bottom: var(--spacing-md);">Instructivo</h4>
-                    <p style="font-size: 0.9rem; margin-bottom: var(--spacing-lg); color: var(--text-secondary);">Guía paso a paso detallada</p>
-                    <a href="../../assets/documents/instructivos/arqueo-caja-instructivo.pdf" class="btn btn-primary" target="_blank">Descargar PDF</a>
+        <!-- Resources -->
+        <section class="section">
+            <h2><i class="fas fa-download"></i> Recursos Adicionales</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-lg);">
+                <div style="border: 2px solid var(--neutral-200); border-radius: var(--radius-lg); padding: var(--spacing-lg); text-align: center; transition: var(--transition);" onmouseover="this.style.borderColor='var(--primary-color)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--neutral-200)'; this.style.transform='translateY(0)'">
+                    <i class="fas fa-file-pdf" style="font-size: 2.5rem; color: var(--danger-color); margin-bottom: var(--spacing-md);"></i>
+                    <h4 style="color: var(--primary-color); margin-bottom: var(--spacing-sm);">Manual PDF</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">Guía detallada paso a paso</p>
+                    <a href="../../assets/documents/instructivos/Modulo-caja/Instructivo ARQUEO DE CAJA.pdf" 
+                       class="btn btn-primary" target="_blank">
+                        <i class="fas fa-download"></i> Descargar
+                    </a>
                 </div>
                 
-                <div style="background: var(--card-background); padding: var(--spacing-lg); border-radius: var(--border-radius-lg); border: 2px solid var(--border-color); transition: var(--transition-normal);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-medium)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                    <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">📝</div>
-                    <h4 style="margin-bottom: var(--spacing-md);">Plantilla</h4>
-                    <p style="font-size: 0.9rem; margin-bottom: var(--spacing-lg); color: var(--text-secondary);">Formato para practicar</p>
-                    <a href="#" class="btn btn-secondary">Próximamente</a>
-                </div>
-                
-                <div style="background: var(--card-background); padding: var(--spacing-lg); border-radius: var(--border-radius-lg); border: 2px solid var(--border-color); transition: var(--transition-normal);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-medium)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                    <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">📊</div>
-                    <h4 style="margin-bottom: var(--spacing-md);">Diagrama</h4>
-                    <p style="font-size: 0.9rem; margin-bottom: var(--spacing-lg); color: var(--text-secondary);">Flujo del proceso visual</p>
-                    <a href="#" class="btn btn-accent">Próximamente</a>
+                <div style="border: 2px solid var(--neutral-200); border-radius: var(--radius-lg); padding: var(--spacing-lg); text-align: center; transition: var(--transition);" onmouseover="this.style.borderColor='var(--success-color)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--neutral-200)'; this.style.transform='translateY(0)'">
+                    <i class="fas fa-headset" style="font-size: 2.5rem; color: var(--success-color); margin-bottom: var(--spacing-md);"></i>
+                    <h4 style="color: var(--primary-color); margin-bottom: var(--spacing-sm);">Soporte Técnico</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">Obtén ayuda especializada</p>
+                    <a href="mailto:soporte.ti@oroexpress.com.co" class="btn btn-success">
+                        <i class="fas fa-envelope"></i> Contactar
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- Tip importante -->
-        <div class="alert tip">
-            💡 <strong>Tip importante:</strong> Antes de iniciar, asegúrate de tener acceso al sistema y los permisos necesarios para realizar la operación. Si tienes dudas, consulta el manual del ERP o contacta al soporte.
+        <!-- Completion Card -->
+        <div id="completionCard" class="completion-card" style="display: none;">
+            <div class="completion-icon">🎉</div>
+            <h3 style="color: var(--success-color); font-size: 1.75rem; margin-bottom: var(--spacing-md);">
+                ¡Excelente trabajo!
+            </h3>
+            <p style="font-size: 1.125rem; margin-bottom: var(--spacing-xl);">
+                Has completado exitosamente el módulo de Arqueo de Caja. 
+                Ahora puedes realizar este proceso de manera eficiente.
+            </p>
+            <a href="../../index.html" class="btn btn-primary" style="font-size: 1.125rem; padding: var(--spacing-md) var(--spacing-xl);">
+                <i class="fas fa-home"></i> Volver al Inicio
+            </a>
         </div>
+    </div>
 
-        <!-- Simulador interactivo -->
-        <section class="section" style="background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%); border-left: 4px solid var(--primary-color);">
-            <h3 style="color: var(--primary-color);">🎮 Simulador Interactivo</h3>
-            <div style="text-align: center;">
-                <p>Practica el proceso de arqueo de caja en un entorno simulado antes de realizarlo en el sistema real.</p>
-                <div style="margin: var(--spacing-lg) 0;">
-                    <button class="btn btn-primary" onclick="startSimulator()">🚀 Iniciar Simulador</button>
-                </div>
-                <div id="simulatorArea" style="display: none; background: white; padding: var(--spacing-lg); border-radius: var(--border-radius-md); margin-top: var(--spacing-md);">
-                    <h4>Simulador de Arqueo de Caja</h4>
-                    <p>Aquí se cargaría el simulador interactivo...</p>
-                </div>
-            </div>
-        </section>
+    <script>
+        let completedItems = {
+            video: false,
+            step1: false,
+            step2: false,
+            step3: false,
+            step4: false
+        };
 
-        <!-- Progreso del módulo -->
-        <section class="section" style="background: linear-gradient(135deg, #e3f7f0 0%, #f0fff4 100%); text-align: center;">
-            <h3 style="color: var(--secondary-color);">📈 Progreso del Módulo</h3>
-            <div style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-xl); flex-wrap: wrap;">
-                <div>
-                    <div style="width: 80px; height: 80px; border-radius: 50%; background: conic-gradient(var(--secondary-color) 0deg 72deg, #e0e0e0 72deg 360deg); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; color: var(--primary-color); margin: 0 auto var(--spacing-sm);">20%</div>
-                    <strong>Video visto</strong>
-                </div>
-                <div style="font-size: 2rem;">➜</div>
-                <div>
-                    <div style="width: 80px; height: 80px; border-radius: 50%; background: conic-gradient(#e0e0e0 0deg 360deg); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; color: var(--text-muted); margin: 0 auto var(--spacing-sm);">0%</div>
-                    <strong>Práctica</strong>
-                </div>
+        function toggleVideoCheck() {
+            const checkbox = document.getElementById('videoWatched');
+            checkbox.checked = !checkbox.checked;
+            updateProgress();
+        }
+
+        function toggleStepCheck(step) {
+            const checkbox = document.getElementById(`step${step}`);
+            checkbox.checked = !checkbox.checked;
+            updateProgress();
+        }
+
+        function updateProgress() {
+            // Update completion status
+            completedItems.video = document.getElementById('videoWatched').checked;
+            completedItems.step1 = document.getElementById('step1').checked;
+            completedItems.step2 = document.getElementById('step2').checked;
+            completedItems.step3 = document.getElementById('step3').checked;
+            completedItems.step4 = document.getElementById('step4').checked;
+
+            // Calculate progress
+            const total = Object.keys(completedItems).length;
+            const completed = Object.values(completedItems).filter(Boolean).length;
+            const percentage = Math.round((completed / total) * 100);
+
+            // Update progress bar
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            
+            progressFill.style.width = `${percentage}%`;
+            progressText.textContent = `${percentage}% completado`;
+
+            // Show completion card if everything is done
+            if (percentage === 100) {
+                document.getElementById('completionCard').style.display = 'block';
+                progressText.textContent = `🎉 ¡Módulo completado al 100%!`;
+            }
+        }
+
+        // Add smooth scroll to sections
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate elements on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections
+            document.querySelectorAll('.section, .step').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
                 <div style="font-size: 2rem;">➜</div>
                 <div>
                     <div style="width: 80px; height: 80px; border-radius: 50%; background: conic-gradient(#e0e0e0 0deg 360deg); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; color: var(--text-muted); margin: 0 auto var(--spacing-sm);">0%</div>
