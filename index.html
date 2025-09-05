@@ -1,33 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8"            <div class="modules-grid">
-                <!-- Módulo 0: Introducción a Gestión de Contabilidad -->
-                <div class="module-card available">
-                    <div class="module-icon" style="background: var(--gradient-accent);">📚</div>
-                    <h4>Introducción: Gestión de Contabilidad</h4>
-                    <p>Conoce los fundamentos de la gestión contable en Sinnut ERP, incluyendo arqueo y apertura de caja, bases para todos los procesos.</p>
-                    <div class="module-tags">
-                        <span class="tag time">⏱ 15 min</span>
-                        <span class="tag type">📖 Conceptos + Ejemplos</span>
-                    </div>
-                    <a href="modulos/introduccion-contabilidad.html" class="btn btn-accent">✅ Disponible - Acceder</a>
-                </div>
-
-                <!-- Módulo 1: Arqueo de Caja -->
-                <div class="module-card available">
-                    <div class="module-icon" style="background: var(--gradient-secondary);">🧾</div>
-                    <h4>Módulo 1: Arqueo de Caja</h4>
-                    <p>Aprende a realizar el proceso completo de arqueo de caja en el sistema ERP, incluyendo verificación de saldos y generación de reportes.</p>
-                    <div class="module-tags">
-                        <span class="tag time">⏱ 35 min</span>
-                        <span class="tag type">📹 Video + Práctica</span>
-                    </div>
-                    <a href="modulos/arqueo-caja.html" class="btn btn-primary">✅ Disponible - Acceder</a>
-                </div> name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capacitación Sinnut ERP - Sistema de Aprendizaje</title>
     <link rel="stylesheet" href="assets/css/main.css">
-    <!-- Optimización para iframe en Canvas LMS -->
     <style>
         /* Estilos específicos para iframe */
         body { 
@@ -38,419 +15,416 @@
             box-shadow: none;
             border: 1px solid var(--border-color);
         }
+        
+        /* Diseño simplificado y limpio */
+        .hero-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border-left: 5px solid #c59d5f;
+        }
+        
+        .course-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .overview-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            transition: transform 0.2s ease;
+        }
+        
+        .overview-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .module-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #c59d5f;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .module-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .module-item {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .module-item:hover {
+            background: #f0f0f0;
+            border-color: #c59d5f;
+        }
+        
+        .module-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .status-available {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-coming {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .module-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #c59d5f;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+        
+        .module-button:hover {
+            background: #b8935a;
+            transform: translateY(-1px);
+        }
+        
+        .module-button.disabled {
+            background: #ccc;
+            color: #999;
+            cursor: not-allowed;
+        }
+        
+        .quick-actions {
+            background: linear-gradient(135deg, #e8f4fd 0%, #f0f8ff 100%);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .action-btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .action-btn.primary {
+            background: #c59d5f;
+            color: white;
+        }
+        
+        .action-btn.secondary {
+            background: white;
+            color: #c59d5f;
+            border: 2px solid #c59d5f;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
     </style>
 </head>
 <body>
     <div class="main-container animate-in">
-        <!-- Header con logo y título principal -->
-        <header class="header">
-            <img src="https://aula.aynn.pro/files/81" 
-                 alt="Logo Institucional" 
+        <!-- Header simplificado -->
+        <header class="hero-section">
+            <img src="assets/images/Logos/Logo Completo Blanco.png" 
+                 alt="Logo Sinnut" 
+                 style="height: 60px; margin-bottom: 20px;"
                  loading="lazy">
-            <h1>📚 Sistema de Capacitación ERP</h1>
-            <p>Plataforma de aprendizaje integral para el dominio del sistema Sinnut</p>
+            <h1 style="color: #c59d5f; font-size: 2rem; margin-bottom: 15px;">Sistema de Capacitación ERP</h1>
+            <p style="font-size: 1.1rem; color: #666; max-width: 600px; margin: 0 auto;">
+                Aprende a dominar el sistema Sinnut ERP a través de módulos prácticos y evaluaciones
+            </p>
         </header>
 
-        <!-- Información del curso -->
-        <section class="info-card">
-            <h2>🎯 Bienvenido al Programa de Capacitación</h2>
-            <p>Domina las funcionalidades principales del ERP Sinnut a través de módulos interactivos y evaluaciones prácticas.</p>
-            
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-circle primary" id="moduloCounter">12+</div>
-                    <strong>Módulos</strong><br>
-                    <span style="color: var(--text-secondary);">En crecimiento</span>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-circle secondary">4hrs</div>
-                    <strong>Duración</strong><br>
-                    <span style="color: var(--text-secondary);">Aproximada</span>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-circle accent">📋</div>
-                    <strong>Evaluación</strong><br>
-                    <span style="color: var(--text-secondary);">Final</span>
-                </div>
+        <!-- Resumen del curso -->
+        <div class="course-overview">
+            <div class="overview-card">
+                <div style="font-size: 2rem; color: #c59d5f;">📚</div>
+                <h3 style="margin: 10px 0;">3 Módulos</h3>
+                <p style="color: #666; font-size: 0.9rem;">Contabilidad, Contratos y Facturas</p>
             </div>
-        </section>
+            <div class="overview-card">
+                <div style="font-size: 2rem; color: #50b67a;">⏱️</div>
+                <h3 style="margin: 10px 0;">4 Horas</h3>
+                <p style="color: #666; font-size: 0.9rem;">Duración aproximada total</p>
+            </div>
+            <div class="overview-card">
+                <div style="font-size: 2rem; color: #3498db;">🎯</div>
+                <h3 style="margin: 10px 0;">Certificación</h3>
+                <p style="color: #666; font-size: 0.9rem;">Al completar el curso</p>
+            </div>
+        </div>
 
-        <!-- Botones de acción principal -->
-        <section style="text-align: center; margin-bottom: var(--spacing-xxl);">
-            <h3>🚀 Comienza tu aprendizaje</h3>
-            <div class="btn-group">
-                <a href="#modulos" class="btn btn-primary">🎓 Comenzar Curso</a>
-                <a href="#evaluacion" class="btn btn-secondary">📝 Ir a Evaluación</a>
+        <!-- Acciones rápidas -->
+        <div class="quick-actions">
+            <h2 style="color: #333; margin-bottom: 10px;">🚀 Comienza tu aprendizaje</h2>
+            <p style="color: #666;">Elige cómo quieres comenzar el curso</p>
+            <div class="action-buttons">
+                <a href="#modulos" class="action-btn primary">📖 Ver Módulos</a>
+                <a href="modulos/Caja/Arqueo-caja.html" class="action-btn secondary">▶️ Comenzar Ahora</a>
             </div>
-        </section>
+        </div>
 
         <!-- Módulos del curso -->
         <section id="modulos">
-            <h3 style="text-align: center; letter-spacing: 1px;">📖 Módulos del Curso</h3>
-            
-            <div class="modules-grid">
-                <!-- SECCIÓN 1: GESTIÓN DE CONTABILIDAD -->
-                <div style="grid-column: 1 / -1; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: var(--spacing-lg); border-radius: var(--border-radius-lg); margin-bottom: var(--spacing-lg); border: 2px solid var(--secondary-color);">
-                    <h3 style="color: var(--secondary-color); margin-bottom: var(--spacing-md); text-align: center; font-size: 1.5rem;">🧾 GESTIÓN DE CONTABILIDAD</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg);">
-                        
-                        <!-- Introducción a Caja -->
-                        <div class="module-card available">
-                            <div class="module-icon" style="background: var(--gradient-accent);">📚</div>
-                            <h4>Introducción caja</h4>
-                            <p>Conceptos fundamentales de gestión contable y procesos de caja en Sinnut ERP.</p>
-                            <div class="module-tags">
-                                <span class="tag time">⏱ 15 min</span>
-                                <span class="tag type">📖 Teórico</span>
-                            </div>
-                            <a href="modulos/introduccion-contabilidad.html" class="btn btn-accent">✅ Disponible</a>
+            <!-- Módulo 1: Gestión de Contabilidad (Caja) -->
+            <div class="module-section">
+                <h2 style="color: #50b67a; margin-bottom: 15px;">🧾 Módulo 1: Gestión de Contabilidad</h2>
+                <p style="color: #666; margin-bottom: 20px;">
+                    Aprende los procesos fundamentales de gestión contable y manejo de caja en el sistema ERP.
+                </p>
+                
+                <div class="module-list">
+                    <div class="module-item">
+                        <span class="module-status status-available">✅ Disponible</span>
+                        <h4 style="margin: 10px 0; color: #333;">Arqueo de Caja</h4>
+                        <p style="color: #666; font-size: 0.9rem; line-height: 1.4;">
+                            Proceso completo de arqueo y conciliación de saldos al final del día.
+                        </p>
+                        <div style="margin: 10px 0; font-size: 0.8rem; color: #888;">
+                            ⏱️ 35 min • 🎬 Video + Práctica
                         </div>
-
-                        <!-- Apertura de Caja -->
-                        <div class="module-card available">
-                            <div class="module-icon" style="background: var(--gradient-secondary);">🌅</div>
-                            <h4>Apertura de caja</h4>
-                            <p>Proceso paso a paso para realizar correctamente la apertura de caja diaria.</p>
-                            <div class="module-tags">
-                                <span class="tag time">⏱ 30 min</span>
-                                <span class="tag type">📹 2 Videos + Práctica</span>
-                            </div>
-                            <a href="modulos/apertura-caja.html" class="btn btn-secondary">✅ Disponible</a>
-                        </div>
-
-                        <!-- Arqueo de Caja -->
-                        <div class="module-card available">
-                            <div class="module-icon" style="background: var(--gradient-secondary);">🧾</div>
-                            <h4>Arqueo de caja</h4>
-                            <p>Proceso completo de arqueo y conciliación de saldos al final del día.</p>
-                            <div class="module-tags">
-                                <span class="tag time">⏱ 35 min</span>
-                                <span class="tag type">📹 Video + Práctica</span>
-                            </div>
-                            <a href="modulos/arqueo-caja.html" class="btn btn-secondary">✅ Disponible</a>
-                        </div>
+                        <a href="modulos/Caja/Arqueo-caja.html" class="module-button">Acceder al Módulo</a>
                     </div>
                 </div>
+            </div>
 
-                <!-- SECCIÓN 2: CONTRATOS -->
-                <div style="grid-column: 1 / -1; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: var(--spacing-lg); border-radius: var(--border-radius-lg); margin-bottom: var(--spacing-lg); border: 2px solid var(--primary-color);">
-                    <h3 style="color: var(--primary-color); margin-bottom: var(--spacing-md); text-align: center; font-size: 1.5rem;">📋 CONTRATOS</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg);">
-                        
-                        <!-- Introducción contratos -->
-                        <div class="module-card coming-soon">
-                            <div class="module-icon" style="background: var(--gradient-primary);">📚</div>
-                            <h4>Introducción contratos</h4>
-                            <p>Fundamentos de la gestión de contratos en Sinnut ERP.</p>
-                            <div class="module-tags">
-                                <span class="tag time">⏱ 20 min</span>
-                                <span class="tag type">📖 Teórico</span>
-                            </div>
-                            <a href="modulos/contratos/introduccion-contratos.html" class="btn btn-primary">🚧 En desarrollo</a>
+            <!-- Módulo 2: Contratos -->
+            <div class="module-section">
+                <h2 style="color: #c59d5f; margin-bottom: 15px;">📋 Módulo 2: Gestión de Contratos</h2>
+                <p style="color: #666; margin-bottom: 20px;">
+                    Domina la creación, consulta y gestión completa de contratos en el sistema.
+                </p>
+                
+                <div class="module-list">
+                    <div class="module-item">
+                        <span class="module-status status-available">✅ Disponible</span>
+                        <h4 style="margin: 10px 0; color: #333;">Introducción a Contratos</h4>
+                        <p style="color: #666; font-size: 0.9rem; line-height: 1.4;">
+                            Fundamentos y conceptos básicos de la gestión de contratos.
+                        </p>
+                        <div style="margin: 10px 0; font-size: 0.8rem; color: #888;">
+                            ⏱️ 20 min • 📖 Teórico
                         </div>
-
-                        <!-- Crear contrato -->
-                        <div class="module-card coming-soon">
-                            <div class="module-icon" style="background: var(--gradient-primary);">📝</div>
-                            <h4>Crear contrato</h4>
-                            <p>Aprende a crear contratos paso a paso en el sistema.</p>
-                            <div class="module-tags">
-                                <span class="tag time">⏱ 25 min</span>
-                                <span class="tag type">📹 Video + Práctica</span>
-                            </div>
-                            <a href="modulos/contratos/crear-contrato.html" class="btn btn-primary">🚧 En desarrollo</a>
+                        <a href="modulos/contratos/introduccion-contratos.html" class="module-button">Acceder al Módulo</a>
+                    </div>
+                    
+                    <div class="module-item">
+                        <span class="module-status status-available">✅ Disponible</span>
+                        <h4 style="margin: 10px 0; color: #333;">Crear Contrato</h4>
+                        <p style="color: #666; font-size: 0.9rem; line-height: 1.4;">
+                            Proceso completo para crear contratos paso a paso.
+                        </p>
+                        <div style="margin: 10px 0; font-size: 0.8rem; color: #888;">
+                            ⏱️ 25 min • 🎬 3 Videos + Práctica
                         </div>
-
-                        <!-- Consultar contrato -->
-                        <div class="module-card coming-soon">
-                            <div class="module-icon" style="background: var(--gradient-primary);">🔍</div>
-                            <h4>Consultar contrato</h4>
-                            <p>Consulta y revisa contratos existentes de manera eficiente.</p>
-                            <div class="module-tags">
-                                <span class="tag time">⏱ 20 min</span>
-                                <span class="tag type">📹 Video + Práctica</span>
-                            </div>
-                            <a href="modulos/contratos/consultar-contrato.html" class="btn btn-primary">🚧 En desarrollo</a>
+                        <a href="modulos/contratos/crear-contrato.html" class="module-button">Acceder al Módulo</a>
+                    </div>
+                    
+                    <div class="module-item">
+                        <span class="module-status status-available">✅ Disponible</span>
+                        <h4 style="margin: 10px 0; color: #333;">Consultar Contrato</h4>
+                        <p style="color: #666; font-size: 0.9rem; line-height: 1.4;">
+                            Aprende a consultar y descargar documentos de contratos existentes.
+                        </p>
+                        <div style="margin: 10px 0; font-size: 0.8rem; color: #888;">
+                            ⏱️ 15 min • 🎬 Video + Práctica
                         </div>
-
-                        <!-- Pagar prórroga -->
-                        <div class="module-card coming-soon">
-                            <div class="module-icon" style="background: var(--gradient-primary);">💰</div>
-                            <h4>Pagar prórroga</h4>
-                            <p>Gestión de pagos de prórroga para contratos.</p>
-                            <div class="module-tags">
-                                <span class="tag time">⏱ 20 min</span>
-                                <span class="tag type">📹 Video + Práctica</span>
-                            </div>
-                            <a href="modulos/contratos/pagar-prorroga.html" class="btn btn-primary">🚧 En desarrollo</a>
+                        <a href="modulos/contratos/consultar-contrato.html" class="module-button">Acceder al Módulo</a>
+                    </div>
+                    
+                    <div class="module-item">
+                        <span class="module-status status-available">✅ Disponible</span>
+                        <h4 style="margin: 10px 0; color: #333;">Pagar Prórroga</h4>
+                        <p style="color: #666; font-size: 0.9rem; line-height: 1.4;">
+                            Gestión de pagos de prórroga para extender contratos.
+                        </p>
+                        <div style="margin: 10px 0; font-size: 0.8rem; color: #888;">
+                            ⏱️ 10 min • 🎬 Video + Práctica
                         </div>
-
-                        <!-- Pagar retroventa -->
-                        <div class="module-card coming-soon">
-                            <div class="module-icon" style="background: var(--gradient-primary);">🔄</div>
-                            <h4>Pagar retroventa</h4>
-                            <p>Proceso de gestión de pagos de retroventa de contratos.</p>
-                            <div class="module-tags">
-                                <span class="tag time">⏱ 25 min</span>
-                                <span class="tag type">📹 Video + Práctica</span>
-                            </div>
-                            <a href="modulos/contratos/pagar-retroventa.html" class="btn btn-primary">🚧 En desarrollo</a>
+                        <a href="modulos/contratos/pagar-prorroga.html" class="module-button">Acceder al Módulo</a>
+                    </div>
+                    
+                    <div class="module-item">
+                        <span class="module-status status-available">✅ Disponible</span>
+                        <h4 style="margin: 10px 0; color: #333;">Pagar Retroventa</h4>
+                        <p style="color: #666; font-size: 0.9rem; line-height: 1.4;">
+                            Proceso para que los clientes recuperen sus artículos.
+                        </p>
+                        <div style="margin: 10px 0; font-size: 0.8rem; color: #888;">
+                            ⏱️ 10 min • 🎬 Video + Práctica
                         </div>
-
-                        <!-- Fin del módulo: Gestión de Contratos -->
-                        <div class="module-card coming-soon">
-                            <div class="module-icon" style="background: var(--gradient-primary);">🎉</div>
-                            <h4>Fin del módulo: Gestión de Contratos</h4>
-                            <p>Resumen y cierre del módulo de contratos.</p>
-                            <div class="module-tags">
-                                <span class="tag time">⏱ 10 min</span>
-                                <span class="tag type">📋 Resumen</span>
-                            </div>
-                            <a href="modulos/contratos/fin-modulo-contratos.html" class="btn btn-primary">🚧 En desarrollo</a>
+                        <a href="modulos/contratos/pagar-retroventa.html" class="module-button">Acceder al Módulo</a>
+                    </div>
+                    
+                    <div class="module-item">
+                        <span class="module-status status-available">✅ Disponible</span>
+                        <h4 style="margin: 10px 0; color: #333;">Fin del Módulo: Contratos</h4>
+                        <p style="color: #666; font-size: 0.9rem; line-height: 1.4;">
+                            Resumen y cierre del módulo de gestión de contratos.
+                        </p>
+                        <div style="margin: 10px 0; font-size: 0.8rem; color: #888;">
+                            ⏱️ 10 min • 🎉 Celebración
                         </div>
+                        <a href="modulos/contratos/fin-modulo-contratos.html" class="module-button">Acceder al Módulo</a>
                     </div>
                 </div>
+            </div>
 
-                <!-- SECCIÓN 3: FACTURAS -->
-                <div style="grid-column: 1 / -1; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: var(--spacing-lg); border-radius: var(--border-radius-lg); margin-bottom: var(--spacing-lg); border: 2px solid var(--accent-color);">
-                    <h3 style="color: var(--accent-color); margin-bottom: var(--spacing-md); text-align: center; font-size: 1.5rem;">🧾 FACTURAS</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg);">
-                        
-                        <!-- Introducción facturas -->
-                        <div class="module-card future">
-                            <div class="module-icon" style="background: var(--gradient-accent);">📚</div>
-                            <h4>Introducción facturas</h4>
-                            <p>Fundamentos del sistema de facturación en Sinnut ERP.</p>
-                            <div class="module-tags">
-                                <span class="tag time">⏱ 20 min</span>
-                                <span class="tag type">📖 Teórico</span>
-                            </div>
-                            <a href="modulos/facturas/introduccion-facturas.html" class="btn btn-accent">🚧 Próximamente</a>
+            <!-- Módulo 3: Facturas (Próximamente) -->
+            <div class="module-section" style="opacity: 0.7;">
+                <h2 style="color: #3498db; margin-bottom: 15px;">🧾 Módulo 3: Gestión de Facturas</h2>
+                <p style="color: #666; margin-bottom: 20px;">
+                    Sistema completo de facturación, planes separe y gestión de ventas.
+                </p>
+                
+                <div class="module-list">
+                    <div class="module-item">
+                        <span class="module-status status-coming">🚧 Próximamente</span>
+                        <h4 style="margin: 10px 0; color: #333;">Introducción a Facturas</h4>
+                        <p style="color: #666; font-size: 0.9rem; line-height: 1.4;">
+                            Fundamentos del sistema de facturación en Sinnut ERP.
+                        </p>
+                        <div style="margin: 10px 0; font-size: 0.8rem; color: #888;">
+                            ⏱️ 20 min • 📖 Teórico
                         </div>
-
-                        <!-- Factura de venta -->
-                        <div class="module-card future">
-                            <div class="module-icon" style="background: var(--gradient-accent);">💳</div>
-                            <h4>Factura de venta</h4>
-                            <p>Creación y gestión de facturas de venta en el sistema.</p>
-                            <div class="module-tags">
-                                <span class="tag time">⏱ 25 min</span>
-                                <span class="tag type">📹 Video + Práctica</span>
-                            </div>
-                            <a href="modulos/facturas/factura-de-venta.html" class="btn btn-accent">🚧 Próximamente</a>
-                        </div>
-
-                        <!-- Crear Plan Separe -->
-                        <div class="module-card future">
-                            <div class="module-icon" style="background: var(--gradient-accent);">📋</div>
-                            <h4>Crear Plan Separe</h4>
-                            <p>Creación de planes separe para opciones de pago flexibles.</p>
-                            <div class="module-tags">
-                                <span class="tag time">⏱ 25 min</span>
-                                <span class="tag type">📹 Video + Práctica</span>
-                            </div>
-                            <a href="modulos/facturas/crear-plan-separe.html" class="btn btn-accent">🚧 Próximamente</a>
-                        </div>
-
-                        <!-- Consultar plan separe -->
-                        <div class="module-card future">
-                            <div class="module-icon" style="background: var(--gradient-accent);">🔍</div>
-                            <h4>Consultar plan separe</h4>
-                            <p>Consulta y revisión de planes separe existentes.</p>
-                            <div class="module-tags">
-                                <span class="tag time">⏱ 20 min</span>
-                                <span class="tag type">� Video + Práctica</span>
-                            </div>
-                            <a href="modulos/facturas/consultar-plan-separe.html" class="btn btn-accent">�🚧 Próximamente</a>
-                        </div>
-
-                        <!-- Abonar y facturar plan separe -->
-                        <div class="module-card future">
-                            <div class="module-icon" style="background: var(--gradient-accent);">💰</div>
-                            <h4>Abonar y facturar plan separe</h4>
-                            <p>Proceso de abonos y facturación final de planes separe.</p>
-                            <div class="module-tags">
-                                <span class="tag time">⏱ 30 min</span>
-                                <span class="tag type">📹 Video + Práctica</span>
-                            </div>
-                            <a href="modulos/facturas/abonar-facturar-plan-separe.html" class="btn btn-accent">🚧 Próximamente</a>
-                        </div>
-
-                        <!-- Fin del módulo: Gestión de Facturas -->
-                        <div class="module-card future">
-                            <div class="module-icon" style="background: var(--gradient-accent);">🎉</div>
-                            <h4>Fin del módulo: Gestión de Facturas</h4>
-                            <p>Resumen y cierre del módulo de facturas.</p>
-                            <div class="module-tags">
-                                <span class="tag time">⏱ 10 min</span>
-                                <span class="tag type">📋 Resumen</span>
-                            </div>
-                            <a href="modulos/facturas/fin-modulo-facturas.html" class="btn btn-accent">🚧 Próximamente</a>
-                        </div>
+                        <span class="module-button disabled">En Desarrollo</span>
                     </div>
-                </div>
-
-                <!-- SECCIÓN 4: CIERRE Y EVALUACIÓN -->
-                <div style="grid-column: 1 / -1; background: linear-gradient(135deg, #e3f7f0 0%, #f0fff4 100%); padding: var(--spacing-lg); border-radius: var(--border-radius-lg); margin-bottom: var(--spacing-lg); border: 2px solid var(--secondary-color);">
-                    <h3 style="color: var(--secondary-color); margin-bottom: var(--spacing-md); text-align: center; font-size: 1.5rem;">🎓 CIERRE Y EVALUACIÓN</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg);">
-                        
-                        <!-- Página final del curso -->
-                        <div class="module-card future">
-                            <div class="module-icon" style="background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);">📚</div>
-                            <h4>Página final del curso</h4>
-                            <p>Resumen completo del curso y preparación para la evaluación final.</p>
-                            <div class="module-tags">
-                                <span class="tag time">⏱ 10 min</span>
-                                <span class="tag type">� Resumen</span>
-                            </div>
-                            <a href="modulos/cierre-evaluacion/pagina-final-curso.html" class="btn btn-secondary">🚧 Próximamente</a>
+                    
+                    <div class="module-item">
+                        <span class="module-status status-coming">🚧 Próximamente</span>
+                        <h4 style="margin: 10px 0; color: #333;">Crear Factura de Venta</h4>
+                        <p style="color: #666; font-size: 0.9rem; line-height: 1.4;">
+                            Proceso completo de creación y gestión de facturas de venta.
+                        </p>
+                        <div style="margin: 10px 0; font-size: 0.8rem; color: #888;">
+                            ⏱️ 25 min • 🎬 Video + Práctica
                         </div>
-
-                        <!-- Evaluación Final -->
-                        <div class="module-card future">
-                            <div class="module-icon" style="background: linear-gradient(135deg, var(--accent-color) 0%, #e67e22 100%);">📝</div>
-                            <h4>Evaluación Final</h4>
-                            <p>Evaluación completa de conocimientos con certificación oficial.</p>
-                            <div class="module-tags">
-                                <span class="tag time">⏱ 30 min</span>
-                                <span class="tag type">📝 Evaluación</span>
-                            </div>
-                            <a href="https://aula.aynn.pro/courses/1/quizzes/4?module_item_id=20" class="btn" style="background: var(--accent-color); color: white;" target="_blank">🎯 Evaluación en Canvas</a>
-                        </div>
+                        <span class="module-button disabled">En Desarrollo</span>
                     </div>
-                </div>
-
-                <!-- Placeholder para módulos futuros -->
-                <div class="module-card" style="opacity: 0.7; border: 2px dashed #cccccc;">
-                    <div class="module-icon" style="background: linear-gradient(135deg, #cccccc 0%, #aaaaaa 100%);">➕</div>
-                    <h4 style="color: #999;">Más Módulos Próximamente</h4>
-                    <p style="color: #888;">Estamos desarrollando módulos adicionales para completar tu formación en el sistema ERP.</p>
-                    <div class="module-tags">
-                        <span class="tag" style="background-color: #f0f0f0; color: #999;">⏱ Por definir</span>
-                        <span class="tag" style="background-color: #f0f0f0; color: #999;">📈 En desarrollo</span>
-                    </div>
-                    <div style="background-color: #e0e0e0; color: #999; padding: 12px 24px; font-weight: bold; border-radius: 8px; display: inline-block;">🔮 Muy Pronto</div>
                 </div>
             </div>
         </section>
 
-        <!-- Sección de Evaluación -->
-        <section id="evaluacion" class="section evaluation">
-            <h3>📊 Evaluación Final</h3>
-            <p>Una vez completados los módulos, demuestra tus conocimientos con una evaluación integral que abarca todos los temas estudiados.</p>
+        <!-- Evaluación Final -->
+        <div class="module-section" style="background: linear-gradient(135deg, #e8f4fd 0%, #f0f8ff 100%); border-left-color: #3498db;">
+            <h2 style="color: #3498db; margin-bottom: 15px;">🎯 Evaluación Final</h2>
+            <p style="color: #666; margin-bottom: 20px;">
+                Demuestra tus conocimientos con una evaluación integral que abarca todos los módulos estudiados.
+            </p>
             
-            <div class="stats-grid" style="margin-bottom: var(--spacing-xl);">
-                <div class="stat-item">
-                    <div class="stat-circle primary">20</div>
-                    <strong>Preguntas</strong><br>
-                    <span style="color: var(--text-secondary);">Diversas</span>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="text-align: center;">
+                    <div style="font-size: 1.5rem; color: #3498db; font-weight: bold;">20</div>
+                    <div style="font-size: 0.9rem; color: #666;">Preguntas</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-circle secondary">30</div>
-                    <strong>Minutos</strong><br>
-                    <span style="color: var(--text-secondary);">Duración</span>
+                <div style="text-align: center;">
+                    <div style="font-size: 1.5rem; color: #3498db; font-weight: bold;">30</div>
+                    <div style="font-size: 0.9rem; color: #666;">Minutos</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-circle accent">70%</div>
-                    <strong>Nota mínima</strong><br>
-                    <span style="color: var(--text-secondary);">Para aprobar</span>
+                <div style="text-align: center;">
+                    <div style="font-size: 1.5rem; color: #3498db; font-weight: bold;">70%</div>
+                    <div style="font-size: 0.9rem; color: #666;">Nota mínima</div>
                 </div>
             </div>
             
-            <a href="evaluacion-final.html" class="btn btn-secondary">🎯 Iniciar Evaluación</a>
-        </section>
+            <a href="modulos/cierre-evaluacion/pagina-final-curso.html" class="module-button" style="background: #3498db;">
+                🎯 Ir a Evaluación Final
+            </a>
+        </div>
 
-        <!-- Navegación rápida -->
-        <section class="quick-nav">
-            <h3>🧭 Navegación Rápida</h3>
-            <div class="nav-links">
-                <a href="#inicio" class="nav-link primary">🏠 Inicio</a>
-                <a href="modulos/introduccion-contabilidad.html" class="nav-link accent">📚 Introducción</a>
-                <a href="modulos/arqueo-caja.html" class="nav-link primary">🧾 Arqueo de Caja</a>
-                <a href="#" class="nav-link secondary">📋 Contratos</a>
-                <a href="#" class="nav-link accent">🧾 Facturas</a>
-                <a href="evaluacion-final.html" class="nav-link muted">📊 Evaluación</a>
-                <a href="faq.html" class="nav-link muted">📚 FAQ</a>
-            </div>
-        </section>
+        <!-- Recursos de apoyo -->
+        <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; margin: 30px 0; text-align: center;">
+            <h3 style="color: #333; margin-bottom: 20px;">📞 ¿Necesitas ayuda?</h3>
+            <p style="color: #666; margin-bottom: 20px;">
+                Nuestro equipo de soporte está disponible para resolver tus dudas
+            </p>
+            <a href="mailto:soporte.ti@oroexpress.com.co" 
+               class="action-btn primary" 
+               style="background: #50b67a;">
+                📧 Contactar Soporte
+            </a>
+        </div>
 
-        <!-- Recursos adicionales -->
-        <section id="recursos" class="section">
-            <h3>📚 Recursos de Apoyo</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-lg);">
-                <div style="text-align: center;">
-                    <h4 style="color: var(--secondary-color); margin-bottom: var(--spacing-md);">📖 Documentación</h4>
-                    <p>Manuales y guías de referencia rápida para consultar durante el curso.</p>
-                    <a href="#" class="btn btn-primary" style="padding: var(--spacing-sm) var(--spacing-lg);">Ver Manuales</a>
-                </div>
-                <div style="text-align: center;">
-                    <h4 style="color: var(--primary-color); margin-bottom: var(--spacing-md);">🎥 Videos Tutorial</h4>
-                    <p>Biblioteca de videos explicativos para reforzar el aprendizaje.</p>
-                    <a href="#" class="btn btn-secondary" style="padding: var(--spacing-sm) var(--spacing-lg);">Ver Videos</a>
-                </div>
-                <div style="text-align: center;">
-                    <h4 style="color: var(--accent-color); margin-bottom: var(--spacing-md);">💬 Soporte</h4>
-                    <p>¿Necesitas ayuda? Contacta con nuestro equipo de soporte técnico.</p>
-                    <a href="mailto:soporte.ti@oroexpress.com.co" class="btn btn-accent" style="padding: var(--spacing-sm) var(--spacing-lg);">Contactar</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Progreso del curso -->
-        <section class="section" style="background: linear-gradient(135deg, #e3f7f0 0%, #eaf6ff 100%);">
-            <h3 style="text-align: center;">📈 Tu Progreso</h3>
-            <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: var(--spacing-lg);">
-                <div style="text-align: center;">
-                    <div style="width: 100px; height: 100px; border-radius: 50%; background: conic-gradient(var(--secondary-color) 0deg 36deg, #e0e0e0 36deg 360deg); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; color: var(--primary-color); margin: 0 auto var(--spacing-sm);">10%</div>
-                    <strong>Completado</strong>
-                </div>
-                <div style="text-align: center;">
-                    <div style="background: var(--gradient-secondary); color: white; padding: var(--spacing-md); border-radius: var(--border-radius-lg); font-weight: bold;">
-                        🏆 ¡Comienza tu certificación!
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div style="margin-bottom: var(--spacing-sm); font-weight: 500;">
-                Sinnut © 2025 | Actualizado: Septiembre 2025 | Versión 2.0
-            </div>
-            <div>
-                Contacto: <a href="mailto:soporte.ti@oroexpress.com.co" style="color: var(--secondary-color);">soporte.ti@oroexpress.com.co</a> | 
-                Todos los derechos reservados
-            </div>
+        <!-- Footer simplificado -->
+        <footer style="text-align: center; padding: 20px 0; border-top: 1px solid #e0e0e0; margin-top: 40px; color: #666;">
+            <p style="margin: 0;">
+                <strong>Sinnut © 2025</strong> | Versión 2.0 | 
+                <a href="mailto:soporte.ti@oroexpress.com.co" style="color: #c59d5f;">Soporte Técnico</a>
+            </p>
         </footer>
     </div>
 
     <!-- JavaScript principal -->
     <script src="assets/js/main.js"></script>
     <script>
-        // Código específico de la página de inicio
         document.addEventListener('DOMContentLoaded', function() {
-            // Contador animado para módulos
-            const counter = document.getElementById('moduloCounter');
-            if (counter) {
-                let count = 1;
-                const interval = setInterval(() => {
-                    counter.textContent = count + '+';
-                    count++;
-                    if (count > 3) {
-                        clearInterval(interval);
-                        counter.textContent = '3+';
-                    }
-                }, 500);
-            }
-
             // Tracking de inicio de módulos
             document.querySelectorAll('a[href*="modulos/"]').forEach(link => {
-                link.addEventListener('click', function() {
-                    const moduleId = this.href.split('/').pop().replace('.html', '');
-                    SinnutTraining.trackEvent('module_started', { moduleId: moduleId });
+                if (!link.classList.contains('disabled')) {
+                    link.addEventListener('click', function() {
+                        const moduleId = this.href.split('/').pop().replace('.html', '');
+                        SinnutTraining.trackEvent('module_started', { moduleId: moduleId });
+                    });
+                }
+            });
+
+            // Smooth scroll para navegación interna
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
                 });
             });
+
+            // Mostrar notificación de bienvenida
+            setTimeout(() => {
+                SinnutTraining.showNotification(
+                    '¡Bienvenido! 👋',
+                    'Comienza tu capacitación en Sinnut ERP',
+                    'info'
+                );
+            }, 1000);
         });
     </script>
 </body>

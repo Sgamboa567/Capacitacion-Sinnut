@@ -183,6 +183,7 @@ const SinnutTraining = {
         this.initTooltips();
         this.initModals();
         this.initCounters();
+        this.initStickyNavigation();
     },
 
     // Tracking de videos
@@ -550,6 +551,113 @@ const SinnutTraining = {
         if (process.env.NODE_ENV === 'development') {
             this.showNotification(`Error: ${error.message}`, 'error');
         }
+    },
+
+    // ====================================
+    // NAVEGACIÓN STICKY Y SCROLL
+    // ====================================
+    
+    // Inicializar navegación sticky
+    initStickyNavigation() {
+        // Crear navegación sticky
+        this.createStickyNav();
+        
+        // Setup scroll listeners
+        this.setupScrollListeners();
+        
+        // Crear botón scroll to top
+        this.createScrollToTopButton();
+    },
+    
+    // Crear barra de navegación sticky
+    createStickyNav() {
+        // Buscar logo existente
+        const existingLogo = document.querySelector('img[alt*="Logo"]');
+        const logoSrc = existingLogo ? existingLogo.src : 'assets/images/Logos/Logo Completo Blanco.png';
+        
+        // Obtener título de la página
+        const pageTitle = document.title.split(' - ')[0] || 'Capacitación Sinnut ERP';
+        
+        // Crear elemento sticky nav
+        const stickyNav = document.createElement('div');
+        stickyNav.className = 'sticky-nav';
+        stickyNav.innerHTML = `
+            <div class="sticky-nav-content">
+                <img src="${logoSrc}" alt="Logo" class="logo">
+                <h3 class="nav-title">${pageTitle}</h3>
+                <div class="nav-actions">
+                    <a href="../../index.html" class="btn btn-sm btn-outline">🏠 Inicio</a>
+                    <button class="btn btn-sm btn-secondary" onclick="SinnutTraining.toggleProgress()">📊 Progreso</button>
+                </div>
+            </div>
+        `;
+        
+        // Insertar al inicio del body
+        document.body.insertBefore(stickyNav, document.body.firstChild);
+        
+        this.stickyNav = stickyNav;
+    },
+    
+    // Configurar listeners de scroll
+    setupScrollListeners() {
+        let lastScrollY = window.scrollY;
+        let ticking = false;
+        
+        const updateNavigation = () => {
+            const currentScrollY = window.scrollY;
+            
+            // Mostrar/ocultar navegación sticky
+            if (currentScrollY > 100) {
+                this.stickyNav.classList.add('visible');
+                document.body.classList.add('has-sticky-nav');
+            } else {
+                this.stickyNav.classList.remove('visible');
+                document.body.classList.remove('has-sticky-nav');
+            }
+            
+            // Mostrar/ocultar botón scroll to top
+            if (currentScrollY > 300) {
+                this.scrollToTopBtn?.classList.add('visible');
+            } else {
+                this.scrollToTopBtn?.classList.remove('visible');
+            }
+            
+            lastScrollY = currentScrollY;
+            ticking = false;
+        };
+        
+        const requestTick = () => {
+            if (!ticking) {
+                requestAnimationFrame(updateNavigation);
+                ticking = true;
+            }
+        };
+        
+        window.addEventListener('scroll', requestTick, { passive: true });
+    },
+    
+    // Crear botón scroll to top
+    createScrollToTopButton() {
+        const scrollBtn = document.createElement('button');
+        scrollBtn.className = 'scroll-to-top';
+        scrollBtn.innerHTML = '⬆️';
+        scrollBtn.title = 'Volver arriba';
+        
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        document.body.appendChild(scrollBtn);
+        this.scrollToTopBtn = scrollBtn;
+    },
+    
+    // Toggle panel de progreso
+    toggleProgress() {
+        // Implementar panel de progreso (opcional)
+        console.log('Progress panel toggled');
     }
 };
 

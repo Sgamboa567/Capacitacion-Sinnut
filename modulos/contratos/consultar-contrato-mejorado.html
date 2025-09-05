@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar Contrato - Capacitación Sinnut ERP</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <style>
+        /* Estilos adicionales para iframe */
+        body { 
+            background: transparent;
+            overflow-x: hidden;
+        }
+        .main-container {
+            box-shadow: none;
+            border: 1px solid var(--border-color);
+        }
+        
+        /* Estilos para video responsivo */
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            margin: 20px 0;
+            background: #f0f0f0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Estilos para pasos numerados */
+        .step-number {
+            background: #c59d5f;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        /* Grid de documentos */
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+        
+        .document-item {
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .document-item:hover {
+            border-color: #c59d5f;
+            box-shadow: 0 2px 8px rgba(197, 157, 95, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container animate-in">
+        <!-- Logo y navegación -->
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--spacing-lg); flex-wrap: wrap; gap: var(--spacing-md);">
+            <img src="../../assets/images/Logos/Logo Completo Blanco.png" 
+                 alt="Logo Institucional" 
+                 style="height: 50px;"
+                 loading="lazy">
+        </div>
+
+        <!-- Navegación breadcrumb -->
+        <nav class="nav-breadcrumb">
+            <a href="../../index.html">Inicio</a>
+            <span class="separator">|</span>
+            <a href="introduccion-contratos.html">Introducción Contratos</a>
+            <span class="separator">|</span>
+            <span style="color: var(--accent-color); font-weight: bold;">Consultar Contrato</span>
+        </nav>
+
+        <!-- Contenido principal mejorado basado en estructura original -->
+        <div style="background-color: #ffffff; padding: 30px 20px; border-left: 5px solid #c59d5f; max-width: 900px; margin: auto; font-family: 'Segoe UI', sans-serif; color: #1a1a1a; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-medium);">
+            
+            <!-- Header del módulo -->
+            <div style="margin-bottom: 25px;">
+                <h2 style="color: #c59d5f; font-size: 1.6rem; margin-bottom: 15px;">🔍 Consultar un contrato en SINNUT</h2>
+                <p style="line-height: 1.6; font-size: 1rem; color: #333;">
+                    En ocasiones es necesario consultar un contrato previamente creado para revisar su información, descargar los documentos asociados o continuar con una acción como retroventa o prórroga. A continuación, te mostramos cómo hacerlo.
+                </p>
+            </div>
+
+            <!-- Información del tiempo -->
+            <div style="margin-top: 20px; background-color: #f4f8f9; border-left: 4px solid #50b67a; padding: 12px 15px; font-size: 0.95rem; border-radius: 6px;">
+                ⏱ <strong>Tiempo estimado de operación:</strong> 1 minuto
+            </div>
+
+            <!-- Sección de video -->
+            <div style="margin: 30px 0;">
+                <h3 style="color: #c59d5f; font-size: 1.3em; margin-bottom: 20px;">🎬 Video: Consultar contrato en SINNUT</h3>
+                
+                <!-- Contenedor del video -->
+                <div class="video-container">
+                    <video controls="controls" 
+                           preload="metadata"
+                           poster="../../assets/images/video-placeholder.jpg">
+                        <source src="../../assets/videos/Contratos/contratos 2 (consulta de documentos).mp4" type="video/mp4">
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #666;">
+                            <p>Tu navegador no soporta este formato de video.</p>
+                            <a href="../../assets/videos/Contratos/contratos 2 (consulta de documentos).mp4" 
+                               download 
+                               style="color: #c59d5f; text-decoration: none; font-weight: bold;">
+                                📥 Descargar video
+                            </a>
+                        </div>
+                    </video>
+                </div>
+            </div>
+
+            <!-- Pasos del proceso -->
+            <div style="margin: 30px 0;">
+                <h3 style="color: #444; font-size: 1.2rem; margin-bottom: 20px;">📋 Pasos para consultar un contrato</h3>
+                
+                <div style="background-color: #f9f6f1; border-left: 4px solid #c59d5f; padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <div style="display: flex; align-items: flex-start; gap: 10px;">
+                        <div class="step-number">1</div>
+                        <div>
+                            <strong>Acceder al módulo:</strong> Desde el módulo <strong>Gestión de contratos</strong>, usa la barra de búsqueda para ingresar la secuencia del contrato o el documento del cliente.
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background-color: #f9f6f1; border-left: 4px solid #c59d5f; padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <div style="display: flex; align-items: flex-start; gap: 10px;">
+                        <div class="step-number">2</div>
+                        <div>
+                            <strong>Filtrar por fecha:</strong> Si deseas ver únicamente los contratos creados el día de hoy, haz clic en el botón <strong>"Hoy"</strong>.
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background-color: #f9f6f1; border-left: 4px solid #c59d5f; padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <div style="display: flex; align-items: flex-start; gap: 10px;">
+                        <div class="step-number">3</div>
+                        <div>
+                            <strong>Acceder a detalles:</strong> Una vez ubicado el contrato, haz clic sobre los tres puntos a la derecha para ingresar a la vista de detalles.
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background-color: #f9f6f1; border-left: 4px solid #c59d5f; padding: 15px; margin-bottom: 15px; border-radius: 6px;">
+                    <div style="display: flex; align-items: flex-start; gap: 10px;">
+                        <div class="step-number">4</div>
+                        <div>
+                            <strong>Documentos disponibles:</strong> En esta vista, tendrás acceso a:
+                            <div class="documents-grid">
+                                <div class="document-item">
+                                    <span style="font-size: 1.1rem;">📄</span>
+                                    <span style="font-size: 0.9rem;">Contrato de compraventa</span>
+                                </div>
+                                <div class="document-item">
+                                    <span style="font-size: 1.1rem;">🖨️</span>
+                                    <span style="font-size: 0.9rem;">Etiqueta del contrato</span>
+                                </div>
+                                <div class="document-item">
+                                    <span style="font-size: 1.1rem;">✍️</span>
+                                    <span style="font-size: 0.9rem;">Letra de cambio</span>
+                                </div>
+                                <div class="document-item">
+                                    <span style="font-size: 1.1rem;">👤</span>
+                                    <span style="font-size: 0.9rem;">Documentos del cliente</span>
+                                </div>
+                                <div class="document-item">
+                                    <span style="font-size: 1.1rem;">🗓️</span>
+                                    <span style="font-size: 0.9rem;">Histórico de prórrogas</span>
+                                </div>
+                                <div class="document-item">
+                                    <span style="font-size: 1.1rem;">ℹ️</span>
+                                    <span style="font-size: 0.9rem;">Información detallada</span>
+                                </div>
+                                <div class="document-item">
+                                    <span style="font-size: 1.1rem;">🧾</span>
+                                    <span style="font-size: 0.9rem;">Factura de retroventa</span>
+                                </div>
+                            </div>
+                            <div style="margin-top: 10px; font-size: 0.9rem; color: #666;">
+                                Puedes descargar o imprimir estos documentos si no se generaron en la creación inicial.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tip importante -->
+            <div style="background-color: #f4f8f9; padding: 15px; border-left: 4px solid #50b67a; margin: 25px 0; font-size: 0.95rem; border-radius: 6px;">
+                <div style="display: flex; align-items: flex-start; gap: 10px;">
+                    <span style="font-size: 1.2rem;">💡</span>
+                    <div>
+                        <strong>Tip:</strong> Si no recuerdas la secuencia del contrato, puedes buscarlo por el número de documento del cliente. También puedes filtrar por fecha si manejas muchos contratos.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recordatorio de práctica -->
+            <div style="background: linear-gradient(135deg, #e8f4fd 0%, #f0f8ff 100%); border: 2px solid #3498db; padding: 20px; margin: 25px 0; text-align: center; border-radius: 8px;">
+                <h4 style="color: #0D2339; margin-bottom: 10px;">🎯 ¡Ahora es tu turno!</h4>
+                <p style="margin-bottom: 15px; color: #333;">
+                    Practica consultando diferentes contratos en el sistema para familiarizarte con la interfaz.
+                </p>
+                <div style="font-size: 0.9rem; color: #666;">
+                    <strong>Ejercicio sugerido:</strong> Busca un contrato por número de documento y revisa todos los documentos disponibles.
+                </div>
+            </div>
+
+            <!-- Botón de navegación -->
+            <div style="margin-top: 40px; text-align: center;">
+                <a style="background-color: #c59d5f; color: white; padding: 12px 20px; font-weight: bold; text-decoration: none; border-radius: 6px; transition: all 0.3s ease;" 
+                   href="../../index.html"
+                   onmouseover="this.style.backgroundColor='#b8935a'; this.style.transform='translateY(-2px)'"
+                   onmouseout="this.style.backgroundColor='#c59d5f'; this.style.transform='translateY(0)'">
+                    ⬅️ Volver a la página de inicio
+                </a>
+            </div>
+        </div>
+
+        <!-- Navegación del curso -->
+        <section class="quick-nav" style="margin-top: 30px;">
+            <h3>🧭 Navegación del Curso</h3>
+            <div class="nav-links">
+                <a href="crear-contrato.html" class="nav-link muted">⬅️ Anterior: Crear Contrato</a>
+                <a href="../../index.html" class="nav-link primary">🏠 Inicio del Curso</a>
+                <a href="pagar-retroventa.html" class="nav-link secondary">➡️ Siguiente: Pagar Retroventa</a>
+                <a href="../../faq.html" class="nav-link accent">❓ Preguntas Frecuentes</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div style="margin-bottom: var(--spacing-sm); font-weight: 500;">
+                Sinnut © 2025 | Módulo actualizado: Septiembre 2025 | Versión 2.0
+            </div>
+            <div>
+                Contacto: <a href="mailto:soporte.ti@oroexpress.com.co" style="color: var(--secondary-color);">soporte.ti@oroexpress.com.co</a> | 
+                <a href="../../index.html" style="color: var(--secondary-color);">Volver al curso</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript principal -->
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        // Tracking de inicio del módulo
+        document.addEventListener('DOMContentLoaded', function() {
+            SinnutTraining.trackEvent('module_started', { 
+                moduleId: 'consultar-contrato',
+                moduleName: 'Consultar Contrato'
+            });
+
+            // Tracking de video cuando se reproduce
+            const video = document.querySelector('video');
+            if (video) {
+                video.addEventListener('play', function() {
+                    SinnutTraining.trackEvent('video_started', {
+                        moduleId: 'consultar-contrato',
+                        videoTitle: 'Consultar contrato en SINNUT'
+                    });
+                });
+
+                video.addEventListener('ended', function() {
+                    SinnutTraining.trackEvent('video_completed', {
+                        moduleId: 'consultar-contrato',
+                        videoTitle: 'Consultar contrato en SINNUT'
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fin del Módulo: Gestión de Contratos - Capacitación Sinnut ERP</title>
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <style>
+        /* Estilos adicionales para iframe */
+        body { 
+            background: transparent;
+            overflow-x: hidden;
+        }
+        .main-container {
+            box-shadow: none;
+            border: 1px solid var(--border-color);
+        }
+        
+        /* Estilos para la celebración */
+        .celebration-header {
+            background: linear-gradient(135deg, #e3f7f0 0%, #f0fff4 100%);
+            border: 2px solid #50b67a;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .celebration-header::before {
+            content: '🎉';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+        }
+        
+        .celebration-header::after {
+            content: '🎊';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2rem;
+            animation: bounce 2s infinite 0.5s;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        /* Estilos para achievements */
+        .achievement-list {
+            background: #f9f6f1;
+            border-left: 4px solid #c59d5f;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .achievement-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 6px;
+            transition: transform 0.2s ease;
+        }
+        
+        .achievement-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .achievement-icon {
+            background: #c59d5f;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        
+        /* Botones de navegación */
+        .navigation-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        
+        .nav-button {
+            background-color: #c59d5f;
+            color: white;
+            padding: 14px 24px;
+            font-weight: bold;
+            font-size: 1rem;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-button:hover {
+            background-color: #b8935a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(197, 157, 95, 0.3);
+        }
+        
+        .nav-button.secondary {
+            background-color: #6c757d;
+        }
+        
+        .nav-button.secondary:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container animate-in">
+        <!-- Logo y navegación -->
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--spacing-lg); flex-wrap: wrap; gap: var(--spacing-md);">
+            <img src="../../assets/images/Logos/Logo Completo Blanco.png" 
+                 alt="Logo Institucional" 
+                 style="height: 50px;"
+                 loading="lazy">
+        </div>
+
+        <!-- Navegación breadcrumb -->
+        <nav class="nav-breadcrumb">
+            <a href="../../index.html">Inicio</a>
+            <span class="separator">|</span>
+            <a href="crear-contrato.html">Gestión de Contratos</a>
+            <span class="separator">|</span>
+            <span style="color: var(--accent-color); font-weight: bold;">Fin del Módulo</span>
+        </nav>
+
+        <!-- Contenido principal mejorado basado en estructura original -->
+        <div style="background-color: #ffffff; padding: 40px 30px; max-width: 900px; margin: auto; font-family: 'Segoe UI', sans-serif; color: #1a1a1a; border-left: 5px solid #c59d5f; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-medium);">
+            
+            <!-- Header de celebración -->
+            <div class="celebration-header">
+                <h2 style="color: #c59d5f; font-size: 1.8rem; margin-bottom: 15px;">📝 Fin del módulo: Gestión de Contratos</h2>
+                <p style="font-size: 1.1rem; color: #2d5016; font-weight: 500; margin: 0;">
+                    ¡Felicitaciones! Has completado exitosamente el módulo
+                </p>
+            </div>
+
+            <!-- Mensaje principal -->
+            <div style="margin: 30px 0;">
+                <p style="font-size: 1rem; line-height: 1.6; color: #333;">
+                    ¡Has completado satisfactoriamente todas las lecciones del módulo de contratos en SINNUT! Ahora estás en capacidad de crear, consultar, prorrogar y cerrar contratos correctamente desde el sistema ERP.
+                </p>
+            </div>
+
+            <!-- Logros del módulo -->
+            <div class="achievement-list">
+                <h3 style="margin-top: 0; color: #c59d5f; margin-bottom: 20px;">📋 ¿Qué aprendiste en este módulo?</h3>
+                
+                <div class="achievement-item">
+                    <div class="achievement-icon">✓</div>
+                    <div>
+                        <strong>Crear contratos:</strong> Cómo crear un contrato desde cero, registrando cliente, productos y condiciones
+                    </div>
+                </div>
+                
+                <div class="achievement-item">
+                    <div class="achievement-icon">✓</div>
+                    <div>
+                        <strong>Consultar documentos:</strong> Cómo consultar y descargar documentos del contrato ya creado
+                    </div>
+                </div>
+                
+                <div class="achievement-item">
+                    <div class="achievement-icon">✓</div>
+                    <div>
+                        <strong>Gestionar retroventas:</strong> Cómo aplicar retroventa y pagar prórrogas
+                    </div>
+                </div>
+                
+                <div class="achievement-item">
+                    <div class="achievement-icon">✓</div>
+                    <div>
+                        <strong>Criterios de uso:</strong> Cuándo usar cada función según el estado del contrato
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tip importante -->
+            <div style="background-color: #f4f8f9; border-left: 4px solid #50b67a; padding: 20px; margin: 25px 0; border-radius: 6px;">
+                <div style="display: flex; align-items: flex-start; gap: 10px;">
+                    <span style="font-size: 1.2rem;">💡</span>
+                    <div>
+                        <strong>Tip:</strong> Dominar los contratos asegura la trazabilidad y legalidad de las operaciones de compraventa con tus clientes.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estadísticas del módulo -->
+            <div style="background: linear-gradient(135deg, #fff9e6 0%, #fffdf7 100%); border: 2px solid #c59d5f; padding: 25px; margin: 25px 0; text-align: center; border-radius: 12px;">
+                <h4 style="color: #c59d5f; margin-bottom: 15px;">📊 Resumen del Módulo</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 15px;">
+                    <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="font-size: 1.5rem; color: #c59d5f; font-weight: bold;">4</div>
+                        <div style="font-size: 0.9rem; color: #666;">Lecciones completadas</div>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="font-size: 1.5rem; color: #c59d5f; font-weight: bold;">10</div>
+                        <div style="font-size: 0.9rem; color: #666;">Videos visualizados</div>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="font-size: 1.5rem; color: #c59d5f; font-weight: bold;">100%</div>
+                        <div style="font-size: 0.9rem; color: #666;">Progreso del módulo</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botones de navegación -->
+            <div class="navigation-buttons">
+                <a href="../facturacion/introduccion-facturas.html" class="nav-button">
+                    ➡️ Continuar con el módulo: Gestión de Facturación
+                </a>
+                <a href="../../index.html" class="nav-button secondary">
+                    ⬅️ Volver a la página de inicio
+                </a>
+            </div>
+
+            <!-- Logo y mensaje final -->
+            <div style="margin-top: 60px; text-align: center;">
+                <img style="height: 60px; margin-bottom: 20px;" 
+                     src="../../assets/images/Logos/Logo Completo Blanco.png" 
+                     alt="Logo SINNUT" />
+                <p style="font-size: 0.95rem; color: #666;">
+                    Módulo finalizado · Puedes volver a consultar este contenido cuando lo necesites
+                </p>
+            </div>
+        </div>
+
+        <!-- Navegación del curso -->
+        <section class="quick-nav" style="margin-top: 30px;">
+            <h3>🧭 Navegación del Curso</h3>
+            <div class="nav-links">
+                <a href="pagar-retroventa.html" class="nav-link muted">⬅️ Anterior: Pagar Retroventa</a>
+                <a href="../../index.html" class="nav-link primary">🏠 Inicio del Curso</a>
+                <a href="../facturacion/introduccion-facturas.html" class="nav-link secondary">➡️ Siguiente: Gestión de Facturación</a>
+                <a href="../../modulos/cierre-evaluacion/pagina-final-curso.html" class="nav-link accent">🎯 Evaluación Final</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div style="margin-bottom: var(--spacing-sm); font-weight: 500;">
+                Sinnut © 2025 | Módulo completado: Septiembre 2025 | Versión 2.0
+            </div>
+            <div>
+                Contacto: <a href="mailto:soporte.ti@oroexpress.com.co" style="color: var(--secondary-color);">soporte.ti@oroexpress.com.co</a> | 
+                <a href="../../index.html" style="color: var(--secondary-color);">Volver al curso</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript principal -->
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        // Tracking de finalización del módulo
+        document.addEventListener('DOMContentLoaded', function() {
+            SinnutTraining.trackEvent('module_completed', { 
+                moduleId: 'contratos',
+                moduleName: 'Gestión de Contratos',
+                completionTime: new Date().toISOString()
+            });
+
+            // Tracking de navegación a siguiente módulo
+            const nextModuleLink = document.querySelector('a[href*="facturacion"]');
+            if (nextModuleLink) {
+                nextModuleLink.addEventListener('click', function() {
+                    SinnutTraining.trackEvent('navigation_next_module', {
+                        fromModule: 'contratos',
+                        toModule: 'facturacion'
+                    });
+                });
+            }
+
+            // Mostrar notificación de logro
+            SinnutTraining.showNotification(
+                '¡Felicitaciones! 🎉',
+                'Has completado el módulo de Gestión de Contratos',
+                'success'
+            );
+        });
+    </script>
+</body>
+</html>

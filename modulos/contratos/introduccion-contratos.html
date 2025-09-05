@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introducción: Contratos - Capacitación Sinnut ERP</title>
+    <title>Introducción: Gestión de Contratos - Capacitación Sinnut ERP</title>
     <link rel="stylesheet" href="../../assets/css/main.css">
-    <!-- Estilos específicos para el módulo -->
     <style>
         /* Estilos adicionales para iframe */
         body { 
@@ -16,13 +15,88 @@
             box-shadow: none;
             border: 1px solid var(--border-color);
         }
+        
+        /* Estilos para objetivos */
+        .objectives-list {
+            background: #f9f6f1;
+            border-left: 4px solid #c59d5f;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .objective-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding: 8px;
+            background: white;
+            border-radius: 6px;
+            transition: transform 0.2s ease;
+        }
+        
+        .objective-item:hover {
+            transform: translateX(5px);
+        }
+        
+        /* Estilos para importancia */
+        .importance-section {
+            background: linear-gradient(135deg, #fff9e6 0%, #fffdf7 100%);
+            border: 2px solid #c59d5f;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        /* Estilos para call-to-action */
+        .completion-reminder {
+            background: linear-gradient(135deg, #e8f4fd 0%, #f0f8ff 100%);
+            border: 2px solid #3498db;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .completion-reminder .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        /* Estilos para progreso del módulo */
+        .module-progress {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #c59d5f 0%, #d4af73 100%);
+            height: 100%;
+            width: 0%;
+            border-radius: 10px;
+            transition: width 2s ease;
+        }
     </style>
 </head>
 <body>
     <div class="main-container animate-in">
         <!-- Logo y navegación -->
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--spacing-lg); flex-wrap: wrap; gap: var(--spacing-md);">
-            <img src="https://aula.aynn.pro/files/81" 
+            <img src="../../assets/images/Logos/Logo Completo Blanco.png" 
                  alt="Logo Institucional" 
                  style="height: 50px;"
                  loading="lazy">
@@ -32,41 +106,157 @@
         <nav class="nav-breadcrumb">
             <a href="../../index.html">Inicio</a>
             <span class="separator">|</span>
-            <a href="#contenido">Contenido</a>
-            <span class="separator">|</span>
-            <a href="#siguiente">Siguiente</a>
+            <span style="color: var(--accent-color); font-weight: bold;">Introducción Contratos</span>
         </nav>
 
-        <!-- Header del módulo -->
-        <header class="header" style="margin-bottom: var(--spacing-xl);">
-            <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">📋</div>
-            <h1>Introducción: Contratos</h1>
-            <p>Conoce los fundamentos de la gestión de contratos en Sinnut ERP. Aprende cómo crear, consultar y gestionar contratos de manera eficiente.</p>
-        </header>
+        <!-- Contenido principal mejorado basado en estructura original -->
+        <div style="background-color: #ffffff; padding: 30px 20px; border-left: 5px solid #c59d5f; max-width: 900px; margin: auto; font-family: 'Segoe UI', sans-serif; color: #1a1a1a; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-medium);">
+            
+            <!-- Header del módulo -->
+            <div style="margin-bottom: 25px;">
+                <h2 style="color: #c59d5f; font-size: 1.6rem; margin-bottom: 15px;">📑 Introducción al Módulo: Gestión de Contratos</h2>
+                <p style="line-height: 1.6; font-size: 1rem; color: #333;">
+                    En este módulo aprenderás a utilizar una de las funciones más importantes del sistema SINNUT ERP: la <strong>gestión de contratos</strong>. A través de esta herramienta podrás registrar contratos con los clientes, prórrogas, retroventas, letra de cambio y generar automáticamente los documentos asociados.
+                </p>
+            </div>
 
-        <!-- Información del tiempo -->
-        <div class="alert info">
-            ⏱ <strong>Duración estimada:</strong> 20 minutos | 
-            📚 <strong>Módulo introductorio</strong>
+            <!-- Información del tiempo -->
+            <div style="margin-top: 20px; background-color: #f4f8f9; border-left: 4px solid #50b67a; padding: 12px 15px; font-size: 0.95rem; border-radius: 6px;">
+                ⏱ <strong>Duración estimada del módulo:</strong> 25 a 33 minutos
+            </div>
+
+            <!-- Progreso del módulo -->
+            <div class="module-progress">
+                <h4 style="color: #c59d5f; margin-bottom: 10px;">📊 Progreso del Módulo</h4>
+                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #666; margin-bottom: 5px;">
+                    <span>Introducción</span>
+                    <span>0% completado</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="moduleProgress"></div>
+                </div>
+                <p style="font-size: 0.85rem; color: #888; margin-top: 8px; margin-bottom: 0;">
+                    Comenzando el módulo de Gestión de Contratos
+                </p>
+            </div>
+
+            <!-- Objetivos del módulo -->
+            <div class="objectives-list">
+                <h3 style="color: #444; font-size: 1.2rem; margin-top: 0; margin-bottom: 20px;">🎯 Objetivos del módulo</h3>
+                
+                <div class="objective-item">
+                    <span style="color: #50b67a; font-size: 1.1rem;">✅</span>
+                    <div>
+                        <strong>Flujo de creación:</strong> Comprender el flujo de creación de contratos
+                    </div>
+                </div>
+                
+                <div class="objective-item">
+                    <span style="color: #50b67a; font-size: 1.1rem;">✅</span>
+                    <div>
+                        <strong>Registro de productos:</strong> Aprender a registrar productos dentro del contrato
+                    </div>
+                </div>
+                
+                <div class="objective-item">
+                    <span style="color: #50b67a; font-size: 1.1rem;">✅</span>
+                    <div>
+                        <strong>Gestión de operaciones:</strong> Conocer cómo se gestionan retroventas y prórrogas
+                    </div>
+                </div>
+                
+                <div class="objective-item">
+                    <span style="color: #50b67a; font-size: 1.1rem;">✅</span>
+                    <div>
+                        <strong>Consulta de documentos:</strong> Familiarizarse con la interfaz de consulta y descarga de documentos
+                    </div>
+                </div>
+            </div>
+
+            <!-- Importancia del proceso -->
+            <div class="importance-section">
+                <h3 style="color: #444; font-size: 1.2rem; margin-top: 0; margin-bottom: 15px;">📌 ¿Por qué es importante este proceso?</h3>
+                <p style="line-height: 1.6; color: #333; margin-bottom: 0;">
+                    Los contratos son el corazón del proceso comercial en una joyería. Un contrato bien registrado evita errores en inventario, reprocesos contables, mejora la atención al cliente y asegura el cumplimiento legal y financiero. Sumado a esto la importancia de la data de calidad para el análisis y toma de decisiones comerciales.
+                </p>
+            </div>
+
+            <!-- Beneficios del módulo -->
+            <div style="background: #f0f8ff; border-left: 4px solid #3498db; padding: 20px; margin: 25px 0; border-radius: 6px;">
+                <h4 style="color: #2c3e50; margin-top: 0; margin-bottom: 15px;">🎓 Al finalizar este módulo serás capaz de:</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                    <div style="background: white; padding: 15px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <div style="color: #c59d5f; font-size: 1.5rem; margin-bottom: 8px;">📝</div>
+                        <div style="font-size: 0.9rem; font-weight: bold; color: #333;">Crear contratos completos</div>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <div style="color: #c59d5f; font-size: 1.5rem; margin-bottom: 8px;">🔍</div>
+                        <div style="font-size: 0.9rem; font-weight: bold; color: #333;">Consultar documentos</div>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <div style="color: #c59d5f; font-size: 1.5rem; margin-bottom: 8px;">💰</div>
+                        <div style="font-size: 0.9rem; font-weight: bold; color: #333;">Gestionar retroventas</div>
+                    </div>
+                    <div style="background: white; padding: 15px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                        <div style="color: #c59d5f; font-size: 1.5rem; margin-bottom: 8px;">📋</div>
+                        <div style="font-size: 0.9rem; font-weight: bold; color: #333;">Manejar prórrogas</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recordatorio de completitud -->
+            <div class="completion-reminder">
+                <span class="icon">✅</span>
+                <h4 style="color: #0D2339; margin-bottom: 10px;">¡Importante!</h4>
+                <p style="margin-bottom: 0; font-size: 0.95rem; color: #333;">
+                    Antes de continuar, asegúrate de comprender la importancia del módulo. Luego, marca esta página como completada para desbloquear el contenido práctico. (botón arriba a la derecha)
+                </p>
+            </div>
+
+            <!-- Estructura del módulo -->
+            <div style="background: white; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin: 25px 0;">
+                <h4 style="color: #c59d5f; margin-top: 0; margin-bottom: 15px;">📚 Estructura del Módulo</h4>
+                <div style="display: grid; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #f9f9f9; border-radius: 6px;">
+                        <span style="background: #c59d5f; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold;">1</span>
+                        <span style="flex: 1;">Introducción al módulo</span>
+                        <span style="color: #50b67a; font-weight: bold;">En progreso</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #f9f9f9; border-radius: 6px; opacity: 0.7;">
+                        <span style="background: #ccc; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold;">2</span>
+                        <span style="flex: 1;">Crear un contrato</span>
+                        <span style="color: #666;">Pendiente</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #f9f9f9; border-radius: 6px; opacity: 0.7;">
+                        <span style="background: #ccc; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold;">3</span>
+                        <span style="flex: 1;">Consultar contrato</span>
+                        <span style="color: #666;">Pendiente</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #f9f9f9; border-radius: 6px; opacity: 0.7;">
+                        <span style="background: #ccc; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold;">4</span>
+                        <span style="flex: 1;">Pagar retroventa</span>
+                        <span style="color: #666;">Pendiente</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón de navegación -->
+            <div style="margin-top: 40px; text-align: center;">
+                <a style="background-color: #c59d5f; color: white; padding: 12px 20px; font-weight: bold; text-decoration: none; border-radius: 6px; transition: all 0.3s ease;" 
+                   href="../../index.html"
+                   onmouseover="this.style.backgroundColor='#b8935a'; this.style.transform='translateY(-2px)'"
+                   onmouseout="this.style.backgroundColor='#c59d5f'; this.style.transform='translateY(0)'">
+                    ⬅️ Volver a la página de inicio
+                </a>
+            </div>
         </div>
 
-        <!-- Contenido principal -->
-        <section id="contenido" class="section">
-            <h2>📝 Contenido del Módulo</h2>
-            <div class="alert warning">
-                <h3>🚧 Contenido en Preparación</h3>
-                <p>Este módulo está siendo desarrollado. El contenido específico será añadido próximamente.</p>
-                <p><strong>Mientras tanto:</strong> Puedes continuar con otros módulos disponibles o contactar al equipo de soporte.</p>
-            </div>
-        </section>
-
         <!-- Navegación del curso -->
-        <section class="quick-nav">
+        <section class="quick-nav" style="margin-top: 30px;">
             <h3>🧭 Navegación del Curso</h3>
             <div class="nav-links">
-                <a href="../arqueo-caja.html" class="nav-link muted">⬅️ Anterior: Arqueo de Caja</a>
-                <a href="../../index.html" class="nav-link primary">🏠 Inicio del Curso</a>
-                <a href="crear-contrato.html" class="nav-link secondary">➡️ Siguiente: Crear Contrato</a>
+                <a href="../../index.html" class="nav-link muted">⬅️ Inicio del Curso</a>
+                <a href="crear-contrato.html" class="nav-link primary">➡️ Siguiente: Crear Contrato</a>
                 <a href="../../faq.html" class="nav-link accent">❓ Preguntas Frecuentes</a>
             </div>
         </section>
@@ -90,7 +280,26 @@
         document.addEventListener('DOMContentLoaded', function() {
             SinnutTraining.trackEvent('module_started', { 
                 moduleId: 'introduccion-contratos',
-                moduleName: 'Introducción: Contratos'
+                moduleName: 'Introducción Gestión de Contratos'
+            });
+
+            // Animar barra de progreso
+            setTimeout(function() {
+                const progressBar = document.getElementById('moduleProgress');
+                if (progressBar) {
+                    progressBar.style.width = '15%';
+                }
+            }, 1000);
+
+            // Tracking de tiempo en página
+            let startTime = Date.now();
+            
+            window.addEventListener('beforeunload', function() {
+                const timeSpent = Math.round((Date.now() - startTime) / 1000);
+                SinnutTraining.trackEvent('page_time', {
+                    moduleId: 'introduccion-contratos',
+                    timeSpent: timeSpent
+                });
             });
         });
     </script>

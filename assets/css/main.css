@@ -623,3 +623,119 @@ a:focus {
   outline: 2px solid var(--secondary-color);
   outline-offset: 2px;
 }
+
+/* ====================================
+   NAVEGACIÓN STICKY (SE MUEVE CON SCROLL)
+   ==================================== */
+.sticky-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  padding: var(--spacing-sm) var(--spacing-md);
+  z-index: 1000;
+  transform: translateY(-100%);
+  transition: transform var(--transition-normal);
+  box-shadow: var(--shadow-light);
+}
+
+.sticky-nav.visible {
+  transform: translateY(0);
+}
+
+.sticky-nav-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.sticky-nav .logo {
+  height: 35px;
+  width: auto;
+}
+
+.sticky-nav .nav-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin: 0;
+  flex: 1;
+  text-align: center;
+}
+
+.sticky-nav .nav-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.sticky-nav .nav-actions .btn {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 0.875rem;
+  min-height: auto;
+}
+
+/* Compensación del body cuando hay navegación sticky */
+.has-sticky-nav {
+  padding-top: 60px;
+}
+
+/* Responsive para navegación sticky */
+@media (max-width: 768px) {
+  .sticky-nav-content {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) 0;
+  }
+  
+  .sticky-nav .nav-title {
+    font-size: 0.875rem;
+    text-align: left;
+  }
+  
+  .sticky-nav .logo {
+    height: 30px;
+  }
+  
+  .has-sticky-nav {
+    padding-top: 80px;
+  }
+}
+
+/* Botón para volver arriba */
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-normal);
+  z-index: 999;
+  box-shadow: var(--shadow-medium);
+}
+
+.scroll-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-heavy);
+}
+
+.scroll-to-top:active {
+  transform: translateY(-1px);
+}
