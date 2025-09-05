@@ -183,7 +183,7 @@ const SinnutTraining = {
         this.initTooltips();
         this.initModals();
         this.initCounters();
-        this.initStickyNavigation();
+        // this.initStickyNavigation(); // Desactivado - usando breadcrumb sticky en cada página
     },
 
     // Tracking de videos
@@ -573,7 +573,30 @@ const SinnutTraining = {
     createStickyNav() {
         // Buscar logo existente
         const existingLogo = document.querySelector('img[alt*="Logo"]');
-        const logoSrc = existingLogo ? existingLogo.src : 'assets/images/Logos/Logo Completo Blanco.png';
+        
+        // Calcular ruta correcta del logo según la ubicación del archivo
+        const currentPath = window.location.pathname;
+        let logoPath = 'assets/images/Logos/Logo Completo Blanco.png';
+        
+        // Detectar si estamos en un subdirectorio (como modulos/contabilidad)
+        if (currentPath.includes('/modulos/')) {
+            logoPath = '../../assets/images/Logos/Logo Completo Blanco.png';
+        } else if (currentPath.includes('/')) {
+            // Para otros subdirectorios, usar ruta relativa
+            const depth = (currentPath.match(/\//g) || []).length - 1;
+            logoPath = '../'.repeat(depth) + 'assets/images/Logos/Logo Completo Blanco.png';
+        }
+        
+        const logoSrc = existingLogo ? existingLogo.src : logoPath;
+        
+        // Calcular ruta de inicio según la ubicación del archivo
+        let homePath = 'index.html';
+        if (currentPath.includes('/modulos/')) {
+            homePath = '../../index.html';
+        } else if (currentPath.includes('/')) {
+            const depth = (currentPath.match(/\//g) || []).length - 1;
+            homePath = '../'.repeat(depth) + 'index.html';
+        }
         
         // Obtener título de la página
         const pageTitle = document.title.split(' - ')[0] || 'Capacitación Sinnut ERP';
@@ -583,10 +606,10 @@ const SinnutTraining = {
         stickyNav.className = 'sticky-nav';
         stickyNav.innerHTML = `
             <div class="sticky-nav-content">
-                <img src="${logoSrc}" alt="Logo" class="logo">
+                <img src="${logoSrc}" alt="Logo Sinnut ERP" class="logo">
                 <h3 class="nav-title">${pageTitle}</h3>
                 <div class="nav-actions">
-                    <a href="../../index.html" class="btn btn-sm btn-outline">🏠 Inicio</a>
+                    <a href="${homePath}" class="btn btn-sm btn-outline">🏠 Inicio</a>
                     <button class="btn btn-sm btn-secondary" onclick="SinnutTraining.toggleProgress()">📊 Progreso</button>
                 </div>
             </div>
@@ -594,6 +617,9 @@ const SinnutTraining = {
         
         // Insertar al inicio del body
         document.body.insertBefore(stickyNav, document.body.firstChild);
+        
+        // Agregar clase para ajustar el padding del body
+        document.body.classList.add('has-sticky-nav');
         
         this.stickyNav = stickyNav;
     },
@@ -667,6 +693,105 @@ const additionalStyles = `
         margin: 0;
         border-radius: 0;
         box-shadow: none;
+    }
+    
+    /* Sticky Navigation */
+    .sticky-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(135deg, #0D2339 0%, #1a3a5c 100%);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        padding: 0.75rem 1rem;
+        border-bottom: 3px solid #c59d5f;
+    }
+    
+    .sticky-nav-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .sticky-nav .logo {
+        height: 32px;
+        width: auto;
+        object-fit: contain;
+    }
+    
+    .nav-title {
+        color: white;
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+        flex: 1;
+        text-align: center;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+    
+    .nav-actions {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+    
+    .nav-actions .btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.2s ease;
+    }
+    
+    .nav-actions .btn-outline {
+        background: transparent;
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .nav-actions .btn-outline:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-1px);
+    }
+    
+    .nav-actions .btn-secondary {
+        background: #c59d5f;
+        color: white;
+        border: 1px solid #c59d5f;
+    }
+    
+    .nav-actions .btn-secondary:hover {
+        background: #b8904d;
+        transform: translateY(-1px);
+    }
+    
+    .has-sticky-nav {
+        padding-top: 70px;
+    }
+    
+    @media (max-width: 768px) {
+        .sticky-nav {
+            padding: 0.5rem;
+        }
+        
+        .nav-title {
+            font-size: 1rem;
+            margin: 0 0.5rem;
+        }
+        
+        .nav-actions .btn {
+            padding: 0.3rem 0.6rem;
+            font-size: 0.8rem;
+        }
+        
+        .sticky-nav .logo {
+            height: 28px;
+        }
     }
     
     .animate-in {

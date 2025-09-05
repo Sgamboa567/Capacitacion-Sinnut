@@ -3,597 +3,1136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introducción: Gestión de Contabilidad - Capacitación Sinnut ERP</title>
-    <link rel="stylesheet" href="../../assets/css/main.css">
-    <!-- Estilos específicos para el módulo -->
+    <title>Introducción - Curso Sinnut ERP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
     <style>
-        /* Estilos adicionales para iframe */
-        body { 
-            background: transparent;
+        :root {
+            /* Colores principales */
+            --primary-color: #0D2339;
+            --primary-light: #1a3b5c;
+            --primary-dark: #051119;
+            --primary-darker: #02080c;
+            
+            /* Colores secundarios */
+            --accent-color: #c59d5f;
+            --accent-light: #d4b373;
+            --accent-dark: #b68a4a;
+            
+            /* Colores semánticos */
+            --success-color: #22c55e;
+            --success-light: #dcfce7;
+            --success-dark: #16a34a;
+            --success-darker: #15803d;
+            --warning-color: #f59e0b;
+            --warning-light: #fef3c7;
+            --warning-dark: #d97706;
+            --error-color: #ef4444;
+            --error-light: #fecaca;
+            --error-dark: #dc2626;
+            --info-color: #3b82f6;
+            --info-light: #dbeafe;
+            --info-dark: #2563eb;
+            
+            /* Neutrales */
+            --neutral-25: #fefefe;
+            --neutral-50: #f8fafc;
+            --neutral-100: #f1f5f9;
+            --neutral-200: #e2e8f0;
+            --neutral-300: #cbd5e1;
+            --neutral-400: #94a3b8;
+            --neutral-500: #64748b;
+            --neutral-600: #475569;
+            --neutral-700: #334155;
+            --neutral-800: #1e293b;
+            --neutral-900: #0f172a;
+            
+            /* Texto */
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-white: #ffffff;
+            
+            /* Tipografía */
+            --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 1.875rem;
+            --font-size-4xl: 2.25rem;
+            --font-size-5xl: 3rem;
+            --font-size-6xl: 3.75rem;
+            --font-weight-light: 300;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 600;
+            --font-weight-bold: 700;
+            --line-height-tight: 1.25;
+            --line-height-normal: 1.5;
+            --line-height-relaxed: 1.75;
+            
+            /* Espaciado */
+            --spacing-1: 0.25rem;
+            --spacing-2: 0.5rem;
+            --spacing-3: 0.75rem;
+            --spacing-4: 1rem;
+            --spacing-5: 1.25rem;
+            --spacing-6: 1.5rem;
+            --spacing-8: 2rem;
+            --spacing-10: 2.5rem;
+            --spacing-12: 3rem;
+            --spacing-16: 4rem;
+            --spacing-20: 5rem;
+            
+            /* Bordes */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --radius-full: 9999px;
+            
+            /* Sombras */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            
+            /* Transiciones */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-primary);
+            line-height: var(--line-height-normal);
+            color: var(--text-primary);
+            background: var(--neutral-50);
+            font-size: var(--font-size-base);
             overflow-x: hidden;
         }
-        .main-container {
-            box-shadow: none;
-            border: 1px solid var(--border-color);
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--spacing-4);
         }
-        .intro-highlight {
-            background: linear-gradient(135deg, #fff9e6 0%, #f0f8ff 100%);
-            border-left: 4px solid var(--accent-color);
-            padding: var(--spacing-lg);
-            border-radius: var(--border-radius-md);
-            margin: var(--spacing-lg) 0;
-        }
-        .objective-item {
-            background: var(--card-background);
-            padding: var(--spacing-md);
-            border-radius: var(--border-radius-md);
-            border: 1px solid var(--border-color);
-            margin-bottom: var(--spacing-sm);
+
+        /* Navegación Breadcrumb */
+        .nav-breadcrumb {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: var(--spacing-4);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-8);
+            box-shadow: var(--shadow-sm);
+            font-size: var(--font-size-sm);
+            border: 1px solid var(--neutral-200);
             transition: var(--transition-normal);
         }
-        .objective-item:hover {
-            transform: translateX(5px);
-            border-color: var(--accent-color);
+
+        .nav-breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: var(--font-weight-medium);
+            transition: var(--transition-normal);
         }
-        .importance-card {
-            background: linear-gradient(135deg, #f4f8f9 0%, #e3eafc 100%);
-            border-left: 4px solid var(--secondary-color);
-            padding: var(--spacing-xl);
-            border-radius: var(--border-radius-md);
-            margin: var(--spacing-lg) 0;
+
+        .nav-breadcrumb a:hover {
+            color: var(--primary-light);
+        }
+
+        .separator {
+            margin: 0 var(--spacing-2);
+            color: var(--neutral-500);
+        }
+
+        /* Header Moderno */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 50%, var(--primary-dark) 100%);
+            color: var(--text-white);
+            padding: var(--spacing-20) var(--spacing-8);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-2xl);
+            margin-bottom: var(--spacing-8);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(197, 157, 95, 0.1) 0%, transparent 50%);
+            animation: headerFloat 8s ease-in-out infinite;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        }
+
+        @keyframes headerFloat {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg); 
+                opacity: 0.7;
+            }
+            33% { 
+                transform: translate(30px, -20px) rotate(120deg); 
+                opacity: 1;
+            }
+            66% { 
+                transform: translate(-20px, 30px) rotate(240deg); 
+                opacity: 0.8;
+            }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--spacing-6);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-normal);
+            opacity: 0.95;
+            margin-bottom: var(--spacing-8);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: var(--line-height-relaxed);
+        }
+
+        .header-badges {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-4);
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: var(--spacing-3) var(--spacing-6);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+            transition: var(--transition-normal);
+        }
+
+        .badge:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Secciones */
+        .section {
+            background: var(--neutral-25);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-12) var(--spacing-8);
+            margin-bottom: var(--spacing-8);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--neutral-200);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: var(--font-size-3xl);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--spacing-8);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-4);
+        }
+
+        .section-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: var(--text-white);
+            border-radius: var(--radius-xl);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-2xl);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Grid de Objetivos */
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-8);
+            margin: var(--spacing-8) 0;
+        }
+
+        .objective-card {
+            background: linear-gradient(135deg, var(--neutral-50) 0%, var(--neutral-25) 100%);
+            border: 2px solid var(--neutral-200);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-8);
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objective-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, var(--success-color), var(--info-color));
+        }
+
+        .objective-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .objective-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-4);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .objective-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: var(--text-white);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-xl);
+            box-shadow: var(--shadow-md);
+        }
+
+        .objective-title {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            color: var(--primary-color);
+        }
+
+        .objective-description {
+            color: var(--text-secondary);
+            line-height: var(--line-height-relaxed);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .objective-meta {
+            background: var(--info-light);
+            padding: var(--spacing-2) var(--spacing-4);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            color: var(--info-dark);
+            font-weight: var(--font-weight-medium);
+        }
+
+        /* Grid de Duración */
+        .duration-card {
+            background: linear-gradient(135deg, var(--success-light) 0%, rgba(34, 197, 94, 0.05) 100%);
+            border: 2px solid var(--success-color);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-8);
+            text-align: center;
+            margin: var(--spacing-8) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .duration-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255,255,255,0.4) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(34, 197, 94, 0.1) 0%, transparent 50%);
+            animation: durationFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes durationFloat {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg); 
+                opacity: 0.7;
+            }
+            50% { 
+                transform: translate(20px, -20px) rotate(180deg); 
+                opacity: 1;
+            }
+        }
+
+        .duration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--spacing-6);
+            margin-top: var(--spacing-6);
+            position: relative;
+            z-index: 2;
+        }
+
+        .duration-item {
+            text-align: center;
+        }
+
+        .duration-time {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--success-dark);
+        }
+
+        .duration-label {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+            margin-top: var(--spacing-1);
+        }
+
+        /* Alertas */
+        .alert {
+            padding: var(--spacing-6);
+            border-radius: var(--radius-lg);
+            margin: var(--spacing-6) 0;
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-4);
+            border-left: 4px solid;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .alert::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .alert-content {
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .alert-icon {
+            font-size: var(--font-size-xl);
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .alert-info {
+            background: var(--info-light);
+            border-color: var(--info-color);
+            color: var(--info-dark);
+        }
+
+        .alert-info .alert-icon {
+            color: var(--info-color);
+        }
+
+        .alert-success {
+            background: var(--success-light);
+            border-color: var(--success-color);
+            color: var(--success-darker);
+        }
+
+        .alert-success .alert-icon {
+            color: var(--success-color);
+        }
+
+        .alert-warning {
+            background: var(--warning-light);
+            border-color: var(--warning-color);
+            color: var(--warning-dark);
+        }
+
+        .alert-warning .alert-icon {
+            color: var(--warning-color);
+        }
+
+        /* Verificación de Conocimientos */
+        .knowledge-check {
+            background: linear-gradient(135deg, var(--success-light) 0%, rgba(34, 197, 94, 0.05) 100%);
+            border: 2px solid var(--success-color);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-12);
+            text-align: center;
+            margin: var(--spacing-8) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .knowledge-check::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(34, 197, 94, 0.1) 0%, transparent 50%);
+            animation: checkFloat 8s ease-in-out infinite;
+        }
+
+        @keyframes checkFloat {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg); 
+                opacity: 0.7;
+            }
+            25% { 
+                transform: translate(20px, -15px) rotate(90deg); 
+                opacity: 1;
+            }
+            50% { 
+                transform: translate(-15px, 20px) rotate(180deg); 
+                opacity: 0.9;
+            }
+            75% { 
+                transform: translate(15px, 15px) rotate(270deg); 
+                opacity: 0.8;
+            }
+        }
+
+        .check-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .check-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-6);
+            margin-top: var(--spacing-8);
+            text-align: left;
+        }
+
+        .check-item {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--success-color);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-6);
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-4);
+            transition: var(--transition-normal);
+        }
+
+        .check-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .check-item .fas {
+            color: var(--success-color);
+            font-size: var(--font-size-lg);
+            margin-top: var(--spacing-1);
+        }
+
+        .check-text {
+            color: var(--text-primary);
+            font-weight: var(--font-weight-medium);
+            line-height: var(--line-height-relaxed);
+        }
+
+        /* Botones Modernos */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-2);
+            padding: var(--spacing-4) var(--spacing-8);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-family: var(--font-family-primary);
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-medium);
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+            min-height: 48px;
+            box-shadow: var(--shadow-md);
+            user-select: none;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: var(--text-white);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success-color), var(--success-dark));
+            color: var(--text-white);
+            border: 2px solid var(--success-color);
+        }
+
+        .btn-success:hover {
+            background: linear-gradient(135deg, var(--success-dark), var(--success-color));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Footer de Navegación del Curso */
+        .course-footer {
+            background: linear-gradient(135deg, var(--neutral-25) 0%, var(--neutral-50) 100%);
+            border: 2px solid var(--neutral-200);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-12) var(--spacing-8);
+            margin-top: var(--spacing-16);
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--primary-color));
+        }
+
+        .course-footer-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .course-footer h3 {
+            color: var(--primary-color);
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-semibold);
+            text-align: center;
+            margin-bottom: var(--spacing-8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-4);
+        }
+
+        .course-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--spacing-6);
+            margin: var(--spacing-8) 0;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            transition: var(--transition-normal);
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            padding: var(--spacing-4) var(--spacing-6);
+            border-radius: var(--radius-lg);
+            font-weight: var(--font-weight-medium);
+            transition: var(--transition-normal);
+            min-height: 56px;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn.prev {
+            background: linear-gradient(135deg, var(--neutral-600), var(--neutral-700));
+            color: var(--text-white);
+        }
+
+        .nav-btn.home {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: var(--text-white);
+        }
+
+        .nav-btn.next {
+            background: linear-gradient(135deg, var(--success-color), var(--success-dark));
+            color: var(--text-white);
+        }
+
+        .nav-item:hover .nav-btn {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .nav-info {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+            line-height: var(--line-height-relaxed);
+        }
+
+        .progress-indicator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--spacing-2);
+            margin-bottom: var(--spacing-8);
+        }
+
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: var(--radius-full);
+            background: var(--neutral-300);
+            transition: var(--transition-normal);
+            position: relative;
+        }
+
+        .progress-dot.completed {
+            background: var(--success-color);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+        }
+
+        .progress-dot.current {
+            background: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(13, 35, 57, 0.2);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Animaciones de entrada */
+        .animate-in {
+            animation: slideInUp 0.6s ease-out;
+        }
+
+        .animate-left {
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        .animate-right {
+            animation: slideInRight 0.6s ease-out;
+        }
+
+        .animate-scale {
+            animation: scaleIn 0.6s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--spacing-3);
+            }
+            
+            .header {
+                padding: var(--spacing-12) var(--spacing-4);
+            }
+            
+            .header h1 {
+                font-size: var(--font-size-3xl);
+            }
+            
+            .header p {
+                font-size: var(--font-size-lg);
+            }
+            
+            .header-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section {
+                padding: var(--spacing-8) var(--spacing-4);
+            }
+            
+            .section h2 {
+                font-size: var(--font-size-2xl);
+                flex-direction: column;
+                text-align: center;
+                gap: var(--spacing-3);
+            }
+            
+            .objectives-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .duration-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .course-navigation {
+                flex-direction: column;
+                gap: var(--spacing-4);
+            }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .objective-header {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--spacing-3);
+            }
+            
+            .objective-icon {
+                width: 48px;
+                height: 48px;
+                font-size: var(--font-size-lg);
+            }
+        }
+
+        /* Accessibility improvements */
+        .nav-btn:focus,
+        .objective-card:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+        
+        .btn:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
         }
     </style>
 </head>
 <body>
-    <div class="main-container animate-in">
-        <!-- Logo y navegación -->
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--spacing-lg); flex-wrap: wrap; gap: var(--spacing-md);">
-            <img src="../../assets/images/Logos/Logo Completo Negro.png" 
-                 alt="Logo Institucional" 
-                 style="height: 50px;"
-                 loading="lazy">
-        </div>
-
-        <!-- Navegación breadcrumb -->
+    <div class="container animate-in">
+        <!-- Navigation -->
         <nav class="nav-breadcrumb">
-            <a href="../../index.html">Inicio</a>
-            <span class="separator">|</span>
-            <span style="color: var(--accent-color); font-weight: bold;">Introducción Contabilidad</span>
+            <a href="../../index.html"><i class="fas fa-home"></i> Inicio</a>
+            <span class="separator">•</span>
+            <span style="color: var(--primary-color); font-weight: 600;">Introducción</span>
         </nav>
 
-        <!-- Header del módulo mejorado -->
-        <header class="header" style="margin-bottom: var(--spacing-xl); text-align: center; background: linear-gradient(135deg, #f4f8fb 0%, #e8f2f8 100%); padding: var(--spacing-xl); border-radius: var(--border-radius-lg); border-left: 5px solid #2E86AB;">
-            <div style="font-size: 4rem; margin-bottom: var(--spacing-md);">�</div>
-            <h1 id="introduccion" style="color: #2E86AB; font-size: 2.2rem; margin-bottom: var(--spacing-md);">Gestión de Contabilidad en Sinnut ERP</h1>
-            <p style="font-size: 1.1rem; color: #333; line-height: 1.6; max-width: 800px; margin: 0 auto;">
-                Domina los procesos fundamentales de <strong>control financiero diario</strong> que mantienen la salud económica de tu empresa. 
-                Aprende a gestionar la apertura y arqueo de caja con precisión profesional.
-            </p>
-            <div style="margin-top: var(--spacing-lg); display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
-                <span style="background: #2E86AB; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: bold;">📊 Fundamentos</span>
-                <span style="background: #50b67a; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: bold;">🎯 Práctico</span>
-                <span style="background: #c59d5f; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: bold;">⚡ Esencial</span>
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-calculator"></i> Gestión de Contabilidad</h1>
+                <p>Domina los procesos fundamentales de control financiero diario que mantienen la salud económica de tu empresa. Aprende a gestionar la apertura y arqueo de caja con precisión profesional.</p>
+                <div class="header-badges">
+                    <div class="badge">
+                        <i class="fas fa-lightbulb"></i>
+                        Fundamentos
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-target"></i>
+                        Objetivos Claros
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-chart-line"></i>
+                        Práctica Real
+                    </div>
+                </div>
             </div>
         </header>
 
-        <!-- Información del tiempo mejorada -->
-        <div style="background: linear-gradient(135deg, #fff3cd 0%, #fef8e6 100%); border: 2px solid #ffc107; border-radius: var(--border-radius-lg); padding: var(--spacing-lg); text-align: center; margin: var(--spacing-xl) 0;">
-            <div style="font-size: 2rem; margin-bottom: var(--spacing-sm);">⏱️</div>
-            <h3 style="color: #856404; margin-bottom: var(--spacing-sm);">Duración del Módulo Completo</h3>
-            <div style="display: flex; justify-content: center; gap: var(--spacing-lg); flex-wrap: wrap; margin-bottom: var(--spacing-md);">
-                <div style="text-align: center;">
-                    <div style="font-size: 1.5rem; font-weight: bold; color: #856404;">15-20 min</div>
-                    <div style="font-size: 0.9rem; color: #666;">Esta introducción</div>
+        <!-- Objetivos de Aprendizaje -->
+        <section class="section animate-left">
+            <h2>
+                <div class="section-icon">
+                    <i class="fas fa-bullseye"></i>
                 </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 1.5rem; font-weight: bold; color: #856404;">35 min</div>
-                    <div style="font-size: 0.9rem; color: #666;">Arqueo de caja</div>
+                Objetivos de Aprendizaje
+            </h2>
+            
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <div class="objective-header">
+                        <div class="objective-icon">
+                            <i class="fas fa-cash-register"></i>
+                        </div>
+                        <div class="objective-title">Apertura de Caja</div>
+                    </div>
+                    <div class="objective-description">
+                        Aprenderás a realizar la apertura diaria de caja de manera correcta, registrando el dinero inicial y preparando el sistema para las operaciones del día.
+                    </div>
+                    <div class="objective-meta">
+                        <i class="fas fa-clock"></i> Práctica esencial
+                    </div>
                 </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 1.5rem; font-weight: bold; color: #856404;">20 min</div>
-                    <div style="font-size: 0.9rem; color: #666;">Apertura de caja</div>
+
+                <div class="objective-card">
+                    <div class="objective-header">
+                        <div class="objective-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div class="objective-title">Arqueo de Caja</div>
+                    </div>
+                    <div class="objective-description">
+                        Dominarás el proceso de arqueo para verificar que los valores registrados coincidan con el dinero físico disponible, garantizando transparencia financiera.
+                    </div>
+                    <div class="objective-meta">
+                        <i class="fas fa-shield-alt"></i> Control financiero
+                    </div>
                 </div>
             </div>
-            <p style="color: #856404; font-weight: bold; margin: 0;">📚 Total del módulo: 70-75 minutos aprox.</p>
+        </section>
+
+        <!-- Duración Estimada -->
+        <section class="section animate-right">
+            <h2>
+                <div class="section-icon">
+                    <i class="fas fa-hourglass-half"></i>
+                </div>
+                Duración del Módulo
+            </h2>
+            
+            <div class="duration-card">
+                <h3 style="color: var(--success-dark); font-size: var(--font-size-2xl); margin-bottom: var(--spacing-4);">
+                    <i class="fas fa-stopwatch"></i> Tiempo Estimado de Completación
+                </h3>
+                <div class="duration-grid">
+                    <div class="duration-item">
+                        <div class="duration-time">15-20</div>
+                        <div class="duration-label">Minutos</div>
+                    </div>
+                    <div class="duration-item">
+                        <div class="duration-time">2</div>
+                        <div class="duration-label">Lecciones</div>
+                    </div>
+                    <div class="duration-item">
+                        <div class="duration-time">100%</div>
+                        <div class="duration-label">Práctico</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Información Importante -->
+        <div class="alert alert-info animate-scale">
+            <i class="fas fa-info-circle alert-icon"></i>
+            <div class="alert-content">
+                <strong>Información importante:</strong> Este módulo está diseñado para enseñarte los procesos contables fundamentales en Sinnut ERP. Cada lección incluye ejemplos prácticos y casos reales que encontrarás en tu trabajo diario.
+            </div>
         </div>
 
-        <!-- Contenido principal mejorado -->
-        <section class="section">
-            <h2 style="color: #2E86AB; border-bottom: 3px solid #2E86AB; padding-bottom: 10px; margin-bottom: var(--spacing-lg);">🎯 ¿Por qué necesitas dominar este módulo?</h2>
-            
-            <div style="background: linear-gradient(135deg, #f8fbff 0%, #e3f2fd 100%); padding: var(--spacing-xl); border-radius: var(--border-radius-lg); border-left: 5px solid #2E86AB; margin-bottom: var(--spacing-lg);">
-                <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: var(--spacing-md);">
-                    En el mundo empresarial de las joyas, <strong>cada peso cuenta</strong>. La gestión contable no es solo un requisito legal, 
-                    es el <strong>sistema nervioso de tu negocio</strong> que te permite:
+        <div class="alert alert-success animate-scale">
+            <i class="fas fa-lightbulb alert-icon"></i>
+            <div class="alert-content">
+                <strong>Tip de aprendizaje:</strong> Practica cada proceso varias veces para familiarizarte con la interfaz. El dominio de estos fundamentos es crucial para un manejo eficiente del sistema.
+            </div>
+        </div>
+
+        <div class="alert alert-warning animate-scale">
+            <i class="fas fa-exclamation-triangle alert-icon"></i>
+            <div class="alert-content">
+                <strong>Importante:</strong> Los procesos de caja requieren precisión y atención al detalle. Cualquier error puede afectar los reportes financieros de la empresa.
+            </div>
+        </div>
+
+        <!-- Verificación de Conocimientos -->
+        <section class="knowledge-check animate-scale">
+            <div class="check-content">
+                <h3 style="color: var(--success-dark); font-size: var(--font-size-2xl); margin-bottom: var(--spacing-6);">
+                    <i class="fas fa-clipboard-check"></i> ¿Estás Listo para Comenzar?
+                </h3>
+                <p style="color: var(--text-secondary); margin-bottom: var(--spacing-8); font-size: var(--font-size-lg);">
+                    Antes de continuar, asegúrate de tener acceso al sistema y de comprender estos conceptos básicos:
                 </p>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-md); margin-top: var(--spacing-lg);">
-                    <div style="background: white; padding: var(--spacing-md); border-radius: var(--border-radius-md); box-shadow: var(--shadow-light);">
-                        <div style="font-size: 1.5rem; margin-bottom: var(--spacing-sm);">🔍</div>
-                        <strong style="color: #2E86AB;">Detectar discrepancias al instante</strong>
-                        <p style="margin: var(--spacing-xs) 0 0 0; font-size: 0.9rem; color: #666;">Identificar faltantes o sobrantes antes de que se conviertan en problemas mayores</p>
+                <div class="check-list">
+                    <div class="check-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div class="check-text">Acceso al módulo de contabilidad en Sinnut ERP</div>
                     </div>
                     
-                    <div style="background: white; padding: var(--spacing-md); border-radius: var(--border-radius-md); box-shadow: var(--shadow-light);">
-                        <div style="font-size: 1.5rem; margin-bottom: var(--spacing-sm);">💡</div>
-                        <strong style="color: #2E86AB;">Tomar decisiones informadas</strong>
-                        <p style="margin: var(--spacing-xs) 0 0 0; font-size: 0.9rem; color: #666;">Basarte en datos reales y actualizados para estrategias comerciales</p>
+                    <div class="check-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div class="check-text">Comprensión básica de procesos contables</div>
                     </div>
                     
-                    <div style="background: white; padding: var(--spacing-md); border-radius: var(--border-radius-md); box-shadow: var(--shadow-light);">
-                        <div style="font-size: 1.5rem; margin-bottom: var(--spacing-sm);">🛡️</div>
-                        <strong style="color: #2E86AB;">Proteger tu patrimonio</strong>
-                        <p style="margin: var(--spacing-xs) 0 0 0; font-size: 0.9rem; color: #666;">Mantener un control riguroso que evite pérdidas y fraudes</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="intro-highlight">
-                <h3 style="color: var(--accent-color); margin-bottom: var(--spacing-md);">💡 ¿Sabías que...?</h3>
-                <p><strong>El 80% de los problemas financieros en pequeñas empresas</strong> se originan por controles contables deficientes. 
-                En Sinnut ERP, los procesos de apertura y arqueo de caja están diseñados para automatizar estos controles, 
-                <strong>reduciendo errores humanos en un 95%</strong> y ahorrando hasta 2 horas diarias en conciliaciones.</p>
-            </div>
-        </section>
-
-        <!-- Objetivos del módulo mejorados -->
-        <section id="objetivos" class="section">
-            <h3 style="color: #2E86AB; border-bottom: 3px solid #2E86AB; padding-bottom: 10px; margin-bottom: var(--spacing-lg);">🎯 Objetivos de Aprendizaje</h3>
-            <p style="font-size: 1.1rem; color: #333; margin-bottom: var(--spacing-lg); text-align: center;">
-                Al finalizar este módulo, serás capaz de gestionar con confianza los procesos contables diarios en Sinnut ERP
-            </p>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-md);">
-                <div class="objective-item" style="background: linear-gradient(135deg, #e8f5e8 0%, #f0fff0 100%); border-left: 4px solid #50b67a;">
-                    <div style="display: flex; align-items: center; gap: var(--spacing-md); margin-bottom: var(--spacing-sm);">
-                        <div style="font-size: 2rem;">🌅</div>
-                        <strong style="color: #50b67a; font-size: 1.1rem;">Dominar la Apertura de Caja</strong>
-                    </div>
-                    <p style="margin: 0; color: #333; font-size: 0.95rem; line-height: 1.5;">
-                        Realizar correctamente el proceso de inicio de operaciones diarias, registrando el efectivo inicial 
-                        y configurando el sistema para recibir transacciones de manera óptima.
-                    </p>
-                    <div style="margin-top: var(--spacing-sm); font-size: 0.8rem; color: #666;">
-                        🎯 <strong>Meta:</strong> Apertura sin errores en menos de 5 minutos
-                    </div>
-                </div>
-                
-                <div class="objective-item" style="background: linear-gradient(135deg, #fff3e0 0%, #fef7ec 100%); border-left: 4px solid #c59d5f;">
-                    <div style="display: flex; align-items: center; gap: var(--spacing-md); margin-bottom: var(--spacing-sm);">
-                        <div style="font-size: 2rem;">🧾</div>
-                        <strong style="color: #c59d5f; font-size: 1.1rem;">Ejecutar Arqueos Perfectos</strong>
-                    </div>
-                    <p style="margin: 0; color: #333; font-size: 0.95rem; line-height: 1.5;">
-                        Realizar verificaciones y conciliaciones de saldos al final del día, detectando y resolviendo 
-                        cualquier discrepancia con metodología profesional.
-                    </p>
-                    <div style="margin-top: var(--spacing-sm); font-size: 0.8rem; color: #666;">
-                        🎯 <strong>Meta:</strong> Arqueo completo y cuadrado en 15 minutos
-                    </div>
-                </div>
-                
-                <div class="objective-item" style="background: linear-gradient(135deg, #e3f2fd 0%, #f1f8ff 100%); border-left: 4px solid #2E86AB;">
-                    <div style="display: flex; align-items: center; gap: var(--spacing-md); margin-bottom: var(--spacing-sm);">
-                        <div style="font-size: 2rem;">🔍</div>
-                        <strong style="color: #2E86AB; font-size: 1.1rem;">Interpretar Reportes Contables</strong>
-                    </div>
-                    <p style="margin: 0; color: #333; font-size: 0.95rem; line-height: 1.5;">
-                        Leer y comprender los reportes generados por el sistema, identificando patrones y anomalías 
-                        que requieran atención gerencial.
-                    </p>
-                    <div style="margin-top: var(--spacing-sm); font-size: 0.8rem; color: #666;">
-                        🎯 <strong>Meta:</strong> Análisis financiero básico en tiempo real
-                    </div>
-                </div>
-                
-                <div class="objective-item" style="background: linear-gradient(135deg, #f3e5f5 0%, #faf2fc 100%); border-left: 4px solid #8e24aa;">
-                    <div style="display: flex; align-items: center; gap: var(--spacing-md); margin-bottom: var(--spacing-sm);">
-                        <div style="font-size: 2rem;">⚡</div>
-                        <strong style="color: #8e24aa; font-size: 1.1rem;">Navegar Sinnut con Experticia</strong>
-                    </div>
-                    <p style="margin: 0; color: #333; font-size: 0.95rem; line-height: 1.5;">
-                        Moverse eficientemente por la interfaz del módulo contable, conociendo cada botón, menú y 
-                        función para maximizar la productividad diaria.
-                    </p>
-                    <div style="margin-top: var(--spacing-sm); font-size: 0.8rem; color: #666;">
-                        🎯 <strong>Meta:</strong> Flujo de trabajo optimizado y sin interrupciones
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Flujo básico del proceso mejorado -->
-        <section class="section">
-            <h3 style="color: #2E86AB; border-bottom: 3px solid #2E86AB; padding-bottom: 10px; margin-bottom: var(--spacing-lg);">🔄 Tu Día a Día con Sinnut ERP</h3>
-            
-            <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: var(--spacing-xl); border-radius: var(--border-radius-lg); margin-bottom: var(--spacing-lg);">
-                <p style="text-align: center; font-size: 1.1rem; color: #333; margin-bottom: var(--spacing-lg);">
-                    <strong>Imagina un día típico en tu joyería...</strong> Desde que abres la puerta hasta que cierras, 
-                    Sinnut ERP está contigo en cada transacción.
-                </p>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-lg); margin: var(--spacing-lg) 0;">
-                    <!-- Paso 1 Mejorado -->
-                    <div style="background: white; padding: var(--spacing-xl); border-radius: var(--border-radius-lg); border: 3px solid #50b67a; text-align: center; transition: var(--transition-normal); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 10px 30px rgba(80, 182, 122, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                        <div style="position: absolute; top: -20px; right: -20px; background: #50b67a; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem;">1</div>
-                        <div style="font-size: 3rem; margin-bottom: var(--spacing-md); filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));">🌅</div>
-                        <h4 style="color: #50b67a; margin-bottom: var(--spacing-md); font-size: 1.2rem;">Buenos Días, Apertura</h4>
-                        <p style="font-size: 0.95rem; color: #333; line-height: 1.5; margin-bottom: var(--spacing-md);">
-                            <strong>8:00 AM:</strong> Llegas a tu joyería, tomas un café y en <strong>5 minutos</strong> 
-                            tienes todo el sistema listo para atender al primer cliente.
-                        </p>
-                        <div style="background: #f8fff9; padding: var(--spacing-sm); border-radius: var(--border-radius-sm); border-left: 3px solid #50b67a;">
-                            <small style="color: #50b67a; font-weight: bold;">💡 El secreto: Registro de efectivo inicial + un clic</small>
-                        </div>
+                    <div class="check-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div class="check-text">Conocimiento de la importancia del control de caja</div>
                     </div>
                     
-                    <!-- Paso 2 Mejorado -->
-                    <div style="background: white; padding: var(--spacing-xl); border-radius: var(--border-radius-lg); border: 3px solid #2E86AB; text-align: center; transition: var(--transition-normal); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 10px 30px rgba(46, 134, 171, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                        <div style="position: absolute; top: -20px; right: -20px; background: #2E86AB; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem;">2</div>
-                        <div style="font-size: 3rem; margin-bottom: var(--spacing-md); filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));">💼</div>
-                        <h4 style="color: #2E86AB; margin-bottom: var(--spacing-md); font-size: 1.2rem;">El Día en Acción</h4>
-                        <p style="font-size: 0.95rem; color: #333; line-height: 1.5; margin-bottom: var(--spacing-md);">
-                            <strong>8:00 AM - 6:00 PM:</strong> Vendes joyas, recibes pagos, das cambios... 
-                            <strong>Sinnut registra todo automáticamente</strong> mientras tú te enfocas en atender clientes.
-                        </p>
-                        <div style="background: #f4f8fb; padding: var(--spacing-sm); border-radius: var(--border-radius-sm); border-left: 3px solid #2E86AB;">
-                            <small style="color: #2E86AB; font-weight: bold;">💡 El secreto: Cada venta se registra en tiempo real</small>
-                        </div>
-                    </div>
-                    
-                    <!-- Paso 3 Mejorado -->
-                    <div style="background: white; padding: var(--spacing-xl); border-radius: var(--border-radius-lg); border: 3px solid #c59d5f; text-align: center; transition: var(--transition-normal); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 10px 30px rgba(197, 157, 95, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                        <div style="position: absolute; top: -20px; right: -20px; background: #c59d5f; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem;">3</div>
-                        <div style="font-size: 3rem; margin-bottom: var(--spacing-md); filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));">🧾</div>
-                        <h4 style="color: #c59d5f; margin-bottom: var(--spacing-md); font-size: 1.2rem;">Cierre Perfecto</h4>
-                        <p style="font-size: 0.95rem; color: #333; line-height: 1.5; margin-bottom: var(--spacing-md);">
-                            <strong>6:00 PM:</strong> Cuentas el efectivo en caja, ingresas la cantidad en Sinnut 
-                            y en <strong>15 minutos</strong> sabes exactamente cómo estuvo tu día.
-                        </p>
-                        <div style="background: #fef9f1; padding: var(--spacing-sm); border-radius: var(--border-radius-sm); border-left: 3px solid #c59d5f;">
-                            <small style="color: #c59d5f; font-weight: bold;">💡 El secreto: Sistema vs. Realidad = Tranquilidad total</small>
-                        </div>
+                    <div class="check-item">
+                        <i class="fas fa-check-circle"></i>
+                        <div class="check-text">Tiempo disponible para completar las lecciones</div>
                     </div>
                 </div>
                 
-                <div style="text-align: center; margin-top: var(--spacing-xl); padding: var(--spacing-lg); background: white; border-radius: var(--border-radius-md); border: 2px dashed #2E86AB;">
-                    <h4 style="color: #2E86AB; margin-bottom: var(--spacing-md);">🎯 El Resultado</h4>
-                    <p style="font-size: 1.1rem; color: #333; margin: 0;">
-                        <strong>Control total, tiempo ahorrado, errores eliminados.</strong><br>
-                        <span style="color: #666;">Tu negocio funciona como un reloj suizo.</span>
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Importancia del proceso -->
-        <section id="importancia" class="importance-card">
-            <h3 style="color: var(--primary-color); margin-bottom: var(--spacing-lg);">📌 ¿Por qué es importante este proceso?</h3>
-            <p style="margin-bottom: var(--spacing-md);">La gestión contable diaria es el <strong>corazón del control financiero</strong> en cualquier negocio. En el contexto de una joyería o empresa que maneja múltiples transacciones, un proceso bien estructurado de apertura y arqueo de caja evita:</p>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg); margin: var(--spacing-lg) 0;">
-                <div>
-                    <h4 style="color: var(--accent-color); margin-bottom: var(--spacing-md);">🚫 Problemas que se evitan:</h4>
-                    <ul style="padding-left: 20px; font-size: 0.95rem; line-height: 1.6;">
-                        <li>❌ Errores en el control de efectivo</li>
-                        <li>❌ Descuadres contables</li>
-                        <li>❌ Reprocesos y pérdida de tiempo</li>
-                        <li>❌ Problemas de auditoría</li>
-                        <li>❌ Falta de trazabilidad</li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 style="color: var(--secondary-color); margin-bottom: var(--spacing-md);">✅ Beneficios que se obtienen:</h4>
-                    <ul style="padding-left: 20px; font-size: 0.95rem; line-height: 1.6;">
-                        <li>✅ Control total de las finanzas</li>
-                        <li>✅ Reportes precisos y oportunos</li>
-                        <li>✅ Mejora en la atención al cliente</li>
-                        <li>✅ Cumplimiento legal y financiero</li>
-                        <li>✅ Data de calidad para decisiones</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="alert success" style="margin-top: var(--spacing-lg);">
-                <strong>💡 Punto clave:</strong> La calidad de los datos contables es fundamental para el análisis y la toma de decisiones comerciales estratégicas. Un arqueo bien hecho hoy, es información valiosa mañana.
-            </div>
-        </section>
-
-        <!-- Conceptos básicos -->
-        <section class="section">
-            <h3>📖 Conceptos Básicos que Debes Conocer</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-md);">
-                <div style="background: #f9f9f9; padding: var(--spacing-lg); border-radius: var(--border-radius-md); border-left: 4px solid var(--primary-color);">
-                    <h4 style="color: var(--primary-color); margin-bottom: var(--spacing-sm);">🌅 Apertura de Caja</h4>
-                    <p style="font-size: 0.9rem; margin: 0;">Proceso inicial que registra el efectivo disponible al comenzar las operaciones del día y configura el sistema para recibir transacciones.</p>
-                </div>
-                
-                <div style="background: #f9f9f9; padding: var(--spacing-lg); border-radius: var(--border-radius-md); border-left: 4px solid var(--secondary-color);">
-                    <h4 style="color: var(--secondary-color); margin-bottom: var(--spacing-sm);">🧾 Arqueo de Caja</h4>
-                    <p style="font-size: 0.9rem; margin: 0;">Verificación y conciliación entre el efectivo físico y los registros del sistema al final del día o turno.</p>
-                </div>
-                
-                <div style="background: #f9f9f9; padding: var(--spacing-lg); border-radius: var(--border-radius-md); border-left: 4px solid var(--accent-color);">
-                    <h4 style="color: var(--accent-color); margin-bottom: var(--spacing-sm);">⚖️ Conciliación</h4>
-                    <p style="font-size: 0.9rem; margin: 0;">Proceso de verificación que asegura que los registros contables coincidan con la realidad física del efectivo.</p>
-                </div>
-                
-                <div style="background: #f9f9f9; padding: var(--spacing-lg); border-radius: var(--border-radius-md); border-left: 4px solid var(--text-secondary);">
-                    <h4 style="color: var(--text-secondary); margin-bottom: var(--spacing-sm);">📊 Saldo</h4>
-                    <p style="font-size: 0.9rem; margin: 0;">Cantidad total de efectivo y equivalentes disponibles en caja en un momento determinado.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Preparación mejorada para el siguiente módulo -->
-        <section class="section" style="background: linear-gradient(135deg, #e8f5e8 0%, #f0fff4 100%); border-radius: var(--border-radius-lg); padding: var(--spacing-xl); text-align: center; border: 3px solid #50b67a;">
-            <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">🚀</div>
-            <h3 style="color: #50b67a; font-size: 1.8rem; margin-bottom: var(--spacing-md);">¿Estás listo para la acción?</h3>
-            <p style="font-size: 1.1rem; color: #333; margin-bottom: var(--spacing-xl); max-width: 600px; margin-left: auto; margin-right: auto;">
-                Antes de pasar al módulo práctico, asegúrate de que has comprendido todos los conceptos fundamentales. 
-                <strong>Una base sólida es clave para el éxito.</strong>
-            </p>
-            
-            <div style="background: white; padding: var(--spacing-xl); border-radius: var(--border-radius-lg); box-shadow: var(--shadow-medium); margin-bottom: var(--spacing-lg); max-width: 500px; margin-left: auto; margin-right: auto;">
-                <h4 style="color: #50b67a; margin-bottom: var(--spacing-lg); font-size: 1.3rem;">📝 Verificación de Conocimientos</h4>
-                <div style="text-align: left; display: flex; flex-direction: column; gap: var(--spacing-md);">
-                    <label style="display: flex; align-items: flex-start; gap: var(--spacing-md); cursor: pointer; padding: var(--spacing-sm); border-radius: var(--border-radius-sm); transition: var(--transition-normal);" onmouseover="this.style.backgroundColor='#f8fff9'" onmouseout="this.style.backgroundColor='transparent'">
-                        <input type="checkbox" id="check1" onchange="updateProgress()" style="margin-top: 2px;">
-                        <div>
-                            <strong style="color: #333;">Entiendo cómo funciona la apertura de caja</strong>
-                            <div style="font-size: 0.85rem; color: #666; margin-top: 2px;">Proceso de inicio del día, registro de efectivo inicial</div>
-                        </div>
-                    </label>
-                    
-                    <label style="display: flex; align-items: flex-start; gap: var(--spacing-md); cursor: pointer; padding: var(--spacing-sm); border-radius: var(--border-radius-sm); transition: var(--transition-normal);" onmouseover="this.style.backgroundColor='#f8fff9'" onmouseout="this.style.backgroundColor='transparent'">
-                        <input type="checkbox" id="check2" onchange="updateProgress()" style="margin-top: 2px;">
-                        <div>
-                            <strong style="color: #333;">Comprendo el proceso de arqueo</strong>
-                            <div style="font-size: 0.85rem; color: #666; margin-top: 2px;">Conciliación entre sistema y efectivo físico</div>
-                        </div>
-                    </label>
-                    
-                    <label style="display: flex; align-items: flex-start; gap: var(--spacing-md); cursor: pointer; padding: var(--spacing-sm); border-radius: var(--border-radius-sm); transition: var(--transition-normal);" onmouseover="this.style.backgroundColor='#f8fff9'" onmouseout="this.style.backgroundColor='transparent'">
-                        <input type="checkbox" id="check3" onchange="updateProgress()" style="margin-top: 2px;">
-                        <div>
-                            <strong style="color: #333;">Reconozco la importancia del control contable</strong>
-                            <div style="font-size: 0.85rem; color: #666; margin-top: 2px;">Impacto en la salud financiera del negocio</div>
-                        </div>
-                    </label>
-                    
-                    <label style="display: flex; align-items: flex-start; gap: var(--spacing-md); cursor: pointer; padding: var(--spacing-sm); border-radius: var(--border-radius-sm); transition: var(--transition-normal);" onmouseover="this.style.backgroundColor='#f8fff9'" onmouseout="this.style.backgroundColor='transparent'">
-                        <input type="checkbox" id="check4" onchange="updateProgress()" style="margin-top: 2px;">
-                        <div>
-                            <strong style="color: #333;">Me siento preparado para el módulo práctico</strong>
-                            <div style="font-size: 0.85rem; color: #666; margin-top: 2px;">Confianza para aplicar lo aprendido</div>
-                        </div>
-                    </label>
-                </div>
-                
-                <!-- Barra de progreso -->
-                <div style="margin: var(--spacing-lg) 0; background: #e9ecef; border-radius: 10px; overflow: hidden;">
-                    <div id="progressBar" style="height: 8px; background: linear-gradient(135deg, #50b67a 0%, #45a069 100%); width: 0%; transition: width 0.5s ease;"></div>
-                </div>
-                
-                <div id="progressText" style="font-size: 0.9rem; color: #666; margin-bottom: var(--spacing-md);">
-                    Progreso: 0% completado
-                </div>
-            </div>
-            
-            <div id="nextButton" style="display: none;">
-                <div style="background: linear-gradient(135deg, #50b67a 0%, #45a069 100%); color: white; padding: var(--spacing-lg) var(--spacing-xl); border-radius: var(--border-radius-lg); display: inline-block; box-shadow: var(--shadow-medium); transition: var(--transition-normal); margin-bottom: var(--spacing-md);" onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 8px 25px rgba(80, 182, 122, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-medium)'">
-                    <div style="font-size: 1.5rem; margin-bottom: var(--spacing-xs);">🎉</div>
-                    <div style="font-size: 1.2rem; font-weight: bold; margin-bottom: var(--spacing-xs);">¡Excelente!</div>
-                    <div style="font-size: 0.9rem; opacity: 0.9;">Ya puedes continuar al siguiente módulo</div>
-                </div>
-                
-                <div style="margin-top: var(--spacing-md);">
-                    <a href="arqueo-caja.html" style="background: #50b67a; color: white; padding: var(--spacing-md) var(--spacing-xl); text-decoration: none; border-radius: var(--border-radius-md); font-weight: bold; font-size: 1.1rem; transition: var(--transition-normal); display: inline-block;" onmouseover="this.style.backgroundColor='#45a069'; this.style.transform='translateY(-2px)'" onmouseout="this.style.backgroundColor='#50b67a'; this.style.transform='translateY(0)'">
-                        🧾 Ir al Módulo de Arqueo de Caja
+                <div style="margin-top: var(--spacing-8);">
+                    <a href="arqueo-caja.html" class="btn btn-success">
+                        <i class="fas fa-play"></i>
+                        Comenzar Primer Lección
                     </a>
                 </div>
             </div>
-            
-            <div id="encouragementMessage" style="display: block; margin-top: var(--spacing-lg); padding: var(--spacing-md); background: rgba(255, 255, 255, 0.8); border-radius: var(--border-radius-md); border: 2px dashed #50b67a;">
-                <p style="margin: 0; color: #50b67a; font-weight: bold;">
-                    💡 Tómate tu tiempo para revisar cada concepto. La calidad del aprendizaje es más importante que la velocidad.
-                </p>
-            </div>
         </section>
 
-        <!-- Navegación del curso -->
-        <section class="quick-nav">
-            <h3>🧭 Navegación del Curso</h3>
-            <div class="nav-links">
-                <a href="../index.html" class="nav-link primary">🏠 Inicio del Curso</a>
-                <a href="arqueo-caja.html" class="nav-link secondary">🧾 Siguiente: Arqueo de Caja</a>
-                <a href="../faq.html" class="nav-link muted">❓ Preguntas Frecuentes</a>
-            </div>
-        </section>
+        <!-- Footer de Navegación del Curso -->
+        <footer class="course-footer">
+            <div class="course-footer-content">
+                <h3>
+                    <i class="fas fa-route"></i>
+                    Navegación del Curso
+                </h3>
+                
+                <!-- Indicador de Progreso -->
+                <div class="progress-indicator">
+                    <div class="progress-dot current" title="Introducción a Contabilidad - Módulo Actual"></div>
+                    <div class="progress-dot" title="Apertura de Caja"></div>
+                    <div class="progress-dot" title="Arqueo de Caja"></div>
+                </div>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <div style="margin-bottom: var(--spacing-sm); font-weight: 500;">
-                Sinnut © 2025 | Módulo actualizado: Septiembre 2025 | Versión 2.0
-            </div>
-            <div>
-                Contacto: <a href="mailto:soporte.ti@oroexpress.com.co" style="color: var(--secondary-color);">soporte.ti@oroexpress.com.co</a> | 
-                <a href="../index.html" style="color: var(--secondary-color);">Volver al curso</a>
+                <!-- Navegación Principal -->
+                <nav class="course-navigation">
+                    <a href="../../index.html" class="nav-item prev">
+                        <div class="nav-btn prev">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Menú Principal</span>
+                        </div>
+                    </a>
+
+                    <a href="../../index.html" class="nav-item home">
+                        <div class="nav-btn home">
+                            <i class="fas fa-home"></i>
+                            <span>Inicio</span>
+                        </div>
+                    </a>
+
+                    <a href="arqueo-caja.html" class="nav-item next">
+                        <div class="nav-btn next">
+                            <span>Siguiente</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </nav>
+
+                <!-- Información del Módulo -->
+                <div class="nav-info">
+                    <p>
+                        <strong>Módulo 1 de 3:</strong> Introducción a Contabilidad | 
+                        <strong>Anterior:</strong> Menú Principal | 
+                        <strong>Siguiente:</strong> Apertura de Caja
+                    </p>
+                    <p style="margin-top: var(--spacing-2); font-size: 0.8rem;">
+                        <i class="fas fa-graduation-cap"></i>
+                        Curso Sinnut ERP - OroExpress
+                    </p>
+                </div>
             </div>
         </footer>
     </div>
-
-    <!-- JavaScript principal -->
-    <script src="../../assets/js/main.js"></script>
-    <script>
-        // Código mejorado del módulo de introducción
-        function updateProgress() {
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            const checkedCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
-            const totalCount = checkboxes.length;
-            const progress = (checkedCount / totalCount) * 100;
-            
-            // Actualizar barra de progreso
-            const progressBar = document.getElementById('progressBar');
-            const progressText = document.getElementById('progressText');
-            const nextButton = document.getElementById('nextButton');
-            const encouragementMessage = document.getElementById('encouragementMessage');
-            
-            if (progressBar) {
-                progressBar.style.width = progress + '%';
-            }
-            
-            if (progressText) {
-                progressText.textContent = `Progreso: ${Math.round(progress)}% completado`;
-                
-                // Cambiar color del texto basado en el progreso
-                if (progress < 50) {
-                    progressText.style.color = '#dc3545';
-                } else if (progress < 100) {
-                    progressText.style.color = '#ffc107';
-                } else {
-                    progressText.style.color = '#50b67a';
-                }
-            }
-            
-            // Mostrar/ocultar elementos basado en el progreso
-            if (progress === 100) {
-                if (nextButton) {
-                    nextButton.style.display = 'block';
-                    nextButton.classList.add('animate-in');
-                }
-                if (encouragementMessage) {
-                    encouragementMessage.style.display = 'none';
-                }
-                
-                // Mostrar notificación de éxito
-                if (typeof SinnutTraining !== 'undefined') {
-                    SinnutTraining.showNotification('¡Excelente! Has completado todos los requisitos. Ya puedes continuar al siguiente módulo.', 'success');
-                    SinnutTraining.updateProgress('introduccion_contabilidad', 100);
-                }
-                
-                // Efecto de celebración
-                createConfetti();
-                
-            } else {
-                if (nextButton) {
-                    nextButton.style.display = 'none';
-                }
-                if (encouragementMessage) {
-                    encouragementMessage.style.display = 'block';
-                }
-                
-                // Actualizar progreso parcial
-                if (typeof SinnutTraining !== 'undefined') {
-                    SinnutTraining.updateProgress('introduccion_contabilidad', progress);
-                }
-                
-                // Mensaje de ánimo basado en el progreso
-                if (progress >= 75) {
-                    encouragementMessage.innerHTML = '<p style="margin: 0; color: #50b67a; font-weight: bold;">🎯 ¡Casi ahí! Solo te falta un poco más para completar la verificación.</p>';
-                } else if (progress >= 50) {
-                    encouragementMessage.innerHTML = '<p style="margin: 0; color: #ffc107; font-weight: bold;">👍 ¡Buen progreso! Vas por la mitad, sigue así.</p>';
-                } else if (progress > 0) {
-                    encouragementMessage.innerHTML = '<p style="margin: 0; color: #2E86AB; font-weight: bold;">🚀 ¡Excelente inicio! Continúa revisando cada concepto.</p>';
-                }
-            }
-        }
-        
-        // Función para crear efecto de confetti
-        function createConfetti() {
-            const colors = ['#50b67a', '#2E86AB', '#c59d5f', '#ffc107'];
-            const confettiCount = 50;
-            
-            for (let i = 0; i < confettiCount; i++) {
-                setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.style.position = 'fixed';
-                    confetti.style.width = '10px';
-                    confetti.style.height = '10px';
-                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.left = Math.random() * 100 + 'vw';
-                    confetti.style.top = '-10px';
-                    confetti.style.borderRadius = '50%';
-                    confetti.style.pointerEvents = 'none';
-                    confetti.style.zIndex = '9999';
-                    confetti.style.transition = 'all 3s ease-out';
-                    
-                    document.body.appendChild(confetti);
-                    
-                    setTimeout(() => {
-                        confetti.style.top = '100vh';
-                        confetti.style.transform = 'rotate(720deg)';
-                        confetti.style.opacity = '0';
-                    }, 100);
-                    
-                    setTimeout(() => {
-                        if (confetti.parentNode) {
-                            confetti.parentNode.removeChild(confetti);
-                        }
-                    }, 3100);
-                }, i * 100);
-            }
-        }
-
-        // Tracking y animaciones de inicio
-        document.addEventListener('DOMContentLoaded', function() {
-            // Tracking del módulo
-            if (typeof SinnutTraining !== 'undefined') {
-                SinnutTraining.trackEvent('module_started', { 
-                    moduleId: 'introduccion-contabilidad',
-                    moduleName: 'Introducción: Gestión de Contabilidad'
-                });
-            }
-            
-            // Animaciones de entrada para las tarjetas de objetivos
-            const objectiveCards = document.querySelectorAll('.objective-item');
-            objectiveCards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'all 0.6s ease';
-                
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, index * 200 + 500);
-            });
-            
-            // Animación para el header
-            const header = document.querySelector('header');
-            if (header) {
-                header.style.opacity = '0';
-                header.style.transform = 'translateY(-30px)';
-                header.style.transition = 'all 0.8s ease';
-                
-                setTimeout(() => {
-                    header.style.opacity = '1';
-                    header.style.transform = 'translateY(0)';
-                }, 200);
-            }
-            
-            // Mensaje de bienvenida
-            setTimeout(() => {
-                if (typeof SinnutTraining !== 'undefined') {
-                    SinnutTraining.showNotification('¡Bienvenido al módulo de Contabilidad! Tómate tu tiempo para comprender cada concepto.', 'info');
-                }
-            }, 1500);
-        });
-        
-        // Efectos adicionales para mejorar la experiencia
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('header');
-            
-            if (parallax) {
-                const speed = scrolled * 0.5;
-                parallax.style.transform = `translateY(${speed}px)`;
-            }
-        });
-    </script>
 </body>
 </html>
-
-
-
-

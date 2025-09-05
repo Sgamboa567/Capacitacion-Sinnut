@@ -127,14 +127,26 @@
             gap: var(--spacing-xs);
         }
 
-        /* Navigation */
+        /* Navigation Breadcrumb Sticky */
         .nav-breadcrumb {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
             padding: var(--spacing-md);
             border-radius: var(--radius-lg);
             margin-bottom: var(--spacing-xl);
             box-shadow: var(--shadow-sm);
             font-size: 0.875rem;
+            position: sticky;
+            top: var(--spacing-md);
+            z-index: 100;
+            border: 1px solid var(--neutral-200);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-breadcrumb.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
         }
 
         .nav-breadcrumb a {
@@ -151,32 +163,6 @@
         .separator {
             margin: 0 var(--spacing-sm);
             color: var(--neutral-500);
-        }
-
-        /* Progress Bar */
-        .progress-container {
-            background: white;
-            padding: var(--spacing-lg);
-            border-radius: var(--radius-lg);
-            margin-bottom: var(--spacing-xl);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 12px;
-            background: var(--neutral-200);
-            border-radius: 6px;
-            overflow: hidden;
-            margin: var(--spacing-sm) 0;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--success-color) 0%, #16a34a 100%);
-            border-radius: 6px;
-            transition: width 0.5s ease;
-            width: 0%;
         }
 
         /* Section */
@@ -283,24 +269,84 @@
             align-items: flex-start;
             gap: var(--spacing-md);
             border-left: 4px solid;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .alert::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shine 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shine {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        .alert:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .alert i {
+            margin-top: 2px;
+            z-index: 1;
+            font-size: 1.25rem;
+        }
+
+        .alert div {
+            z-index: 1;
+            flex: 1;
         }
 
         .alert-info {
-            background: #eff6ff;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
             border-color: var(--info-color);
             color: #1e40af;
         }
 
+        .alert-info i {
+            color: var(--info-color);
+        }
+
         .alert-success {
-            background: #f0fdf4;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
             border-color: var(--success-color);
             color: #166534;
         }
 
+        .alert-success i {
+            color: var(--success-color);
+        }
+
         .alert-warning {
-            background: #fffbeb;
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
             border-color: var(--warning-color);
             color: #92400e;
+        }
+
+        .alert-warning i {
+            color: var(--warning-color);
+        }
+
+        .alert-danger {
+            background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+            border-color: var(--danger-color);
+            color: #991b1b;
+        }
+
+        .alert-danger i {
+            color: var(--danger-color);
         }
 
         /* Buttons */
@@ -310,82 +356,195 @@
             gap: var(--spacing-sm);
             padding: var(--spacing-md) var(--spacing-lg);
             border: none;
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-lg);
             font-size: 0.875rem;
-            font-weight: 500;
+            font-weight: 600;
             text-decoration: none;
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            transform-origin: center;
+            user-select: none;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
             color: white;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 14px 0 rgba(13, 35, 57, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-md);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px 0 rgba(13, 35, 57, 0.35);
+            background: linear-gradient(135deg, var(--primary-light) 0%, #2a5a7f 100%);
+        }
+
+        .btn-primary:active {
+            transform: translateY(-1px) scale(0.98);
+            transition: all 0.1s ease;
         }
 
         .btn-success {
             background: linear-gradient(135deg, var(--success-color) 0%, #16a34a 100%);
             color: white;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 14px 0 rgba(34, 197, 94, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .btn-success:hover {
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-md);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px 0 rgba(34, 197, 94, 0.35);
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
         }
 
-        /* Checkbox */
-        .checkbox-container {
+        .btn-success:active {
+            transform: translateY(-1px) scale(0.98);
+            transition: all 0.1s ease;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--neutral-600) 0%, var(--neutral-700) 100%);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(71, 85, 105, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px 0 rgba(71, 85, 105, 0.35);
+            background: linear-gradient(135deg, var(--neutral-700) 0%, #1e293b 100%);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 4px 14px 0 rgba(13, 35, 57, 0.1);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px 0 rgba(13, 35, 57, 0.25);
+        }
+
+
+
+        /* Cards & Components Improvements */
+        .step {
+            background: linear-gradient(135deg, white 0%, var(--neutral-50) 100%);
+            border: 2px solid var(--neutral-200);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--success-color), var(--info-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .step:hover::before {
+            transform: scaleX(1);
+        }
+
+        .step:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 20px 40px 0 rgba(13, 35, 57, 0.15);
+            background: linear-gradient(135deg, white 0%, rgba(13, 35, 57, 0.02) 100%);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            color: white;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: var(--spacing-sm);
-            padding: var(--spacing-md);
-            background: var(--neutral-50);
-            border-radius: var(--radius-md);
-            margin-top: var(--spacing-md);
-            cursor: pointer;
-            transition: var(--transition);
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 20px 0 rgba(13, 35, 57, 0.3);
+            position: relative;
+            overflow: hidden;
         }
 
-        .checkbox-container:hover {
-            background: var(--neutral-100);
+        .step-number::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            animation: pulse 2s ease-in-out infinite;
         }
 
-        .checkbox-container input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--success-color);
+        @keyframes pulse {
+            0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.7; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .container {
-                padding: var(--spacing-sm);
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .header-badges {
-                justify-content: center;
-            }
-            
-            .step-header {
-                flex-direction: column;
-                text-align: center;
-            }
+        /* Video Container Enhanced */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: linear-gradient(135deg, var(--neutral-100) 0%, var(--neutral-200) 100%);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.1);
+            margin: var(--spacing-xl) 0;
+            border: 3px solid var(--neutral-200);
         }
 
-        /* Animations */
+        .video-container:hover {
+            border-color: var(--primary-color);
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+        }
+
+        /* Enhanced Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -397,23 +556,398 @@
             }
         }
 
-        .animate-in {
-            animation: fadeInUp 0.6s ease-out;
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
-        /* Completion */
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .animate-left {
+            animation: fadeInLeft 0.6s ease-out forwards;
+        }
+
+        .animate-right {
+            animation: fadeInRight 0.6s ease-out forwards;
+        }
+
+        .animate-scale {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+
+        /* Loading States */
+        .loading {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Enhanced Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--spacing-sm);
+            }
+            
+            .header {
+                padding: var(--spacing-xl) var(--spacing-md);
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .header-badges {
+                justify-content: center;
+                gap: var(--spacing-sm);
+            }
+            
+            .badge {
+                padding: var(--spacing-xs) var(--spacing-sm);
+                font-size: 0.75rem;
+            }
+            
+            .section {
+                padding: var(--spacing-lg);
+            }
+            
+            .section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .step {
+                padding: var(--spacing-lg);
+            }
+            
+            .step-header {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--spacing-sm);
+            }
+            
+            .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+            
+            .btn {
+                padding: var(--spacing-sm) var(--spacing-md);
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .header-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-breadcrumb {
+                font-size: 0.75rem;
+                padding: var(--spacing-sm);
+                top: var(--spacing-xs);
+                margin-bottom: var(--spacing-lg);
+            }
+            
+            .nav-breadcrumb a {
+                display: inline-flex;
+                align-items: center;
+                gap: var(--spacing-xs);
+            }
+            
+            .separator {
+                display: none;
+            }
+            
+            .nav-breadcrumb::after {
+                content: '';
+                position: absolute;
+                bottom: -1px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 60%;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            
+            .nav-breadcrumb.scrolled::after {
+                opacity: 1;
+            }
+        }
+            
+            .header-badges {
+                justify-content: center;
+            }
+            
+            .step-header {
+                flex-direction: column;
+                text-align: center;
+            }      
+
+        /* Completion Card Enhanced */
         .completion-card {
             background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-            border: 2px solid var(--success-color);
+            border: 3px solid var(--success-color);
             border-radius: var(--radius-xl);
             padding: var(--spacing-2xl);
             text-align: center;
             margin-top: var(--spacing-xl);
+            box-shadow: 0 20px 40px 0 rgba(34, 197, 94, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .completion-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+            animation: completionPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes completionPulse {
+            0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.5; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
         }
 
         .completion-icon {
             font-size: 4rem;
             margin-bottom: var(--spacing-lg);
+        }
+
+        /* Footer de Navegación del Curso */
+        .course-footer {
+            background: linear-gradient(135deg, var(--neutral-50) 0%, white 100%);
+            border: 2px solid var(--neutral-200);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--success-color), var(--info-color));
+        }
+
+        .course-footer-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .course-footer h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+        }
+
+        .course-navigation {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .nav-item.prev {
+            justify-self: start;
+        }
+
+        .nav-item.home {
+            justify-self: center;
+        }
+
+        .nav-item.next {
+            justify-self: end;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: 2px solid var(--neutral-300);
+            border-radius: var(--radius-lg);
+            background: white;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            min-width: 150px;
+            justify-content: center;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(13, 35, 57, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-btn.prev:hover {
+            border-color: var(--warning-color);
+            background: var(--warning-color);
+            color: white;
+        }
+
+        .nav-btn.home:hover {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .nav-btn.next:hover {
+            border-color: var(--success-color);
+            background: var(--success-color);
+            color: white;
+        }
+
+        .nav-info {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--neutral-200);
+        }
+
+        .progress-indicator {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--neutral-300);
+            transition: var(--transition);
+        }
+
+        .progress-dot.completed {
+            background: var(--success-color);
+        }
+
+        .progress-dot.current {
+            background: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        /* Responsive para el footer */
+        @media (max-width: 768px) {
+            .course-navigation {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+                text-align: center;
+            }
+
+            .nav-item {
+                justify-self: center !important;
+            }
+
+            .nav-btn {
+                width: 100%;
+                min-width: auto;
+            }
+
+            .course-footer {
+                padding: var(--spacing-lg);
+            }
         }
     </style>
 </head>
@@ -423,7 +957,7 @@
         <nav class="nav-breadcrumb">
             <a href="../../index.html"><i class="fas fa-home"></i> Inicio</a>
             <span class="separator">•</span>
-            <a href="introduccion-contabilidad.html">Contabilidad</a>
+            <a href="introduccion-contabilidad.html">Introducción</a>
             <span class="separator">•</span>
             <span style="color: var(--primary-color); font-weight: 600;">Arqueo de Caja</span>
         </nav>
@@ -449,19 +983,6 @@
                 </div>
             </div>
         </header>
-
-        <!-- Progress -->
-        <div class="progress-container">
-            <h3 style="color: var(--primary-color); margin-bottom: var(--spacing-sm);">
-                <i class="fas fa-chart-line"></i> Tu Progreso
-            </h3>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-            <p id="progressText" style="margin-top: var(--spacing-sm); color: var(--text-secondary);">
-                0% completado - Comienza viendo el video tutorial
-            </p>
-        </div>
 
         <!-- Introduction -->
         <section class="section">
@@ -496,14 +1017,6 @@
                     </div>
                 </video>
             </div>
-
-            <div class="checkbox-container" onclick="toggleVideoCheck()">
-                <input type="checkbox" id="videoWatched" onchange="updateProgress()">
-                <label for="videoWatched" style="cursor: pointer; font-weight: 500;">
-                    <i class="fas fa-check-circle" style="color: var(--success-color);"></i>
-                    He visto el video completo
-                </label>
-            </div>
         </section>
 
         <!-- Steps -->
@@ -527,13 +1040,8 @@
                     <div class="alert alert-info">
                         <i class="fas fa-lightbulb"></i>
                         <div>
-                            <strong>Consejo:</strong> Puedes usar el buscador del menú escribiendo "arqueo" 
-                            para acceder más rápidamente.
+                            <strong>Consejo:</strong> Confirma la joyería en la cual vas hacer arqueo.
                         </div>
-                    </div>
-                    <div class="checkbox-container" onclick="toggleStepCheck(1)">
-                        <input type="checkbox" id="step1" onchange="updateProgress()">
-                        <label for="step1" style="cursor: pointer;">Completé el paso 1</label>
                     </div>
                 </div>
 
@@ -544,7 +1052,7 @@
                         <div class="step-title">Crear Nuevo Arqueo</div>
                     </div>
                     <div class="step-description">
-                        Haz clic en el botón <strong>"+"</strong> o <strong>"Nuevo"</strong> para iniciar 
+                        Haz clic en el botón <strong>"+"</strong> para iniciar 
                         un nuevo proceso de arqueo de caja.
                     </div>
                     <div class="alert alert-warning">
@@ -553,10 +1061,6 @@
                             <strong>Importante:</strong> Asegúrate de tener todos los documentos y efectivo 
                             disponibles antes de iniciar el proceso.
                         </div>
-                    </div>
-                    <div class="checkbox-container" onclick="toggleStepCheck(2)">
-                        <input type="checkbox" id="step2" onchange="updateProgress()">
-                        <label for="step2" style="cursor: pointer;">Completé el paso 2</label>
                     </div>
                 </div>
 
@@ -567,7 +1071,7 @@
                         <div class="step-title">Contar y Registrar</div>
                     </div>
                     <div class="step-description">
-                        Cuenta físicamente todo el efectivo, cheques y otros medios de pago en caja. 
+                        Cuenta físicamente todo el efectivo, caja menor, caja fuerte y base nocturo.
                         Registra cada cantidad en los campos correspondientes del sistema.
                     </div>
                     <div class="alert alert-success">
@@ -576,10 +1080,6 @@
                             <strong>Buena práctica:</strong> Cuenta dos veces para asegurar la precisión 
                             y organiza el dinero por denominaciones.
                         </div>
-                    </div>
-                    <div class="checkbox-container" onclick="toggleStepCheck(3)">
-                        <input type="checkbox" id="step3" onchange="updateProgress()">
-                        <label for="step3" style="cursor: pointer;">Completé el paso 3</label>
                     </div>
                 </div>
 
@@ -599,10 +1099,6 @@
                             <strong>Diferencias:</strong> Si hay discrepancias, verifica el conteo y 
                             revisa si falta registrar alguna transacción antes de confirmar.
                         </div>
-                    </div>
-                    <div class="checkbox-container" onclick="toggleStepCheck(4)">
-                        <input type="checkbox" id="step4" onchange="updateProgress()">
-                        <label for="step4" style="cursor: pointer;">Completé el paso 4</label>
                     </div>
                 </div>
             </div>
@@ -647,136 +1143,58 @@
                 <i class="fas fa-home"></i> Volver al Inicio
             </a>
         </div>
-    </div>
 
-    <script>
-        let completedItems = {
-            video: false,
-            step1: false,
-            step2: false,
-            step3: false,
-            step4: false
-        };
-
-        function toggleVideoCheck() {
-            const checkbox = document.getElementById('videoWatched');
-            checkbox.checked = !checkbox.checked;
-            updateProgress();
-        }
-
-        function toggleStepCheck(step) {
-            const checkbox = document.getElementById(`step${step}`);
-            checkbox.checked = !checkbox.checked;
-            updateProgress();
-        }
-
-        function updateProgress() {
-            // Update completion status
-            completedItems.video = document.getElementById('videoWatched').checked;
-            completedItems.step1 = document.getElementById('step1').checked;
-            completedItems.step2 = document.getElementById('step2').checked;
-            completedItems.step3 = document.getElementById('step3').checked;
-            completedItems.step4 = document.getElementById('step4').checked;
-
-            // Calculate progress
-            const total = Object.keys(completedItems).length;
-            const completed = Object.values(completedItems).filter(Boolean).length;
-            const percentage = Math.round((completed / total) * 100);
-
-            // Update progress bar
-            const progressFill = document.getElementById('progressFill');
-            const progressText = document.getElementById('progressText');
-            
-            progressFill.style.width = `${percentage}%`;
-            progressText.textContent = `${percentage}% completado`;
-
-            // Show completion card if everything is done
-            if (percentage === 100) {
-                document.getElementById('completionCard').style.display = 'block';
-                progressText.textContent = `🎉 ¡Módulo completado al 100%!`;
-            }
-        }
-
-        // Add smooth scroll to sections
-        document.addEventListener('DOMContentLoaded', function() {
-            // Animate elements on scroll
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-
-            // Observe all sections
-            document.querySelectorAll('.section, .step').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(el);
-            });
-        });
-    </script>
-</body>
-</html>
-                <div style="font-size: 2rem;">➜</div>
-                <div>
-                    <div style="width: 80px; height: 80px; border-radius: 50%; background: conic-gradient(#e0e0e0 0deg 360deg); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; color: var(--text-muted); margin: 0 auto var(--spacing-sm);">0%</div>
-                    <strong>Evaluación</strong>
+        <!-- Footer de Navegación del Curso -->
+        <footer class="course-footer">
+            <div class="course-footer-content">
+                <h3>
+                    <i class="fas fa-route"></i>
+                    Navegación del Curso
+                </h3>
+                
+                <!-- Indicador de Progreso -->
+                <div class="progress-indicator">
+                    <div class="progress-dot completed" title="Introducción"></div>
+                    <div class="progress-dot current" title="Arqueo de Caja - Módulo Actual"></div>
+                    <div class="progress-dot" title="Apertura de Caja"></div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Soporte y ayuda -->
-        <section id="soporte" class="section">
-            <h3>🆘 Soporte y ayuda</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-lg);">
-                <div style="text-align: center;">
-                    <div style="font-size: 2.5rem; margin-bottom: var(--spacing-md);">📧</div>
-                    <h4 style="color: var(--secondary-color);">Soporte Técnico</h4>
-                    <p>¿Necesitas ayuda técnica? Nuestro equipo está disponible para asistirte.</p>
-                    <a href="mailto:soporte.ti@oroexpress.com.co" class="btn btn-primary">Enviar Correo</a>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 2.5rem; margin-bottom: var(--spacing-md);">❓</div>
-                    <h4 style="color: var(--primary-color);">Preguntas Frecuentes</h4>
-                    <p>Consulta las respuestas a las preguntas más comunes sobre el proceso.</p>
-                    <a href="../faq.html" class="btn btn-secondary">Ver FAQ</a>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 2.5rem; margin-bottom: var(--spacing-md);">💬</div>
-                    <h4 style="color: var(--accent-color);">Chat en Vivo</h4>
-                    <p>Habla directamente con un instructor para resolver dudas específicas.</p>
-                    <button class="btn btn-accent" onclick="openChat()">Iniciar Chat</button>
-                </div>
-            </div>
-        </section>
+                <!-- Navegación Principal -->
+                <nav class="course-navigation">
+                    <a href="introduccion-contabilidad.html" class="nav-item prev">
+                        <div class="nav-btn prev">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Anterior</span>
+                        </div>
+                    </a>
 
-        <!-- Navegación del curso -->
-        <section class="quick-nav">
-            <h3>🧭 Navegación del Curso</h3>
-            <div class="nav-links">
-                <a href="apertura-caja.html" class="nav-link muted">⬅️ Anterior: Apertura de Caja</a>
-                <a href="../index.html" class="nav-link primary">🏠 Inicio del Curso</a>
-                <a href="#" class="nav-link secondary">➡️ Siguiente: Contratos</a>
-                <a href="../faq.html" class="nav-link accent">❓ Preguntas Frecuentes</a>
-            </div>
-        </section>
+                    <a href="../../index.html" class="nav-item home">
+                        <div class="nav-btn home">
+                            <i class="fas fa-home"></i>
+                            <span>Inicio</span>
+                        </div>
+                    </a>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <div style="margin-bottom: var(--spacing-sm); font-weight: 500;">
-                Sinnut © 2025 | Módulo actualizado: Septiembre 2025 | Versión 2.0
-            </div>
-            <div>
-                Contacto: <a href="mailto:soporte.ti@oroexpress.com.co" style="color: var(--secondary-color);">soporte.ti@oroexpress.com.co</a> | 
-                Todos los derechos reservados
+                    <a href="apertura-caja.html" class="nav-item next">
+                        <div class="nav-btn next">
+                            <span>Siguiente</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </nav>
+
+                <!-- Información del Módulo -->
+                <div class="nav-info">
+                    <p>
+                        <strong>Módulo 1 de 3:</strong> Arqueo de Caja | 
+                        <strong>Anterior:</strong> Introducción a Contabilidad | 
+                        <strong>Siguiente:</strong> Apertura de Caja
+                    </p>
+                    <p style="margin-top: var(--spacing-sm); font-size: 0.8rem;">
+                        <i class="fas fa-graduation-cap"></i>
+                        Curso Sinnut ERP - OroExpress
+                    </p>
+                </div>
             </div>
         </footer>
     </div>
@@ -784,314 +1202,413 @@
     <!-- JavaScript principal -->
     <script src="../../assets/js/main.js"></script>
     <script>
-        // Variables de progreso para arqueo de caja
-        let totalSteps = 6; // 1 video + 5 pasos de verificación
-        let completedSteps = 0;
-        
-        // Función para actualizar progreso
-        function updateProgress() {
-            const videoComplete = document.getElementById('videoComplete') ? document.getElementById('videoComplete').checked : false;
-            const step1Complete = document.getElementById('step1Complete') ? document.getElementById('step1Complete').checked : false;
-            const step2Complete = document.getElementById('step2Complete') ? document.getElementById('step2Complete').checked : false;
-            const step3Complete = document.getElementById('step3Complete') ? document.getElementById('step3Complete').checked : false;
-            const step4Complete = document.getElementById('step4Complete') ? document.getElementById('step4Complete').checked : false;
-            const step5Complete = document.getElementById('step5Complete') ? document.getElementById('step5Complete').checked : false;
-            
-            completedSteps = 0;
-            if (videoComplete) completedSteps++;
-            if (step1Complete) completedSteps++;
-            if (step2Complete) completedSteps++;
-            if (step3Complete) completedSteps++;
-            if (step4Complete) completedSteps++;
-            if (step5Complete) completedSteps++;
-            
-            const progress = (completedSteps / totalSteps) * 100;
-            const progressBar = document.getElementById('moduleProgress');
-            const progressText = document.getElementById('progressText');
-            
-            if (progressBar) {
-                progressBar.style.width = progress + '%';
-            }
-            
-            if (progressText) {
-                // Mensajes dinámicos basados en el progreso
-                if (progress === 0) {
-                    progressText.textContent = '0% completado - ¡Comienza viendo el video tutorial!';
-                    progressText.style.color = '#dc3545';
-                } else if (progress < 50) {
-                    progressText.textContent = `${Math.round(progress)}% completado - ¡Muy bien! Sigue con los pasos`;
-                    progressText.style.color = '#ffc107';
-                } else if (progress < 100) {
-                    progressText.textContent = `${Math.round(progress)}% completado - ¡Casi terminas! Completa los pasos restantes`;
-                    progressText.style.color = '#2E86AB';
-                } else if (progress === 100) {
-                    progressText.textContent = '100% completado - ¡Felicidades! Eres experto en arqueo de caja';
-                    progressText.style.color = '#50b67a';
-                    
-                    // Mostrar mensaje de completación
-                    showCompletionMessage();
-                }
-            }
-            
-            // Actualizar progreso en el sistema de tracking
-            if (typeof SinnutTraining !== 'undefined') {
-                SinnutTraining.updateProgress('arqueo_caja', progress);
-                
-                if (progress === 100) {
-                    SinnutTraining.showNotification('¡Excelente! Has completado el módulo de Arqueo de Caja', 'success');
-                    SinnutTraining.trackEvent('module_completed', { 
-                        moduleId: 'arqueo-caja',
-                        moduleName: 'Arqueo de Caja'
+        // Estado moderno del documento
+        const ArqueoModule = {
+            init() {
+                this.setupAnimations();
+                this.setupInteractions();
+                this.initializeTracking();
+                this.setupCourseNavigation();
+                console.log('🚀 Módulo Arqueo de Caja inicializado');
+            },
+
+            // Sistema de animaciones mejorado
+            setupAnimations() {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry, index) => {
+                        if (entry.isIntersecting) {
+                            // Animaciones escalonadas para mejor UX
+                            setTimeout(() => {
+                                entry.target.classList.add('animate-in');
+                            }, index * 100);
+                        }
                     });
-                } else if (videoComplete && completedSteps === 1) {
-                    SinnutTraining.showNotification('Video completado. ¡Ahora practica con los 5 pasos!', 'info');
-                }
-            }
-        }
-        
-        // Función para mostrar mensaje de completación
-        function showCompletionMessage() {
-            // Crear elemento de felicitación si no existe
-            let completionDiv = document.getElementById('completionMessage');
-            if (!completionDiv) {
-                completionDiv = document.createElement('div');
-                completionDiv.id = 'completionMessage';
-                completionDiv.innerHTML = `
-                    <div style="background: linear-gradient(135deg, #e8f5e8 0%, #f0fff4 100%); border: 3px solid #50b67a; border-radius: var(--border-radius-lg); padding: var(--spacing-xl); text-align: center; margin-top: var(--spacing-xl);">
-                        <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">🏆</div>
-                        <h3 style="color: #50b67a; margin-bottom: var(--spacing-md);">¡Maestro del Arqueo de Caja!</h3>
-                        <p style="color: #333; font-size: 1.1rem; margin-bottom: var(--spacing-lg);">
-                            Has dominado todos los aspectos del arqueo. Ahora puedes realizar arqueos perfectos y detectar cualquier diferencia.
-                        </p>
-                        <div style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
-                            <a href="fin-modulo-contabilidad.html" style="background: #50b67a; color: white; padding: var(--spacing-md) var(--spacing-xl); text-decoration: none; border-radius: var(--border-radius-md); font-weight: bold; font-size: 1.1rem; transition: var(--transition-normal); display: inline-block;" onmouseover="this.style.backgroundColor='#45a069'; this.style.transform='translateY(-2px)'" onmouseout="this.style.backgroundColor='#50b67a'; this.style.transform='translateY(0)'">
-                                🎓 Finalizar Módulo
-                            </a>
-                            <a href="../../index.html" style="background: #2E86AB; color: white; padding: var(--spacing-md) var(--spacing-xl); text-decoration: none; border-radius: var(--border-radius-md); font-weight: bold; font-size: 1.1rem; transition: var(--transition-normal); display: inline-block;" onmouseover="this.style.backgroundColor='#236d8b'; this.style.transform='translateY(-2px)'" onmouseout="this.style.backgroundColor='#2E86AB'; this.style.transform='translateY(0)'">
-                                🏠 Volver al Inicio
-                            </a>
-                        </div>
-                    </div>
+                }, observerOptions);
+
+                // Observar diferentes tipos de elementos con animaciones específicas
+                document.querySelectorAll('.section').forEach((el, index) => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(30px)';
+                    el.classList.add(index % 2 === 0 ? 'animate-left' : 'animate-right');
+                    observer.observe(el);
+                });
+
+                document.querySelectorAll('.step').forEach((el) => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'scale(0.95)';
+                    el.classList.add('animate-scale');
+                    observer.observe(el);
+                });
+
+                document.querySelectorAll('.alert').forEach((el) => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateX(-20px)';
+                    observer.observe(el);
+                });
+            },
+
+            // Interacciones mejoradas
+            setupInteractions() {
+                // Efectos hover mejorados para botones
+                document.querySelectorAll('.btn').forEach(btn => {
+                    btn.addEventListener('mouseenter', this.createRippleEffect);
+                    btn.addEventListener('click', this.createClickEffect);
+                });
+
+                // Efectos de parallax sutil en el header
+                this.setupParallax();
+            },
+
+            // Efecto ripple moderno para botones
+            createRippleEffect(e) {
+                const button = e.currentTarget;
+                const rect = button.getBoundingClientRect();
+                const ripple = document.createElement('span');
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,0.3);
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
                 `;
                 
-                // Insertar después de la última sección
-                const lastSection = document.querySelector('#procedimiento');
-                if (lastSection) {
-                    lastSection.after(completionDiv);
-                }
-            }
-            
-            // Mostrar con animación
-            completionDiv.style.display = 'block';
-            completionDiv.style.opacity = '0';
-            completionDiv.style.transform = 'translateY(20px)';
-            completionDiv.style.transition = 'all 0.5s ease';
-            
-            setTimeout(() => {
-                completionDiv.style.opacity = '1';
-                completionDiv.style.transform = 'translateY(0)';
-            }, 100);
-            
-            // Efecto confetti
-            createConfetti();
-        }
-        
-        // Función para crear efecto de confetti
-        function createConfetti() {
-            const colors = ['#50b67a', '#2E86AB', '#c59d5f', '#ffc107'];
-            const confettiCount = 60;
-            
-            for (let i = 0; i < confettiCount; i++) {
+                button.style.position = 'relative';
+                button.style.overflow = 'hidden';
+                button.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            },
+
+            // Efecto click con feedback haptico visual
+            createClickEffect(e) {
+                const button = e.currentTarget;
+                button.style.transform = 'scale(0.95)';
                 setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.style.position = 'fixed';
-                    confetti.style.width = '10px';
-                    confetti.style.height = '10px';
-                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.left = Math.random() * 100 + 'vw';
-                    confetti.style.top = '-10px';
-                    confetti.style.borderRadius = '50%';
-                    confetti.style.pointerEvents = 'none';
-                    confetti.style.zIndex = '9999';
-                    confetti.style.transition = 'all 3.5s ease-out';
-                    
-                    document.body.appendChild(confetti);
-                    
-                    setTimeout(() => {
-                        confetti.style.top = '100vh';
-                        confetti.style.transform = 'rotate(1080deg)';
-                        confetti.style.opacity = '0';
-                    }, 100);
-                    
-                    setTimeout(() => {
-                        if (confetti.parentNode) {
-                            confetti.parentNode.removeChild(confetti);
-                        }
-                    }, 3600);
-                }, i * 80);
-            }
-        }
-        
-        // Código específico del módulo de arqueo de caja
-        document.addEventListener('DOMContentLoaded', function() {
-            // Tracking del módulo
-            if (typeof SinnutTraining !== 'undefined') {
-                SinnutTraining.trackEvent('module_started', { 
-                    moduleId: 'arqueo-caja',
-                    moduleName: 'Arqueo de Caja'
-                });
-            }
-            
-            // Configurar video
-            const video = document.getElementById('arqueoVideo');
-            if (video) {
-                video.addEventListener('play', () => {
-                    if (typeof SinnutTraining !== 'undefined') {
-                        SinnutTraining.trackEvent('video_started', { 
-                            videoId: 'arqueo_video',
-                            moduleId: 'arqueo-caja'
-                        });
-                    }
-                });
+                    button.style.transform = '';
+                }, 150);
+            },
+
+            // Manejo mejorado de checkboxes
+            handleCheckboxClick(container) {
+                const checkbox = container.querySelector('input[type="checkbox"]');
+                const label = container.querySelector('label');
                 
-                video.addEventListener('ended', () => {
-                    if (typeof SinnutTraining !== 'undefined') {
-                        SinnutTraining.trackEvent('video_completed', { 
-                            videoId: 'arqueo_video',
-                            moduleId: 'arqueo-caja'
-                        });
-                        SinnutTraining.showNotification('¡Video completado! Ahora practica con los 5 pasos del proceso', 'success');
-                    }
-                });
+                checkbox.checked = !checkbox.checked;
                 
-                // Manejar errores de carga del video
-                video.addEventListener('error', function(e) {
-                    console.log('Error al cargar video:', e);
-                    const container = video.closest('div[style*="position: relative"]');
-                    if (container) {
-                        container.innerHTML = `
-                            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 300px; background: #f8f9fa; text-align: center; padding: var(--spacing-lg); border-radius: var(--border-radius-md);">
-                                <div style="font-size: 3rem; margin-bottom: var(--spacing-md); color: #50b67a;">📹</div>
-                                <h4 style="color: #50b67a; margin-bottom: var(--spacing-md);">Video no disponible para reproducción</h4>
-                                <p style="margin-bottom: var(--spacing-lg); color: #666;">Puedes descargar el video para verlo externamente.</p>
-                                <a href="../../assets/videos/Caja/arqueo-caja/2025-09-04 16-00-55 (Copy).mp4" 
-                                   style="background: #50b67a; color: white; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: bold;"
-                                   download>
-                                    📥 Descargar Video
-                                </a>
-                            </div>
+                // Efectos visuales mejorados
+                if (checkbox.checked) {
+                    this.createCheckAnimation(container);
+                    label.style.color = 'var(--success-color)';
+                    container.style.background = 'linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, white 100%)';
+                } else {
+                    label.style.color = 'var(--text-primary)';
+                    container.style.background = '';
+                }
+                
+                this.updateProgress();
+            },
+
+            // Animación de check personalizada
+            createCheckAnimation(container) {
+                const checkmark = document.createElement('div');
+                checkmark.innerHTML = '✓';
+                checkmark.style.cssText = `
+                    position: absolute;
+                    right: 20px;
+                    top: 50%;
+                    transform: translateY(-50%) scale(0);
+                    color: var(--success-color);
+                    font-size: 1.5rem;
+                    font-weight: bold;
+                    animation: checkPop 0.3s ease-out forwards;
+                `;
+                
+                container.style.position = 'relative';
+                container.appendChild(checkmark);
+                
+                setTimeout(() => checkmark.remove(), 1000);
+            },
+
+            // Sistema de progreso visual
+            updateProgress() {
+                const completed = Object.values(this.completedItems).filter(Boolean).length;
+                const total = Object.keys(this.completedItems).length;
+                const percentage = Math.round((completed / total) * 100);
+                
+                if (percentage === 100) {
+                    this.showCompletionCelebration();
+                }
+            },
+
+            // Celebración de finalización
+            showCompletionCelebration() {
+                this.createConfetti();
+                
+                setTimeout(() => {
+                    if (typeof SinnutTraining !== 'undefined') {
+                        SinnutTraining.showNotification('🎉 ¡Excelente! Has completado el módulo de Arqueo de Caja', 'success');
+                    }
+                }, 500);
+            },
+
+            // Efecto confetti mejorado
+            createConfetti() {
+                const colors = ['#22c55e', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6'];
+                const confettiCount = 50;
+                
+                for (let i = 0; i < confettiCount; i++) {
+                    setTimeout(() => {
+                        const confetti = document.createElement('div');
+                        confetti.style.cssText = `
+                            position: fixed;
+                            width: 10px;
+                            height: 10px;
+                            background: ${colors[Math.floor(Math.random() * colors.length)]};
+                            left: ${Math.random() * 100}vw;
+                            top: -10px;
+                            border-radius: 50%;
+                            pointer-events: none;
+                            z-index: 10000;
+                            animation: confettiFall 3s linear forwards;
                         `;
-                    }
-                });
-            }
+                        
+                        document.body.appendChild(confetti);
+                        setTimeout(() => confetti.remove(), 3000);
+                    }, i * 50);
+                }
+            },
 
-            // Checkboxes de verificación con animaciones
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            checkboxes.forEach((checkbox, index) => {
-                checkbox.addEventListener('change', function() {
-                    const stepCard = this.closest('.step-card');
-                    if (stepCard) {
-                        if (this.checked) {
-                            stepCard.style.background = 'linear-gradient(135deg, #e8f5e8 0%, #f0fff4 100%)';
-                            stepCard.style.borderColor = '#50b67a';
-                            stepCard.style.transform = 'scale(1.02)';
-                            
-                            // Mostrar mensaje específico para cada paso
-                            const stepNumber = stepCard.querySelector('.step-number').textContent;
-                            if (typeof SinnutTraining !== 'undefined') {
-                                SinnutTraining.showNotification(`Paso ${stepNumber} completado. ¡Excelente trabajo!`, 'success');
-                            }
-                        } else {
-                            stepCard.style.background = 'var(--card-background)';
-                            stepCard.style.borderColor = 'var(--border-color)';
-                            stepCard.style.transform = 'scale(1)';
+            // Parallax sutil para el header
+            setupParallax() {
+                const header = document.querySelector('.header');
+                if (!header) return;
+                
+                window.addEventListener('scroll', () => {
+                    const scrolled = window.pageYOffset;
+                    const rate = scrolled * -0.5;
+                    header.style.transform = `translateY(${rate}px)`;
+                    
+                    // Efecto sticky mejorado para breadcrumb
+                    this.updateBreadcrumbOnScroll(scrolled);
+                });
+            },
+
+            // Actualizar breadcrumb con el scroll
+            updateBreadcrumbOnScroll(scrolled) {
+                const breadcrumb = document.querySelector('.nav-breadcrumb');
+                if (!breadcrumb) return;
+                
+                if (scrolled > 100) {
+                    breadcrumb.classList.add('scrolled');
+                } else {
+                    breadcrumb.classList.remove('scrolled');
+                }
+            },
+
+            // Configurar navegación del curso
+            setupCourseNavigation() {
+                // Añadir efectos hover mejorados a los botones de navegación
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.addEventListener('mouseenter', (e) => {
+                        this.createNavigationRipple(e);
+                    });
+                });
+
+                // Añadir atajos de teclado para navegación
+                document.addEventListener('keydown', (e) => {
+                    if (e.ctrlKey || e.metaKey) {
+                        switch(e.key) {
+                            case 'ArrowLeft':
+                                e.preventDefault();
+                                this.navigateToPrevious();
+                                break;
+                            case 'ArrowRight':
+                                e.preventDefault();
+                                this.navigateToNext();
+                                break;
+                            case 'Home':
+                                e.preventDefault();
+                                this.navigateToHome();
+                                break;
                         }
                     }
-                    
-                    // Actualizar progreso general
-                    updateProgress();
+                });
+
+                // Animar entrada del footer
+                this.animateCourseFooter();
+            },
+
+            // Navegación con teclado
+            navigateToPrevious() {
+                const prevLink = document.querySelector('.nav-item.prev');
+                if (prevLink) {
+                    this.createPageTransition(() => {
+                        window.location.href = prevLink.href;
+                    });
+                }
+            },
+
+            navigateToNext() {
+                const nextLink = document.querySelector('.nav-item.next');
+                if (nextLink) {
+                    this.createPageTransition(() => {
+                        window.location.href = nextLink.href;
+                    });
+                }
+            },
+
+            navigateToHome() {
+                const homeLink = document.querySelector('.nav-item.home');
+                if (homeLink) {
+                    this.createPageTransition(() => {
+                        window.location.href = homeLink.href;
+                    });
+                }
+            },
+
+            // Efecto de transición de página
+            createPageTransition(callback) {
+                const overlay = document.createElement('div');
+                overlay.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100vw;
+                    height: 100vh;
+                    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+                    z-index: 10000;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                    pointer-events: none;
+                `;
+                
+                document.body.appendChild(overlay);
+                
+                setTimeout(() => {
+                    overlay.style.opacity = '1';
+                    setTimeout(callback, 150);
+                }, 50);
+            },
+
+            // Ripple effect para navegación
+            createNavigationRipple(e) {
+                const button = e.currentTarget;
+                const rect = button.getBoundingClientRect();
+                const ripple = document.createElement('span');
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,0.4);
+                    transform: scale(0);
+                    animation: navRipple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                
+                button.style.position = 'relative';
+                button.style.overflow = 'hidden';
+                button.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            },
+
+            // Animar entrada del footer
+            animateCourseFooter() {
+                const footer = document.querySelector('.course-footer');
+                if (!footer) return;
+                
+                footer.style.opacity = '0';
+                footer.style.transform = 'translateY(50px)';
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                footer.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                                footer.style.opacity = '1';
+                                footer.style.transform = 'translateY(0)';
+                                
+                                // Animar dots de progreso
+                                this.animateProgressDots();
+                            }, 200);
+                            observer.unobserve(entry.target);
+                        }
+                    });
                 });
                 
-                // Animación de entrada para las tarjetas
-                const stepCard = checkbox.closest('.step-card');
-                if (stepCard) {
-                    stepCard.style.opacity = '0';
-                    stepCard.style.transform = 'translateY(20px)';
-                    stepCard.style.transition = 'all 0.6s ease';
-                    
+                observer.observe(footer);
+            },
+
+            // Animar indicadores de progreso
+            animateProgressDots() {
+                const dots = document.querySelectorAll('.progress-dot');
+                dots.forEach((dot, index) => {
                     setTimeout(() => {
-                        stepCard.style.opacity = '1';
-                        stepCard.style.transform = 'translateY(0)';
-                    }, index * 150 + 500);
-                }
-            });
-            
-            // Mensaje de bienvenida
-            setTimeout(() => {
+                        dot.style.transform = 'scale(1.3)';
+                        setTimeout(() => {
+                            dot.style.transform = dot.classList.contains('current') ? 'scale(1.2)' : 'scale(1)';
+                        }, 200);
+                    }, index * 100);
+                });
+            },
+
+            // Tracking mejorado
+            initializeTracking() {
                 if (typeof SinnutTraining !== 'undefined') {
-                    SinnutTraining.showNotification('¡Bienvenido al módulo de Arqueo de Caja! Comienza viendo el video tutorial.', 'info');
+                    SinnutTraining.trackEvent('module_started', {
+                        moduleId: 'arqueo-caja',
+                        moduleName: 'Arqueo de Caja',
+                        timestamp: new Date().toISOString()
+                    });
                 }
-            }, 1000);
-        });
-
-        function startSimulator() {
-            const simulatorArea = document.getElementById('simulatorArea');
-            simulatorArea.style.display = 'block';
-            simulatorArea.innerHTML = `
-                <h4>🎮 Simulador de Arqueo de Caja</h4>
-                <div style="background: #f8f9fa; padding: var(--spacing-lg); border-radius: var(--border-radius-md); margin: var(--spacing-md) 0;">
-                    <p><strong>Paso 1:</strong> Selecciona el módulo de contabilidad</p>
-                    <button class="btn btn-primary" style="margin: var(--spacing-sm);" onclick="nextStep(2)">✅ Módulo seleccionado</button>
-                </div>
-            `;
-            SinnutTraining.trackEvent('simulator_started', { module: 'arqueo-caja' });
-        }
-
-        function nextStep(step) {
-            const simulatorArea = document.getElementById('simulatorArea');
-            switch(step) {
-                case 2:
-                    simulatorArea.innerHTML = `
-                        <h4>🎮 Simulador - Paso 2</h4>
-                        <div style="background: #f8f9fa; padding: var(--spacing-lg); border-radius: var(--border-radius-md); margin: var(--spacing-md) 0;">
-                            <p><strong>Paso 2:</strong> Haz clic en el botón "+" para crear nuevo arqueo</p>
-                            <button class="btn btn-primary" style="margin: var(--spacing-sm);" onclick="nextStep(3)">➕ Nuevo arqueo</button>
-                        </div>
-                    `;
-                    break;
-                case 3:
-                    simulatorArea.innerHTML = `
-                        <h4>🎮 Simulador - Paso 3</h4>
-                        <div style="background: #f8f9fa; padding: var(--spacing-lg); border-radius: var(--border-radius-md); margin: var(--spacing-md) 0;">
-                            <p><strong>Paso 3:</strong> Ingresa los valores de caja</p>
-                            <input type="number" placeholder="Efectivo" style="margin: var(--spacing-xs); padding: var(--spacing-sm); border: 1px solid #ddd; border-radius: 4px;">
-                            <input type="number" placeholder="Cheques" style="margin: var(--spacing-xs); padding: var(--spacing-sm); border: 1px solid #ddd; border-radius: 4px;">
-                            <br><button class="btn btn-primary" style="margin-top: var(--spacing-md);" onclick="nextStep(4)">💾 Guardar valores</button>
-                        </div>
-                    `;
-                    break;
-                case 4:
-                    simulatorArea.innerHTML = `
-                        <h4>🎮 Simulador Completado</h4>
-                        <div style="background: #e3f7f0; padding: var(--spacing-lg); border-radius: var(--border-radius-md); margin: var(--spacing-md) 0; text-align: center;">
-                            <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">🎉</div>
-                            <p><strong>¡Excelente!</strong> Has completado el simulador de arqueo de caja.</p>
-                            <button class="btn btn-secondary" onclick="startSimulator()">🔄 Repetir simulación</button>
-                        </div>
-                    `;
-                    SinnutTraining.updateProgress('simulator_arqueo', 100);
-                    SinnutTraining.trackEvent('simulator_completed', { module: 'arqueo-caja' });
-                    break;
             }
-        }
+        };
 
-        function openChat() {
-            SinnutTraining.showNotification('Función de chat en desarrollo. Por ahora, puedes contactar por email: soporte.ti@oroexpress.com.co', 'info');
-        }
+        // CSS adicional para nuevas animaciones
+        const additionalCSS = `
+            @keyframes ripple {
+                to { transform: scale(2); opacity: 0; }
+            }
+            
+            @keyframes navRipple {
+                to { transform: scale(2); opacity: 0; }
+            }
+            
+            .animate-in {
+                animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+            }
+        `;
+
+        // Inyectar CSS adicional
+        const style = document.createElement('style');
+        style.textContent = additionalCSS;
+        document.head.appendChild(style);
+
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            ArqueoModule.init();
+        });
     </script>
 </body>
 </html>
-
-
-
-

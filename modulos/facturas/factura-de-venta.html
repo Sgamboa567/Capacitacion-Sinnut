@@ -3,32 +3,355 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Factura de Venta - Capacitación Sinnut ERP</title>
-    <link rel="stylesheet" href="../../assets/css/main.css">
+    <title>Factura de Venta - Curso Sinnut ERP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
     <style>
-        /* Estilos adicionales para iframe */
-        body { 
-            background: transparent;
+        :root {
+            /* Colores principales */
+            --primary-color: #0D2339;
+            --primary-light: #1a3b5c;
+            --primary-dark: #051119;
+            --primary-darker: #02080c;
+            
+            /* Colores secundarios */
+            --accent-color: #c59d5f;
+            --accent-light: #d4b373;
+            --accent-dark: #b68a4a;
+            
+            /* Colores semánticos */
+            --success-color: #22c55e;
+            --success-light: #dcfce7;
+            --success-dark: #16a34a;
+            --success-darker: #15803d;
+            --warning-color: #f59e0b;
+            --warning-light: #fef3c7;
+            --warning-dark: #d97706;
+            --error-color: #ef4444;
+            --error-light: #fecaca;
+            --error-dark: #dc2626;
+            --info-color: #3b82f6;
+            --info-light: #dbeafe;
+            --info-dark: #2563eb;
+            
+            /* Neutrales */
+            --neutral-25: #fefefe;
+            --neutral-50: #f8fafc;
+            --neutral-100: #f1f5f9;
+            --neutral-200: #e2e8f0;
+            --neutral-300: #cbd5e1;
+            --neutral-400: #94a3b8;
+            --neutral-500: #64748b;
+            --neutral-600: #475569;
+            --neutral-700: #334155;
+            --neutral-800: #1e293b;
+            --neutral-900: #0f172a;
+            
+            /* Texto */
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-white: #ffffff;
+            
+            /* Tipografía */
+            --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 1.875rem;
+            --font-size-4xl: 2.25rem;
+            --font-size-5xl: 3rem;
+            --font-size-6xl: 3.75rem;
+            --font-weight-light: 300;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 600;
+            --font-weight-bold: 700;
+            --line-height-tight: 1.25;
+            --line-height-normal: 1.5;
+            --line-height-relaxed: 1.75;
+            
+            /* Espaciado */
+            --spacing-1: 0.25rem;
+            --spacing-2: 0.5rem;
+            --spacing-3: 0.75rem;
+            --spacing-4: 1rem;
+            --spacing-5: 1.25rem;
+            --spacing-6: 1.5rem;
+            --spacing-8: 2rem;
+            --spacing-10: 2.5rem;
+            --spacing-12: 3rem;
+            --spacing-16: 4rem;
+            --spacing-20: 5rem;
+            
+            /* Bordes */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --radius-full: 9999px;
+            
+            /* Sombras */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            
+            /* Transiciones */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-primary);
+            line-height: var(--line-height-normal);
+            color: var(--text-primary);
+            background: var(--neutral-50);
+            font-size: var(--font-size-base);
             overflow-x: hidden;
         }
-        .main-container {
-            box-shadow: none;
-            border: 1px solid var(--border-color);
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--spacing-4);
         }
-        
-        /* Estilos para video responsivo */
+
+        /* Navegación Breadcrumb Sticky */
+        .nav-breadcrumb {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: var(--spacing-4);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-8);
+            box-shadow: var(--shadow-sm);
+            font-size: var(--font-size-sm);
+            position: sticky;
+            top: var(--spacing-4);
+            z-index: 100;
+            border: 1px solid var(--neutral-200);
+            transition: var(--transition-normal);
+        }
+
+        .nav-breadcrumb.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .nav-breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: var(--font-weight-medium);
+            transition: var(--transition-normal);
+        }
+
+        .nav-breadcrumb a:hover {
+            color: var(--primary-light);
+        }
+
+        .separator {
+            margin: 0 var(--spacing-2);
+            color: var(--neutral-500);
+        }
+
+        /* Header Moderno */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 50%, var(--primary-dark) 100%);
+            color: var(--text-white);
+            padding: var(--spacing-20) var(--spacing-8);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-2xl);
+            margin-bottom: var(--spacing-8);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(197, 157, 95, 0.1) 0%, transparent 50%);
+            animation: headerFloat 8s ease-in-out infinite;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+        }
+
+        @keyframes headerFloat {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg); 
+                opacity: 0.7;
+            }
+            25% { 
+                transform: translate(30px, -20px) rotate(90deg); 
+                opacity: 1;
+            }
+            50% { 
+                transform: translate(-10px, 30px) rotate(180deg); 
+                opacity: 0.8;
+            }
+            75% { 
+                transform: translate(-30px, -10px) rotate(270deg); 
+                opacity: 1;
+            }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-icon {
+            font-size: var(--font-size-5xl);
+            margin-bottom: var(--spacing-6);
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            display: inline-block;
+            animation: iconPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .header h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--spacing-4);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: -0.025em;
+        }
+
+        .header p {
+            font-size: var(--font-size-lg);
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto var(--spacing-8);
+            font-weight: var(--font-weight-light);
+            line-height: var(--line-height-relaxed);
+        }
+
+        .header-badges {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-4);
+            flex-wrap: wrap;
+            margin-top: var(--spacing-6);
+        }
+
+        .badge {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: var(--spacing-3) var(--spacing-5);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+            transition: var(--transition-normal);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .badge:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .badge i {
+            font-size: var(--font-size-sm);
+        }
+
+        /* Secciones */
+        .section {
+            background: white;
+            border: 1px solid var(--neutral-200);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-8);
+            margin-bottom: var(--spacing-8);
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--info-color));
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--spacing-6);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+        }
+
+        .section h3 {
+            color: var(--primary-color);
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--spacing-4);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-2);
+        }
+
+        /* Video Container */
         .video-container {
             position: relative;
             width: 100%;
-            height: 0;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            margin: 20px 0;
-            background: #f0f0f0;
-            border-radius: 8px;
+            padding-bottom: 56.25%;
+            background: linear-gradient(135deg, var(--neutral-100) 0%, var(--neutral-200) 100%);
+            border-radius: var(--radius-xl);
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-lg);
+            margin: var(--spacing-8) 0;
+            border: 3px solid var(--neutral-200);
+            transition: var(--transition-normal);
         }
-        
+
+        .video-container:hover {
+            border-color: var(--primary-color);
+            transform: scale(1.02);
+            box-shadow: var(--shadow-xl);
+        }
+
         .video-container video {
             position: absolute;
             top: 0;
@@ -36,216 +359,940 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: var(--radius-lg);
         }
-        
-        /* Estilos para pasos numerados */
+
+        /* Steps Container */
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-6);
+        }
+
+        .step {
+            background: linear-gradient(135deg, white 0%, var(--neutral-50) 100%);
+            border: 2px solid var(--neutral-200);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-8);
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--primary-color), var(--info-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .step:hover::before {
+            transform: scaleX(1);
+        }
+
+        .step:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: var(--shadow-xl);
+            background: linear-gradient(135deg, white 0%, rgba(13, 35, 57, 0.02) 100%);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-4);
+            margin-bottom: var(--spacing-4);
+        }
+
         .step-number {
-            background: #c59d5f;
-            color: white;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-dark) 100%);
+            color: var(--text-white);
             border-radius: 50%;
-            width: 24px;
-            height: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
-            font-weight: bold;
-            flex-shrink: 0;
+            font-weight: var(--font-weight-bold);
+            font-size: var(--font-size-xl);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-number::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.7; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+        }
+
+        .step-title {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            color: var(--accent-dark);
+        }
+
+        .step-description {
+            color: var(--text-primary);
+            line-height: var(--line-height-relaxed);
+            font-size: var(--font-size-base);
+        }
+
+        /* Alertas Modernas */
+        .alert {
+            padding: var(--spacing-6);
+            border-radius: var(--radius-xl);
+            margin: var(--spacing-6) 0;
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-4);
+            border-left: 4px solid;
+            backdrop-filter: blur(20px);
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .alert::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: alertShine 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes alertShine {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        .alert:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .alert i {
             margin-top: 2px;
+            z-index: 1;
+            font-size: var(--font-size-xl);
+        }
+
+        .alert div {
+            z-index: 1;
+            flex: 1;
+        }
+
+        .alert-info {
+            background: linear-gradient(135deg, var(--info-light) 0%, rgba(59, 130, 246, 0.1) 100%);
+            border-color: var(--info-color);
+            color: #1e40af;
+        }
+
+        .alert-info i {
+            color: var(--info-color);
+        }
+
+        .alert-success {
+            background: linear-gradient(135deg, var(--success-light) 0%, rgba(34, 197, 94, 0.1) 100%);
+            border-color: var(--success-color);
+            color: #166534;
+        }
+
+        .alert-success i {
+            color: var(--success-color);
+        }
+
+        .alert-warning {
+            background: linear-gradient(135deg, var(--warning-light) 0%, rgba(245, 158, 11, 0.1) 100%);
+            border-color: var(--warning-color);
+            color: #92400e;
+        }
+
+        .alert-warning i {
+            color: var(--warning-color);
+        }
+
+        /* Call to Action */
+        .cta-section {
+            background: linear-gradient(135deg, var(--info-light) 0%, var(--primary-color) 10%, var(--info-light) 100%);
+            border: 2px solid var(--info-color);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-12);
+            text-align: center;
+            margin: var(--spacing-8) 0;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(13, 35, 57, 0.2) 0%, transparent 50%);
+            animation: ctaFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes ctaFloat {
+            0%, 100% { 
+                transform: translate(0, 0) rotate(0deg); 
+                opacity: 0.7;
+            }
+            33% { 
+                transform: translate(20px, -15px) rotate(120deg); 
+                opacity: 1;
+            }
+            66% { 
+                transform: translate(-15px, 20px) rotate(240deg); 
+                opacity: 0.8;
+            }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section h4 {
+            color: var(--primary-dark);
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .cta-section p {
+            color: var(--text-primary);
+            font-size: var(--font-size-base);
+            margin-bottom: var(--spacing-6);
+            line-height: var(--line-height-relaxed);
+        }
+
+        /* Botones Modernos */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-2);
+            padding: var(--spacing-4) var(--spacing-8);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-family: var(--font-family-primary);
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-medium);
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+            min-height: 48px;
+            box-shadow: var(--shadow-md);
+            user-select: none;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn:focus {
+            outline: none;
+            box-shadow: var(--shadow-md), 0 0 0 3px rgba(13, 35, 57, 0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: var(--text-white);
+            border: 1px solid var(--primary-dark);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-darker) 100%);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-dark) 100%);
+            color: var(--text-white);
+            border: 1px solid var(--accent-dark);
+        }
+
+        .btn-accent:hover {
+            background: linear-gradient(135deg, var(--accent-dark) 0%, #a67832 100%);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Footer de Navegación del Curso */
+        .course-footer {
+            background: linear-gradient(135deg, var(--neutral-50) 0%, white 100%);
+            border: 2px solid var(--neutral-200);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-8);
+            margin-top: var(--spacing-12);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--info-color));
+        }
+
+        .course-footer-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .course-footer h3 {
+            color: var(--primary-color);
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--spacing-6);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-2);
+        }
+
+        .course-navigation {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: var(--spacing-6);
+            align-items: center;
+            margin-bottom: var(--spacing-6);
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-4);
+            text-decoration: none;
+            transition: var(--transition-normal);
+        }
+
+        .nav-item.prev {
+            justify-self: start;
+        }
+
+        .nav-item.home {
+            justify-self: center;
+        }
+
+        .nav-item.next {
+            justify-self: end;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            padding: var(--spacing-4) var(--spacing-6);
+            border: 2px solid var(--neutral-300);
+            border-radius: var(--radius-lg);
+            background: white;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            min-width: 150px;
+            justify-content: center;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(13, 35, 57, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-btn.prev:hover {
+            border-color: var(--warning-color);
+            background: var(--warning-color);
+            color: white;
+        }
+
+        .nav-btn.home:hover {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .nav-btn.next:hover {
+            border-color: var(--success-color);
+            background: var(--success-color);
+            color: white;
+        }
+
+        .nav-info {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+            padding-top: var(--spacing-6);
+            border-top: 1px solid var(--neutral-200);
+        }
+
+        /* Progress Indicator */
+        .progress-indicator {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-2);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--neutral-300);
+            transition: var(--transition-normal);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-dot::after {
+            content: attr(title);
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--neutral-800);
+            color: white;
+            padding: var(--spacing-1) var(--spacing-2);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-xs);
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-fast);
+            z-index: 1000;
+        }
+
+        .progress-dot:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .progress-dot.completed {
+            background: var(--success-color);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+        }
+
+        .progress-dot.current {
+            background: var(--primary-color);
+            transform: scale(1.3);
+            box-shadow: 0 0 0 4px rgba(13, 35, 57, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--spacing-3);
+            }
+            
+            .header {
+                padding: var(--spacing-8) var(--spacing-4);
+            }
+            
+            .header h1 {
+                font-size: var(--font-size-3xl);
+            }
+            
+            .header p {
+                font-size: var(--font-size-base);
+            }
+            
+            .header-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section {
+                padding: var(--spacing-6);
+            }
+            
+            .step-header {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--spacing-3);
+            }
+            
+            .course-navigation {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-4);
+                text-align: center;
+            }
+            
+            .nav-item {
+                justify-self: center !important;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                min-width: auto;
+            }
+            
+            .nav-breadcrumb {
+                font-size: var(--font-size-xs);
+                padding: var(--spacing-3);
+                top: var(--spacing-2);
+                margin-bottom: var(--spacing-6);
+            }
+            
+            .nav-breadcrumb a {
+                display: inline-flex;
+                align-items: center;
+                gap: var(--spacing-1);
+            }
+            
+            .separator {
+                display: none;
+            }
+            
+            .nav-breadcrumb::after {
+                content: '';
+                position: absolute;
+                bottom: -1px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 60%;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            
+            .nav-breadcrumb.scrolled::after {
+                opacity: 1;
+            }
+        }
+
+        /* Animaciones de entrada */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection color */
+        ::selection {
+            background: var(--primary-color);
+            color: var(--text-white);
+        }
+
+        ::-moz-selection {
+            background: var(--primary-color);
+            color: var(--text-white);
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--neutral-100);
+            border-radius: var(--radius-full);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: var(--radius-full);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
         }
     </style>
 </head>
 <body>
-    <div class="main-container animate-in">
-        <!-- Logo y navegación -->
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--spacing-lg); flex-wrap: wrap; gap: var(--spacing-md);">
-            <img src="../../assets/images/Logos/Logo Completo Negro.png" 
-                 alt="Logo Institucional" 
-                 style="height: 50px;"
-                 loading="lazy">
-        </div>
-
-        <!-- Navegación breadcrumb -->
-        <nav class="nav-breadcrumb">
-            <a href="../../index.html">Inicio</a>
-            <span class="separator">|</span>
-            <a href="introduccion-facturas.html">Introducción Facturas</a>
-            <span class="separator">|</span>
-            <span style="color: var(--accent-color); font-weight: bold;">Factura de Venta</span>
+    <div class="container">
+        <!-- Navegación Breadcrumb Sticky -->
+        <nav class="nav-breadcrumb" id="navBreadcrumb">
+            <a href="../../index.html">
+                <i class="fas fa-home"></i> Inicio
+            </a>
+            <span class="separator">›</span>
+            <a href="introduccion-facturas.html">Introduccion </a>
+            </a>
+            <span class="separator">›</span>
+            <span>Factura de Venta</span>
         </nav>
 
-        <!-- Contenido principal mejorado basado en estructura original -->
-        <div style="background-color: #ffffff; padding: 30px 20px; border-left: 5px solid #c59d5f; max-width: 900px; margin: auto; font-family: 'Segoe UI', sans-serif; color: #1a1a1a; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-medium);">
-            
-            <!-- Header del módulo -->
-            <div style="margin-bottom: 25px;">
-                <h2 style="color: #c59d5f; font-size: 1.6rem; margin-bottom: 15px;">🧾 Factura de venta en SINNUT</h2>
-                <p style="line-height: 1.6; font-size: 1rem; color: #333;">
-                    En esta sección aprenderás a registrar una venta directa de productos disponibles en inventario. El proceso es ágil y permite aplicar códigos de descuento, seleccionar el cliente y generar la factura de forma automática.
-                </p>
-            </div>
-
-            <!-- Sección de video -->
-            <div style="margin: 30px 0;">
-                <h3 style="color: #c59d5f; font-size: 1.3em; margin-bottom: 20px;">🎬 Video: Cómo facturar una venta</h3>
+        <!-- Header Moderno -->
+        <div class="header animate-in">
+            <div class="header-content">
+                <div class="header-icon">
+                    <i class="fas fa-receipt"></i>
+                </div>
+                <h1>Factura de Venta en Sinnut ERP</h1>
+                <p>Aprende a registrar ventas directas de productos disponibles en inventario de manera ágil y profesional, con aplicación de descuentos y generación automática de documentos</p>
                 
-                <!-- Información del tiempo -->
-                <div style="margin-top: 20px; background-color: #f4f8f9; border-left: 4px solid #50b67a; padding: 12px 15px; font-size: 0.95rem; border-radius: 6px;">
-                    ⏱ <strong>Tiempo estimado de operación:</strong> 2 minutos
-                </div>
-                
-                <!-- Contenedor del video -->
-                <div class="video-container">
-                    <video controls="controls" 
-                           preload="metadata"
-                           poster="../../assets/images/video-placeholder.jpg">
-                        <source src="../../assets/videos/Facturas/factura de ventas 1.mp4" type="video/mp4">
-                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #666;">
-                            <p>Tu navegador no soporta este formato de video.</p>
-                            <a href="../../assets/videos/Facturas/factura de ventas 1.mp4" 
-                               download 
-                               style="color: #c59d5f; text-decoration: none; font-weight: bold;">
-                                📥 Descargar video
-                            </a>
-                        </div>
-                    </video>
-                </div>
-            </div>
-
-            <!-- Pasos del proceso -->
-            <div style="margin: 30px 0;">
-                <h3 style="color: #444; font-size: 1.2rem; margin-bottom: 20px;">📋 Pasos para registrar una venta</h3>
-                
-                <div style="background-color: #f9f6f1; border-left: 4px solid #c59d5f; padding: 15px; margin-bottom: 15px; border-radius: 6px;">
-                    <div style="display: flex; align-items: flex-start; gap: 10px;">
-                        <div class="step-number">1</div>
-                        <div>
-                            <strong>Acceder al módulo:</strong> Accede al módulo <strong>Gestión de ventas</strong> y haz clic en <strong>Facturas propias</strong>.
-                        </div>
+                <div class="header-badges">
+                    <div class="badge">
+                        <i class="fas fa-clock"></i>
+                        2 minutos
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-play-circle"></i>
+                        Video Tutorial
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-list-ol"></i>
+                        5 Pasos
                     </div>
                 </div>
-
-                <div style="background-color: #f9f6f1; border-left: 4px solid #c59d5f; padding: 15px; margin-bottom: 15px; border-radius: 6px;">
-                    <div style="display: flex; align-items: flex-start; gap: 10px;">
-                        <div class="step-number">2</div>
-                        <div>
-                            <strong>Validar cliente:</strong> Haz clic en el botón <strong>+</strong> arriba a la derecha e ingresa el tipo y número de documento. Si no está registrado, te permitirá crear el cliente.
-                        </div>
-                    </div>
-                </div>
-
-                <div style="background-color: #f9f6f1; border-left: 4px solid #c59d5f; padding: 15px; margin-bottom: 15px; border-radius: 6px;">
-                    <div style="display: flex; align-items: flex-start; gap: 10px;">
-                        <div class="step-number">3</div>
-                        <div>
-                            <strong>Agregar productos:</strong> Ingresa el o los <strong>SKU's</strong> y oprime el botón <strong>Agregar</strong> para incorporar a la factura los productos. Filtra por tipo, estado o familia si es necesario.
-                        </div>
-                    </div>
-                </div>
-
-                <div style="background-color: #f9f6f1; border-left: 4px solid #c59d5f; padding: 15px; margin-bottom: 15px; border-radius: 6px;">
-                    <div style="display: flex; align-items: flex-start; gap: 10px;">
-                        <div class="step-number">4</div>
-                        <div>
-                            <strong>Revisar y aplicar descuentos:</strong> Revisa el total de la venta y aplica un <strong>código de descuento</strong> si aplica.
-                        </div>
-                    </div>
-                </div>
-
-                <div style="background-color: #f9f6f1; border-left: 4px solid #c59d5f; padding: 15px; margin-bottom: 15px; border-radius: 6px;">
-                    <div style="display: flex; align-items: flex-start; gap: 10px;">
-                        <div class="step-number">5</div>
-                        <div>
-                            <strong>Procesar pago:</strong> Selecciona el medio de pago y haz clic en <strong>Causar y pagar</strong>. El sistema generará la factura y enviará el PDF automáticamente.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tip importante -->
-            <div style="background-color: #f4f8f9; padding: 15px; border-left: 4px solid #50b67a; margin: 25px 0; font-size: 0.95rem; border-radius: 6px;">
-                <div style="display: flex; align-items: flex-start; gap: 10px;">
-                    <span style="font-size: 1.2rem;">💡</span>
-                    <div>
-                        <strong>Tip:</strong> Asegúrate que el SKU ingresado sea el correcto para el producto que se quiere vender y que se encuentre disponible en inventario para evitar errores al momento de facturar.
-                    </div>
-                </div>
-            </div>
-
-            <!-- Recordatorio de práctica -->
-            <div style="background: linear-gradient(135deg, #e8f4fd 0%, #f0f8ff 100%); border: 2px solid #3498db; padding: 20px; margin: 25px 0; text-align: center; border-radius: 8px;">
-                <h4 style="color: #0D2339; margin-bottom: 10px;">🎯 ¡Ahora es tu turno!</h4>
-                <p style="margin-bottom: 15px; color: #333;">
-                    Practica creando una factura de venta completa en el sistema.
-                </p>
-                <div style="font-size: 0.9rem; color: #666;">
-                    <strong>Ejercicio sugerido:</strong> Crea una factura desde la búsqueda del cliente hasta la generación del PDF.
-                </div>
-            </div>
-
-            <!-- Botón de navegación -->
-            <div style="margin-top: 40px; text-align: center;">
-                <a style="background-color: #c59d5f; color: white; padding: 12px 20px; font-weight: bold; text-decoration: none; border-radius: 6px; transition: all 0.3s ease;" 
-                   href="../../index.html"
-                   onmouseover="this.style.backgroundColor='#b8935a'; this.style.transform='translateY(-2px)'"
-                   onmouseout="this.style.backgroundColor='#c59d5f'; this.style.transform='translateY(0)'">
-                    ⬅️ Volver a la página de inicio
-                </a>
             </div>
         </div>
 
-        <!-- Navegación del curso -->
-        <section class="quick-nav" style="margin-top: 30px;">
-            <h3>🧭 Navegación del Curso</h3>
-            <div class="nav-links">
-                <a href="introduccion-facturas.html" class="nav-link muted">⬅️ Anterior: Introducción</a>
-                <a href="../../index.html" class="nav-link primary">🏠 Inicio del Curso</a>
-                <a href="crear-plan-separe.html" class="nav-link secondary">➡️ Siguiente: Crear Plan Separe</a>
-                <a href="../../faq.html" class="nav-link accent">❓ Preguntas Frecuentes</a>
+        <!-- Sección de Video Tutorial -->
+        <div class="section animate-in">
+            <h2>
+                <i class="fas fa-play-circle"></i>
+                Video Tutorial
+            </h2>
+            <p style="margin-bottom: var(--spacing-8); color: var(--text-secondary); font-size: var(--font-size-lg);">
+                Observa el proceso completo de facturación de venta en Sinnut ERP desde la validación del cliente hasta la generación del PDF final.</p>
+            
+            <div class="alert alert-info">
+                <i class="fas fa-stopwatch"></i>
+                <div>
+                    <strong>Tiempo estimado de operación:</strong>
+                    <p>Aproximadamente 2 minutos para completar una factura completa en el sistema.</p>
+                </div>
             </div>
-        </section>
+            
+            <div class="video-container">
+                <video controls="controls" 
+                       preload="metadata"
+                       poster="../../assets/images/video-placeholder.jpg">
+                    <source src="../../assets/videos/Facturas/factura de ventas 1.mp4" type="video/mp4">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #666;">
+                        <p>Tu navegador no soporta este formato de video.</p>
+                        <a href="../../assets/videos/Facturas/factura de ventas 1.mp4" 
+                           download 
+                           style="color: var(--accent-color); text-decoration: none; font-weight: bold;">
+                            📥 Descargar video
+                        </a>
+                    </div>
+                </video>
+            </div>
+        </div>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <div style="margin-bottom: var(--spacing-sm); font-weight: 500;">
-                Sinnut © 2025 | Módulo actualizado: Septiembre 2025 | Versión 2.0
+        <!-- Sección de Pasos del Proceso -->
+        <div class="section animate-in">
+            <h2>
+                <i class="fas fa-list-ol"></i>
+                Pasos del Proceso de Facturación
+            </h2>
+            <p style="margin-bottom: var(--spacing-8); color: var(--text-secondary); font-size: var(--font-size-lg);">
+                Sigue estos pasos secuenciales para registrar una venta exitosa en el sistema Sinnut ERP:</p>
+            
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Acceder al Módulo</div>
+                    </div>
+                    <div class="step-description">
+                        Accede al módulo <strong>Gestión de ventas</strong> y haz clic en <strong>Facturas propias</strong> para iniciar el proceso de facturación.
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Validar Cliente</div>
+                    </div>
+                    <div class="step-description">
+                        Haz clic en el botón <strong>+</strong> arriba a la derecha e ingresa el tipo y número de documento. Si el cliente no está registrado, el sistema te permitirá crear un nuevo registro.
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Agregar Productos</div>
+                    </div>
+                    <div class="step-description">
+                        Ingresa el o los <strong>SKU's</strong> de los productos y oprime el botón <strong>Agregar</strong> para incorporarlos a la factura. Puedes filtrar por tipo, estado o familia si es necesario.
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Revisar y Aplicar Descuentos</div>
+                    </div>
+                    <div class="step-description">
+                        Revisa el total de la venta y aplica un <strong>código de descuento</strong> si corresponde. Verifica que todos los datos sean correctos antes de proceder.
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Procesar Pago</div>
+                    </div>
+                    <div class="step-description">
+                        Selecciona el medio de pago apropiado y haz clic en <strong>Causar y pagar</strong>. El sistema generará la factura automáticamente y enviará el PDF correspondiente.
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <!-- Consejos Importantes -->
+        <div class="alert alert-warning">
+            <i class="fas fa-lightbulb"></i>
             <div>
-                Contacto: <a href="mailto:soporte.ti@oroexpress.com.co" style="color: var(--secondary-color);">soporte.ti@oroexpress.com.co</a> | 
-                <a href="../../index.html" style="color: var(--secondary-color);">Volver al curso</a>
+                <strong>Consejo Importante</strong>
+                <p>Asegúrate que el SKU ingresado sea el correcto para el producto que se quiere vender y que se encuentre disponible en inventario para evitar errores al momento de facturar.</p>
+            </div>
+        </div>
+
+        <!-- Ejercicio Sugerido -->
+        <div class="alert alert-success">
+            <i class="fas fa-tasks"></i>
+            <div>
+                <strong>Ejercicio Práctico Sugerido</strong>
+                <p>Realiza una factura completa siguiendo todos los pasos: valida un cliente existente, agrega al menos dos productos diferentes, aplica un descuento y procesa el pago completo.</p>
+            </div>
+        </div>
+
+        <!-- Footer de Navegación del Curso -->
+        <footer class="course-footer animate-in">
+            <div class="course-footer-content">
+                <h3>
+                    <i class="fas fa-route"></i>
+                    Navegación del Curso
+                </h3>
+                
+                <!-- Indicador de Progreso -->
+                <div class="progress-indicator">
+                    <div class="progress-dot completed" title="Introducción a facturas"></div>
+                    <div class="progress-dot current" title="Factura de venta - Módulo Actual"></div>
+                    <div class="progress-dot" title="Crear Plan Separe"></div>
+                    <div class="progress-dot" title="Consultar plan separe"></div>
+                    <div class="progress-dot" title="Abonar y facturar plan separe"></div>
+                </div>
+
+                <!-- Navegación Principal -->
+                <nav class="course-navigation">
+                    <a href="introduccion-facturas.html" class="nav-item prev">
+                        <div class="nav-btn prev">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Anterior</span>
+                        </div>
+                    </a>
+
+                    <a href="../../index.html" class="nav-item home">
+                        <div class="nav-btn home">
+                            <i class="fas fa-home"></i>
+                            <span>Inicio</span>
+                        </div>
+                    </a>
+
+                    <a href="crear-plan-separe.html" class="nav-item next">
+                        <div class="nav-btn next">
+                            <span>Siguiente</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </nav>
+
+                <!-- Información del Módulo -->
+                <div class="nav-info">
+                    <p>
+                        <strong>Módulo Facturas:</strong> Factura de Venta | 
+                        <strong>Anterior:</strong> Introducción a facturas | 
+                        <strong>Siguiente:</strong> Crear Plan Separe
+                    </p>
+                    <p style="margin-top: var(--spacing-2); font-size: 0.8rem;">
+                        <i class="fas fa-graduation-cap"></i>
+                        Curso Sinnut ERP - OroExpress s.a.s
+                    </p>
+                </div>
             </div>
         </footer>
     </div>
 
-    <!-- JavaScript principal -->
-    <script src="../../assets/js/main.js"></script>
     <script>
-        // Tracking de inicio del módulo
+        // Animaciones de entrada
         document.addEventListener('DOMContentLoaded', function() {
-            if (typeof SinnutTraining !== 'undefined') {
-                SinnutTraining.trackEvent('module_started', { 
-                    moduleId: 'factura-de-venta',
-                    moduleName: 'Factura de Venta'
-                });
+            // Aplicar animaciones progresivas
+            const elements = document.querySelectorAll('.animate-in');
+            elements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
+            });
 
-                // Tracking de video cuando se reproduce
-                const video = document.querySelector('video');
-                if (video) {
-                    video.addEventListener('play', function() {
-                        SinnutTraining.trackEvent('video_started', {
-                            moduleId: 'factura-de-venta',
-                            videoTitle: 'Cómo facturar una venta'
-                        });
-                    });
+            // Navegación sticky con efectos
+            const navBreadcrumb = document.getElementById('navBreadcrumb');
+            let scrolled = false;
 
-                    video.addEventListener('ended', function() {
-                        SinnutTraining.trackEvent('video_completed', {
-                            moduleId: 'factura-de-venta',
-                            videoTitle: 'Cómo facturar una venta'
-                        });
-                    });
+            function handleScroll() {
+                const isScrolled = window.scrollY > 50;
+                if (isScrolled !== scrolled) {
+                    scrolled = isScrolled;
+                    navBreadcrumb.classList.toggle('scrolled', scrolled);
                 }
             }
+
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Check initial state
+
+            // Tracking de progreso
+            let startTime = Date.now();
+            let hasScrolledToBottom = false;
+            let videoStarted = false;
+            let videoCompleted = false;
+
+            // Detectar scroll al final
+            function checkScrollProgress() {
+                const scrolled = window.scrollY;
+                const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercentage = (scrolled / maxScroll) * 100;
+
+                if (scrollPercentage > 80 && !hasScrolledToBottom) {
+                    hasScrolledToBottom = true;
+                    localStorage.setItem('factura_venta_viewed', 'true');
+                }
+            }
+
+            window.addEventListener('scroll', checkScrollProgress);
+
+            // Tracking de video
+            const video = document.querySelector('video');
+            if (video) {
+                video.addEventListener('play', function() {
+                    if (!videoStarted) {
+                        videoStarted = true;
+                        localStorage.setItem('factura_venta_video_started', 'true');
+                        console.log('📹 Video iniciado: Factura de Venta');
+                    }
+                });
+
+                video.addEventListener('ended', function() {
+                    if (!videoCompleted) {
+                        videoCompleted = true;
+                        localStorage.setItem('factura_venta_video_completed', 'true');
+                        console.log('✅ Video completado: Factura de Venta');
+                    }
+                });
+            }
+
+            // Guardar progreso al salir
+            window.addEventListener('beforeunload', function() {
+                const timeSpent = Date.now() - startTime;
+                localStorage.setItem('factura_venta_time', timeSpent);
+                
+                if (hasScrolledToBottom) {
+                    localStorage.setItem('factura_venta_completed', 'true');
+                }
+            });
+
+            // Smooth scroll para navegación interna
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Efectos hover para steps
+            document.querySelectorAll('.step').forEach(step => {
+                step.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-4px) scale(1.01)';
+                });
+                
+                step.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
         });
     </script>
 </body>

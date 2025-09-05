@@ -289,7 +289,7 @@
             color: var(--neutral-600);
         }
         
-        /* Módulos de capacitación */
+        /* Módulos de cursos */
         .modules-section {
             margin-bottom: var(--spacing-xl);
         }
@@ -849,7 +849,16 @@
         }
 
         .module-card-header:hover {
-            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+        }
+
+        .module-card-header:hover .toggle-icon {
+            color: white;
+        }
+
+        .module-card-header:hover .module-icon {
+            transform: scale(1.1);
         }
 
         .module-info {
@@ -891,12 +900,13 @@
         .instructivos-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease;
+            transition: max-height 0.5s ease-out;
             background: white;
         }
 
         .instructivos-content.active {
-            max-height: 400px;
+            max-height: 500px;
+            transition: max-height 0.5s ease-in;
         }
 
         .instructivo-item {
@@ -1192,7 +1202,7 @@
             </div>
         </section>
 
-        <!-- Módulos de capacitación -->
+        <!-- Módulos de curso -->
         <section class="modules-section">
             <h2 class="section-title">
                 <i class="fas fa-book-open"></i>
@@ -1203,7 +1213,7 @@
             <div class="module-card" style="animation-delay: 0.1s">
                 <div class="module-header" onclick="toggleModule('contabilidad')">
                     <div class="module-title-wrapper">
-                        <div class="module-icon" style="background: linear-gradient(135deg, #0D2339, #1a3b5c);">
+                        <div class="module-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
                             <i class="fas fa-calculator"></i>
                         </div>
                         <div class="module-title-text">
@@ -1350,7 +1360,7 @@
                                         <i class="fas fa-tools"></i> Práctico
                                     </span>
                                 </div>
-                                <a href="modulos/contratos/crear-contrato.html" class="btn btn-primary">
+                                <a href="modulos/contratos/crear-contrato.html" class="btn btn-success">
                                     <i class="fas fa-play"></i> Ver Lección
                                 </a>
                             </div>
@@ -1372,7 +1382,7 @@
                                         <i class="fas fa-chart-line"></i> Intermedio
                                     </span>
                                 </div>
-                                <a href="modulos/contratos/consultar-contrato.html" class="btn btn-primary">
+                                <a href="modulos/contratos/consultar-contrato.html" class="btn btn-success">
                                     <i class="fas fa-play"></i> Ver Lección
                                 </a>
                             </div>
@@ -1394,7 +1404,7 @@
                                         <i class="fas fa-dollar-sign"></i> Avanzado
                                     </span>
                                 </div>
-                                <a href="modulos/contratos/pagar-prorroga.html" class="btn btn-primary">
+                                <a href="modulos/contratos/pagar-prorroga.html" class="btn btn-success">
                                     <i class="fas fa-play"></i> Ver Lección
                                 </a>
                             </div>
@@ -1416,7 +1426,7 @@
                                         <i class="fas fa-coins"></i> Avanzado
                                     </span>
                                 </div>
-                                <a href="modulos/contratos/pagar-retroventa.html" class="btn btn-primary">
+                                <a href="modulos/contratos/pagar-retroventa.html" class="btn btn-success">
                                     <i class="fas fa-play"></i> Ver Lección
                                 </a>
                             </div>
@@ -1485,7 +1495,7 @@
                                         <i class="fas fa-tools"></i> Práctico
                                     </span>
                                 </div>
-                                <a href="modulos/facturas/factura-de-venta.html" class="btn btn-primary">
+                                <a href="modulos/facturas/factura-de-venta.html" class="btn btn-success">
                                     <i class="fas fa-play"></i> Ver Lección
                                 </a>
                             </div>
@@ -1507,7 +1517,7 @@
                                         <i class="fas fa-credit-card"></i> Intermedio
                                     </span>
                                 </div>
-                                <a href="modulos/facturas/crear-plan-separe.html" class="btn btn-primary">
+                                <a href="modulos/facturas/crear-plan-separe.html" class="btn btn-success">
                                     <i class="fas fa-play"></i> Ver Lección
                                 </a>
                             </div>
@@ -1529,7 +1539,7 @@
                                         <i class="fas fa-chart-bar"></i> Consultas
                                     </span>
                                 </div>
-                                <a href="modulos/facturas/consultar-plan-separe.html" class="btn btn-primary">
+                                <a href="modulos/facturas/consultar-plan-separe.html" class="btn btn-success">
                                     <i class="fas fa-play"></i> Ver Lección
                                 </a>
                             </div>
@@ -1551,7 +1561,7 @@
                                         <i class="fas fa-dollar-sign"></i> Avanzado
                                     </span>
                                 </div>
-                                <a href="modulos/facturas/abonar-facturar-plan-separe.html" class="btn btn-primary">
+                                <a href="modulos/facturas/abonar-facturar-plan-separe.html" class="btn btn-success">
                                     <i class="fas fa-play"></i> Ver Lección
                                 </a>
                             </div>
@@ -1567,16 +1577,6 @@
                 </div>
             </div>
 
-            <!-- Próximamente - Módulos adicionales -->
-            <div class="alert alert-info">
-                <div class="alert-icon">
-                    <i class="fas fa-info-circle"></i>
-                </div>
-                <div>
-                    <strong>Próximos Módulos:</strong> Inventarios, Reportes y módulos adicionales estarán disponibles próximamente. 
-                    Completa los módulos actuales para estar preparado para las nuevas funcionalidades.
-                </div>
-            </div>
         </section>
 
         <!-- Recursos adicionales -->
@@ -1622,9 +1622,9 @@
                                     <p>Proceso de arqueo, verificación y conciliación</p>
                                 </div>
                             </div>
-                            <a href="assets/documents/instructivos/Modulo-caja/Instructivo ARQUEO DE CAJA.pdf" class="btn btn-sm btn-primary" download>
+                            <button onclick="downloadPDF('assets/documents/instructivos/Modulo-caja/Instructivo ARQUEO DE CAJA.pdf', 'Instructivo_Arqueo_Caja.pdf')" class="btn btn-sm btn-primary">
                                 <i class="fas fa-download"></i> PDF
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1654,9 +1654,9 @@
                                     <p>Crear, gestionar y dar seguimiento a contratos</p>
                                 </div>
                             </div>
-                            <a href="assets/documents/instructivos/Contratos/Instructivo GESTION DE CONTRATOS.pdf" class="btn btn-sm btn-primary" download>
+                            <button onclick="downloadPDF('assets/documents/instructivos/Contratos/Instructivo GESTION DE CONTRATOS.pdf', 'Instructivo_Gestion_Contratos.pdf')" class="btn btn-sm btn-primary">
                                 <i class="fas fa-download"></i> PDF
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1686,9 +1686,9 @@
                                     <p>Proceso completo de facturación</p>
                                 </div>
                             </div>
-                            <a href="assets/documents/instructivos/Facturas/Instructivo GESTION DE FACTURAS.pdf" class="btn btn-sm btn-primary" download>
+                            <button onclick="downloadPDF('assets/documents/instructivos/Facturas/Instructivo GESTION DE FACTURAS.pdf', 'Instructivo_Gestion_Facturas.pdf')" class="btn btn-sm btn-primary">
                                 <i class="fas fa-download"></i> PDF
-                            </a>
+                            </button>
                         </div>
                         <div class="instructivo-item">
                             <div class="instructivo-info">
@@ -1698,9 +1698,9 @@
                                     <p>Actualizado Enero 2025</p>
                                 </div>
                             </div>
-                            <a href="assets/documents/instructivos/Facturas/Instructivo CARGA DE SERVICIOS Enero 2025.pdf" class="btn btn-sm btn-success" download>
+                            <button onclick="downloadPDF('assets/documents/instructivos/Facturas/Instructivo CARGA DE SERVICIOS Enero 2025.pdf', 'Instructivo_Carga_Servicios.pdf')" class="btn btn-sm btn-success">
                                 <i class="fas fa-download"></i> PDF
-                            </a>
+                            </button>
                         </div>
                         <div class="instructivo-item">
                             <div class="instructivo-info">
@@ -1710,9 +1710,9 @@
                                     <p>Configuración del sistema de plan separe</p>
                                 </div>
                             </div>
-                            <a href="assets/documents/instructivos/Facturas/Instructivo PLAN SEPARE.pdf" class="btn btn-sm btn-info" download>
+                            <button onclick="downloadPDF('assets/documents/instructivos/Facturas/Instructivo PLAN SEPARE.pdf', 'Instructivo_Plan_Separe.pdf')" class="btn btn-sm btn-info">
                                 <i class="fas fa-download"></i> PDF
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1795,9 +1795,9 @@
                 <div class="footer-section">
                     <h4>
                         <i class="fas fa-graduation-cap"></i>
-                        Capacitación Sinnut
+                        Curso Sinnut
                     </h4>
-                    <p>Plataforma oficial de capacitación para el ERP Sinnut. Desarrolla tus competencias 
+                    <p>Plataforma oficial del curso para el ERP Sinnut. Desarrolla tus competencias 
                     con contenido especializado y soporte técnico profesional.</p>
                 </div>
 
@@ -1823,8 +1823,8 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2025 Oro Express S.A. - Todos los derechos reservados</p>
-                <p>Plataforma educativa desarrollada para la capacitación interna del ERP Sinnut</p>
+                <p>&copy; 2025 OroExpress - Todos los derechos reservados</p>
+                <p>Plataforma educativa desarrollada para curso interno del ERP Sinnut</p>
             </div>
         </div>
     </footer>
@@ -1869,6 +1869,28 @@
             const content = document.getElementById(`content-${moduleId}`);
             const toggle = document.getElementById(`toggle-${moduleId}`);
             
+            if (!content || !toggle) {
+                console.error(`Elemento no encontrado para moduleId: ${moduleId}`);
+                return;
+            }
+            
+            // Cerrar otros instructivos abiertos
+            const allContents = document.querySelectorAll('.instructivos-content');
+            const allToggles = document.querySelectorAll('.toggle-icon');
+            
+            allContents.forEach(otherContent => {
+                if (otherContent !== content && otherContent.classList.contains('active')) {
+                    otherContent.classList.remove('active');
+                }
+            });
+            
+            allToggles.forEach(otherToggle => {
+                if (otherToggle !== toggle) {
+                    otherToggle.style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            // Toggle el actual
             if (content.classList.contains('active')) {
                 content.classList.remove('active');
                 toggle.style.transform = 'rotate(0deg)';
@@ -1876,6 +1898,37 @@
                 content.classList.add('active');
                 toggle.style.transform = 'rotate(180deg)';
             }
+        }
+
+        // Función para manejar descargas de PDFs
+        function downloadPDF(url, filename) {
+            console.log(`Intentando descargar: ${url}`);
+            
+            // Verificar si el archivo existe antes de intentar descargarlo
+            fetch(url, { method: 'HEAD' })
+                .then(response => {
+                    if (response.ok) {
+                        // El archivo existe, proceder con la descarga
+                        const link = document.createElement('a');
+                        link.href = url;
+                        link.download = filename || 'instructivo.pdf';
+                        link.target = '_blank';
+                        
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        
+                        console.log(`Descarga iniciada para: ${filename}`);
+                    } else {
+                        console.error(`Archivo no encontrado: ${url}`);
+                        alert('Lo sentimos, el archivo no está disponible en este momento.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error verificando archivo:', error);
+                    // Intentar descarga directa como fallback
+                    window.open(url, '_blank');
+                });
         }
 
         // Animaciones de entrada progresivas

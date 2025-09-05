@@ -4,234 +4,894 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evaluación Final - Capacitación Sinnut ERP</title>
-    <link rel="stylesheet" href="../../assets/css/main.css">
-    <!-- Estilos específicos para el módulo -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
     <style>
-        /* Estilos adicionales para iframe */
-        body { 
-            background: transparent;
+        :root {
+            /* Color Palette Institucional */
+            --primary-color: #0D2339;
+            --primary-light: #1a3b5c;
+            --primary-dark: #051119;
+            --primary-darker: #02080c;
+            
+            /* Colores secundarios */
+            --success-color: #22c55e;
+            --success-light: #dcfce7;
+            --success-dark: #16a34a;
+            --success-darker: #15803d;
+            --warning-color: #f59e0b;
+            --warning-light: #fef3c7;
+            --warning-dark: #d97706;
+            --error-color: #ef4444;
+            --error-light: #fecaca;
+            --error-dark: #dc2626;
+            --info-color: #3b82f6;
+            --info-light: #dbeafe;
+            --info-dark: #2563eb;
+            
+            /* Neutrales */
+            --neutral-25: #fefefe;
+            --neutral-50: #f8fafc;
+            --neutral-100: #f1f5f9;
+            --neutral-200: #e2e8f0;
+            --neutral-300: #cbd5e1;
+            --neutral-400: #94a3b8;
+            --neutral-500: #64748b;
+            --neutral-600: #475569;
+            --neutral-700: #334155;
+            --neutral-800: #1e293b;
+            --neutral-900: #0f172a;
+            
+            /* Texto */
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-white: #ffffff;
+            
+            /* Espaciado */
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 0.75rem;
+            --spacing-lg: 1rem;
+            --spacing-xl: 1.5rem;
+            --spacing-2xl: 2rem;
+            --spacing-3xl: 2.5rem;
+            --spacing-4xl: 3rem;
+            --spacing-5xl: 4rem;
+            --spacing-6xl: 5rem;
+            
+            /* Bordes */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            --radius-3xl: 2rem;
+            --radius-full: 9999px;
+            
+            /* Sombras */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            
+            /* Transiciones */
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--neutral-50);
+            font-size: 16px;
             overflow-x: hidden;
         }
-        .main-container {
-            box-shadow: none;
-            border: 1px solid var(--border-color);
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: var(--spacing-lg);
         }
-        .redirect-card {
-            background: linear-gradient(135deg, #fff9e6 0%, #f0f8ff 100%);
-            border: 2px solid var(--accent-color);
-            border-radius: var(--border-radius-lg);
-            padding: var(--spacing-xl);
+
+        /* Header Moderno */
+        .header {
+            background: linear-gradient(135deg, var(--success-color) 0%, var(--success-dark) 100%);
+            color: var(--text-white);
+            padding: var(--spacing-6xl) var(--spacing-2xl);
+            border-radius: var(--radius-3xl);
             text-align: center;
-            margin: var(--spacing-lg) 0;
+            margin-bottom: var(--spacing-5xl);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-2xl);
         }
-        .countdown {
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            animation: celebrationShimmer 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes celebrationShimmer {
+            0%, 100% { transform: translateX(-30px) translateY(-30px) rotate(0deg); }
+            50% { transform: translateX(30px) translateY(30px) rotate(180deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-icon {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-xl);
+            animation: celebrationBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes celebrationBounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: var(--spacing-lg);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            line-height: 1.2;
+        }
+
+        .header p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Secciones */
+        .section {
+            background: linear-gradient(135deg, white 0%, var(--neutral-50) 100%);
+            padding: var(--spacing-4xl);
+            border-radius: var(--radius-3xl);
+            margin-bottom: var(--spacing-4xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--neutral-200);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--success-color), var(--info-color));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .section:hover::before {
+            opacity: 1;
+        }
+
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
             font-size: 2rem;
-            font-weight: bold;
-            color: var(--accent-color);
-            margin: var(--spacing-lg) 0;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xl);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            line-height: 1.3;
+        }
+
+        .section h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        /* Grids modernos */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-xl);
+            margin: var(--spacing-xl) 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(34, 197, 94, 0.02) 100%);
+            border: 2px solid var(--success-color);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+            animation: statPulse 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes statPulse {
+            0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.5; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--success-dark);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--success-color);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Tarjeta de redirección */
+        .redirect-card {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 3px solid var(--info-color);
+            border-radius: var(--radius-3xl);
+            padding: var(--spacing-5xl);
+            text-align: center;
+            margin: var(--spacing-4xl) 0;
+            box-shadow: var(--shadow-2xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .redirect-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            animation: redirectPulse 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes redirectPulse {
+            0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.5; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+        }
+
+        .redirect-card h2 {
+            color: var(--info-color);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            z-index: 2;
+        }
+
+        .redirect-card p {
+            font-size: 1.125rem;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xl);
+            line-height: 1.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        .countdown {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--info-color);
+            margin: var(--spacing-xl) 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Botones modernos */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-lg) var(--spacing-2xl);
+            border: none;
+            border-radius: var(--radius-2xl);
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            color: var(--text-white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success-color) 0%, var(--success-dark) 100%);
+            color: var(--text-white);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .btn-info {
+            background: linear-gradient(135deg, var(--info-color) 0%, var(--info-dark) 100%);
+            color: var(--text-white);
+        }
+
+        .btn-info:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        /* Alertas modernas */
+        .alert {
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-2xl);
+            margin: var(--spacing-xl) 0;
+            border-left: 4px solid;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .alert::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: alertShine 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes alertShine {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        .alert h3 {
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .alert-info {
+            background: linear-gradient(135deg, var(--info-light) 0%, rgba(59, 130, 246, 0.1) 100%);
+            border-color: var(--info-color);
+            color: #1e40af;
+        }
+
+        .alert-warning {
+            background: linear-gradient(135deg, var(--warning-light) 0%, rgba(245, 158, 11, 0.1) 100%);
+            border-color: var(--warning-color);
+            color: #92400e;
+        }
+
+        /* Grid de consejos */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+            margin: var(--spacing-xl) 0;
+        }
+
+        .tip-card {
+            background: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .tip-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .tip-card h4 {
+            color: var(--primary-color);
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .tip-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tip-card li {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-sm);
+            padding-left: var(--spacing-lg);
+            position: relative;
+        }
+
+        .tip-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: 600;
+        }
+
+        /* Navegación */
+        .navigation {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin: var(--spacing-4xl) 0;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-lg) var(--spacing-xl);
+            background: white;
+            border: 2px solid var(--neutral-300);
+            border-radius: var(--radius-xl);
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-link:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-link.primary:hover {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: var(--text-white);
+        }
+
+        .nav-link.success:hover {
+            border-color: var(--success-color);
+            background: var(--success-color);
+            color: var(--text-white);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--neutral-100) 0%, white 100%);
+            border: 1px solid var(--neutral-200);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-4xl);
+            margin-top: var(--spacing-5xl);
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--success-color), var(--info-color));
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer h4 {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-2xl);
+            flex-wrap: wrap;
+            margin: var(--spacing-xl) 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--text-secondary);
+        }
+
+        .contact-item i {
+            color: var(--success-color);
+            font-size: 1.125rem;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--spacing-sm);
+            }
+            
+            .header {
+                padding: var(--spacing-4xl) var(--spacing-lg);
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: var(--spacing-2xl);
+            }
+            
+            .stats-grid,
+            .tips-grid,
+            .navigation {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                padding: var(--spacing-md) var(--spacing-lg);
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="main-container animate-in">
-        <!-- Logo y navegación -->
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--spacing-lg); flex-wrap: wrap; gap: var(--spacing-md);">
-            <img src="../../assets/images/Logos/Logo Completo Negro.png" 
-                 alt="Logo Institucional" 
-                 style="height: 50px;"
-                 loading="lazy">
+    <div class="container">
+        <!-- Header de Felicitaciones -->
+        <div class="header animate-in">
+            <div class="header-content">
+                <div class="header-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h1>¡Felicitaciones!</h1>
+                <p>Has completado con éxito el curso de Capacitación en Sinnut ERP. Ahora es momento de demostrar todo lo que has aprendido en la evaluación final.</p>
+            </div>
         </div>
 
-        <!-- Header del módulo -->
-        <header class="header" style="margin-bottom: var(--spacing-xl);">
-            <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">🎓</div>
-            <h1>¡Felicidades! Evaluación Final</h1>
-            <p>Has completado exitosamente todos los módulos de capacitación del ERP Sinnut. 
-               Ahora es momento de demostrar tus conocimientos en la evaluación final.</p>
-        </header>
-
-        <!-- Resumen del curso completado -->
-        <section class="section" style="background: linear-gradient(135deg, #e8f5e8 0%, #f0fff4 100%); border-left: 4px solid var(--secondary-color);">
-            <h2 style="color: var(--secondary-color); margin-bottom: var(--spacing-lg);">
-                🎯 Resumen de tu Capacitación
+        <!-- Resumen del Curso -->
+        <div class="section animate-in">
+            <h2>
+                <i class="fas fa-chart-line"></i>
+                Resumen del Curso
             </h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-lg);">
-                <div style="text-align: center; padding: var(--spacing-lg);">
-                    <div style="font-size: 2rem; color: var(--secondary-color); margin-bottom: var(--spacing-sm);">📚</div>
-                    <h4>Módulos Completados</h4>
-                    <span style="font-size: 1.5rem; font-weight: bold; color: var(--primary-color);">6</span>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-file-contract" style="color: var(--info-color);"></i>
+                    </div>
+                    <div class="stat-title">Módulo de Contratos</div>
+                    <div class="stat-value">✓</div>
                 </div>
-                <div style="text-align: center; padding: var(--spacing-lg);">
-                    <div style="font-size: 2rem; color: var(--secondary-color); margin-bottom: var(--spacing-sm);">⏱️</div>
-                    <h4>Tiempo Invertido</h4>
-                    <span style="font-size: 1.5rem; font-weight: bold; color: var(--primary-color);">~8 horas</span>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-file-invoice-dollar" style="color: var(--success-color);"></i>
+                    </div>
+                    <div class="stat-title">Módulo de Facturas</div>
+                    <div class="stat-value">✓</div>
                 </div>
-                <div style="text-align: center; padding: var(--spacing-lg);">
-                    <div style="font-size: 2rem; color: var(--secondary-color); margin-bottom: var(--spacing-sm);">🎬</div>
-                    <h4>Videos Vistos</h4>
-                    <span style="font-size: 1.5rem; font-weight: bold; color: var(--primary-color);">15+</span>
-                </div>
-                <div style="text-align: center; padding: var(--spacing-lg);">
-                    <div style="font-size: 2rem; color: var(--secondary-color); margin-bottom: var(--spacing-sm);">🛠️</div>
-                    <h4>Ejercicios Prácticos</h4>
-                    <span style="font-size: 1.5rem; font-weight: bold; color: var(--primary-color);">20+</span>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-cash-register" style="color: var(--warning-color);"></i>
+                    </div>
+                    <div class="stat-title">Módulo de Caja</div>
+                    <div class="stat-value">✓</div>
                 </div>
             </div>
-        </section>
+            
+            <p style="text-align: center; font-size: 1.125rem; color: var(--text-secondary); margin-top: var(--spacing-2xl);">
+                <i class="fas fa-check-circle" style="color: var(--success-color);"></i>
+                Todos los módulos completados exitosamente
+            </p>
+        </div>
 
-        <!-- Tarjeta de redirección -->
-        <div class="redirect-card">
-            <h2 style="color: var(--primary-color); margin-bottom: var(--spacing-lg);">
-                🎯 Evaluación Final - Demuestra tus Conocimientos
+        <!-- Tarjeta de Redirección -->
+        <div class="redirect-card animate-in">
+            <h2>
+                <i class="fas fa-external-link-alt"></i>
+                Evaluación Final
             </h2>
-            <p style="font-size: 1.1rem; margin-bottom: var(--spacing-lg);">
-                Estás a punto de realizar la evaluación final que certificará tus competencias en el ERP Sinnut. 
-                Serás redirigido automáticamente a Canvas LMS en unos segundos.
-            </p>
-            <div class="countdown" id="countdown">10</div>
-            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
-                Si no eres redirigido automáticamente, haz clic en el botón de abajo.
-            </p>
-            <div style="margin-top: var(--spacing-lg);">
-                <a href="https://aula.aynn.pro/courses/1/quizzes/4?module_item_id=20" 
-                   class="btn btn-accent" 
-                   style="font-size: 1.1rem; padding: var(--spacing-md) var(--spacing-xl);"
-                   target="_blank">
-                    � Comenzar Evaluación Final
+            <p>En unos momentos serás redirigido automáticamente a la plataforma Canvas para realizar tu evaluación final. Si no eres redirigido automáticamente, haz clic en el botón "Ir a Evaluación".</p>
+            
+            <div class="countdown" id="countdown">5</div>
+            
+            <div style="margin-top: var(--spacing-xl); display: flex; justify-content: center; gap: var(--spacing-lg); flex-wrap: wrap;">
+                <a href="https://aula.aynn.pro/courses/1/quizzes/4" target="_blank" class="btn btn-info">
+                    <i class="fas fa-play"></i>
+                    Ir a Evaluación
                 </a>
+                <button onclick="cancelRedirect()" class="btn btn-primary">
+                    <i class="fas fa-pause"></i>
+                    Cancelar Redirección
+                </button>
             </div>
         </div>
 
-        <!-- Información adicional -->
-        <section class="section">
-            <div class="alert info">
-                <h3>📋 Instrucciones para la Evaluación</h3>
-                <ul style="margin: var(--spacing-md) 0; padding-left: 20px; line-height: 1.6;">
-                    <li><strong>Duración máxima:</strong> 45 minutos (tiempo suficiente para responder con calma)</li>
-                    <li><strong>Puntuación mínima:</strong> 70% para obtener la certificación</li>
-                    <li><strong>Número de intentos:</strong> 2 intentos disponibles</li>
-                    <li><strong>Formato:</strong> Preguntas de selección múltiple y verdadero/falso</li>
-                    <li><strong>Temas evaluados:</strong> Todos los módulos del curso (Contabilidad, Caja, Facturas, etc.)</li>
-                    <li><strong>Certificado:</strong> Se genera automáticamente al aprobar</li>
+        <!-- Instrucciones de la Evaluación -->
+        <div class="section animate-in">
+            <h2>
+                <i class="fas fa-clipboard-list"></i>
+                Instrucciones de la Evaluación
+            </h2>
+            
+            <div class="alert alert-info">
+                <h3>
+                    <i class="fas fa-info-circle"></i>
+                    Información Importante
+                </h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: var(--spacing-md); padding-left: var(--spacing-lg); position: relative;">
+                        <i class="fas fa-clock" style="position: absolute; left: 0; color: var(--info-color);"></i>
+                        <strong>Tiempo disponible:</strong> 60 minutos para completar la evaluación
+                    </li>
+                    <li style="margin-bottom: var(--spacing-md); padding-left: var(--spacing-lg); position: relative;">
+                        <i class="fas fa-question-circle" style="position: absolute; left: 0; color: var(--info-color);"></i>
+                        <strong>Preguntas:</strong> 20 preguntas sobre todos los módulos del curso
+                    </li>
+                    <li style="margin-bottom: var(--spacing-md); padding-left: var(--spacing-lg); position: relative;">
+                        <i class="fas fa-percentage" style="position: absolute; left: 0; color: var(--info-color);"></i>
+                        <strong>Calificación mínima:</strong> 70% para aprobar el curso
+                    </li>
+                    <li style="padding-left: var(--spacing-lg); position: relative;">
+                        <i class="fas fa-redo" style="position: absolute; left: 0; color: var(--info-color);"></i>
+                        <strong>Intentos:</strong> Tienes 3 intentos disponibles
+                    </li>
                 </ul>
             </div>
-        </section>
 
-        <!-- Consejos para el éxito -->
-        <section class="section" style="background: linear-gradient(135deg, #fff3cd 0%, #fef9e7 100%); border-left: 4px solid var(--accent-color);">
-            <h3 style="color: var(--accent-color); margin-bottom: var(--spacing-lg);">
-                💡 Consejos para el Éxito
-            </h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg);">
-                <div>
-                    <h4 style="color: var(--primary-color);">🧠 Preparación Mental</h4>
-                    <ul style="color: var(--text-secondary); line-height: 1.6;">
-                        <li>Tómate unos minutos para relajarte</li>
-                        <li>Repasa mentalmente los conceptos clave</li>
-                        <li>Confía en tu preparación</li>
+            <div class="alert alert-warning">
+                <h3>
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Recomendaciones
+                </h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: var(--spacing-md); padding-left: var(--spacing-lg); position: relative;">
+                        <i class="fas fa-wifi" style="position: absolute; left: 0; color: var(--warning-color);"></i>
+                        Asegúrate de tener una conexión estable a internet
+                    </li>
+                    <li style="margin-bottom: var(--spacing-md); padding-left: var(--spacing-lg); position: relative;">
+                        <i class="fas fa-battery-full" style="position: absolute; left: 0; color: var(--warning-color);"></i>
+                        Verifica que tu dispositivo tenga suficiente batería
+                    </li>
+                    <li style="padding-left: var(--spacing-lg); position: relative;">
+                        <i class="fas fa-clock" style="position: absolute; left: 0; color: var(--warning-color);"></i>
+                        Reserva un tiempo sin interrupciones para realizar la evaluación
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Consejos para la Evaluación -->
+        <div class="section animate-in">
+            <h2>
+                <i class="fas fa-lightbulb"></i>
+                Consejos para la Evaluación
+            </h2>
+            
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h4>
+                        <i class="fas fa-book-open"></i>
+                        Repaso de Contenidos
+                    </h4>
+                    <ul>
+                        <li>Revisa los puntos clave de cada módulo</li>
+                        <li>Consulta los ejemplos prácticos</li>
+                        <li>Repasa los pasos de cada proceso</li>
                     </ul>
                 </div>
-                <div>
-                    <h4 style="color: var(--primary-color);">⚙️ Aspectos Técnicos</h4>
-                    <ul style="color: var(--text-secondary); line-height: 1.6;">
-                        <li>Verifica tu conexión a internet</li>
-                        <li>Usa un navegador actualizado</li>
-                        <li>Evita distracciones</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 style="color: var(--primary-color);">📝 Durante la Evaluación</h4>
-                    <ul style="color: var(--text-secondary); line-height: 1.6;">
-                        <li>Lee cada pregunta cuidadosamente</li>
-                        <li>Gestiona bien tu tiempo</li>
+                
+                <div class="tip-card">
+                    <h4>
+                        <i class="fas fa-clock"></i>
+                        Gestión del Tiempo
+                    </h4>
+                    <ul>
+                        <li>Lee cuidadosamente cada pregunta</li>
+                        <li>No te detengas demasiado en una pregunta</li>
                         <li>Revisa tus respuestas antes de enviar</li>
                     </ul>
                 </div>
+                
+                <div class="tip-card">
+                    <h4>
+                        <i class="fas fa-cog"></i>
+                        Aspectos Técnicos
+                    </h4>
+                    <ul>
+                        <li>Asegúrate de guardar tu progreso</li>
+                        <li>Utiliza navegadores actualizados</li>
+                        <li>Ten a mano el material de consulta</li>
+                    </ul>
+                </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Navegación del curso -->
-        <section class="quick-nav">
-            <h3>🧭 Navegación</h3>
-            <div class="nav-links">
-                <a href="../contabilidad/fin-modulo-contabilidad.html" class="nav-link muted">⬅️ Volver al Último Módulo</a>
-                <a href="../../index.html" class="nav-link primary">🏠 Inicio del Curso</a>
-                <a href="https://aula.aynn.pro/courses/1/quizzes/4?module_item_id=20" class="nav-link accent" target="_blank">📝 Evaluación Final</a>
-            </div>
-        </section>
+        <!-- Navegación -->
+        <div class="navigation animate-in">
+            <a href="../" class="nav-link primary">
+                <i class="fas fa-home"></i>
+                Inicio del Curso
+            </a>
+            <a href="../caja/" class="nav-link success">
+                <i class="fas fa-arrow-left"></i>
+                Módulo de Caja
+            </a>
+        </div>
 
         <!-- Footer -->
-        <footer class="footer">
-            <div style="margin-bottom: var(--spacing-sm); font-weight: 500;">
-                Sinnut © 2025 | Evaluación Final | Versión 2.0
+        <div class="footer animate-in">
+            <div class="footer-content">
+                <h4>¿Necesitas ayuda?</h4>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+57 318 123 4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>soporte.ti@oroexpress.com.co</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Lun - Vie: 8:00 AM - 6:00 PM</span>
+                    </div>
+                </div>
+                <p style="margin-top: var(--spacing-lg); color: var(--text-secondary); font-size: 0.875rem;">
+                    <i class="fas fa-graduation-cap" style="color: var(--success-color);"></i>
+                    ¡Mucho éxito en tu evaluación final!
+                </p>
             </div>
-            <div>
-                Contacto: <a href="mailto:soporte.ti@oroexpress.com.co" style="color: var(--secondary-color);">soporte.ti@oroexpress.com.co</a> | 
-                <a href="../../index.html" style="color: var(--secondary-color);">Volver al curso</a>
-            </div>
-        </footer>
+        </div>
     </div>
 
-    <!-- JavaScript principal -->
-    <script src="../../../../../assets/js/main.js"></script>
     <script>
-        // Countdown y redirección automática
         let countdown = 5;
-        const countdownElement = document.getElementById('countdown');
+        let redirectActive = true;
         
-        const timer = setInterval(function() {
-            countdown--;
-            countdownElement.textContent = countdown;
+        function updateCountdown() {
+            if (!redirectActive) return;
             
-            if (countdown <= 0) {
-                clearInterval(timer);
-                // Redirigir a la evaluación
-                window.open('https://aula.aynn.pro/courses/1/quizzes/4?module_item_id=20', '_blank');
-                countdownElement.textContent = '¡Redirigido!';
-                countdownElement.style.color = 'var(--secondary-color)';
+            document.getElementById('countdown').textContent = countdown;
+            
+            if (countdown === 0) {
+                window.open('https://aula.aynn.pro/courses/1/quizzes/4', '_blank');
+                document.getElementById('countdown').textContent = '¡Redirigiendo...';
+            } else {
+                countdown--;
+                setTimeout(updateCountdown, 1000);
             }
-        }, 1000);
+        }
         
-        // Tracking de acceso a evaluación
+        function cancelRedirect() {
+            redirectActive = false;
+            document.getElementById('countdown').textContent = 'Cancelado';
+        }
+        
+        // Iniciar el contador cuando se carga la página
         document.addEventListener('DOMContentLoaded', function() {
-            SinnutTraining.trackEvent('evaluation_accessed', { 
-                redirectUrl: 'https://aula.aynn.pro/courses/1/quizzes/4?module_item_id=20',
-                accessTime: new Date().toISOString()
+            // Agregar clases de animación con delay
+            const elements = document.querySelectorAll('.animate-in');
+            elements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
             });
+            
+            // Iniciar contador
+            setTimeout(updateCountdown, 1000);
         });
     </script>
-
-    <!-- Footer con información de contacto -->
-    <footer style="margin-top: var(--spacing-xl); padding: var(--spacing-xl) 0; border-top: 1px solid var(--border-color); text-align: center;">
-        <div style="margin-bottom: var(--spacing-lg);">
-            <h4 style="color: var(--primary-color); margin-bottom: var(--spacing-md);">¿Necesitas Ayuda?</h4>
-            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">
-                Si tienes problemas técnicos o dudas sobre la evaluación, contacta con soporte:
-            </p>
-            <div style="display: flex; justify-content: center; gap: var(--spacing-lg); flex-wrap: wrap;">
-                <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
-                    <i class="fas fa-envelope" style="color: var(--accent-color);"></i>
-                    <span style="color: var(--text-primary);">soporte@sinnut.com</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
-                    <i class="fas fa-phone" style="color: var(--accent-color);"></i>
-                    <span style="color: var(--text-primary);">+1 (555) 123-4567</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
-                    <i class="fas fa-clock" style="color: var(--accent-color);"></i>
-                    <span style="color: var(--text-primary);">Lun-Vie 8:00-18:00</span>
-                </div>
-            </div>
-        </div>
-        
-        <div style="padding-top: var(--spacing-lg); border-top: 1px solid var(--border-color); color: var(--text-secondary); font-size: 14px;">
-            <p>© 2024 SINNUT - Sistema Integral de Nutrición. Todos los derechos reservados.</p>
-            <p style="margin-top: var(--spacing-sm);">Plataforma de Capacitación v2.0 - Optimizada para Canvas LMS</p>
-        </div>
-    </footer>
 </body>
 </html>
-
-
-
-
