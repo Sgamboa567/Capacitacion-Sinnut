@@ -134,8 +134,101 @@
             display: flex;
             justify-content: center;
             gap: var(--spacing-xl);
-            margin-top: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
             flex-wrap: wrap;
+        }
+        
+        /* Navegación del header */
+        .header-navigation {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            margin: var(--spacing-xl) 0;
+            flex-wrap: wrap;
+        }
+        
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            min-width: 160px;
+            justify-content: center;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+        
+        .nav-btn-primary {
+            background: linear-gradient(135deg, var(--success-color) 0%, var(--success-dark) 100%);
+            color: white;
+            border: 2px solid var(--success-color);
+            transform: scale(1.05);
+            animation: pulse-green 2s infinite;
+        }
+        
+        .nav-btn-primary:hover {
+            transform: translateY(-3px) scale(1.08);
+            box-shadow: 0 8px 25px rgba(34, 197, 94, 0.4);
+            background: linear-gradient(135deg, var(--success-dark) 0%, #15803d 100%);
+        }
+        
+        .nav-btn-secondary {
+            background: linear-gradient(135deg, var(--info-color) 0%, var(--info-dark) 100%);
+            color: white;
+            border: 2px solid var(--info-color);
+        }
+        
+        .nav-btn-secondary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, var(--info-dark) 0%, #1d4ed8 100%);
+        }
+        
+        .nav-btn-outline {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-btn-outline:hover {
+            transform: translateY(-3px) scale(1.02);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+        }
+        
+        @keyframes pulse-green {
+            0%, 100% { 
+                box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+            }
+            50% { 
+                box-shadow: 0 4px 20px rgba(34, 197, 94, 0.5);
+            }
         }
         
         .stat-item {
@@ -291,6 +384,121 @@
         .feature-content p {
             font-size: 0.875rem;
             color: var(--neutral-600);
+        }
+        
+        /* CTA mejorada en introducción */
+        .cta-intro {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+            margin-top: var(--spacing-2xl);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-intro::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: ctaShimmer 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes ctaShimmer {
+            0%, 100% { transform: translateX(-30px) translateY(-30px) rotate(0deg); }
+            50% { transform: translateX(30px) translateY(30px) rotate(180deg); }
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-content h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .cta-content p {
+            font-size: 1.125rem;
+            margin-bottom: var(--spacing-xl);
+            opacity: 0.95;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+        
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-lg) var(--spacing-2xl);
+            border-radius: var(--radius-lg);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            min-width: 180px;
+            justify-content: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .btn-cta:hover::before {
+            left: 100%;
+        }
+        
+        .btn-cta-primary {
+            background: linear-gradient(135deg, var(--success-color) 0%, var(--success-dark) 100%);
+            color: white;
+            border: 2px solid var(--success-color);
+            transform: scale(1.05);
+        }
+        
+        .btn-cta-primary:hover {
+            transform: translateY(-4px) scale(1.08);
+            box-shadow: 0 12px 30px rgba(34, 197, 94, 0.4);
+            background: linear-gradient(135deg, var(--success-dark) 0%, #15803d 100%);
+        }
+        
+        .btn-cta-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-cta-secondary:hover {
+            transform: translateY(-4px) scale(1.02);
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 12px 30px rgba(255, 255, 255, 0.2);
         }
         
         /* Módulos de cursos */
@@ -739,12 +947,55 @@
                 font-size: 1.125rem;
             }
             
+            .header-navigation {
+                gap: var(--spacing-md);
+                margin: var(--spacing-lg) 0;
+            }
+            
+            .nav-btn {
+                min-width: 140px;
+                padding: var(--spacing-sm) var(--spacing-md);
+                font-size: 0.85rem;
+            }
+            
+            .nav-btn-primary {
+                order: -1;
+                width: 100%;
+                margin-bottom: var(--spacing-sm);
+            }
+            
             .header-stats {
                 gap: var(--spacing-md);
             }
             
             .intro-section {
                 padding: var(--spacing-xl);
+            }
+            
+            .cta-intro {
+                padding: var(--spacing-xl);
+                margin-top: var(--spacing-xl);
+            }
+            
+            .cta-content h3 {
+                font-size: 1.5rem;
+            }
+            
+            .cta-content p {
+                font-size: 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: var(--spacing-md);
+            }
+            
+            .btn-cta {
+                width: 100%;
+                max-width: 300px;
+                padding: var(--spacing-md) var(--spacing-lg);
+                font-size: 1rem;
             }
             
             .module-header {
@@ -1090,7 +1341,19 @@
     </style>
 </head>
 <body>
-    <!-- Header institucional -->
+    <!-- Navegación breadcrumb simplificada -->
+    <div class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-list" aria-label="Navegación">
+                <div class="breadcrumb-item">
+                    <i class="fas fa-home"></i>
+                    <span class="breadcrumb-link">Inicio</span>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Header institucional con navegación -->
     <header class="header">
         <div class="container">
             <div class="header-content">
@@ -1099,6 +1362,26 @@
                     Curso Sinnut ERP
                 </h1>
                 <p class="header-subtitle">Plataforma de Aprendizaje Institucional</p>
+                
+                <!-- Navegación principal del header -->
+                <div class="header-navigation">
+                    <a href="#modules" class="nav-btn nav-btn-primary">
+                        <i class="fas fa-play-circle"></i>
+                        Comenzar Curso Ahora
+                    </a>
+                    <a href="#modules" class="nav-btn nav-btn-secondary">
+                        <i class="fas fa-layer-group"></i>
+                        Ver Módulos
+                    </a>
+                    <a href="#recursos" class="nav-btn nav-btn-outline">
+                        <i class="fas fa-book-open"></i>
+                        Instructivos
+                    </a>
+                    <a href="modulos/cierre-evaluacion/evaluacion-final.html" class="nav-btn nav-btn-outline">
+                        <i class="fas fa-clipboard-check"></i>
+                        Evaluación
+                    </a>
+                </div>
                 
                 <div class="header-stats">
                     <div class="stat-item">
@@ -1118,86 +1401,98 @@
         </div>
     </header>
 
-    <!-- Navegación breadcrumb -->
-    <div class="breadcrumb">
-        <div class="container">
-            <nav class="breadcrumb-list" aria-label="Navegación">
-                <div class="breadcrumb-item">
-                    <i class="fas fa-home"></i>
-                    <span class="breadcrumb-link">Inicio</span>
-                </div>
-                <div class="breadcrumb-item">
-                    <i class="fas fa-chevron-right"></i>
-                    <span>Curso ERP</span>
-                </div>
-            </nav>
-        </div>
-    </div>
-
     <div class="container">
-        <!-- Introducción pedagógica -->
-        <section class="intro-section">
+        <!-- Introducción pedagógica mejorada -->
+        <section class="intro-section" id="introduction">
             <div class="intro-title">
                 <div class="intro-icon">
                     <i class="fas fa-rocket"></i>
                 </div>
                 <div>
-                    <h2>Bienvenido a tu Curso</h2>
-                    <p class="module-description">Domina el ERP Sinnut paso a paso</p>
+                    <h2>Transforma tu Carrera Profesional</h2>
+                    <p class="module-description">Domina el ERP Sinnut con nuestra metodología probada</p>
                 </div>
             </div>
             
             <div class="intro-text">
-                <p>Embárcate en un viaje de aprendizaje estructurado donde dominarás cada funcionalidad del ERP Sinnut. 
-                Nuestro programa está diseñado con una metodología pedagógica progresiva que te permitirá adquirir 
-                competencias sólidas y aplicables en tu entorno laboral.</p>
+                <p>🚀 <strong>Embárcate en una experiencia de aprendizaje revolucionaria</strong> donde cada lección te acerca más al dominio completo del ERP Sinnut. 
+                Nuestro programa está meticulosamente diseñado con una metodología pedagógica progresiva que garantiza la adquisición de 
+                competencias sólidas, prácticas y directamente aplicables en tu entorno laboral actual.</p>
+                
+                <p>💡 <strong>Aprende haciendo:</strong> No solo teoria, sino experiencia práctica real que puedes implementar inmediatamente.</p>
             </div>
 
-            <div class="alert alert-info">
+            <div class="alert alert-success">
                 <div class="alert-icon">
-                    <i class="fas fa-lightbulb"></i>
+                    <i class="fas fa-graduation-cap"></i>
                 </div>
                 <div>
-                    <strong>Metodología de Aprendizaje:</strong> Cada módulo incluye contenido teórico, videos explicativos, 
-                    ejercicios prácticos y evaluaciones para garantizar tu progreso efectivo.
+                    <strong>🎯 Metodología Comprobada:</strong> Cada módulo combina teoría sólida, demostraciones en video, 
+                    ejercicios prácticos interactivos y evaluaciones progresivas. Con una tasa de éxito del 95%, 
+                    nuestros estudiantes dominan Sinnut ERP en tiempo récord.
                 </div>
             </div>
 
             <div class="intro-features">
                 <div class="feature-item">
                     <div class="feature-icon">
-                        <i class="fas fa-video"></i>
+                        <i class="fas fa-play-circle"></i>
                     </div>
                     <div class="feature-content">
-                        <h4>Videos Explicativos</h4>
-                        <p>Tutoriales paso a paso con demostraciones reales del sistema</p>
+                        <h4>🎬 Videos HD Interactivos</h4>
+                        <p>Tutoriales profesionales con demostraciones paso a paso del sistema real</p>
                     </div>
                 </div>
 
                 <div class="feature-item">
                     <div class="feature-icon">
-                        <i class="fas fa-hands-helping"></i>
+                        <i class="fas fa-laptop-code"></i>
                     </div>
                     <div class="feature-content">
-                        <h4>Práctica Guiada</h4>
-                        <p>Ejercicios interactivos para aplicar lo aprendido</p>
+                        <h4>⚡ Práctica en Tiempo Real</h4>
+                        <p>Ejercicios interactivos en entorno simulado para aplicar conocimientos inmediatamente</p>
                     </div>
                 </div>
 
                 <div class="feature-item">
                     <div class="feature-icon">
-                        <i class="fas fa-medal"></i>
+                        <i class="fas fa-trophy"></i>
                     </div>
                     <div class="feature-content">
-                        <h4>Evaluación Continua</h4>
-                        <p>Seguimiento de tu progreso</p>
+                        <h4>🏆 Certificación Oficial</h4>
+                        <p>Evaluación continua y certificado de competencias reconocido</p>
                     </div>
                 </div>
 
                 <div class="feature-item">
                     <div class="feature-icon">
-                        <i class="fas fa-headset"></i>
+                        <i class="fas fa-user-tie"></i>
                     </div>
+                    <div class="feature-content">
+                        <h4>👨‍💼 Soporte Experto</h4>
+                        <p>Acceso directo a instructores certificados para resolver cualquier duda</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Llamada a la acción mejorada -->
+            <div class="cta-intro">
+                <div class="cta-content">
+                    <h3>🚀 ¿Listo para convertirte en un experto?</h3>
+                    <p>Únete a los más de <strong>500+ profesionales</strong> que ya dominan Sinnut ERP</p>
+                    <div class="cta-buttons">
+                        <a href="#modules" class="btn-cta btn-cta-primary">
+                            <i class="fas fa-rocket"></i>
+                            Comenzar Ahora
+                        </a>
+                        <a href="#recursos" class="btn-cta btn-cta-secondary">
+                            <i class="fas fa-download"></i>
+                            Descargar Guía
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
                     <div class="feature-content">
                         <h4>Soporte Técnico</h4>
                         <p>Asistencia especializada durante todo el proceso</p>
