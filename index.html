@@ -71,6 +71,10 @@
             box-sizing: border-box;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, var(--neutral-50) 0%, #ffffff 100%);
@@ -1365,7 +1369,7 @@
                 
                 <!-- Navegación principal del header -->
                 <div class="header-navigation">
-                    <a href="#modules" class="nav-btn nav-btn-primary">
+                    <a href="modulos/contabilidad/introduccion-contabilidad.html" class="nav-btn nav-btn-primary">
                         <i class="fas fa-play-circle"></i>
                         Comenzar Curso Ahora
                     </a>
@@ -1477,7 +1481,7 @@
         </section>
 
         <!-- Módulos de curso -->
-        <section class="modules-section">
+        <section id="modules" class="modules-section">
             <h2 class="section-title">
                 <i class="fas fa-book-open"></i>
                 Módulos del curso
