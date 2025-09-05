@@ -58,12 +58,12 @@
             
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-circle primary" id="moduloCounter">4+</div>
+                    <div class="stat-circle primary" id="moduloCounter">12+</div>
                     <strong>Módulos</strong><br>
                     <span style="color: var(--text-secondary);">En crecimiento</span>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-circle secondary">2.5hrs</div>
+                    <div class="stat-circle secondary">4hrs</div>
                     <strong>Duración</strong><br>
                     <span style="color: var(--text-secondary);">Aproximada</span>
                 </div>
@@ -89,64 +89,236 @@
             <h3 style="text-align: center; letter-spacing: 1px;">📖 Módulos del Curso</h3>
             
             <div class="modules-grid">
-                <!-- Módulo Introducción: Gestión de Contabilidad -->
-                <div class="module-card available">
-                    <div class="module-icon" style="background: var(--gradient-accent);">📚</div>
-                    <h4>Introducción: Gestión de Contabilidad</h4>
-                    <p>Conoce los fundamentos de la gestión contable en Sinnut ERP. Conceptos esenciales del arqueo y apertura de caja.</p>
-                    <div class="module-tags">
-                        <span class="tag time">⏱ 15 min</span>
-                        <span class="tag type">📖 Teórico</span>
+                <!-- SECCIÓN 1: GESTIÓN DE CONTABILIDAD -->
+                <div style="grid-column: 1 / -1; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: var(--spacing-lg); border-radius: var(--border-radius-lg); margin-bottom: var(--spacing-lg); border: 2px solid var(--secondary-color);">
+                    <h3 style="color: var(--secondary-color); margin-bottom: var(--spacing-md); text-align: center; font-size: 1.5rem;">🧾 GESTIÓN DE CONTABILIDAD</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg);">
+                        
+                        <!-- Introducción a Caja -->
+                        <div class="module-card available">
+                            <div class="module-icon" style="background: var(--gradient-accent);">📚</div>
+                            <h4>Introducción caja</h4>
+                            <p>Conceptos fundamentales de gestión contable y procesos de caja en Sinnut ERP.</p>
+                            <div class="module-tags">
+                                <span class="tag time">⏱ 15 min</span>
+                                <span class="tag type">📖 Teórico</span>
+                            </div>
+                            <a href="modulos/introduccion-contabilidad.html" class="btn btn-accent">✅ Disponible</a>
+                        </div>
+
+                        <!-- Apertura de Caja -->
+                        <div class="module-card available">
+                            <div class="module-icon" style="background: var(--gradient-secondary);">🌅</div>
+                            <h4>Apertura de caja</h4>
+                            <p>Proceso paso a paso para realizar correctamente la apertura de caja diaria.</p>
+                            <div class="module-tags">
+                                <span class="tag time">⏱ 30 min</span>
+                                <span class="tag type">📹 2 Videos + Práctica</span>
+                            </div>
+                            <a href="modulos/apertura-caja.html" class="btn btn-secondary">✅ Disponible</a>
+                        </div>
+
+                        <!-- Arqueo de Caja -->
+                        <div class="module-card available">
+                            <div class="module-icon" style="background: var(--gradient-secondary);">🧾</div>
+                            <h4>Arqueo de caja</h4>
+                            <p>Proceso completo de arqueo y conciliación de saldos al final del día.</p>
+                            <div class="module-tags">
+                                <span class="tag time">⏱ 35 min</span>
+                                <span class="tag type">📹 Video + Práctica</span>
+                            </div>
+                            <a href="modulos/arqueo-caja.html" class="btn btn-secondary">✅ Disponible</a>
+                        </div>
                     </div>
-                    <a href="modulos/introduccion-contabilidad.html" class="btn btn-accent">✅ Disponible - Acceder</a>
                 </div>
 
-                <!-- Módulo 1: Apertura de Caja -->
-                <div class="module-card available">
-                    <div class="module-icon" style="background: var(--gradient-secondary);">🌅</div>
-                    <h4>Módulo 1: Apertura de Caja</h4>
-                    <p>Aprende paso a paso cómo realizar correctamente la apertura de caja en Sinnut ERP. Proceso fundamental para iniciar las operaciones diarias.</p>
-                    <div class="module-tags">
-                        <span class="tag time">⏱ 30 min</span>
-                        <span class="tag type">📹 2 Videos + Práctica</span>
+                <!-- SECCIÓN 2: CONTRATOS -->
+                <div style="grid-column: 1 / -1; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: var(--spacing-lg); border-radius: var(--border-radius-lg); margin-bottom: var(--spacing-lg); border: 2px solid var(--primary-color);">
+                    <h3 style="color: var(--primary-color); margin-bottom: var(--spacing-md); text-align: center; font-size: 1.5rem;">📋 CONTRATOS</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg);">
+                        
+                        <!-- Introducción contratos -->
+                        <div class="module-card coming-soon">
+                            <div class="module-icon" style="background: var(--gradient-primary);">📚</div>
+                            <h4>Introducción contratos</h4>
+                            <p>Fundamentos de la gestión de contratos en Sinnut ERP.</p>
+                            <div class="module-tags">
+                                <span class="tag time">⏱ 20 min</span>
+                                <span class="tag type">📖 Teórico</span>
+                            </div>
+                            <a href="modulos/contratos/introduccion-contratos.html" class="btn btn-primary">🚧 En desarrollo</a>
+                        </div>
+
+                        <!-- Crear contrato -->
+                        <div class="module-card coming-soon">
+                            <div class="module-icon" style="background: var(--gradient-primary);">📝</div>
+                            <h4>Crear contrato</h4>
+                            <p>Aprende a crear contratos paso a paso en el sistema.</p>
+                            <div class="module-tags">
+                                <span class="tag time">⏱ 25 min</span>
+                                <span class="tag type">📹 Video + Práctica</span>
+                            </div>
+                            <a href="modulos/contratos/crear-contrato.html" class="btn btn-primary">🚧 En desarrollo</a>
+                        </div>
+
+                        <!-- Consultar contrato -->
+                        <div class="module-card coming-soon">
+                            <div class="module-icon" style="background: var(--gradient-primary);">🔍</div>
+                            <h4>Consultar contrato</h4>
+                            <p>Consulta y revisa contratos existentes de manera eficiente.</p>
+                            <div class="module-tags">
+                                <span class="tag time">⏱ 20 min</span>
+                                <span class="tag type">📹 Video + Práctica</span>
+                            </div>
+                            <a href="modulos/contratos/consultar-contrato.html" class="btn btn-primary">🚧 En desarrollo</a>
+                        </div>
+
+                        <!-- Pagar prórroga -->
+                        <div class="module-card coming-soon">
+                            <div class="module-icon" style="background: var(--gradient-primary);">💰</div>
+                            <h4>Pagar prórroga</h4>
+                            <p>Gestión de pagos de prórroga para contratos.</p>
+                            <div class="module-tags">
+                                <span class="tag time">⏱ 20 min</span>
+                                <span class="tag type">📹 Video + Práctica</span>
+                            </div>
+                            <a href="modulos/contratos/pagar-prorroga.html" class="btn btn-primary">🚧 En desarrollo</a>
+                        </div>
+
+                        <!-- Pagar retroventa -->
+                        <div class="module-card coming-soon">
+                            <div class="module-icon" style="background: var(--gradient-primary);">🔄</div>
+                            <h4>Pagar retroventa</h4>
+                            <p>Proceso de gestión de pagos de retroventa de contratos.</p>
+                            <div class="module-tags">
+                                <span class="tag time">⏱ 25 min</span>
+                                <span class="tag type">📹 Video + Práctica</span>
+                            </div>
+                            <a href="modulos/contratos/pagar-retroventa.html" class="btn btn-primary">🚧 En desarrollo</a>
+                        </div>
+
+                        <!-- Fin del módulo: Gestión de Contratos -->
+                        <div class="module-card coming-soon">
+                            <div class="module-icon" style="background: var(--gradient-primary);">🎉</div>
+                            <h4>Fin del módulo: Gestión de Contratos</h4>
+                            <p>Resumen y cierre del módulo de contratos.</p>
+                            <div class="module-tags">
+                                <span class="tag time">⏱ 10 min</span>
+                                <span class="tag type">📋 Resumen</span>
+                            </div>
+                            <a href="modulos/contratos/fin-modulo-contratos.html" class="btn btn-primary">🚧 En desarrollo</a>
+                        </div>
                     </div>
-                    <a href="modulos/apertura-caja.html" class="btn btn-primary">✅ Disponible - Acceder</a>
                 </div>
 
-                <!-- Módulo 2: Arqueo de Caja -->
-                <div class="module-card available">
-                    <div class="module-icon" style="background: var(--gradient-secondary);">🧾</div>
-                    <h4>Módulo 2: Arqueo de Caja</h4>
-                    <p>Domina el proceso completo de arqueo de caja, verificación y conciliación de saldos al final del día en el sistema ERP.</p>
-                    <div class="module-tags">
-                        <span class="tag time">⏱ 35 min</span>
-                        <span class="tag type">📹 Video + Práctica</span>
+                <!-- SECCIÓN 3: FACTURAS -->
+                <div style="grid-column: 1 / -1; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: var(--spacing-lg); border-radius: var(--border-radius-lg); margin-bottom: var(--spacing-lg); border: 2px solid var(--accent-color);">
+                    <h3 style="color: var(--accent-color); margin-bottom: var(--spacing-md); text-align: center; font-size: 1.5rem;">🧾 FACTURAS</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg);">
+                        
+                        <!-- Introducción facturas -->
+                        <div class="module-card future">
+                            <div class="module-icon" style="background: var(--gradient-accent);">📚</div>
+                            <h4>Introducción facturas</h4>
+                            <p>Fundamentos del sistema de facturación en Sinnut ERP.</p>
+                            <div class="module-tags">
+                                <span class="tag time">⏱ 20 min</span>
+                                <span class="tag type">📖 Teórico</span>
+                            </div>
+                            <a href="modulos/facturas/introduccion-facturas.html" class="btn btn-accent">🚧 Próximamente</a>
+                        </div>
+
+                        <!-- Factura de venta -->
+                        <div class="module-card future">
+                            <div class="module-icon" style="background: var(--gradient-accent);">💳</div>
+                            <h4>Factura de venta</h4>
+                            <p>Creación y gestión de facturas de venta en el sistema.</p>
+                            <div class="module-tags">
+                                <span class="tag time">⏱ 25 min</span>
+                                <span class="tag type">📹 Video + Práctica</span>
+                            </div>
+                            <a href="modulos/facturas/factura-de-venta.html" class="btn btn-accent">🚧 Próximamente</a>
+                        </div>
+
+                        <!-- Crear Plan Separe -->
+                        <div class="module-card future">
+                            <div class="module-icon" style="background: var(--gradient-accent);">📋</div>
+                            <h4>Crear Plan Separe</h4>
+                            <p>Creación de planes separe para opciones de pago flexibles.</p>
+                            <div class="module-tags">
+                                <span class="tag time">⏱ 25 min</span>
+                                <span class="tag type">📹 Video + Práctica</span>
+                            </div>
+                            <a href="modulos/facturas/crear-plan-separe.html" class="btn btn-accent">🚧 Próximamente</a>
+                        </div>
+
+                        <!-- Consultar plan separe -->
+                        <div class="module-card future">
+                            <div class="module-icon" style="background: var(--gradient-accent);">🔍</div>
+                            <h4>Consultar plan separe</h4>
+                            <p>Consulta y revisión de planes separe existentes.</p>
+                            <div class="module-tags">
+                                <span class="tag time">⏱ 20 min</span>
+                                <span class="tag type">� Video + Práctica</span>
+                            </div>
+                            <a href="modulos/facturas/consultar-plan-separe.html" class="btn btn-accent">�🚧 Próximamente</a>
+                        </div>
+
+                        <!-- Abonar y facturar plan separe -->
+                        <div class="module-card future">
+                            <div class="module-icon" style="background: var(--gradient-accent);">💰</div>
+                            <h4>Abonar y facturar plan separe</h4>
+                            <p>Proceso de abonos y facturación final de planes separe.</p>
+                            <div class="module-tags">
+                                <span class="tag time">⏱ 30 min</span>
+                                <span class="tag type">📹 Video + Práctica</span>
+                            </div>
+                            <a href="modulos/facturas/abonar-facturar-plan-separe.html" class="btn btn-accent">🚧 Próximamente</a>
+                        </div>
+
+                        <!-- Fin del módulo: Gestión de Facturas -->
+                        <div class="module-card future">
+                            <div class="module-icon" style="background: var(--gradient-accent);">🎉</div>
+                            <h4>Fin del módulo: Gestión de Facturas</h4>
+                            <p>Resumen y cierre del módulo de facturas.</p>
+                            <div class="module-tags">
+                                <span class="tag time">⏱ 10 min</span>
+                                <span class="tag type">📋 Resumen</span>
+                            </div>
+                            <a href="modulos/facturas/fin-modulo-facturas.html" class="btn btn-accent">🚧 Próximamente</a>
+                        </div>
                     </div>
-                    <a href="modulos/arqueo-caja.html" class="btn btn-primary">✅ Disponible - Acceder</a>
                 </div>
 
-                <!-- Módulo 3: Contratos -->
-                <div class="module-card coming-soon">
-                    <div class="module-icon" style="background: var(--gradient-primary);">📋</div>
-                    <h4>Módulo 3: Gestión de Contratos</h4>
-                    <p>Domina la creación, modificación y seguimiento de contratos en el ERP, incluyendo alertas y vencimientos automáticos.</p>
-                    <div class="module-tags">
-                        <span class="tag time">⏱ 40 min</span>
-                        <span class="tag type">📹 Video + Práctica</span>
-                    </div>
-                    <a href="#" class="btn btn-secondary">🚧 Próximamente</a>
-                </div>
+                <!-- SECCIÓN 4: CIERRE Y EVALUACIÓN -->
+                <div style="grid-column: 1 / -1; background: linear-gradient(135deg, #e3f7f0 0%, #f0fff4 100%); padding: var(--spacing-lg); border-radius: var(--border-radius-lg); margin-bottom: var(--spacing-lg); border: 2px solid var(--secondary-color);">
+                    <h3 style="color: var(--secondary-color); margin-bottom: var(--spacing-md); text-align: center; font-size: 1.5rem;">🎓 CIERRE Y EVALUACIÓN</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-lg);">
+                        
+                        <!-- Página final del curso -->
+                        <div class="module-card future">
+                            <div class="module-icon" style="background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);">📚</div>
+                            <h4>Página final del curso</h4>
+                            <p>Resumen completo del curso y preparación para la evaluación final.</p>
+                            <div class="module-tags">
+                                <span class="tag time">⏱ 10 min</span>
+                                <span class="tag type">� Resumen</span>
+                            </div>
+                            <a href="modulos/cierre-evaluacion/pagina-final-curso.html" class="btn btn-secondary">🚧 Próximamente</a>
+                        </div>
 
-                <!-- Módulo 4: Facturas -->
-                <div class="module-card future">
-                    <div class="module-icon" style="background: var(--gradient-accent);">🧾</div>
-                    <h4>Módulo 4: Facturación</h4>
-                    <p>Aprende el proceso completo de facturación electrónica, desde la creación hasta el envío y seguimiento de facturas.</p>
-                    <div class="module-tags">
-                        <span class="tag time">⏱ 45 min</span>
-                        <span class="tag type">📹 Video + Práctica</span>
+                        <!-- Evaluación Final -->
+                        <div class="module-card future">
+                            <div class="module-icon" style="background: linear-gradient(135deg, var(--accent-color) 0%, #e67e22 100%);">📝</div>
+                            <h4>Evaluación Final</h4>
+                            <p>Evaluación completa de conocimientos con certificación oficial.</p>
+                            <div class="module-tags">
+                                <span class="tag time">⏱ 30 min</span>
+                                <span class="tag type">📝 Evaluación</span>
+                            </div>
+                            <a href="https://aula.aynn.pro/courses/1/quizzes/4?module_item_id=20" class="btn" style="background: var(--accent-color); color: white;" target="_blank">🎯 Evaluación en Canvas</a>
+                        </div>
                     </div>
-                    <a href="#" class="btn btn-accent">🚧 Próximamente</a>
                 </div>
 
                 <!-- Placeholder para módulos futuros -->
