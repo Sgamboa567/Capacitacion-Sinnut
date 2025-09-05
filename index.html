@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capacitación Sinnut ERP - Sistema de Aprendizaje</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- Optimización para iframe en Canvas LMS -->
+    <style>
+        /* Estilos específicos para iframe */
+        body { 
+            background: transparent;
+            overflow-x: hidden;
+        }
+        .main-container {
+            box-shadow: none;
+            border: 1px solid var(--border-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container animate-in">
+        <!-- Header con logo y título principal -->
+        <header class="header">
+            <img src="https://aula.aynn.pro/files/78/download?download_frd=1" 
+                 alt="Logo Institucional" 
+                 loading="lazy">
+            <h1>📚 Sistema de Capacitación ERP</h1>
+            <p>Plataforma de aprendizaje integral para el dominio del sistema empresarial Sinnut</p>
+        </header>
+
+        <!-- Información del curso -->
+        <section class="info-card">
+            <h2>🎯 Bienvenido al Programa de Capacitación</h2>
+            <p>Domina las funcionalidades principales del ERP empresarial a través de módulos interactivos y evaluaciones prácticas.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-circle primary" id="moduloCounter">3+</div>
+                    <strong>Módulos</strong><br>
+                    <span style="color: var(--text-secondary);">En crecimiento</span>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-circle secondary">2hrs</div>
+                    <strong>Duración</strong><br>
+                    <span style="color: var(--text-secondary);">Aproximada</span>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-circle accent">📋</div>
+                    <strong>Evaluación</strong><br>
+                    <span style="color: var(--text-secondary);">Final</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Botones de acción principal -->
+        <section style="text-align: center; margin-bottom: var(--spacing-xxl);">
+            <h3>🚀 Comienza tu aprendizaje</h3>
+            <div class="btn-group">
+                <a href="#modulos" class="btn btn-primary">🎓 Comenzar Curso</a>
+                <a href="#evaluacion" class="btn btn-secondary">📝 Ir a Evaluación</a>
+            </div>
+        </section>
+
+        <!-- Módulos del curso -->
+        <section id="modulos">
+            <h3 style="text-align: center; letter-spacing: 1px;">📖 Módulos del Curso</h3>
+            
+            <div class="modules-grid">
+                <!-- Módulo 1: Arqueo de Caja -->
+                <div class="module-card available">
+                    <div class="module-icon" style="background: var(--gradient-secondary);">🧾</div>
+                    <h4>Módulo 1: Arqueo de Caja</h4>
+                    <p>Aprende a realizar el proceso completo de arqueo de caja en el sistema ERP, incluyendo verificación de saldos y generación de reportes.</p>
+                    <div class="module-tags">
+                        <span class="tag time">⏱ 35 min</span>
+                        <span class="tag type">📹 Video + Práctica</span>
+                    </div>
+                    <a href="modulos/arqueo-caja.html" class="btn btn-primary">✅ Disponible - Acceder</a>
+                </div>
+
+                <!-- Módulo 2: Contratos -->
+                <div class="module-card coming-soon">
+                    <div class="module-icon" style="background: var(--gradient-primary);">📋</div>
+                    <h4>Módulo 2: Gestión de Contratos</h4>
+                    <p>Domina la creación, modificación y seguimiento de contratos en el ERP, incluyendo alertas y vencimientos automáticos.</p>
+                    <div class="module-tags">
+                        <span class="tag time">⏱ 40 min</span>
+                        <span class="tag type">📹 Video + Práctica</span>
+                    </div>
+                    <a href="#" class="btn btn-secondary">🚧 Próximamente</a>
+                </div>
+
+                <!-- Módulo 3: Facturas -->
+                <div class="module-card future">
+                    <div class="module-icon" style="background: var(--gradient-accent);">🧾</div>
+                    <h4>Módulo 3: Facturación</h4>
+                    <p>Aprende el proceso completo de facturación electrónica, desde la creación hasta el envío y seguimiento de facturas.</p>
+                    <div class="module-tags">
+                        <span class="tag time">⏱ 45 min</span>
+                        <span class="tag type">📹 Video + Práctica</span>
+                    </div>
+                    <a href="#" class="btn btn-accent">🚧 Próximamente</a>
+                </div>
+
+                <!-- Placeholder para módulos futuros -->
+                <div class="module-card" style="opacity: 0.7; border: 2px dashed #cccccc;">
+                    <div class="module-icon" style="background: linear-gradient(135deg, #cccccc 0%, #aaaaaa 100%);">➕</div>
+                    <h4 style="color: #999;">Más Módulos Próximamente</h4>
+                    <p style="color: #888;">Estamos desarrollando módulos adicionales para completar tu formación en el sistema ERP.</p>
+                    <div class="module-tags">
+                        <span class="tag" style="background-color: #f0f0f0; color: #999;">⏱ Por definir</span>
+                        <span class="tag" style="background-color: #f0f0f0; color: #999;">📈 En desarrollo</span>
+                    </div>
+                    <div style="background-color: #e0e0e0; color: #999; padding: 12px 24px; font-weight: bold; border-radius: 8px; display: inline-block;">🔮 Muy Pronto</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Evaluación -->
+        <section id="evaluacion" class="section evaluation">
+            <h3>📊 Evaluación Final</h3>
+            <p>Una vez completados los módulos, demuestra tus conocimientos con una evaluación integral que abarca todos los temas estudiados.</p>
+            
+            <div class="stats-grid" style="margin-bottom: var(--spacing-xl);">
+                <div class="stat-item">
+                    <div class="stat-circle primary">20</div>
+                    <strong>Preguntas</strong><br>
+                    <span style="color: var(--text-secondary);">Diversas</span>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-circle secondary">30</div>
+                    <strong>Minutos</strong><br>
+                    <span style="color: var(--text-secondary);">Duración</span>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-circle accent">70%</div>
+                    <strong>Nota mínima</strong><br>
+                    <span style="color: var(--text-secondary);">Para aprobar</span>
+                </div>
+            </div>
+            
+            <a href="evaluacion-final.html" class="btn btn-secondary">🎯 Iniciar Evaluación</a>
+        </section>
+
+        <!-- Navegación rápida -->
+        <section class="quick-nav">
+            <h3>🧭 Navegación Rápida</h3>
+            <div class="nav-links">
+                <a href="#inicio" class="nav-link primary">🏠 Inicio</a>
+                <a href="modulos/arqueo-caja.html" class="nav-link primary">🧾 Arqueo de Caja</a>
+                <a href="#" class="nav-link secondary">📋 Contratos</a>
+                <a href="#" class="nav-link accent">🧾 Facturas</a>
+                <a href="evaluacion-final.html" class="nav-link muted">📊 Evaluación</a>
+                <a href="#recursos" class="nav-link muted">📚 Recursos</a>
+            </div>
+        </section>
+
+        <!-- Recursos adicionales -->
+        <section id="recursos" class="section">
+            <h3>📚 Recursos de Apoyo</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-lg);">
+                <div style="text-align: center;">
+                    <h4 style="color: var(--secondary-color); margin-bottom: var(--spacing-md);">📖 Documentación</h4>
+                    <p>Manuales y guías de referencia rápida para consultar durante el curso.</p>
+                    <a href="#" class="btn btn-primary" style="padding: var(--spacing-sm) var(--spacing-lg);">Ver Manuales</a>
+                </div>
+                <div style="text-align: center;">
+                    <h4 style="color: var(--primary-color); margin-bottom: var(--spacing-md);">🎥 Videos Tutorial</h4>
+                    <p>Biblioteca de videos explicativos para reforzar el aprendizaje.</p>
+                    <a href="#" class="btn btn-secondary" style="padding: var(--spacing-sm) var(--spacing-lg);">Ver Videos</a>
+                </div>
+                <div style="text-align: center;">
+                    <h4 style="color: var(--accent-color); margin-bottom: var(--spacing-md);">💬 Soporte</h4>
+                    <p>¿Necesitas ayuda? Contacta con nuestro equipo de soporte técnico.</p>
+                    <a href="mailto:soporte.ti@oroexpress.com.co" class="btn btn-accent" style="padding: var(--spacing-sm) var(--spacing-lg);">Contactar</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progreso del curso -->
+        <section class="section" style="background: linear-gradient(135deg, #e3f7f0 0%, #eaf6ff 100%);">
+            <h3 style="text-align: center;">📈 Tu Progreso</h3>
+            <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: var(--spacing-lg);">
+                <div style="text-align: center;">
+                    <div style="width: 100px; height: 100px; border-radius: 50%; background: conic-gradient(var(--secondary-color) 0deg 36deg, #e0e0e0 36deg 360deg); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; color: var(--primary-color); margin: 0 auto var(--spacing-sm);">10%</div>
+                    <strong>Completado</strong>
+                </div>
+                <div style="text-align: center;">
+                    <div style="background: var(--gradient-secondary); color: white; padding: var(--spacing-md); border-radius: var(--border-radius-lg); font-weight: bold;">
+                        🏆 ¡Comienza tu certificación!
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div style="margin-bottom: var(--spacing-sm); font-weight: 500;">
+                Sinnut © 2025 | Actualizado: Septiembre 2025 | Versión 2.0
+            </div>
+            <div>
+                Contacto: <a href="mailto:soporte.ti@oroexpress.com.co" style="color: var(--secondary-color);">soporte.ti@oroexpress.com.co</a> | 
+                Todos los derechos reservados
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript principal -->
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Código específico de la página de inicio
+        document.addEventListener('DOMContentLoaded', function() {
+            // Contador animado para módulos
+            const counter = document.getElementById('moduloCounter');
+            if (counter) {
+                let count = 1;
+                const interval = setInterval(() => {
+                    counter.textContent = count + '+';
+                    count++;
+                    if (count > 3) {
+                        clearInterval(interval);
+                        counter.textContent = '3+';
+                    }
+                }, 500);
+            }
+
+            // Tracking de inicio de módulos
+            document.querySelectorAll('a[href*="modulos/"]').forEach(link => {
+                link.addEventListener('click', function() {
+                    const moduleId = this.href.split('/').pop().replace('.html', '');
+                    SinnutTraining.trackEvent('module_started', { moduleId: moduleId });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

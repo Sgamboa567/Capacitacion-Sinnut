@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes - Capacitación Sinnut ERP</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <style>
+        .faq-item {
+            background: var(--card-background);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            margin-bottom: var(--spacing-md);
+            overflow: hidden;
+            transition: var(--transition-normal);
+        }
+        
+        .faq-question {
+            background: var(--gradient-background);
+            padding: var(--spacing-lg);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .faq-question:hover {
+            background: linear-gradient(135deg, #e3eafc 0%, #d8e5fc 100%);
+        }
+        
+        .faq-answer {
+            padding: 0 var(--spacing-lg);
+            max-height: 0;
+            overflow: hidden;
+            transition: all var(--transition-normal);
+        }
+        
+        .faq-answer.active {
+            padding: var(--spacing-lg);
+            max-height: 500px;
+        }
+        
+        .faq-icon {
+            font-size: 1.2rem;
+            transition: var(--transition-fast);
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container animate-in">
+        <!-- Header -->
+        <header class="header">
+            <img src="https://aula.aynn.pro/files/78/download?download_frd=1" 
+                 alt="Logo Institucional" 
+                 loading="lazy">
+            <h1>❓ Preguntas Frecuentes</h1>
+            <p>Encuentra respuestas rápidas a las consultas más comunes sobre el curso de Sinnut ERP</p>
+        </header>
+
+        <!-- Navegación rápida -->
+        <nav class="nav-breadcrumb">
+            <a href="index.html">Inicio</a>
+            <span class="separator">|</span>
+            <a href="#general">General</a>
+            <span class="separator">|</span>
+            <a href="#tecnico">Técnico</a>
+            <span class="separator">|</span>
+            <a href="#evaluacion">Evaluación</a>
+            <span class="separator">|</span>
+            <a href="#soporte">Soporte</a>
+        </nav>
+
+        <!-- Búsqueda de FAQ -->
+        <section class="section">
+            <h3>🔍 Buscar en las FAQ</h3>
+            <div style="position: relative;">
+                <input 
+                    type="text" 
+                    id="faqSearch" 
+                    placeholder="Escribe tu pregunta o palabra clave..."
+                    style="width: 100%; padding: var(--spacing-md); border: 2px solid var(--border-color); border-radius: var(--border-radius-md); font-size: 1rem; padding-right: 50px;"
+                    onkeyup="filterFAQs(this.value)">
+                <div style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); font-size: 1.2rem; color: var(--text-secondary);">🔍</div>
+            </div>
+        </section>
+
+        <!-- Preguntas Generales -->
+        <section id="general" class="section">
+            <h3>🏠 Preguntas Generales</h3>
+            <div class="faq-container">
+                <div class="faq-item" data-keywords="curso duracion tiempo modulos">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Cuánto tiempo dura el curso completo?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El curso completo tiene una duración aproximada de <strong>2 horas</strong>, distribuidas en varios módulos:</p>
+                        <ul>
+                            <li><strong>Módulo 1 - Arqueo de Caja:</strong> 35 minutos</li>
+                            <li><strong>Módulo 2 - Gestión de Contratos:</strong> 40 minutos (próximamente)</li>
+                            <li><strong>Módulo 3 - Facturación:</strong> 45 minutos (próximamente)</li>
+                        </ul>
+                        <p>Puedes completar los módulos a tu propio ritmo y pausar cuando necesites.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-keywords="requisitos previos conocimientos">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Necesito conocimientos previos para tomar este curso?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No necesitas conocimientos previos específicos de Sinnut ERP. El curso está diseñado para usuarios de todos los niveles:</p>
+                        <ul>
+                            <li>✅ <strong>Principiantes:</strong> Explicaciones paso a paso desde cero</li>
+                            <li>✅ <strong>Usuarios intermedios:</strong> Técnicas avanzadas y mejores prácticas</li>
+                            <li>✅ <strong>Usuarios avanzados:</strong> Optimización de procesos</li>
+                        </ul>
+                        <p>Solo necesitas conocimientos básicos de computación y acceso al sistema Sinnut ERP.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-keywords="certificado certificacion completion">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Recibiré un certificado al completar el curso?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, al completar exitosamente todos los módulos y aprobar la evaluación final con una nota mínima del <strong>70%</strong>, recibirás:</p>
+                        <ul>
+                            <li>🏆 Certificado digital de finalización</li>
+                            <li>📄 Documento descargable en PDF</li>
+                            <li>🎖️ Badge digital para LinkedIn</li>
+                        </ul>
+                        <p>El certificado será válido y reconocido oficialmente por nuestra organización.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preguntas Técnicas -->
+        <section id="tecnico" class="section">
+            <h3>⚙️ Preguntas Técnicas</h3>
+            <div class="faq-container">
+                <div class="faq-item" data-keywords="navegador browser compatibilidad">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Qué navegadores son compatibles con el curso?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El curso es compatible con los navegadores modernos más populares:</p>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--spacing-md); margin: var(--spacing-md) 0;">
+                            <div style="text-align: center; padding: var(--spacing-md); background: var(--background-color); border-radius: var(--border-radius-md);">
+                                <div style="font-size: 2rem; margin-bottom: var(--spacing-sm);">🌐</div>
+                                <strong>Chrome</strong><br>v90+
+                            </div>
+                            <div style="text-align: center; padding: var(--spacing-md); background: var(--background-color); border-radius: var(--border-radius-md);">
+                                <div style="font-size: 2rem; margin-bottom: var(--spacing-sm);">🦊</div>
+                                <strong>Firefox</strong><br>v88+
+                            </div>
+                            <div style="text-align: center; padding: var(--spacing-md); background: var(--background-color); border-radius: var(--border-radius-md);">
+                                <div style="font-size: 2rem; margin-bottom: var(--spacing-sm);">🧭</div>
+                                <strong>Safari</strong><br>v14+
+                            </div>
+                            <div style="text-align: center; padding: var(--spacing-md); background: var(--background-color); border-radius: var(--border-radius-md);">
+                                <div style="font-size: 2rem; margin-bottom: var(--spacing-sm);">🔷</div>
+                                <strong>Edge</strong><br>v90+
+                            </div>
+                        </div>
+                        <p><strong>Recomendación:</strong> Para la mejor experiencia, usa la versión más reciente de tu navegador preferido.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-keywords="mobile celular tablet responsive">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Puedo tomar el curso desde mi celular o tablet?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>¡Absolutamente! El curso está completamente optimizado para dispositivos móviles:</p>
+                        <ul>
+                            <li>📱 <strong>Smartphones:</strong> iOS 12+ y Android 8+</li>
+                            <li>📱 <strong>Tablets:</strong> iPad, Android tablets, Surface</li>
+                            <li>🖥️ <strong>Computadoras:</strong> Windows, Mac, Linux</li>
+                        </ul>
+                        <div class="alert info">
+                            <strong>💡 Tip:</strong> Para los simuladores interactivos, recomendamos usar una pantalla más grande (tablet o computadora) para una mejor experiencia.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-keywords="video problem audio sound">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Los videos no se reproducen o no tienen audio</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Si tienes problemas con los videos, intenta estas soluciones:</p>
+                        <ol>
+                            <li><strong>Verificar conexión:</strong> Asegúrate de tener una conexión estable a internet</li>
+                            <li><strong>Actualizar navegador:</strong> Usa la versión más reciente de tu navegador</li>
+                            <li><strong>Habilitar JavaScript:</strong> Los videos requieren JavaScript habilitado</li>
+                            <li><strong>Verificar volumen:</strong> Revisa que el volumen del dispositivo y del video esté activado</li>
+                            <li><strong>Limpiar caché:</strong> Borra el caché y cookies del navegador</li>
+                        </ol>
+                        <p>Si el problema persiste, <a href="mailto:soporte.ti@oroexpress.com.co">contacta soporte técnico</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Preguntas sobre Evaluación -->
+        <section id="evaluacion" class="section">
+            <h3>📊 Evaluación y Progreso</h3>
+            <div class="faq-container">
+                <div class="faq-item" data-keywords="evaluacion examen preguntas intentos">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Cuántos intentos tengo para la evaluación final?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Tienes <strong>3 intentos</strong> para aprobar la evaluación final:</p>
+                        <ul>
+                            <li>🎯 <strong>Nota mínima:</strong> 70% para aprobar</li>
+                            <li>⏱️ <strong>Tiempo límite:</strong> 30 minutos por intento</li>
+                            <li>📝 <strong>Preguntas:</strong> 20 preguntas de opción múltiple</li>
+                            <li>🔄 <strong>Intentos:</strong> Máximo 3 intentos</li>
+                        </ul>
+                        <p>Si no apruebas en los 3 intentos, puedes contactar soporte para solicitar intentos adicionales.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-keywords="progreso guardado save progress">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Se guarda mi progreso automáticamente?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, tu progreso se guarda automáticamente:</p>
+                        <ul>
+                            <li>💾 <strong>Progreso de videos:</strong> Se guarda cada 10 segundos</li>
+                            <li>✅ <strong>Módulos completados:</strong> Se marcan automáticamente</li>
+                            <li>📊 <strong>Evaluaciones:</strong> Se guardan al enviar</li>
+                            <li>🔄 <strong>Sincronización:</strong> Con Canvas LMS en tiempo real</li>
+                        </ul>
+                        <p>Puedes salir y volver al curso en cualquier momento sin perder tu progreso.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-keywords="reset reiniciar curso progress">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Puedo reiniciar mi progreso en el curso?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sí, puedes reiniciar tu progreso cuando lo necesites:</p>
+                        <ul>
+                            <li>🔄 <strong>Reinicio completo:</strong> Contacta soporte técnico</li>
+                            <li>📝 <strong>Evaluaciones:</strong> Disponible después de 24 horas</li>
+                            <li>🎥 <strong>Videos:</strong> Puedes volver a verlos cuando quieras</li>
+                        </ul>
+                        <div class="alert info">
+                            <strong>⚠️ Importante:</strong> Reiniciar borrará todo tu progreso actual. Esta acción no se puede deshacer.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Soporte -->
+        <section id="soporte" class="section">
+            <h3>🆘 Soporte y Contacto</h3>
+            <div class="faq-container">
+                <div class="faq-item" data-keywords="contacto soporte ayuda help">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Cómo puedo contactar soporte técnico?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Tenemos varios canales de soporte disponibles:</p>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-md); margin: var(--spacing-md) 0;">
+                            <div style="text-align: center; padding: var(--spacing-lg); background: var(--background-color); border-radius: var(--border-radius-md);">
+                                <div style="font-size: 2rem; margin-bottom: var(--spacing-sm);">📧</div>
+                                <strong>Email</strong><br>
+                                <a href="mailto:soporte.ti@oroexpress.com.co">soporte.ti@oroexpress.com.co</a><br>
+                                <small>Respuesta en 24hrs</small>
+                            </div>
+                            <div style="text-align: center; padding: var(--spacing-lg); background: var(--background-color); border-radius: var(--border-radius-md);">
+                                <div style="font-size: 2rem; margin-bottom: var(--spacing-sm);">💬</div>
+                                <strong>Chat en Vivo</strong><br>
+                                Lun - Vie: 8am - 6pm<br>
+                                <small>Respuesta inmediata</small>
+                            </div>
+                            <div style="text-align: center; padding: var(--spacing-lg); background: var(--background-color); border-radius: var(--border-radius-md);">
+                                <div style="font-size: 2rem; margin-bottom: var(--spacing-sm);">📞</div>
+                                <strong>Teléfono</strong><br>
+                                +57 (1) 234-5678<br>
+                                <small>Lun - Vie: 8am - 6pm</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" data-keywords="horario atencion schedule">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>¿Cuál es el horario de atención al estudiante?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nuestros horarios de atención son:</p>
+                        <table style="width: 100%; border-collapse: collapse; margin: var(--spacing-md) 0;">
+                            <tr style="background: var(--background-color);">
+                                <th style="padding: var(--spacing-sm); text-align: left; border: 1px solid var(--border-color);">Canal</th>
+                                <th style="padding: var(--spacing-sm); text-align: left; border: 1px solid var(--border-color);">Horario</th>
+                                <th style="padding: var(--spacing-sm); text-align: left; border: 1px solid var(--border-color);">Disponibilidad</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: var(--spacing-sm); border: 1px solid var(--border-color);">📧 Email</td>
+                                <td style="padding: var(--spacing-sm); border: 1px solid var(--border-color);">24/7</td>
+                                <td style="padding: var(--spacing-sm); border: 1px solid var(--border-color);">Respuesta en 24hrs</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: var(--spacing-sm); border: 1px solid var(--border-color);">💬 Chat en Vivo</td>
+                                <td style="padding: var(--spacing-sm); border: 1px solid var(--border-color);">Lun - Vie: 8am - 6pm</td>
+                                <td style="padding: var(--spacing-sm); border: 1px solid var(--border-color);">Inmediata</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: var(--spacing-sm); border: 1px solid var(--border-color);">📞 Teléfono</td>
+                                <td style="padding: var(--spacing-sm); border: 1px solid var(--border-color);">Lun - Vie: 8am - 6pm</td>
+                                <td style="padding: var(--spacing-sm); border: 1px solid var(--border-color);">Inmediata</td>
+                            </tr>
+                        </table>
+                        <p><strong>Zona horaria:</strong> Colombia (UTC-5)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ¿No encontraste tu respuesta? -->
+        <section class="section" style="background: var(--gradient-secondary); color: white; text-align: center;">
+            <h3>¿No encontraste la respuesta que buscabas?</h3>
+            <p>Nuestro equipo de soporte está listo para ayudarte con cualquier pregunta específica sobre el curso.</p>
+            <div style="margin-top: var(--spacing-lg);">
+                <a href="mailto:soporte.ti@oroexpress.com.co" class="btn" style="background: white; color: var(--secondary-color); margin: var(--spacing-sm);">📧 Enviar Email</a>
+                <button class="btn" style="background: var(--primary-color); color: white; margin: var(--spacing-sm);" onclick="SinnutTraining.showNotification('Chat en vivo próximamente disponible', 'info')">💬 Chat en Vivo</button>
+            </div>
+        </section>
+
+        <!-- Navegación de regreso -->
+        <section class="quick-nav">
+            <h3>🧭 Volver al Curso</h3>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link primary">🏠 Página Principal</a>
+                <a href="modulos/arqueo-caja.html" class="nav-link secondary">🧾 Módulo de Arqueo</a>
+                <a href="#" class="nav-link accent">📊 Evaluación Final</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div style="margin-bottom: var(--spacing-sm); font-weight: 500;">
+                Sinnut © 2025 | FAQ actualizada: Septiembre 2025 | Versión 2.0
+            </div>
+            <div>
+                <a href="mailto:soporte.ti@oroexpress.com.co" style="color: var(--secondary-color);">soporte.ti@oroexpress.com.co</a> | 
+                <a href="index.html" style="color: var(--secondary-color);">Volver al curso</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript para funcionalidad de FAQ -->
+    <script src="assets/js/main.js"></script>
+    <script>
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const icon = element.querySelector('.faq-icon');
+            
+            // Cerrar otras FAQ abiertas
+            document.querySelectorAll('.faq-item.active').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').classList.remove('active');
+                }
+            });
+            
+            // Toggle actual FAQ
+            faqItem.classList.toggle('active');
+            answer.classList.toggle('active');
+            
+            // Tracking
+            if (faqItem.classList.contains('active')) {
+                SinnutTraining.trackEvent('faq_opened', {
+                    question: element.querySelector('span').textContent
+                });
+            }
+        }
+
+        function filterFAQs(searchTerm) {
+            const faqItems = document.querySelectorAll('.faq-item');
+            const term = searchTerm.toLowerCase();
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                const keywords = item.dataset.keywords.toLowerCase();
+                
+                const matches = question.includes(term) || 
+                               answer.includes(term) || 
+                               keywords.includes(term);
+                
+                if (matches || term === '') {
+                    item.style.display = 'block';
+                    item.style.opacity = '1';
+                } else {
+                    item.style.display = 'none';
+                    item.style.opacity = '0.5';
+                }
+            });
+            
+            // Tracking de búsqueda
+            if (term.length > 2) {
+                SinnutTraining.trackEvent('faq_search', {
+                    searchTerm: term
+                });
+            }
+        }
+
+        // Expandir FAQ desde URL hash
+        document.addEventListener('DOMContentLoaded', function() {
+            const hash = window.location.hash;
+            if (hash) {
+                const section = document.querySelector(hash);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 1: Arqueo de Caja - Capacitación Sinnut ERP</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <!-- Estilos específicos para el módulo -->
+    <style>
+        /* Estilos adicionales para iframe */
+        body { 
+            background: transparent;
+            overflow-x: hidden;
+        }
+        .main-container {
+            box-shadow: none;
+            border: 1px solid var(--border-color);
+        }
+        .video-wrapper {
+            background: var(--gradient-background);
+            border-left: 4px solid var(--secondary-color);
+            padding: var(--spacing-lg);
+            text-align: center;
+            border-radius: var(--border-radius-md);
+            margin: var(--spacing-lg) 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container animate-in">
+        <!-- Logo y navegación -->
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--spacing-lg); flex-wrap: wrap; gap: var(--spacing-md);">
+            <img src="https://aula.aynn.pro/courses/1/files/78/download" 
+                 alt="Logo Institucional" 
+                 style="height: 50px;"
+                 loading="lazy">
+        </div>
+
+        <!-- Navegación breadcrumb -->
+        <nav class="nav-breadcrumb">
+            <a href="../index.html">Inicio</a>
+            <span class="separator">|</span>
+            <a href="#introduccion">Introducción</a>
+            <span class="separator">|</span>
+            <a href="#video">Video</a>
+            <span class="separator">|</span>
+            <a href="#pasos">Pasos</a>
+            <span class="separator">|</span>
+            <a href="#recursos">Recursos</a>
+            <span class="separator">|</span>
+            <a href="#soporte">Soporte</a>
+        </nav>
+
+        <!-- Header del módulo -->
+        <header class="header" style="margin-bottom: var(--spacing-xl);">
+            <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">🧾</div>
+            <h1 id="introduccion">Módulo 1: Arqueo de Caja</h1>
+            <p>Aprende a realizar el proceso completo de arqueo de caja en el sistema ERP Sinnut. Sigue los pasos y utiliza los recursos para dominar el proceso.</p>
+        </header>
+
+        <!-- Información del tiempo -->
+        <div class="alert info">
+            ⏱ <strong>Tiempo estimado de operación:</strong> 2:00 minutos
+        </div>
+
+        <!-- Sección del video -->
+        <section id="video" class="section">
+            <h3>🎬 Video: Arqueo de caja</h3>
+            <div class="video-wrapper">
+                <div class="video-container">
+                    <video controls width="100%">
+                        <source src="/courses/1/files/71/download" type="video/mp4">
+                        Tu navegador no soporta este formato de video.
+                    </video>
+                </div>
+                <p style="margin-top: var(--spacing-md); color: var(--text-secondary); font-size: 0.9rem;">
+                    💡 <em>Tip: Puedes pausar el video en cualquier momento para seguir los pasos a tu ritmo.</em>
+                </p>
+            </div>
+        </section>
+
+        <!-- Pasos del proceso -->
+        <section id="pasos" class="section">
+            <h3>📋 Pasos para realizar el arqueo de caja</h3>
+            <div class="process-steps">
+                <div class="step">
+                    <strong>Paso 1:</strong> Ingresa al módulo <strong>Gestión de contabilidad</strong> submódulo Arqueo de caja.
+                    <div style="margin-top: var(--spacing-sm); padding: var(--spacing-sm); background: rgba(80, 182, 122, 0.1); border-radius: var(--border-radius-sm); font-size: 0.9rem;">
+                        🔍 <em>Busca en el menú principal la sección "Contabilidad" y selecciona "Arqueo de caja"</em>
+                    </div>
+                </div>
+                <div class="step">
+                    <strong>Paso 2:</strong> Selecciona el icono + para un nuevo arqueo de caja.
+                    <div style="margin-top: var(--spacing-sm); padding: var(--spacing-sm); background: rgba(80, 182, 122, 0.1); border-radius: var(--border-radius-sm); font-size: 0.9rem;">
+                        ➕ <em>El botón "+" generalmente se encuentra en la parte superior derecha de la pantalla</em>
+                    </div>
+                </div>
+                <div class="step">
+                    <strong>Paso 3:</strong> Registra los valores de las cajas.
+                    <div style="margin-top: var(--spacing-sm); padding: var(--spacing-sm); background: rgba(80, 182, 122, 0.1); border-radius: var(--border-radius-sm); font-size: 0.9rem;">
+                        💰 <em>Ingresa cuidadosamente los montos en efectivo, cheques y otros medios de pago</em>
+                    </div>
+                </div>
+                <div class="step">
+                    <strong>Paso 4:</strong> Confirma el saldo final y genera el reporte de arqueo.
+                    <div style="margin-top: var(--spacing-sm); padding: var(--spacing-sm); background: rgba(80, 182, 122, 0.1); border-radius: var(--border-radius-sm); font-size: 0.9rem;">
+                        ✅ <em>Revisa que todos los datos estén correctos antes de confirmar</em>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lista de verificación -->
+        <section class="section" style="background: linear-gradient(135deg, #fff9e6 0%, #f0f8ff 100%); border-left: 4px solid var(--accent-color);">
+            <h3 style="color: var(--accent-color);">✅ Lista de Verificación</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-md);">
+                <label style="display: flex; align-items: center; gap: var(--spacing-sm); cursor: pointer;">
+                    <input type="checkbox" style="transform: scale(1.2);">
+                    <span>Acceso al módulo de contabilidad</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: var(--spacing-sm); cursor: pointer;">
+                    <input type="checkbox" style="transform: scale(1.2);">
+                    <span>Permisos para crear arqueo</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: var(--spacing-sm); cursor: pointer;">
+                    <input type="checkbox" style="transform: scale(1.2);">
+                    <span>Valores de caja contados</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: var(--spacing-sm); cursor: pointer;">
+                    <input type="checkbox" style="transform: scale(1.2);">
+                    <span>Documentos de respaldo</span>
+                </label>
+            </div>
+        </section>
+
+        <!-- Recursos interactivos -->
+        <section id="recursos" class="section">
+            <h3>📂 Recursos interactivos</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--spacing-lg); text-align: center;">
+                <div style="background: var(--card-background); padding: var(--spacing-lg); border-radius: var(--border-radius-lg); border: 2px solid var(--border-color); transition: var(--transition-normal);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-medium)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">📄</div>
+                    <h4 style="margin-bottom: var(--spacing-md);">Instructivo</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: var(--spacing-lg); color: var(--text-secondary);">Guía paso a paso detallada</p>
+                    <a href="https://aula.aynn.pro/courses/1/files/70/download" class="btn btn-primary" target="_blank">Descargar PDF</a>
+                </div>
+                
+                <div style="background: var(--card-background); padding: var(--spacing-lg); border-radius: var(--border-radius-lg); border: 2px solid var(--border-color); transition: var(--transition-normal);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-medium)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">📝</div>
+                    <h4 style="margin-bottom: var(--spacing-md);">Plantilla</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: var(--spacing-lg); color: var(--text-secondary);">Formato para practicar</p>
+                    <a href="#" class="btn btn-secondary">Próximamente</a>
+                </div>
+                
+                <div style="background: var(--card-background); padding: var(--spacing-lg); border-radius: var(--border-radius-lg); border: 2px solid var(--border-color); transition: var(--transition-normal);" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-medium)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                    <div style="font-size: 2rem; margin-bottom: var(--spacing-md);">📊</div>
+                    <h4 style="margin-bottom: var(--spacing-md);">Diagrama</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: var(--spacing-lg); color: var(--text-secondary);">Flujo del proceso visual</p>
+                    <a href="#" class="btn btn-accent">Próximamente</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tip importante -->
+        <div class="alert tip">
+            💡 <strong>Tip importante:</strong> Antes de iniciar, asegúrate de tener acceso al sistema y los permisos necesarios para realizar la operación. Si tienes dudas, consulta el manual del ERP o contacta al soporte.
+        </div>
+
+        <!-- Simulador interactivo -->
+        <section class="section" style="background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%); border-left: 4px solid var(--primary-color);">
+            <h3 style="color: var(--primary-color);">🎮 Simulador Interactivo</h3>
+            <div style="text-align: center;">
+                <p>Practica el proceso de arqueo de caja en un entorno simulado antes de realizarlo en el sistema real.</p>
+                <div style="margin: var(--spacing-lg) 0;">
+                    <button class="btn btn-primary" onclick="startSimulator()">🚀 Iniciar Simulador</button>
+                </div>
+                <div id="simulatorArea" style="display: none; background: white; padding: var(--spacing-lg); border-radius: var(--border-radius-md); margin-top: var(--spacing-md);">
+                    <h4>Simulador de Arqueo de Caja</h4>
+                    <p>Aquí se cargaría el simulador interactivo...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progreso del módulo -->
+        <section class="section" style="background: linear-gradient(135deg, #e3f7f0 0%, #f0fff4 100%); text-align: center;">
+            <h3 style="color: var(--secondary-color);">📈 Progreso del Módulo</h3>
+            <div style="display: flex; align-items: center; justify-content: center; gap: var(--spacing-xl); flex-wrap: wrap;">
+                <div>
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background: conic-gradient(var(--secondary-color) 0deg 72deg, #e0e0e0 72deg 360deg); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; color: var(--primary-color); margin: 0 auto var(--spacing-sm);">20%</div>
+                    <strong>Video visto</strong>
+                </div>
+                <div style="font-size: 2rem;">➜</div>
+                <div>
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background: conic-gradient(#e0e0e0 0deg 360deg); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; color: var(--text-muted); margin: 0 auto var(--spacing-sm);">0%</div>
+                    <strong>Práctica</strong>
+                </div>
+                <div style="font-size: 2rem;">➜</div>
+                <div>
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background: conic-gradient(#e0e0e0 0deg 360deg); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; color: var(--text-muted); margin: 0 auto var(--spacing-sm);">0%</div>
+                    <strong>Evaluación</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- Soporte y ayuda -->
+        <section id="soporte" class="section">
+            <h3>🆘 Soporte y ayuda</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-lg);">
+                <div style="text-align: center;">
+                    <div style="font-size: 2.5rem; margin-bottom: var(--spacing-md);">📧</div>
+                    <h4 style="color: var(--secondary-color);">Soporte Técnico</h4>
+                    <p>¿Necesitas ayuda técnica? Nuestro equipo está disponible para asistirte.</p>
+                    <a href="mailto:soporte.ti@oroexpress.com.co" class="btn btn-primary">Enviar Correo</a>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2.5rem; margin-bottom: var(--spacing-md);">❓</div>
+                    <h4 style="color: var(--primary-color);">Preguntas Frecuentes</h4>
+                    <p>Consulta las respuestas a las preguntas más comunes sobre el proceso.</p>
+                    <a href="../faq.html" class="btn btn-secondary">Ver FAQ</a>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2.5rem; margin-bottom: var(--spacing-md);">💬</div>
+                    <h4 style="color: var(--accent-color);">Chat en Vivo</h4>
+                    <p>Habla directamente con un instructor para resolver dudas específicas.</p>
+                    <button class="btn btn-accent" onclick="openChat()">Iniciar Chat</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navegación del curso -->
+        <section class="quick-nav">
+            <h3>🧭 Navegación del Curso</h3>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link primary">🏠 Inicio del Curso</a>
+                <a href="#" class="nav-link muted">📋 Anterior: Introducción</a>
+                <a href="#" class="nav-link secondary">📋 Siguiente: Contratos</a>
+                <a href="../evaluacion-final.html" class="nav-link accent">📊 Evaluación Final</a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div style="margin-bottom: var(--spacing-sm); font-weight: 500;">
+                Sinnut © 2025 | Módulo actualizado: Septiembre 2025 | Versión 2.0
+            </div>
+            <div>
+                Contacto: <a href="mailto:soporte.ti@oroexpress.com.co" style="color: var(--secondary-color);">soporte.ti@oroexpress.com.co</a> | 
+                Todos los derechos reservados
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript principal -->
+    <script src="../assets/js/main.js"></script>
+    <script>
+        // Código específico del módulo de arqueo de caja
+        document.addEventListener('DOMContentLoaded', function() {
+            // Progreso del video
+            const video = document.querySelector('video');
+            if (video) {
+                video.addEventListener('timeupdate', function() {
+                    const progress = (video.currentTime / video.duration) * 100;
+                    if (progress > 80) {
+                        SinnutTraining.updateProgress('video_arqueo', 100);
+                    }
+                });
+            }
+
+            // Checkboxes de verificación
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const checkedCount = document.querySelectorAll('input[type="checkbox"]:checked').length;
+                    const totalCount = checkboxes.length;
+                    const progress = (checkedCount / totalCount) * 100;
+                    
+                    if (progress === 100) {
+                        SinnutTraining.showNotification('¡Excelente! Has completado la lista de verificación.', 'success');
+                        SinnutTraining.updateProgress('checklist_arqueo', 100);
+                    }
+                });
+            });
+        });
+
+        function startSimulator() {
+            const simulatorArea = document.getElementById('simulatorArea');
+            simulatorArea.style.display = 'block';
+            simulatorArea.innerHTML = `
+                <h4>🎮 Simulador de Arqueo de Caja</h4>
+                <div style="background: #f8f9fa; padding: var(--spacing-lg); border-radius: var(--border-radius-md); margin: var(--spacing-md) 0;">
+                    <p><strong>Paso 1:</strong> Selecciona el módulo de contabilidad</p>
+                    <button class="btn btn-primary" style="margin: var(--spacing-sm);" onclick="nextStep(2)">✅ Módulo seleccionado</button>
+                </div>
+            `;
+            SinnutTraining.trackEvent('simulator_started', { module: 'arqueo-caja' });
+        }
+
+        function nextStep(step) {
+            const simulatorArea = document.getElementById('simulatorArea');
+            switch(step) {
+                case 2:
+                    simulatorArea.innerHTML = `
+                        <h4>🎮 Simulador - Paso 2</h4>
+                        <div style="background: #f8f9fa; padding: var(--spacing-lg); border-radius: var(--border-radius-md); margin: var(--spacing-md) 0;">
+                            <p><strong>Paso 2:</strong> Haz clic en el botón "+" para crear nuevo arqueo</p>
+                            <button class="btn btn-primary" style="margin: var(--spacing-sm);" onclick="nextStep(3)">➕ Nuevo arqueo</button>
+                        </div>
+                    `;
+                    break;
+                case 3:
+                    simulatorArea.innerHTML = `
+                        <h4>🎮 Simulador - Paso 3</h4>
+                        <div style="background: #f8f9fa; padding: var(--spacing-lg); border-radius: var(--border-radius-md); margin: var(--spacing-md) 0;">
+                            <p><strong>Paso 3:</strong> Ingresa los valores de caja</p>
+                            <input type="number" placeholder="Efectivo" style="margin: var(--spacing-xs); padding: var(--spacing-sm); border: 1px solid #ddd; border-radius: 4px;">
+                            <input type="number" placeholder="Cheques" style="margin: var(--spacing-xs); padding: var(--spacing-sm); border: 1px solid #ddd; border-radius: 4px;">
+                            <br><button class="btn btn-primary" style="margin-top: var(--spacing-md);" onclick="nextStep(4)">💾 Guardar valores</button>
+                        </div>
+                    `;
+                    break;
+                case 4:
+                    simulatorArea.innerHTML = `
+                        <h4>🎮 Simulador Completado</h4>
+                        <div style="background: #e3f7f0; padding: var(--spacing-lg); border-radius: var(--border-radius-md); margin: var(--spacing-md) 0; text-align: center;">
+                            <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">🎉</div>
+                            <p><strong>¡Excelente!</strong> Has completado el simulador de arqueo de caja.</p>
+                            <button class="btn btn-secondary" onclick="startSimulator()">🔄 Repetir simulación</button>
+                        </div>
+                    `;
+                    SinnutTraining.updateProgress('simulator_arqueo', 100);
+                    SinnutTraining.trackEvent('simulator_completed', { module: 'arqueo-caja' });
+                    break;
+            }
+        }
+
+        function openChat() {
+            SinnutTraining.showNotification('Función de chat en desarrollo. Por ahora, puedes contactar por email: soporte.ti@oroexpress.com.co', 'info');
+        }
+    </script>
+</body>
+</html>

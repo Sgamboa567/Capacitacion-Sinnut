@@ -1,0 +1,48 @@
+{
+  "name": "capacitacion-sinnut-erp",
+  "version": "2.0.0",
+  "description": "Plataforma de capacitación integral para el sistema ERP Sinnut, optimizada para Canvas LMS",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000",
+    "deploy": "echo 'Deploying to GitHub Pages...'",
+    "test": "echo 'No tests specified'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sgamboa567/Capacitacion-Sinnut.git"
+  },
+  "keywords": [
+    "sinnut",
+    "erp",
+    "capacitacion",
+    "canvas-lms",
+    "educational",
+    "responsive",
+    "training",
+    "arqueo-caja",
+    "contabilidad"
+  ],
+  "author": {
+    "name": "Equipo de Capacitación Sinnut",
+    "email": "soporte.ti@oroexpress.com.co"
+  },
+  "license": "MIT",
+  "homepage": "https://sgamboa567.github.io/Capacitacion-Sinnut",
+  "bugs": {
+    "url": "https://github.com/Sgamboa567/Capacitacion-Sinnut/issues",
+    "email": "soporte.ti@oroexpress.com.co"
+  },
+  "contributors": [
+    {
+      "name": "Desarrollador Principal",
+      "email": "dev@example.com"
+    }
+  ],
+  "devDependencies": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
