@@ -659,6 +659,27 @@
             margin: 0 auto var(--spacing-lg);
         }
         
+        /* Categorías de recursos */
+        .resources-category {
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 2px solid var(--neutral-200);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .category-title i {
+            color: var(--primary-color);
+        }
+        
         /* Footer institucional */
         .footer {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-darker) 100%);
@@ -1218,7 +1239,7 @@
         <section class="resources-section">
             <h2 class="section-title">
                 <i class="fas fa-download"></i>
-                Recursos Adicionales
+                Instructivos por Módulo
             </h2>
             
             <div class="alert alert-success">
@@ -1226,54 +1247,110 @@
                     <i class="fas fa-info-circle"></i>
                 </div>
                 <div>
-                    <strong>Material de Apoyo:</strong> Descarga guías, manuales y recursos complementarios 
-                    para reforzar tu aprendizaje y tener referencias rápidas durante tu trabajo.
+                    <strong>Instructivos Oficiales:</strong> Descarga las guías paso a paso para cada módulo del sistema. 
+                    Estos documentos complementan tu capacitación con procedimientos detallados y casos prácticos.
                 </div>
             </div>
 
-            <div class="resources-grid">
-                <div class="resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-file-pdf"></i>
+            <!-- Instructivos de Contabilidad/Caja -->
+            <div class="resources-category">
+                <h3 class="category-title">
+                    <i class="fas fa-calculator"></i>
+                    Módulo de Contabilidad / Caja
+                </h3>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h4>Instructivo Arqueo de Caja</h4>
+                        <p>Guía completa del proceso de arqueo, verificación y conciliación de efectivo</p>
+                        <a href="assets/documents/instructivos/Modulo-caja/Instructivo ARQUEO DE CAJA.pdf" class="btn btn-primary" download>
+                            <i class="fas fa-download"></i> Descargar PDF
+                        </a>
                     </div>
-                    <h4>Manual de Usuario</h4>
-                    <p>Guía completa del sistema ERP Sinnut con procedimientos detallados</p>
-                    <a href="assets/docs/manual-usuario-sinnut.pdf" class="btn btn-primary" download>
-                        <i class="fas fa-download"></i> Descargar PDF
-                    </a>
                 </div>
+            </div>
 
-                <div class="resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-keyboard"></i>
+            <!-- Instructivos de Contratos -->
+            <div class="resources-category">
+                <h3 class="category-title">
+                    <i class="fas fa-file-contract"></i>
+                    Módulo de Contratos
+                </h3>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <h4>Gestión de Contratos</h4>
+                        <p>Procedimientos para crear, gestionar y dar seguimiento a contratos en el sistema</p>
+                        <a href="assets/documents/instructivos/Contratos/Instructivo GESTION DE CONTRATOS.pdf" class="btn btn-primary" download>
+                            <i class="fas fa-download"></i> Descargar PDF
+                        </a>
                     </div>
-                    <h4>Atajos de Teclado</h4>
-                    <p>Combinaciones de teclas para optimizar tu productividad en el sistema</p>
-                    <a href="assets/docs/atajos-teclado.pdf" class="btn btn-secondary" download>
-                        <i class="fas fa-download"></i> Descargar
-                    </a>
                 </div>
+            </div>
 
-                <div class="resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-question-circle"></i>
+            <!-- Instructivos de Facturas -->
+            <div class="resources-category">
+                <h3 class="category-title">
+                    <i class="fas fa-file-invoice"></i>
+                    Módulo de Facturas
+                </h3>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
+                        <h4>Gestión de Facturas</h4>
+                        <p>Proceso completo de facturación, desde creación hasta gestión de documentos fiscales</p>
+                        <a href="assets/documents/instructivos/Facturas/Instructivo GESTION DE FACTURAS.pdf" class="btn btn-primary" download>
+                            <i class="fas fa-download"></i> Descargar PDF
+                        </a>
                     </div>
-                    <h4>Preguntas Frecuentes</h4>
-                    <p>Soluciones a las consultas más comunes sobre el uso del ERP</p>
-                    <a href="assets/docs/faq-sinnut.pdf" class="btn btn-secondary" download>
-                        <i class="fas fa-download"></i> Descargar
-                    </a>
+
+                    <div class="resource-card">
+                        <div class="resource-icon" style="background: linear-gradient(135deg, #22c55e, #16a34a);">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h4>Carga de Servicios</h4>
+                        <p>Instructivo actualizado para la carga y gestión de servicios (Enero 2025)</p>
+                        <a href="assets/documents/instructivos/Facturas/Instructivo CARGA DE SERVICIOS Enero 2025.pdf" class="btn btn-success" download>
+                            <i class="fas fa-download"></i> Descargar PDF
+                        </a>
+                    </div>
+
+                    <div class="resource-card">
+                        <div class="resource-icon" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h4>Plan Separe</h4>
+                        <p>Configuración y gestión del sistema de plan separe para clientes</p>
+                        <a href="assets/documents/instructivos/Facturas/Instructivo PLAN SEPARE.pdf" class="btn btn-info" download>
+                            <i class="fas fa-download"></i> Descargar PDF
+                        </a>
+                    </div>
                 </div>
+            </div>
 
-                <div class="resource-card">
-                    <div class="resource-icon">
-                        <i class="fas fa-headset"></i>
+            <!-- Soporte -->
+            <div class="resources-category">
+                <h3 class="category-title">
+                    <i class="fas fa-headset"></i>
+                    Soporte y Ayuda
+                </h3>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4>Soporte Técnico</h4>
+                        <p>Contacta con nuestro equipo especializado para resolver dudas específicas del sistema</p>
+                        <a href="mailto:soporte.ti@oroexpress.com.co" class="btn btn-success">
+                            <i class="fas fa-envelope"></i> Contactar
+                        </a>
                     </div>
-                    <h4>Soporte Técnico</h4>
-                    <p>Contacta con nuestro equipo de soporte para resolver dudas específicas</p>
-                    <a href="mailto:soporte.ti@oroexpress.com.co" class="btn btn-success">
-                        <i class="fas fa-envelope"></i> Contactar
-                    </a>
                 </div>
             </div>
         </section>
