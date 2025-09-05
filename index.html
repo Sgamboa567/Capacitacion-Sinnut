@@ -206,69 +206,79 @@
             cursor: not-allowed;
         }
         
-        /* WhatsApp floating button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-        
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
-        }
-        
-        .whatsapp-float svg {
-            width: 30px;
-            height: 30px;
-            fill: white;
-        }
-        
         /* Scroll to top mejorado */
         .scroll-to-top {
             position: fixed;
-            bottom: 90px;
+            bottom: 30px;
             right: 20px;
-            width: 50px;
-            height: 50px;
-            background: #0D2339;
-            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #0D2339 0%, #1a3b5c 100%);
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             cursor: pointer;
             z-index: 999;
-            box-shadow: 0 4px 15px rgba(13, 35, 57, 0.4);
+            box-shadow: 0 8px 25px rgba(13, 35, 57, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
         }
         
         .scroll-to-top.visible {
             opacity: 1;
             visibility: visible;
+            transform: scale(1);
         }
         
         .scroll-to-top:hover {
-            background: #1a3b5c;
-            transform: translateY(-2px);
+            background: linear-gradient(135deg, #1a3b5c 0%, #2E86AB 100%);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(13, 35, 57, 0.5);
+            border-color: rgba(255, 255, 255, 0.2);
         }
         
-        .scroll-to-top svg {
-            width: 24px;
-            height: 24px;
-            fill: white;
+        .scroll-to-top:active {
+            transform: translateY(-2px) scale(0.98);
+        }
+        
+        .scroll-to-top .scroll-icon {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: bounce 2s infinite;
+        }
+        
+        .scroll-to-top .arrow {
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 10px solid white;
+            margin-bottom: 2px;
+        }
+        
+        .scroll-to-top .line {
+            width: 2px;
+            height: 12px;
+            background: white;
+            border-radius: 1px;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-3px);
+            }
+            60% {
+                transform: translateY(-2px);
+            }
         }
         
         /* Quick actions */
@@ -356,12 +366,12 @@
     <div class="main-container animate-in">
         <!-- Barra de navegación superior -->
         <nav class="top-nav">
-            <img src="assets/images/Logos/Logo Completo Negro.png" alt="Sinnut" class="nav-logo">
+            <img src="assets/images/Logos/Logo Completo Blanco.png" alt="Sinnut" class="nav-logo">
             <div class="nav-links">
                 <a href="#modulos" class="nav-link">📚 Módulos</a>
                 <a href="faq.html" class="nav-link">❓ FAQ</a>
                 <a href="#evaluacion" class="nav-link">🎯 Evaluación</a>
-                <a href="mailto:soporte.ti@oroexpress.com.co" class="nav-link">📧 Soporte</a>
+                <a href="https://wa.me/573164706103?text=Hola,%20necesito%20ayuda%20con%20el%20curso%20de%20Sinnut%20ERP" class="nav-link" target="_blank">� Soporte</a>
             </div>
         </nav>
 
@@ -434,6 +444,18 @@
                             </div>
                             <a href="modulos/contabilidad/arqueo-caja.html" class="lesson-button">Acceder</a>
                         </div>
+                        
+                        <div class="lesson-card">
+                            <span class="lesson-status status-available">✅ Disponible</span>
+                            <h4 style="margin: 10px 0; color: #333;">Apertura de Caja</h4>
+                            <p style="color: #666; font-size: 0.9rem; line-height: 1.4;">
+                                Procedimiento para iniciar operaciones de caja al comenzar el día.
+                            </p>
+                            <div style="margin: 10px 0; font-size: 0.8rem; color: #888;">
+                                ⏱️ 20 min • 🎬 Video + Práctica
+                            </div>
+                            <a href="modulos/contabilidad/apertura-caja.html" class="lesson-button">Acceder</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -450,7 +472,7 @@
                     </div>
                     <div class="module-toggle" id="toggle-contratos">⬇️</div>
                 </div>
-                <div class="module-content expanded" id="content-contratos">
+                <div class="module-content" id="content-contratos">
                     <div class="module-lessons">
                         <div class="lesson-card">
                             <span class="lesson-status status-available">✅ Disponible</span>
@@ -557,39 +579,6 @@
             </div>
         </section>
 
-        <!-- Evaluación Final -->
-        <div id="evaluacion" class="module-section" style="border-left-color: #e74c3c;">
-            <div style="padding: 25px; text-align: center;">
-                <div class="module-icon" style="background: linear-gradient(135deg, #e74c3c 0%, #ec7063 100%); margin: 0 auto 20px;">🎯</div>
-                <h2 style="color: #e74c3c; margin-bottom: 15px; font-size: 1.4rem;">Evaluación Final</h2>
-                <p style="color: #666; margin-bottom: 20px; max-width: 600px; margin-left: auto; margin-right: auto;">
-                    Demuestra tus conocimientos con una evaluación integral de todos los módulos.
-                </p>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 15px; margin: 20px 0; max-width: 400px; margin-left: auto; margin-right: auto;">
-                    <div style="text-align: center;">
-                        <div style="font-size: 1.3rem; color: #0D2339; font-weight: bold;">20</div>
-                        <div style="font-size: 0.8rem; color: #666;">Preguntas</div>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="font-size: 1.3rem; color: #0D2339; font-weight: bold;">30</div>
-                        <div style="font-size: 0.8rem; color: #666;">Minutos</div>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="font-size: 1.3rem; color: #0D2339; font-weight: bold;">70%</div>
-                        <div style="font-size: 0.8rem; color: #666;">Nota mínima</div>
-                    </div>
-                </div>
-                
-                <a href="modulos/cierre-evaluacion/pagina-final-curso.html" 
-                   style="background: #e74c3c; color: white; padding: 12px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: all 0.3s ease; display: inline-block;"
-                   onmouseover="this.style.background='#c0392b'"
-                   onmouseout="this.style.background='#e74c3c'">
-                    🎯 Ir a Evaluación Final
-                </a>
-            </div>
-        </div>
-
         <!-- Recursos de apoyo simplificado -->
         <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 25px 0; text-align: center;">
             <h3 style="color: #333; margin-bottom: 15px; font-size: 1.2rem;">📞 ¿Necesitas ayuda?</h3>
@@ -602,12 +591,31 @@
                    style="background: #2E86AB; font-size: 0.9rem;">
                     📧 Email
                 </a>
+                <a href="https://wa.me/573164706103?text=Hola,%20necesito%20ayuda%20con%20el%20curso%20de%20Sinnut%20ERP" 
+                   class="action-btn primary" 
+                   target="_blank"
+                   style="background: #25D366; font-size: 0.9rem;">
+                    💬 WhatsApp
+                </a>
                 <a href="faq.html" 
                    class="action-btn secondary" 
                    style="font-size: 0.9rem;">
                     ❓ FAQ
                 </a>
             </div>
+        </div>
+
+        <!-- Evaluación Final (Sección reducida) -->
+        <div id="evaluacion" style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 25px 0; text-align: center; border-left: 4px solid #e74c3c;">
+            <h3 style="color: #e74c3c; margin-bottom: 10px; font-size: 1.1rem;">🎯 Evaluación Final</h3>
+            <p style="color: #666; margin-bottom: 15px; font-size: 0.9rem;">
+                Completa todos los módulos para acceder a la evaluación final y obtener tu certificación.
+            </p>
+            <a href="modulos/cierre-evaluacion/pagina-final-curso.html" 
+               class="action-btn primary"
+               style="background: #e74c3c; font-size: 0.9rem;">
+                🎯 Ir a Evaluación
+            </a>
         </div>
 
         <!-- Footer simplificado -->
@@ -619,21 +627,12 @@
         </footer>
     </div>
 
-    <!-- WhatsApp floating button -->
-    <a href="https://wa.me/573164706103?text=Hola,%20necesito%20ayuda%20con%20el%20curso%20de%20Sinnut%20ERP" 
-       class="whatsapp-float" 
-       target="_blank"
-       title="Contactar por WhatsApp">
-        <svg viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
-        </svg>
-    </a>
-
     <!-- Scroll to top button -->
     <div class="scroll-to-top" id="scrollToTop">
-        <svg viewBox="0 0 24 24">
-            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
-        </svg>
+        <div class="scroll-icon">
+            <div class="arrow"></div>
+            <div class="line"></div>
+        </div>
     </div>
 
     <!-- JavaScript principal -->
