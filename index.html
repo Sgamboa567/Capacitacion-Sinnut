@@ -1077,7 +1077,7 @@
             outline-offset: 2px;
         }
 
-        /* Estilos para Instructivos Colapsibles */
+        /* Estilos para Instructivos Colapsables */
         .instructivos-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -1091,10 +1091,12 @@
             background: white;
             overflow: hidden;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .instructivo-module-card:hover {
-            box-shadow: 0 4px 12px rgba(13, 35, 57, 0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
         }
 
         .module-card-header {
@@ -1103,21 +1105,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-            transition: background 0.3s ease;
+            background: #f8fafc;
+            border-bottom: 1px solid #e5e7eb;
+            transition: background-color 0.3s ease;
         }
 
         .module-card-header:hover {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-            color: white;
-        }
-
-        .module-card-header:hover .toggle-icon {
-            color: white;
-        }
-
-        .module-card-header:hover .module-icon {
-            transform: scale(1.1);
+            background: #f1f5f9;
         }
 
         .module-info {
@@ -1127,57 +1121,80 @@
         }
 
         .module-info .module-icon {
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
         }
 
         .module-info h3 {
-            margin: 0 0 4px 0;
-            font-size: 1.1rem;
+            margin: 0;
+            font-size: 1.125rem;
             font-weight: 600;
             color: var(--primary-color);
         }
 
         .module-info p {
-            margin: 0;
-            font-size: 0.85rem;
+            margin: 4px 0 0 0;
+            font-size: 0.875rem;
             color: #6b7280;
         }
 
         .toggle-icon {
-            color: var(--primary-color);
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            transition: all 0.3s ease;
+            color: #6b7280;
+        }
+
+        .toggle-icon:hover {
+            background: var(--primary-color);
+            color: white;
         }
 
         .instructivos-content {
             max-height: 0;
+            opacity: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-out;
+            transition: all 0.4s ease;
             background: white;
+            padding: 0 20px;
         }
 
         .instructivos-content.active {
-            max-height: 500px;
-            transition: max-height 0.5s ease-in;
+            opacity: 1;
+            padding: 20px;
         }
 
         .instructivo-item {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 16px 20px;
-            border-bottom: 1px solid #f1f5f9;
+            align-items: center;
+            padding: 16px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            background: #fafafa;
+            transition: all 0.3s ease;
+        }
+
+        .instructivo-item:hover {
+            background: #f0f9ff;
+            border-color: var(--info-color);
+            transform: translateX(4px);
         }
 
         .instructivo-item:last-child {
-            border-bottom: none;
+            margin-bottom: 0;
         }
 
         .instructivo-info {
@@ -1188,28 +1205,29 @@
         }
 
         .instructivo-info i {
-            color: #dc2626;
-            font-size: 1.1rem;
-            width: 20px;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            width: 24px;
+            text-align: center;
         }
 
         .instructivo-info h4 {
-            margin: 0 0 2px 0;
-            font-size: 0.95rem;
+            margin: 0;
+            font-size: 1rem;
             font-weight: 600;
-            color: #374151;
+            color: var(--primary-color);
         }
 
         .instructivo-info p {
-            margin: 0;
-            font-size: 0.8rem;
+            margin: 2px 0 0 0;
+            font-size: 0.875rem;
             color: #6b7280;
         }
 
         .btn-sm {
-            padding: 8px 12px;
-            font-size: 0.8rem;
-            border-radius: 6px;
+            padding: 8px 16px;
+            font-size: 0.875rem;
+            min-width: 80px;
         }
 
         @media (max-width: 768px) {
@@ -2142,15 +2160,25 @@
             }
         }
 
-        // Funcionalidad para instructivos colapsibles
+        // Funcionalidad para instructivos colapsables
         function toggleInstructivos(moduleId) {
+            console.log(`Intentando toggle para módulo: ${moduleId}`);
+            
             const content = document.getElementById(`content-${moduleId}`);
             const toggle = document.getElementById(`toggle-${moduleId}`);
             
             if (!content || !toggle) {
                 console.error(`Elemento no encontrado para moduleId: ${moduleId}`);
+                console.log('Elementos encontrados:', {
+                    content: !!content,
+                    toggle: !!toggle
+                });
                 return;
             }
+            
+            // Verificar si ya está activo
+            const isActive = content.classList.contains('active');
+            console.log(`Estado actual del módulo ${moduleId}: ${isActive ? 'activo' : 'inactivo'}`);
             
             // Cerrar otros instructivos abiertos
             const allContents = document.querySelectorAll('.instructivos-content');
@@ -2159,6 +2187,8 @@
             allContents.forEach(otherContent => {
                 if (otherContent !== content && otherContent.classList.contains('active')) {
                     otherContent.classList.remove('active');
+                    otherContent.style.maxHeight = '0';
+                    otherContent.style.opacity = '0';
                 }
             });
             
@@ -2168,45 +2198,82 @@
                 }
             });
             
-            // Toggle el actual
-            if (content.classList.contains('active')) {
-                content.classList.remove('active');
-                toggle.style.transform = 'rotate(0deg)';
-            } else {
+            // Si no estaba activo, abrirlo
+            if (!isActive) {
                 content.classList.add('active');
+                // Calcular altura real del contenido
+                const actualHeight = content.scrollHeight;
+                content.style.maxHeight = actualHeight + 'px';
+                content.style.opacity = '1';
                 toggle.style.transform = 'rotate(180deg)';
+                
+                console.log(`Instructivos expandidos para: ${moduleId}, altura: ${actualHeight}px`);
+            } else {
+                // Si estaba activo, cerrarlo
+                content.classList.remove('active');
+                content.style.maxHeight = '0';
+                content.style.opacity = '0';
+                toggle.style.transform = 'rotate(0deg)';
+                
+                console.log(`Instructivos colapsados para: ${moduleId}`);
             }
         }
 
-        // Función para manejar descargas de PDFs
-        function downloadPDF(url, filename) {
-            console.log(`Intentando descargar: ${url}`);
-            
-            // Verificar si el archivo existe antes de intentar descargarlo
-            fetch(url, { method: 'HEAD' })
-                .then(response => {
-                    if (response.ok) {
-                        // El archivo existe, proceder con la descarga
-                        const link = document.createElement('a');
-                        link.href = url;
-                        link.download = filename || 'instructivo.pdf';
-                        link.target = '_blank';
-                        
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                        
-                        console.log(`Descarga iniciada para: ${filename}`);
-                    } else {
-                        console.error(`Archivo no encontrado: ${url}`);
-                        alert('Lo sentimos, el archivo no está disponible en este momento.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error verificando archivo:', error);
-                    // Intentar descarga directa como fallback
-                    window.open(url, '_blank');
-                });
+        // Función mejorada para descargar PDFs
+        async function downloadPDF(url, filename) {
+            try {
+                console.log(`Intentando descargar: ${url}`);
+                
+                // Mostrar indicador de carga
+                const originalText = event.target.innerHTML;
+                event.target.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Descargando...';
+                event.target.disabled = true;
+                
+                // Verificar si el archivo existe
+                const response = await fetch(url, { method: 'HEAD' });
+                
+                if (response.ok) {
+                    // Crear enlace de descarga
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = filename;
+                    link.target = '_blank';
+                    
+                    // Agregar al DOM, hacer clic y remover
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    // Mostrar mensaje de éxito
+                    event.target.innerHTML = '<i class="fas fa-check"></i> Descargado';
+                    event.target.style.backgroundColor = 'var(--success-color)';
+                    
+                    setTimeout(() => {
+                        event.target.innerHTML = originalText;
+                        event.target.disabled = false;
+                        event.target.style.backgroundColor = '';
+                    }, 2000);
+                    
+                    console.log(`Descarga iniciada para: ${filename}`);
+                } else {
+                    throw new Error(`Archivo no encontrado: ${response.status}`);
+                }
+            } catch (error) {
+                console.error('Error en descarga:', error);
+                
+                // Mostrar mensaje de error
+                event.target.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error';
+                event.target.style.backgroundColor = 'var(--danger-color)';
+                
+                setTimeout(() => {
+                    event.target.innerHTML = originalText;
+                    event.target.disabled = false;
+                    event.target.style.backgroundColor = '';
+                }, 2000);
+                
+                // Mostrar alerta al usuario
+                alert(`Lo sentimos, el archivo "${filename}" no está disponible en este momento. Por favor, contacta con soporte técnico.`);
+            }
         }
 
         // Animaciones de entrada progresivas
