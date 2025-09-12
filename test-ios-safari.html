@@ -43,7 +43,7 @@
     </style>
 </head>
 <body>
-    <h1>🍎 Test Específico iOS Safari</h1>
+    <h1>🍎 Test iOS Safari - CORRECCIÓN v2.0</h1>
     
     <div class="test-container">
         <h2>📱 Información iOS</h2>
@@ -51,7 +51,41 @@
     </div>
 
     <div class="test-container">
-        <h2>🎬 Test 1: Video Básico</h2>
+        <h2>📋 COMPARACIÓN DE CONFIGURACIONES</h2>
+        <div class="status error">
+            <strong>❌ ANTES (No funcionaba):</strong><br>
+            playsinline<br>
+            webkit-playsinline<br>
+            muted<br>
+            preload="metadata"
+        </div>
+        <div class="status success">
+            <strong>✅ DESPUÉS (Corregido para iOS Safari 18.6):</strong><br>
+            playsinline="true"<br>
+            webkit-playsinline="true"<br>
+            muted="true"<br>
+            preload="none"<br>
+            x-webkit-airplay="allow"
+        </div>
+    </div>
+
+    <div class="test-container">
+        <h2>🎯 Test NUEVA CONFIGURACIÓN CORREGIDA</h2>
+        <video id="videoCorrected" 
+               controls 
+               preload="none"
+               playsinline="true"
+               webkit-playsinline="true"
+               muted="true"
+               x-webkit-airplay="allow">
+            <source src="assets/videos/Caja/apertura-caja/2025-09-04 16-27-28 (Copy).mp4" type="video/mp4">
+        </video>
+        <div id="statusCorrected" class="status info">Nueva configuración iOS Safari 18.6</div>
+        <button onclick="testVideo('videoCorrected', 'statusCorrected')">🚀 Probar Configuración Corregida</button>
+    </div>
+
+    <div class="test-container">
+        <h2>❌ Test 1: Video Básico (ANTES - PROBLEMA)</h2>
         <video id="video1" 
                controls 
                preload="none"
@@ -59,12 +93,12 @@
                webkit-playsinline>
             <source src="assets/videos/Caja/apertura-caja/2025-09-04 16-27-28 (Copy).mp4" type="video/mp4">
         </video>
-        <div id="status1" class="status info">Sin iniciar</div>
-        <button onclick="testVideo('video1', 'status1')">🎵 Cargar y Reproducir</button>
+        <div id="status1" class="status warning">Configuración ANTERIOR (no funciona en iOS 18.6)</div>
+        <button onclick="testVideo('video1', 'status1')">❌ Probar Configuración Anterior</button>
     </div>
 
     <div class="test-container">
-        <h2>🎬 Test 2: Video con Muted</h2>
+        <h2>❌ Test 2: Video con Muted (ANTES - PROBLEMA)</h2>
         <video id="video2" 
                controls 
                preload="none"
@@ -73,6 +107,9 @@
                muted>
             <source src="assets/videos/Caja/apertura-caja/2025-09-04 16-27-28 (Copy).mp4" type="video/mp4">
         </video>
+        <div id="status2" class="status warning">Configuración ANTERIOR con muted (sigue sin funcionar)</div>
+        <button onclick="testVideo('video2', 'status2')">❌ Probar con Muted Anterior</button>
+    </div>
         <div id="status2" class="status info">Sin iniciar</div>
         <button onclick="testVideo('video2', 'status2')">🔇 Cargar y Reproducir (Muted)</button>
     </div>
@@ -103,7 +140,11 @@
         function log(message) {
             eventCount++;
             const logDiv = document.getElementById('eventLog');
-            logDiv.innerHTML = `<strong>📝 Log ${eventCount}:</strong><br>${message}<br><br>${logDiv.innerHTML}`;
+            const timestamp = new Date().toLocaleTimeString();
+            const isSuccess = message.includes('canplay') || message.includes('loadeddata') || message.includes('exitoso');
+            const isError = message.includes('ERROR') || message.includes('falló');
+            const icon = isSuccess ? '✅' : isError ? '❌' : '📝';
+            logDiv.innerHTML = `<strong>${icon} Log ${eventCount} (${timestamp}):</strong><br>${message}<br><br>${logDiv.innerHTML}`;
         }
 
         function showIosInfo() {
@@ -121,8 +162,10 @@
                 <strong>🍎 iOS:</strong> ${info.isIOS ? 'Sí' : 'No'}<br>
                 <strong>🦁 Safari:</strong> ${info.isSafari ? 'Sí' : 'No'}<br>
                 <strong>📱 Versión:</strong> ${info.version}<br>
-                <strong>✅ Soporta playsinline:</strong> ${info.supports.playsinline ? 'Sí' : 'No'}<br>
-                <strong>✅ Soporta webkit-playsinline:</strong> ${info.supports.webkitPlaysinline ? 'Sí' : 'No'}
+                <strong>✅ Soporta playsinline:</strong> ${info.supports.playsinline ? 'Sí ✅' : 'No ❌'}<br>
+                <strong>✅ Soporta webkit-playsinline:</strong> ${info.supports.webkitPlaysinline ? 'Sí ✅' : 'No ❌'}<br>
+                <strong>🔍 Fecha Test:</strong> ${new Date().toLocaleString()}<br>
+                <strong>📊 Tests Disponibles:</strong> Configuración Corregida vs Anterior
             `;
         }
 
