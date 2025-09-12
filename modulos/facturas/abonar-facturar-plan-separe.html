@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -41,7 +41,7 @@
             /* Text Colors */
             --text-primary: #1e293b;
             --text-secondary: #64748b;
-            --text-muted: #94a3b8;
+            --text-muted="true": #94a3b8;
             --text-inverse: #ffffff;
             
             /* Spacing System */
@@ -239,7 +239,7 @@
             box-shadow: var(--shadow-lg);
         }
 
-        /* Navegación Breadcrumb Sticky */
+        /* NavegaciÃ³n Breadcrumb Sticky */
         .nav-breadcrumb {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
@@ -682,7 +682,7 @@
             line-height: var(--line-height-relaxed);
         }
 
-        /* Footer de Navegación del Curso */
+        /* Footer de NavegaciÃ³n del Curso */
         .course-footer {
             background: linear-gradient(135deg, var(--neutral-50) 0%, white 100%);
             border: 2px solid var(--neutral-200);
@@ -1032,20 +1032,20 @@
 </head>
 <body>
     <div class="container">
-        <!-- Navegación Breadcrumb Sticky -->
+        <!-- NavegaciÃ³n Breadcrumb Sticky -->
         <nav class="nav-breadcrumb" id="navBreadcrumb">
             <a href="../../index.html">
                 <i class="fas fa-home"></i> Inicio
             </a>
-            <span class="separator">•</span>
-            <a href="introduccion-facturas.html">Introducción</a>
-            <span class="separator">•</span>
+            <span class="separator">â€¢</span>
+            <a href="introduccion-facturas.html">IntroducciÃ³n</a>
+            <span class="separator">â€¢</span>
             <a href="factura-de-venta.html">Factura de Venta</a>
-            <span class="separator">•</span>
+            <span class="separator">â€¢</span>
             <a href="crear-plan-separe.html">Crear Plan Separe</a>
-            <span class="separator">•</span>
+            <span class="separator">â€¢</span>
             <a href="consultar-plan-separe.html">Consultar Plan Separe</a>
-            <span class="separator">•</span>
+            <span class="separator">â€¢</span>
             <span style="color: var(--primary-color); font-weight: 600;">Abonar y Facturar Plan Separe</span>
         </nav>
 
@@ -1056,7 +1056,7 @@
                     <i class="fas fa-credit-card"></i>
                 </div>
                 <h1>Abonar y Facturar Plan Separe</h1>
-                <p>Domina el proceso completo de gestión de planes separe: desde registrar abonos parciales hasta generar la factura definitiva cuando el cliente complete el pago total</p>
+                <p>Domina el proceso completo de gestiÃ³n de planes separe: desde registrar abonos parciales hasta generar la factura definitiva cuando el cliente complete el pago total</p>
                 
                 <div class="header-badges">
                     <div class="badge">
@@ -1075,11 +1075,11 @@
             </div>
         </div>
 
-        <!-- Introducción -->
+        <!-- IntroducciÃ³n -->
         <section class="section animate-in">
             <h2>
                 <i class="fas fa-lightbulb"></i>
-                ¿Qué es abonar y facturar un plan separe?
+                Â¿QuÃ© es abonar y facturar un plan separe?
             </h2>
             <p style="font-size: var(--font-size-lg); line-height: var(--line-height-relaxed); margin-bottom: var(--spacing-xl); color: var(--text-secondary);">
                 Cuando un cliente ha separado un producto mediante un plan separe, puede realizar abonos parciales hasta completar el valor total. Una vez completado el pago, se puede generar la factura definitiva para formalizar la venta.
@@ -1089,12 +1089,12 @@
                 <i class="fas fa-info-circle"></i>
                 <div>
                     <strong>Proceso dual:</strong> 
-                    <p>Primero aprenderás a registrar abonos parciales, y luego cómo convertir el plan separe en una factura definitiva cuando el pago esté completo.</p>
+                    <p>Primero aprenderÃ¡s a registrar abonos parciales, y luego cÃ³mo convertir el plan separe en una factura definitiva cuando el pago estÃ© completo.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Primera Sección: Abonar Plan Separe -->
+        <!-- Primera SecciÃ³n: Abonar Plan Separe -->
         <section class="section animate-in">
             <h2>
                 <i class="fas fa-piggy-bank"></i>
@@ -1107,17 +1107,17 @@
             <div class="alert alert-info">
                 <i class="fas fa-stopwatch"></i>
                 <div>
-                    <strong>Tiempo estimado de operación:</strong>
+                    <strong>Tiempo estimado de operaciÃ³n:</strong>
                     <p>Aproximadamente 30 segundos para registrar cada abono en el sistema.</p>
                 </div>
             </div>
             
             <div class="video-container">
                 <video controls="controls" 
-                       preload="metadata"
-                       playsinline
-                       webkit-playsinline
-                       muted
+                       preload="none"
+                       playsinline="true"
+                       webkit-playsinline="true"
+                       muted="true"
                        poster="../../assets/images/video-placeholder.jpg">
                     <source src="../../assets/videos/Facturas/plan separe 2 (abonos).mp4" type="video/mp4">
                     <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #666;">
@@ -1125,7 +1125,7 @@
                         <a href="../../assets/videos/Facturas/plan separe 2 (abonos).mp4" 
                            download 
                            style="color: var(--accent-color); text-decoration: none; font-weight: bold;">
-                            📥 Descargar video
+                            ðŸ“¥ Descargar video
                         </a>
                     </div>
                 </video>
@@ -1140,10 +1140,10 @@
                 <div class="step">
                     <div class="step-header">
                         <div class="step-number">1</div>
-                        <div class="step-title">Acceder al Módulo</div>
+                        <div class="step-title">Acceder al MÃ³dulo</div>
                     </div>
                     <div class="step-description">
-                        En el módulo <strong>Gestión de ventas</strong>, selecciona <strong>Plan Separe</strong> y localiza el plan separe específico usando la secuencia o el documento del cliente.
+                        En el mÃ³dulo <strong>GestiÃ³n de ventas</strong>, selecciona <strong>Plan Separe</strong> y localiza el plan separe especÃ­fico usando la secuencia o el documento del cliente.
                     </div>
                 </div>
 
@@ -1153,7 +1153,7 @@
                         <div class="step-title">Acceder al Plan</div>
                     </div>
                     <div class="step-description">
-                        Ingresa al plan separe seleccionado y localiza el botón <strong>Abonar</strong> para iniciar el proceso de registro del pago parcial.
+                        Ingresa al plan separe seleccionado y localiza el botÃ³n <strong>Abonar</strong> para iniciar el proceso de registro del pago parcial.
                     </div>
                 </div>
 
@@ -1163,13 +1163,13 @@
                         <div class="step-title">Registrar Abono</div>
                     </div>
                     <div class="step-description">
-                        Ingresa el monto del abono que el cliente está realizando, selecciona el medio de pago correspondiente y haz clic en <strong>Causar y pagar</strong> para confirmar el registro.
+                        Ingresa el monto del abono que el cliente estÃ¡ realizando, selecciona el medio de pago correspondiente y haz clic en <strong>Causar y pagar</strong> para confirmar el registro.
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Segunda Sección: Facturar Plan Separe -->
+        <!-- Segunda SecciÃ³n: Facturar Plan Separe -->
         <section class="section animate-in">
             <h2>
                 <i class="fas fa-receipt"></i>
@@ -1182,17 +1182,17 @@
             <div class="alert alert-success">
                 <i class="fas fa-stopwatch"></i>
                 <div>
-                    <strong>Tiempo estimado de operación:</strong>
-                    <p>Aproximadamente 1:30 minutos para completar el proceso de facturación final.</p>
+                    <strong>Tiempo estimado de operaciÃ³n:</strong>
+                    <p>Aproximadamente 1:30 minutos para completar el proceso de facturaciÃ³n final.</p>
                 </div>
             </div>
             
             <div class="video-container">
                 <video controls="controls" 
-                       preload="metadata"
-                       playsinline
-                       webkit-playsinline
-                       muted
+                       preload="none"
+                       playsinline="true"
+                       webkit-playsinline="true"
+                       muted="true"
                        poster="../../assets/images/video-placeholder.jpg">
                     <source src="../../assets/videos/Facturas/plan separe 3 (facturar).mp4" type="video/mp4">
                     <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #666;">
@@ -1200,7 +1200,7 @@
                         <a href="../../assets/videos/Facturas/plan separe 3 (facturar).mp4" 
                            download 
                            style="color: var(--accent-color); text-decoration: none; font-weight: bold;">
-                            📥 Descargar video
+                            ðŸ“¥ Descargar video
                         </a>
                     </div>
                 </video>
@@ -1218,17 +1218,17 @@
                         <div class="step-title">Abono Final</div>
                     </div>
                     <div class="step-description">
-                        Registra el abono final por el saldo pendiente y asegúrate de activar la casilla <strong>Facturar</strong> para indicar que se generará la factura definitiva.
+                        Registra el abono final por el saldo pendiente y asegÃºrate de activar la casilla <strong>Facturar</strong> para indicar que se generarÃ¡ la factura definitiva.
                     </div>
                 </div>
 
                 <div class="step">
                     <div class="step-header">
                         <div class="step-number">5</div>
-                        <div class="step-title">Completar Facturación</div>
+                        <div class="step-title">Completar FacturaciÃ³n</div>
                     </div>
                     <div class="step-description">
-                        Selecciona el medio de pago para el abono final y haz clic en <strong>Causar y pagar</strong>. El sistema generará automáticamente la factura y completará el proceso.
+                        Selecciona el medio de pago para el abono final y haz clic en <strong>Causar y pagar</strong>. El sistema generarÃ¡ automÃ¡ticamente la factura y completarÃ¡ el proceso.
                     </div>
                 </div>
             </div>
@@ -1239,7 +1239,7 @@
             <i class="fas fa-lightbulb"></i>
             <div>
                 <strong>Consejo Importante</strong>
-                <p>Si el botón "Facturar" no aparece disponible, verifica que el saldo esté completamente en cero. Puedes consultar el saldo pendiente en la parte superior de la vista de detalle del plan separe.</p>
+                <p>Si el botÃ³n "Facturar" no aparece disponible, verifica que el saldo estÃ© completamente en cero. Puedes consultar el saldo pendiente en la parte superior de la vista de detalle del plan separe.</p>
             </div>
         </div>
 
@@ -1247,29 +1247,29 @@
         <div class="alert alert-success">
             <i class="fas fa-tasks"></i>
             <div>
-                <strong>Ejercicio Práctico Sugerido</strong>
-                <p>Simula un caso real: crea un plan separe, realiza 2-3 abonos parciales en diferentes fechas, y luego completa el proceso con la facturación final cuando el saldo llegue a cero.</p>
+                <strong>Ejercicio PrÃ¡ctico Sugerido</strong>
+                <p>Simula un caso real: crea un plan separe, realiza 2-3 abonos parciales en diferentes fechas, y luego completa el proceso con la facturaciÃ³n final cuando el saldo llegue a cero.</p>
             </div>
         </div>
 
-        <!-- Footer de Navegación del Curso -->
+        <!-- Footer de NavegaciÃ³n del Curso -->
         <footer class="course-footer animate-in">
             <div class="course-footer-content">
                 <h3>
                     <i class="fas fa-route"></i>
-                    Navegación del Curso
+                    NavegaciÃ³n del Curso
                 </h3>
                 
                 <!-- Indicador de Progreso -->
                 <div class="progress-indicator">
-                    <div class="progress-dot completed" title="Introducción a facturas"></div>
+                    <div class="progress-dot completed" title="IntroducciÃ³n a facturas"></div>
                     <div class="progress-dot completed" title="Factura de venta"></div>
                     <div class="progress-dot completed" title="Crear Plan Separe"></div>
                     <div class="progress-dot completed" title="Consultar plan separe"></div>
-                    <div class="progress-dot current" title="Abonar y facturar plan separe - Módulo Actual"></div>
+                    <div class="progress-dot current" title="Abonar y facturar plan separe - MÃ³dulo Actual"></div>
                 </div>
 
-                <!-- Navegación Principal -->
+                <!-- NavegaciÃ³n Principal -->
                 <nav class="course-navigation">
                     <a href="consultar-plan-separe.html" class="nav-item prev">
                         <div class="nav-btn prev">
@@ -1293,12 +1293,12 @@
                     </a>
                 </nav>
 
-                <!-- Información del Módulo -->
+                <!-- InformaciÃ³n del MÃ³dulo -->
                 <div class="nav-info">
                     <p>
-                        <strong>Módulo Facturas:</strong> Abonar y Facturar Plan Separe | 
+                        <strong>MÃ³dulo Facturas:</strong> Abonar y Facturar Plan Separe | 
                         <strong>Anterior:</strong> Consultar plan separe | 
-                        <strong>Siguiente:</strong> Fin del módulo: Gestión de Facturas
+                        <strong>Siguiente:</strong> Fin del mÃ³dulo: GestiÃ³n de Facturas
                     </p>
                     <p style="margin-top: var(--spacing-sm); font-size: 0.8rem;">
                         <i class="fas fa-graduation-cap"></i>
@@ -1310,7 +1310,7 @@
     </div>
 
     <script>
-        // Sistema de Gestión del Módulo
+        // Sistema de GestiÃ³n del MÃ³dulo
         const AbonarFacturarModule = {
             init() {
                 this.setupAnimations();
@@ -1318,7 +1318,7 @@
                 this.setupVideoTracking();
                 this.setupNavigationEffects();
                 this.initializeProgressTracking();
-                console.log('🚀 Módulo Abonar y Facturar Plan Separe inicializado');
+                console.log('ðŸš€ MÃ³dulo Abonar y Facturar Plan Separe inicializado');
             },
 
             // Sistema de animaciones progresivas
@@ -1383,7 +1383,7 @@
                     });
                 });
 
-                // Navegación sticky mejorada
+                // NavegaciÃ³n sticky mejorada
                 this.setupStickyNavigation();
             },
 
@@ -1445,7 +1445,7 @@
                         if (!hasStarted) {
                             hasStarted = true;
                             this.trackVideoEvent('started', videoTitles[index], index + 1);
-                            console.log(`📹 Video ${index + 1} iniciado: ${videoTitles[index]}`);
+                            console.log(`ðŸ“¹ Video ${index + 1} iniciado: ${videoTitles[index]}`);
                         }
                     });
 
@@ -1453,7 +1453,7 @@
                         if (!hasCompleted) {
                             hasCompleted = true;
                             this.trackVideoEvent('completed', videoTitles[index], index + 1);
-                            console.log(`✅ Video ${index + 1} completado: ${videoTitles[index]}`);
+                            console.log(`âœ… Video ${index + 1} completado: ${videoTitles[index]}`);
                         }
                     });
 
@@ -1484,13 +1484,13 @@
                 existingData.push(eventData);
                 localStorage.setItem('video_progress', JSON.stringify(existingData));
 
-                // Enviar a sistema de tracking si está disponible
+                // Enviar a sistema de tracking si estÃ¡ disponible
                 if (typeof SinnutTraining !== 'undefined') {
                     SinnutTraining.trackEvent(`video_${event}`, eventData);
                 }
             },
 
-            // Configurar navegación sticky
+            // Configurar navegaciÃ³n sticky
             setupStickyNavigation() {
                 const navBreadcrumb = document.getElementById('navBreadcrumb');
                 let lastScrollY = window.scrollY;
@@ -1501,7 +1501,7 @@
 
                     navBreadcrumb.classList.toggle('scrolled', isScrolled);
 
-                    // Efecto de dirección de scroll
+                    // Efecto de direcciÃ³n de scroll
                     if (currentScrollY > lastScrollY && currentScrollY > 200) {
                         navBreadcrumb.style.transform = 'translateY(-100%)';
                     } else {
@@ -1523,12 +1523,12 @@
                 handleScroll(); // Check initial state
             },
 
-            // Configurar efectos de navegación
+            // Configurar efectos de navegaciÃ³n
             setupNavigationEffects() {
-                // Animación de entrada del footer
+                // AnimaciÃ³n de entrada del footer
                 this.animateCourseFooter();
 
-                // Efectos hover para navegación
+                // Efectos hover para navegaciÃ³n
                 document.querySelectorAll('.nav-btn').forEach(btn => {
                     btn.addEventListener('mouseenter', (e) => {
                         this.createNavigationHoverEffect(e.currentTarget);
@@ -1543,7 +1543,7 @@
                 this.setupKeyboardShortcuts();
             },
 
-            // Efecto hover para navegación
+            // Efecto hover para navegaciÃ³n
             createNavigationHoverEffect(element) {
                 element.style.transform = 'translateY(-4px) scale(1.05)';
                 element.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
@@ -1595,7 +1595,7 @@
                 });
             },
 
-            // Navegar con transición
+            // Navegar con transiciÃ³n
             navigateTo(url) {
                 const overlay = document.createElement('div');
                 overlay.style.cssText = `
@@ -1668,7 +1668,7 @@
                 // Tracking de scroll
                 this.setupScrollTracking();
 
-                // Tracking de tiempo en página
+                // Tracking de tiempo en pÃ¡gina
                 this.setupTimeTracking();
 
                 // Tracking inicial
@@ -1710,7 +1710,7 @@
                         this.completedSections.add(index);
                         this.trackEvent('section_viewed', {
                             sectionIndex: index,
-                            sectionTitle: section.querySelector('h2')?.textContent?.trim() || `Sección ${index + 1}`
+                            sectionTitle: section.querySelector('h2')?.textContent?.trim() || `SecciÃ³n ${index + 1}`
                         });
                     }
                 });
@@ -1728,7 +1728,7 @@
                     });
                 });
 
-                // Tracking periódico cada 30 segundos
+                // Tracking periÃ³dico cada 30 segundos
                 setInterval(() => {
                     this.trackEvent('heartbeat', {
                         timeSpent: Date.now() - this.startTime,
@@ -1737,7 +1737,7 @@
                 }, 30000);
             },
 
-            // Tracking de inicio del módulo
+            // Tracking de inicio del mÃ³dulo
             trackModuleStart() {
                 this.trackEvent('module_started', {
                     moduleId: 'abonar-facturar-plan-separe',
@@ -1751,7 +1751,7 @@
                 });
             },
 
-            // Función general de tracking
+            // FunciÃ³n general de tracking
             trackEvent(eventType, data) {
                 const eventData = {
                     eventType: eventType,
@@ -1763,14 +1763,14 @@
                 // Guardar en localStorage
                 const events = JSON.parse(localStorage.getItem('module_events') || '[]');
                 events.push(eventData);
-                localStorage.setItem('module_events', JSON.stringify(events.slice(-100))); // Mantener últimos 100 eventos
+                localStorage.setItem('module_events', JSON.stringify(events.slice(-100))); // Mantener Ãºltimos 100 eventos
 
-                // Enviar a sistema externo si está disponible
+                // Enviar a sistema externo si estÃ¡ disponible
                 if (typeof SinnutTraining !== 'undefined') {
                     SinnutTraining.trackEvent(eventType, eventData);
                 }
 
-                console.log(`📊 Event tracked: ${eventType}`, eventData);
+                console.log(`ðŸ“Š Event tracked: ${eventType}`, eventData);
             }
         };
 
@@ -1791,7 +1791,7 @@
         style.textContent = additionalCSS;
         document.head.appendChild(style);
 
-        // Inicializar módulo cuando el DOM esté listo
+        // Inicializar mÃ³dulo cuando el DOM estÃ© listo
         document.addEventListener('DOMContentLoaded', () => {
             AbonarFacturarModule.init();
         });
@@ -1810,10 +1810,11 @@
             });
         });
     </script>
-    <!-- Script para mejorar compatibilidad de videos en móviles -->
+    <!-- Script para mejorar compatibilidad de videos en mÃ³viles -->
     <script src="../../fix-mobile-videos.js"></script>
 </body>
 </html>
+
 
 
 

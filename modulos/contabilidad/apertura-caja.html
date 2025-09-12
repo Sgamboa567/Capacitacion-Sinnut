@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -54,7 +54,7 @@
             /* Colores de Texto */
             --text-primary: #1e293b;
             --text-secondary: #64748b;
-            --text-muted: #94a3b8;
+            --text-muted="true": #94a3b8;
             --text-white: #ffffff;
             
             /* Colores de Estado */
@@ -108,7 +108,7 @@
             --transition-normal: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
             --transition-slow: all 500ms cubic-bezier(0.4, 0, 0.2, 1);
             
-            /* Tipografía */
+            /* TipografÃ­a */
             --font-size-xs: 0.75rem;
             --font-size-sm: 0.875rem;
             --font-size-base: 1rem;
@@ -283,7 +283,7 @@
             overflow: hidden;
             box-shadow: var(--shadow-md);
             margin: var(--spacing-lg) 0;
-            /* Mejorar compatibilidad móvil */
+            /* Mejorar compatibilidad mÃ³vil */
             -webkit-transform: translateZ(0);
             transform: translateZ(0);
         }
@@ -295,12 +295,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* Atributos críticos para móviles */
+            /* Atributos crÃ­ticos para mÃ³viles */
             background-color: #000;
             outline: none;
         }
 
-        /* Mejorar controles de video en móviles */
+        /* Mejorar controles de video en mÃ³viles */
         .video-container video::-webkit-media-controls {
             opacity: 1;
         }
@@ -309,17 +309,17 @@
             background-color: rgba(0, 0, 0, 0.8);
         }
 
-        /* Responsividad específica para video */
+        /* Responsividad especÃ­fica para video */
         @media (max-width: 768px) {
             .video-container {
                 margin: var(--spacing-md) 0;
                 border-radius: var(--radius-md);
-                /* Mejorar rendimiento en móviles */
+                /* Mejorar rendimiento en mÃ³viles */
                 will-change: transform;
             }
             
             .video-container video {
-                /* Optimizar para pantallas táctiles */
+                /* Optimizar para pantallas tÃ¡ctiles */
                 -webkit-tap-highlight-color: transparent;
             }
         }
@@ -654,7 +654,7 @@
         }
 
         .checklist input[type="checkbox"]:checked::before {
-            content: '✓';
+            content: 'âœ“';
             position: absolute;
             top: 50%;
             left: 50%;
@@ -718,7 +718,7 @@
             z-index: 2;
         }
 
-        /* Footer de Navegación del Curso */
+        /* Footer de NavegaciÃ³n del Curso */
         .course-footer {
             background: linear-gradient(135deg, var(--neutral-50) 0%, white 100%);
             border: 2px solid var(--neutral-200);
@@ -1356,7 +1356,7 @@
             object-fit: cover;
         }
 
-        /* Cajas de Información Modernas */
+        /* Cajas de InformaciÃ³n Modernas */
         .info-box {
             background: linear-gradient(135deg, var(--info-light) 0%, rgba(33, 150, 243, 0.08) 100%);
             border: 1px solid var(--info-color);
@@ -1469,7 +1469,7 @@
             color: var(--success-color);
         }
 
-        /* Lista de Verificación Moderna */
+        /* Lista de VerificaciÃ³n Moderna */
         .checklist {
             list-style: none;
             margin: var(--spacing-8) 0;
@@ -1563,7 +1563,7 @@
         }
 
         .checklist input[type="checkbox"]:checked::before {
-            content: '✓';
+            content: 'âœ“';
             position: absolute;
             top: 50%;
             left: 50%;
@@ -1744,7 +1744,7 @@
             box-shadow: var(--shadow-lg);
         }
 
-        /* Navegación Moderna */
+        /* NavegaciÃ³n Moderna */
         .navigation {
             background: var(--neutral-50);
             border: 1px solid var(--neutral-200);
@@ -2052,11 +2052,11 @@
         <!-- Navigation -->
         <nav class="nav-breadcrumb">
             <a href="../../index.html"><i class="fas fa-home"></i> Inicio</a>
-            <span class="separator">•</span>
-            <a href="introduccion-contabilidad.html">Introducción</a>
-            <span class="separator">•</span>
+            <span class="separator">â€¢</span>
+            <a href="introduccion-contabilidad.html">IntroducciÃ³n</a>
+            <span class="separator">â€¢</span>
             <a href="arqueo-caja.html">Arqueo de Caja</a>
-            <span class="separator">•</span>
+            <span class="separator">â€¢</span>
             <span style="color: var(--primary-color); font-weight: 600;">Apertura de Caja</span>
         </nav>
 
@@ -2076,7 +2076,7 @@
                     </div>
                     <div class="badge">
                         <i class="fas fa-list-check"></i>
-                        5 Pasos Prácticos
+                        5 Pasos PrÃ¡cticos
                     </div>
                 </div>
             </div>
@@ -2084,10 +2084,10 @@
 
         <!-- Introduction -->
         <section class="section">
-            <h2><i class="fas fa-lightbulb"></i> ¿Qué es la Apertura de Caja?</h2>
+            <h2><i class="fas fa-lightbulb"></i> Â¿QuÃ© es la Apertura de Caja?</h2>
             <p style="font-size: 1.125rem; line-height: 1.7; margin-bottom: var(--spacing-lg);">
                 La apertura de caja es el proceso fundamental que inicia tu jornada laboral, donde registras el efectivo 
-                inicial disponible y configuras el sistema para las operaciones del día.
+                inicial disponible y configuras el sistema para las operaciones del dÃ­a.
             </p>
             
             <div class="alert alert-info">
@@ -2103,21 +2103,22 @@
         <section class="section">
             <h2><i class="fas fa-play-circle"></i> Video 1: Proceso de Apertura de Caja</h2>
             <p style="margin-bottom: var(--spacing-lg); color: var(--text-secondary);">
-                Aprende el proceso completo de apertura de caja siguiendo la navegación paso a paso en Sinnut ERP
+                Aprende el proceso completo de apertura de caja siguiendo la navegaciÃ³n paso a paso en Sinnut ERP
             </p>
             
             <div class="video-container">
                 <video id="video1Player" 
                        controls 
-                       preload="metadata"
-                       playsinline
-                       webkit-playsinline
-                       muted
+                       preload="none"
+                       playsinline="true"
+                       webkit-playsinline="true"
+                       muted="true"
+                       x-webkit-airplay="allow"
                        poster="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI4MCIgaGVpZ2h0PSI3MjAiIHZpZXdCb3g9IjAgMCAxMjgwIDcyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyODAiIGhlaWdodD0iNzIwIiBmaWxsPSIjRjhGQUZDIi8+CjxwYXRoIGQ9Ik01MTIgMjg4TDY0MCAzNjBMNTEyIDQzMlYyODhaIiBmaWxsPSIjM0I4MkY2Ii8+Cjx0ZXh0IHg9IjY0MCIgeT0iMzgwIiBmb250LWZhbWlseT0iSW50ZXIiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM2NDc0OEIiPkFwZXJ0dXJhIGRlIENhamE8L3RleHQ+Cjwvc3ZnPgo=">
                     <source src="../../assets/videos/Caja/apertura-caja/2025-09-04 16-27-28 (Copy).mp4" type="video/mp4">
                     <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
                         <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: var(--warning-color); margin-bottom: var(--spacing-md);"></i>
-                        <p>Video no disponible. Contacta con soporte técnico.</p>
+                        <p>Video no disponible. Contacta con soporte tÃ©cnico.</p>
                     </div>
                 </video>
             </div>
@@ -2127,12 +2128,12 @@
                 <div>
                     <strong>Paso a Paso - Apertura de Caja Normal:</strong>
                     <ol style="margin-top: var(--spacing-sm); padding-left: 20px;">
-                        <li>Abrir el módulo <strong>Gestión de Contabilidad</strong></li>
-                        <li>Ingresar al sub-módulo <strong>Control de Caja</strong></li>
+                        <li>Abrir el mÃ³dulo <strong>GestiÃ³n de Contabilidad</strong></li>
+                        <li>Ingresar al sub-mÃ³dulo <strong>Control de Caja</strong></li>
                         <li>Seleccionar nuevamente <strong>Control de Caja</strong></li>
-                        <li>Oprimir el <strong>icono más (+)</strong> para crear una nueva caja</li>
-                        <li>Seleccionar la <strong>joyería</strong> correspondiente</li>
-                        <li>Elegir el <strong>tipo de operación</strong></li>
+                        <li>Oprimir el <strong>icono mÃ¡s (+)</strong> para crear una nueva caja</li>
+                        <li>Seleccionar la <strong>joyerÃ­a</strong> correspondiente</li>
+                        <li>Elegir el <strong>tipo de operaciÃ³n</strong></li>
                         <li>Configurar la <strong>fecha de la caja</strong></li>
                         <li>Confirmar la apertura</li>
                     </ol>
@@ -2144,21 +2145,21 @@
         <section class="section">
             <h2><i class="fas fa-play-circle"></i> Video 2: Apertura de Caja de Contingencia</h2>
             <p style="margin-bottom: var(--spacing-lg); color: var(--text-secondary);">
-                Procedimiento específico para casos de contingencia (30 segundos)
+                Procedimiento especÃ­fico para casos de contingencia (30 segundos)
             </p>
             
             <div class="video-container">
                 <video id="video2Player" 
                        controls 
-                       preload="metadata"
-                       playsinline
-                       webkit-playsinline
-                       muted
+                       preload="none"
+                       playsinline="true"
+                       webkit-playsinline="true"
+                       muted="true"
                        poster="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI4MCIgaGVpZ2h0PSI3MjAiIHZpZXdCb3g9IjAgMCAxMjgwIDcyMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyODAiIGhlaWdodD0iNzIwIiBmaWxsPSIjRkZGM0UwIi8+CjxwYXRoIGQ9Ik01MTIgMjg4TDY0MCAzNjBMNTEyIDQzMlYyODhaIiBmaWxsPSIjRjU5RTBCIi8+Cjx0ZXh0IHg9IjY0MCIgeT0iMzgwIiBmb250LWZhbWlseT0iSW50ZXIiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM5MjQwMEUiPkNvbnRpbmdlbmNpYTwvdGV4dD4KPC9zdmc+Cg==">
                     <source src="../../assets/videos/Caja/apertura-caja/2025-09-04 17-04-32 (Copy).mp4" type="video/mp4">
                     <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
                         <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: var(--warning-color); margin-bottom: var(--spacing-md);"></i>
-                        <p>Video no disponible. Contacta con soporte técnico.</p>
+                        <p>Video no disponible. Contacta con soporte tÃ©cnico.</p>
                     </div>
                 </video>
             </div>
@@ -2168,24 +2169,24 @@
                 <div>
                     <strong>Proceso de Contingencia:</strong>
                     <ul style="margin-top: var(--spacing-sm); padding-left: 20px;">
-                        <li><strong>Comunicación previa:</strong> Debe comunicarse con el área encargada antes de proceder</li>
-                        <li><strong>Confirmación:</strong> Una vez confirmado por el área correspondiente, seleccionar la caja de contingencia</li>
-                        <li><strong>Tipo de operación:</strong> Seleccionar "Contingencia" como tipo de operación</li>
-                        <li><strong>Aprobación:</strong> Este proceso requiere autorización especial</li>
+                        <li><strong>ComunicaciÃ³n previa:</strong> Debe comunicarse con el Ã¡rea encargada antes de proceder</li>
+                        <li><strong>ConfirmaciÃ³n:</strong> Una vez confirmado por el Ã¡rea correspondiente, seleccionar la caja de contingencia</li>
+                        <li><strong>Tipo de operaciÃ³n:</strong> Seleccionar "Contingencia" como tipo de operaciÃ³n</li>
+                        <li><strong>AprobaciÃ³n:</strong> Este proceso requiere autorizaciÃ³n especial</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Tipos de Operación -->
+        <!-- Tipos de OperaciÃ³n -->
         <section class="section">
-            <h2><i class="fas fa-cogs"></i> Tipos de Operación de Caja</h2>
+            <h2><i class="fas fa-cogs"></i> Tipos de OperaciÃ³n de Caja</h2>
             <p style="margin-bottom: var(--spacing-xl); color: var(--text-secondary);">
                 Comprende las diferencias entre los tipos de apertura disponibles
             </p>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: var(--spacing-xl);">
-                <!-- Operación Normal -->
+                <!-- OperaciÃ³n Normal -->
                 <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid var(--success-color); border-radius: var(--radius-xl); padding: var(--spacing-xl); position: relative; overflow: hidden;">
                     <div style="position: absolute; top: -20px; right: -20px; width: 60px; height: 60px; background: var(--success-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
                         <i class="fas fa-check"></i>
@@ -2195,16 +2196,16 @@
                     </h3>
                     <ul style="color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--spacing-lg);">
                         <li><strong>Uso:</strong> Operaciones diarias regulares</li>
-                        <li><strong>Proceso:</strong> Seguir los 6 pasos estándar</li>
-                        <li><strong>Autorización:</strong> No requiere aprobación especial</li>
-                        <li><strong>Duración:</strong> Proceso completo en el video</li>
+                        <li><strong>Proceso:</strong> Seguir los 6 pasos estÃ¡ndar</li>
+                        <li><strong>AutorizaciÃ³n:</strong> No requiere aprobaciÃ³n especial</li>
+                        <li><strong>DuraciÃ³n:</strong> Proceso completo en el video</li>
                     </ul>
                     <div style="background: rgba(34, 197, 94, 0.1); padding: var(--spacing-md); border-radius: var(--radius-md); border-left: 4px solid var(--success-color);">
-                        <p style="color: var(--success-color); font-weight: 600; margin: 0;">✓ Recomendado para uso diario</p>
+                        <p style="color: var(--success-color); font-weight: 600; margin: 0;">âœ“ Recomendado para uso diario</p>
                     </div>
                 </div>
 
-                <!-- Operación de Contingencia -->
+                <!-- OperaciÃ³n de Contingencia -->
                 <div style="background: linear-gradient(135deg, #fff3e0 0%, #fef3c7 100%); border: 2px solid var(--warning-color); border-radius: var(--radius-xl); padding: var(--spacing-xl); position: relative; overflow: hidden;">
                     <div style="position: absolute; top: -20px; right: -20px; width: 60px; height: 60px; background: var(--warning-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
                         <i class="fas fa-exclamation-triangle"></i>
@@ -2214,33 +2215,33 @@
                     </h3>
                     <ul style="color: var(--text-secondary); line-height: 1.6; margin-bottom: var(--spacing-lg);">
                         <li><strong>Uso:</strong> Situaciones excepcionales</li>
-                        <li><strong>Proceso:</strong> Comunicación previa obligatoria</li>
-                        <li><strong>Autorización:</strong> Requiere confirmación del área encargada</li>
-                        <li><strong>Duración:</strong> Video corto (30 segundos)</li>
+                        <li><strong>Proceso:</strong> ComunicaciÃ³n previa obligatoria</li>
+                        <li><strong>AutorizaciÃ³n:</strong> Requiere confirmaciÃ³n del Ã¡rea encargada</li>
+                        <li><strong>DuraciÃ³n:</strong> Video corto (30 segundos)</li>
                     </ul>
                     <div style="background: rgba(245, 158, 11, 0.1); padding: var(--spacing-md); border-radius: var(--radius-md); border-left: 4px solid var(--warning-color);">
-                        <p style="color: var(--warning-color); font-weight: 600; margin: 0;">⚠️ Solo con autorización previa</p>
+                        <p style="color: var(--warning-color); font-weight: 600; margin: 0;">âš ï¸ Solo con autorizaciÃ³n previa</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Footer de Navegación del Curso -->
+        <!-- Footer de NavegaciÃ³n del Curso -->
         <footer class="course-footer">
             <div class="course-footer-content">
                 <h3>
                     <i class="fas fa-route"></i>
-                    Navegación del Curso
+                    NavegaciÃ³n del Curso
                 </h3>
                 
                 <!-- Indicador de Progreso -->
                 <div class="progress-indicator">
-                    <div class="progress-dot completed" title="Introducción a Contabilidad"></div>
+                    <div class="progress-dot completed" title="IntroducciÃ³n a Contabilidad"></div>
                     <div class="progress-dot completed" title="Arqueo de Caja"></div>
-                    <div class="progress-dot current" title="Apertura de Caja - Módulo Actual"></div>
+                    <div class="progress-dot current" title="Apertura de Caja - MÃ³dulo Actual"></div>
                 </div>
 
-                <!-- Navegación Principal -->
+                <!-- NavegaciÃ³n Principal -->
                 <nav class="course-navigation">
                     <a href="arqueo-caja.html" class="nav-item prev">
                         <div class="nav-btn prev">
@@ -2264,12 +2265,12 @@
                     </a>
                 </nav>
 
-                <!-- Información del Módulo -->
+                <!-- InformaciÃ³n del MÃ³dulo -->
                 <div class="nav-info">
                     <p>
-                        <strong>Módulo 2 de 2:</strong> Apertura de Caja | 
+                        <strong>MÃ³dulo 2 de 2:</strong> Apertura de Caja | 
                         <strong>Anterior:</strong> Arqueo de Caja | 
-                        <strong>Completar:</strong> Introducción a Contabilidad
+                        <strong>Completar:</strong> IntroducciÃ³n a Contabilidad
                     </p>
                     <p style="margin-top: var(--spacing-sm); font-size: 0.8rem;">
                         <i class="fas fa-graduation-cap"></i>
@@ -2282,7 +2283,7 @@
 
     <!-- JavaScript principal -->
     <script src="../../assets/js/main.js"></script>
-    <!-- Script para mejorar compatibilidad de videos en móviles -->
+    <!-- Script para mejorar compatibilidad de videos en mÃ³viles -->
     <script src="../../fix-mobile-videos.js"></script>
     <script>
         // Estado moderno del documento
@@ -2297,7 +2298,7 @@
                 this.setupVideoHandlers();
                 this.setupParallax();
                 this.setupCourseNavigation();
-                console.log('🚀 Módulo Apertura de Caja inicializado');
+                console.log('ðŸš€ MÃ³dulo Apertura de Caja inicializado');
             },
 
             // Sistema de animaciones mejorado
@@ -2318,7 +2319,7 @@
                     });
                 }, observerOptions);
 
-                // Observar diferentes tipos de elementos con animaciones específicas
+                // Observar diferentes tipos de elementos con animaciones especÃ­ficas
                 document.querySelectorAll('.section').forEach((el, index) => {
                     el.style.opacity = '0';
                     el.style.transform = 'translateY(30px)';
@@ -2333,7 +2334,7 @@
                     observer.observe(el);
                 });
 
-                // Añadir clase de animación
+                // AÃ±adir clase de animaciÃ³n
                 const style = document.createElement('style');
                 style.textContent = `
                     .animate-in {
@@ -2448,17 +2449,17 @@
                                 videoId: 'apertura_video_1',
                                 moduleId: 'apertura-caja'
                             });
-                            SinnutTraining.showNotification('Video 1 completado. ¡Continúa con el Video 2!', 'success');
+                            SinnutTraining.showNotification('Video 1 completado. Â¡ContinÃºa con el Video 2!', 'success');
                         }
                     });
 
                     video1.addEventListener('error', () => this.handleVideoError(video1, 1));
                     
-                    // Evento para cuando el usuario interactúe por primera vez (necesario para autoplay en móviles)
+                    // Evento para cuando el usuario interactÃºe por primera vez (necesario para autoplay en mÃ³viles)
                     video1.addEventListener('loadedmetadata', () => {
-                        // Activar sonido después de la primera interacción del usuario
+                        // Activar sonido despuÃ©s de la primera interacciÃ³n del usuario
                         document.addEventListener('click', () => {
-                            video1.muted = false;
+                            video1.muted="true" = false;
                         }, { once: true });
                     });
                 }
@@ -2487,10 +2488,10 @@
                                 videoId: 'apertura_video_2',
                                 moduleId: 'apertura-caja'
                             });
-                            SinnutTraining.showNotification('Video 2 completado. ¡Ahora practica lo aprendido!', 'success');
+                            SinnutTraining.showNotification('Video 2 completado. Â¡Ahora practica lo aprendido!', 'success');
                         }
                         
-                        // Mostrar celebración al completar ambos videos
+                        // Mostrar celebraciÃ³n al completar ambos videos
                         setTimeout(() => {
                             this.showCompletionCelebration();
                             const completionCard = document.getElementById('completionCard');
@@ -2505,29 +2506,29 @@
 
                     video2.addEventListener('error', () => this.handleVideoError(video2, 2));
                     
-                    // Evento para activar sonido en móviles
+                    // Evento para activar sonido en mÃ³viles
                     video2.addEventListener('loadedmetadata', () => {
                         document.addEventListener('click', () => {
-                            video2.muted = false;
+                            video2.muted="true" = false;
                         }, { once: true });
                     });
                 }
             },
 
-            // Configurar soporte específico para móviles
+            // Configurar soporte especÃ­fico para mÃ³viles
             setupMobileVideoSupport(video) {
-                // Detectar si es un dispositivo móvil
+                // Detectar si es un dispositivo mÃ³vil
                 const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
                 
                 if (isMobile) {
-                    // Configuraciones específicas para móviles
-                    video.setAttribute('playsinline', 'true');
-                    video.setAttribute('webkit-playsinline', 'true');
+                    // Configuraciones especÃ­ficas para mÃ³viles
+                    video.setAttribute('playsinline="true"', 'true');
+                    video.setAttribute('webkit-playsinline="true"', 'true');
                     
-                    // Mejorar la carga en móviles
+                    // Mejorar la carga en mÃ³viles
                     video.preload = 'none';
                     
-                    // Añadir listener para optimizar la reproducción
+                    // AÃ±adir listener para optimizar la reproducciÃ³n
                     video.addEventListener('loadstart', () => {
                         // Mostrar indicador de carga si es necesario
                         const container = video.closest('.video-container');
@@ -2555,7 +2556,7 @@
                     });
                 }
                 
-                // Configuración general para todos los dispositivos
+                // ConfiguraciÃ³n general para todos los dispositivos
                 video.addEventListener('waiting', () => {
                     console.log('Video buffering...');
                 });
@@ -2574,17 +2575,17 @@
                 
                 console.error(`Error loading video ${videoNumber}:`, video.error);
                 
-                // Detectar si es móvil para mostrar mensaje específico
+                // Detectar si es mÃ³vil para mostrar mensaje especÃ­fico
                 const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
                 
                 container.innerHTML = `
                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; background: linear-gradient(135deg, var(--neutral-100) 0%, var(--neutral-200) 100%); text-align: center; padding: var(--spacing-lg); border-radius: var(--radius-lg);">
                         <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--warning-color); margin-bottom: var(--spacing-md);"></i>
-                        <h4 style="color: var(--primary-color); margin-bottom: var(--spacing-md);">Video no disponible para reproducción</h4>
+                        <h4 style="color: var(--primary-color); margin-bottom: var(--spacing-md);">Video no disponible para reproducciÃ³n</h4>
                         <p style="margin-bottom: var(--spacing-lg); color: var(--text-secondary);">
                             ${isMobile ? 
-                                'En dispositivos móviles, algunos videos pueden requerir descarga para visualización.' : 
-                                'El video se descargará automáticamente para que puedas verlo.'}
+                                'En dispositivos mÃ³viles, algunos videos pueden requerir descarga para visualizaciÃ³n.' : 
+                                'El video se descargarÃ¡ automÃ¡ticamente para que puedas verlo.'}
                         </p>
                         <div style="display: flex; flex-direction: column; gap: var(--spacing-md); align-items: center;">
                             <a href="${videoSrc}" 
@@ -2602,8 +2603,8 @@
                             ` : ''}
                         </div>
                         ${isMobile ? `
-                            <small style="margin-top: var(--spacing-md); color: var(--text-muted); font-size: 0.875rem;">
-                                💡 Consejo: Asegúrate de tener una conexión estable a Internet
+                            <small style="margin-top: var(--spacing-md); color: var(--text-muted="true"); font-size: 0.875rem;">
+                                ðŸ’¡ Consejo: AsegÃºrate de tener una conexiÃ³n estable a Internet
                             </small>
                         ` : ''}
                     </div>
@@ -2648,16 +2649,16 @@
                 }
             },
 
-            // Configurar navegación del curso
+            // Configurar navegaciÃ³n del curso
             setupCourseNavigation() {
-                // Añadir efectos hover mejorados a los botones de navegación
+                // AÃ±adir efectos hover mejorados a los botones de navegaciÃ³n
                 document.querySelectorAll('.nav-btn').forEach(btn => {
                     btn.addEventListener('mouseenter', (e) => {
                         this.createNavigationRipple(e);
                     });
                 });
 
-                // Añadir atajos de teclado para navegación
+                // AÃ±adir atajos de teclado para navegaciÃ³n
                 document.addEventListener('keydown', (e) => {
                     if (e.ctrlKey || e.metaKey) {
                         switch(e.key) {
@@ -2678,7 +2679,7 @@
                 });
             },
 
-            // Crear efecto ripple en navegación
+            // Crear efecto ripple en navegaciÃ³n
             createNavigationRipple(e) {
                 const button = e.currentTarget;
                 const rect = button.getBoundingClientRect();
@@ -2713,7 +2714,7 @@
                 }, 800);
             },
 
-            // Métodos de navegación
+            // MÃ©todos de navegaciÃ³n
             navigateToPrevious() {
                 const prevLink = document.querySelector('.nav-item.prev a');
                 if (prevLink) {
@@ -2735,13 +2736,13 @@
                 }
             },
 
-            // Mostrar celebración de finalización
+            // Mostrar celebraciÃ³n de finalizaciÃ³n
             showCompletionCelebration() {
                 this.createConfetti();
                 
                 setTimeout(() => {
                     if (typeof SinnutTraining !== 'undefined') {
-                        SinnutTraining.showNotification('🎉 ¡Excelente! Has completado el módulo de Apertura de Caja', 'success');
+                        SinnutTraining.showNotification('ðŸŽ‰ Â¡Excelente! Has completado el mÃ³dulo de Apertura de Caja', 'success');
                     }
                 }, 500);
             },
@@ -2774,7 +2775,7 @@
             }
         };
 
-        // Inicializar cuando el DOM esté listo
+        // Inicializar cuando el DOM estÃ© listo
         document.addEventListener('DOMContentLoaded', () => {
             AperturaModule.init();
         });
