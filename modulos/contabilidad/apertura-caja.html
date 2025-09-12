@@ -168,13 +168,14 @@
             width: 200%;
             height: 200%;
             background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: shimmer 3s ease-in-out infinite;
+            /* animation: shimmer 3s ease-in-out infinite; - REMOVIDO */
         }
 
+        /* @keyframes shimmer - REMOVIDO
         @keyframes shimmer {
             0%, 100% { transform: translateX(-20px) translateY(-20px); }
             50% { transform: translateX(20px) translateY(20px); }
-        }
+        } */
 
         .header-content {
             position: relative;
@@ -319,7 +320,7 @@
             }
             
             .video-container video {
-                /* Optimizar para pantallas tÃ¡ctiles */
+                /* Optimizar para pantallas táctiles */
                 -webkit-tap-highlight-color: transparent;
             }
         }
@@ -402,14 +403,15 @@
             right: 0;
             bottom: 0;
             background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
-            animation: shine 4s ease-in-out infinite;
+            /* animation: shine 4s ease-in-out infinite; - REMOVIDO */
             pointer-events: none;
         }
 
+        /* @keyframes shine - REMOVIDO
         @keyframes shine {
             0%, 100% { transform: translateX(-100%); }
             50% { transform: translateX(100%); }
-        }
+        } */
 
         .alert:hover {
             transform: translateY(-2px);
@@ -2075,7 +2077,7 @@
                     </div>
                     <div class="badge">
                         <i class="fas fa-list-check"></i>
-                        5 Pasos PrÃ¡cticos
+                        5 Pasos Prácticos
                     </div>
                 </div>
             </div>
@@ -2102,7 +2104,7 @@
         <section class="section">
             <h2><i class="fas fa-play-circle"></i> Video 1: Proceso de Apertura de Caja</h2>
             <p style="margin-bottom: var(--spacing-lg); color: var(--text-secondary);">
-                Aprende el proceso completo de apertura de caja siguiendo la navegaciÃ³n paso a paso en Sinnut ERP
+                Aprende el proceso completo de apertura de caja siguiendo la navegación paso a paso en Sinnut ERP
             </p>
             
             <div class="video-container">
@@ -2130,7 +2132,7 @@
                         <li>Abrir el mÃ³dulo <strong>GestiÃ³n de Contabilidad</strong></li>
                         <li>Ingresar al sub-mÃ³dulo <strong>Control de Caja</strong></li>
                         <li>Seleccionar nuevamente <strong>Control de Caja</strong></li>
-                        <li>Oprimir el <strong>icono mÃ¡s (+)</strong> para crear una nueva caja</li>
+                        <li>Oprimir el <strong>icono más (+)</strong> para crear una nueva caja</li>
                         <li>Seleccionar la <strong>joyerÃ­a</strong> correspondiente</li>
                         <li>Elegir el <strong>tipo de operaciÃ³n</strong></li>
                         <li>Configurar la <strong>fecha de la caja</strong></li>
@@ -2780,7 +2782,7 @@
         });
     </script>
 
-    <!-- iOS Safari Video Solution - Solución definitiva para reproducción de videos en móviles -->
-    <script src="../../ios-video-solution.js"></script>
+    <!-- Simple iOS Safari Video Fix - Botón discreto para activar videos -->
+    <script src="../../simple-ios-video-fix.js"></script>
 </body>
 </html>
