@@ -171,11 +171,7 @@
             /* animation: shimmer 3s ease-in-out infinite; - REMOVIDO */
         }
 
-        /* @keyframes shimmer - REMOVIDO
-        @keyframes shimmer {
-            0%, 100% { transform: translateX(-20px) translateY(-20px); }
-            50% { transform: translateX(20px) translateY(20px); }
-        } */
+        /* TODOS LOS KEYFRAMES REMOVIDOS PARA EVITAR CARRUSEL */
 
         .header-content {
             position: relative;
@@ -407,11 +403,7 @@
             pointer-events: none;
         }
 
-        /* @keyframes shine - REMOVIDO
-        @keyframes shine {
-            0%, 100% { transform: translateX(-100%); }
-            50% { transform: translateX(100%); }
-        } */
+        /* TODOS LOS KEYFRAMES REMOVIDOS PARA EVITAR CARRUSEL */
 
         .alert:hover {
             transform: translateY(-2px);
@@ -2293,13 +2285,13 @@
             totalSteps: 0, // Sin checkboxes ya no hay pasos para trackear
 
             init() {
-                this.setupAnimations();
+                // this.setupAnimations(); - REMOVIDO para evitar carrusel
                 this.setupInteractions();
                 this.initializeTracking();
                 this.setupVideoHandlers();
-                this.setupParallax();
+                // this.setupParallax(); - REMOVIDO para evitar carrusel
                 this.setupCourseNavigation();
-                console.log('ðŸš€ MÃ³dulo Apertura de Caja inicializado');
+                console.log('🚀 Módulo Apertura de Caja inicializado (sin animaciones de carrusel)');
             },
 
             // Sistema de animaciones mejorado
@@ -2623,17 +2615,14 @@
                 }
             },
 
-            // Parallax sutil para el header
+            // Parallax DESHABILITADO para evitar movimientos de carrusel
             setupParallax() {
-                const header = document.querySelector('.header');
-                if (!header) return;
+                console.log('🔧 Parallax deshabilitado para evitar efectos de carrusel');
+                // No aplicar ningún transform que cause movimiento
                 
+                // Solo mantener el efecto sticky del breadcrumb sin parallax
                 window.addEventListener('scroll', () => {
                     const scrolled = window.pageYOffset;
-                    const rate = scrolled * -0.5;
-                    header.style.transform = `translateY(${rate}px)`;
-                    
-                    // Efecto sticky mejorado para breadcrumb
                     this.updateBreadcrumbOnScroll(scrolled);
                 });
             },
