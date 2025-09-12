@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fin del Módulo: Gestión de Contratos - Curso Sinnut ERP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0D2339;
+            --primary-light: #1a3b5c;
+            --primary-dark: #051119;
+            --success-color: #22c55e;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --info-color: #3b82f6;
+            --neutral-50: #f8fafc;
+            --neutral-100: #f1f5f9;
+            --neutral-200: #e2e8f0;
+            --neutral-500: #64748b;
+            --neutral-600: #475569;
+            --neutral-700: #334155;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 0.75rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--neutral-50);
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--spacing-md);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--success-color) 0%, #16a34a 100%);
+            color: white;
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translateX(-20px) translateY(-20px); }
+            50% { transform: translateX(20px) translateY(20px); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            font-size: 1.125rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto var(--spacing-lg);
+        }
+
+        .header-badges {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        /* Navigation Breadcrumb Sticky */
+        .nav-breadcrumb {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            font-size: 0.875rem;
+            position: sticky;
+            top: var(--spacing-md);
+            z-index: 100;
+            border: 1px solid var(--neutral-200);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-breadcrumb.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .nav-breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-breadcrumb a:hover {
+            color: var(--primary-light);
+        }
+
+        .separator {
+            margin: 0 var(--spacing-sm);
+            color: var(--neutral-500);
+        }
+
+        /* Section */
+        .section {
+            background: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--neutral-200);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        /* Celebration Card */
+        .celebration-card {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 3px solid var(--success-color);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+            text-align: center;
+            margin: var(--spacing-xl) 0;
+            box-shadow: 0 20px 40px 0 rgba(34, 197, 94, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .celebration-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+            animation: celebrationPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes celebrationPulse {
+            0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.5; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+        }
+
+        .celebration-icon {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Achievement Cards */
+        .achievements-container {
+            display: grid;
+            gap: var(--spacing-lg);
+            margin: var(--spacing-xl) 0;
+        }
+
+        .achievement-card {
+            background: linear-gradient(135deg, white 0%, var(--neutral-50) 100%);
+            border: 2px solid var(--neutral-200);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--success-color), var(--primary-color), var(--info-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .achievement-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .achievement-card:hover {
+            border-color: var(--success-color);
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 20px 40px 0 rgba(34, 197, 94, 0.15);
+        }
+
+        .achievement-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .achievement-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--success-color) 0%, #16a34a 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.25rem;
+            box-shadow: 0 8px 20px 0 rgba(34, 197, 94, 0.3);
+        }
+
+        .achievement-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .achievement-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Stats Card */
+        .stats-card {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 3px solid var(--info-color);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+            margin: var(--spacing-xl) 0;
+            box-shadow: 0 20px 40px 0 rgba(59, 130, 246, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .stat-item {
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            transform-origin: center;
+            user-select: none;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(13, 35, 57, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px 0 rgba(13, 35, 57, 0.35);
+            background: linear-gradient(135deg, var(--primary-light) 0%, #2a5a7f 100%);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success-color) 0%, #16a34a 100%);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(34, 197, 94, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px 0 rgba(34, 197, 94, 0.35);
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--neutral-600) 0%, var(--neutral-700) 100%);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(71, 85, 105, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px 0 rgba(71, 85, 105, 0.35);
+            background: linear-gradient(135deg, var(--neutral-700) 0%, #1e293b 100%);
+        }
+
+        .navigation-buttons {
+            display: flex;
+            gap: var(--spacing-lg);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: var(--spacing-2xl) 0;
+        }
+
+        /* Alerts */
+        .alert {
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            margin: var(--spacing-lg) 0;
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-md);
+            border-left: 4px solid;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .alert::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shine 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shine {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        .alert:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .alert i {
+            margin-top: 2px;
+            z-index: 1;
+            font-size: 1.25rem;
+        }
+
+        .alert div {
+            z-index: 1;
+            flex: 1;
+        }
+
+        .alert-success {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-color: var(--success-color);
+            color: #166534;
+        }
+
+        .alert-success i {
+            color: var(--success-color);
+        }
+
+        /* Footer de Navegación del Curso */
+        .course-footer {
+            background: linear-gradient(135deg, var(--neutral-50) 0%, white 100%);
+            border: 2px solid var(--neutral-200);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--success-color), var(--info-color));
+        }
+
+        .course-footer-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .course-footer h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+        }
+
+        .course-navigation {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .nav-item.prev {
+            justify-self: start;
+        }
+
+        .nav-item.home {
+            justify-self: center;
+        }
+
+        .nav-item.next {
+            justify-self: end;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: 2px solid var(--neutral-300);
+            border-radius: var(--radius-lg);
+            background: white;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            min-width: 150px;
+            justify-content: center;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(13, 35, 57, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-btn.prev:hover {
+            border-color: var(--warning-color);
+            background: var(--warning-color);
+            color: white;
+        }
+
+        .nav-btn.home:hover {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .nav-btn.next:hover {
+            border-color: var(--success-color);
+            background: var(--success-color);
+            color: white;
+        }
+
+        .nav-info {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--neutral-200);
+        }
+
+        .progress-indicator {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--neutral-300);
+            transition: var(--transition);
+        }
+
+        .progress-dot.completed {
+            background: var(--success-color);
+        }
+
+        .progress-dot.current {
+            background: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        /* Enhanced Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--spacing-sm);
+            }
+            
+            .header {
+                padding: var(--spacing-xl) var(--spacing-md);
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .header-badges {
+                justify-content: center;
+                gap: var(--spacing-sm);
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .badge {
+                padding: var(--spacing-xs) var(--spacing-sm);
+                font-size: 0.75rem;
+            }
+            
+            .section {
+                padding: var(--spacing-lg);
+            }
+            
+            .section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .achievement-header {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--spacing-sm);
+            }
+            
+            .achievement-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: var(--spacing-sm) var(--spacing-md);
+                font-size: 0.8rem;
+            }
+
+            .navigation-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .course-navigation {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+                text-align: center;
+            }
+
+            .nav-item {
+                justify-self: center !important;
+            }
+
+            .nav-btn {
+                width: 100%;
+                min-width: auto;
+            }
+
+            .course-footer {
+                padding: var(--spacing-lg);
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+        }
+    </style>
+</head>
+<<body>
+    <div class="container animate-in">
+        <!-- Navigation -->
+        <nav class="nav-breadcrumb">
+            <a href="../../index.html"><i class="fas fa-home"></i> Inicio</a>
+            <span class="separator">•</span>
+            <a href="introduccion-contratos.html">Introducción</a>
+            <span class="separator">•</span>
+            <a href="crear-contrato.html">Crear Contrato</a>
+            <span class="separator">•</span>
+            <a href="consultar-contrato.html">Consultar Contrato</a>
+            <span class="separator">•</span>
+            <a href="pagar-prorroga.html">Pagar Prórroga</a>
+            <span class="separator">•</span>
+            <a href="pagar-retroventa.html">Pagar Retroventa</a>
+            <span class="separator">•</span>
+            <span style="color: var(--primary-color); font-weight: 600;">Fin del Módulo</span>
+        </nav>
+
+        <!-- Header de Celebración -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-trophy"></i> ¡Módulo Completado!</h1>
+                <p>¡Felicitaciones! Has completado exitosamente el módulo de Gestión de Contratos en Sinnut ERP</p>
+                <div class="header-badges">
+                    <div class="badge">
+                        <i class="fas fa-check-circle"></i>
+                        Módulo Completado
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-medal"></i>
+                        4 Lecciones
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-clock"></i>
+                        100% Progreso
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Mensaje Principal -->
+        <section class="section">
+            <h2><i class="fas fa-graduation-cap"></i> ¡Enhorabuena!</h2>
+            <p style="font-size: 1.125rem; line-height: 1.7; margin-bottom: var(--spacing-lg);">
+                Has completado satisfactoriamente todas las lecciones del módulo de contratos en SINNUT. 
+                Ahora estás en capacidad de crear, consultar, prorrogar y cerrar contratos correctamente desde el sistema ERP.
+            </p>
+            
+            <div class="alert alert-success">
+                <i class="fas fa-lightbulb" style="font-size: 1.5rem;"></i>
+                <div>
+                    <strong>Consejo profesional:</strong> Dominar los contratos asegura la trazabilidad y legalidad 
+                    de las operaciones de compraventa con tus clientes, garantizando el éxito en tu gestión comercial.
+                </div>
+            </div>
+        </section>
+
+        <!-- Logros del Módulo -->
+        <section class="section">
+            <h2><i class="fas fa-star"></i> ¿Qué Aprendiste en Este Módulo?</h2>
+            <p style="margin-bottom: var(--spacing-xl); color: var(--text-secondary);">
+                Estos son los conocimientos y habilidades que has adquirido durante el módulo
+            </p>
+
+            <div class="achievements-container">
+                <!-- Achievement 1 -->
+                <div class="achievement-card">
+                    <div class="achievement-header">
+                        <div class="achievement-icon">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="achievement-title">Crear Contratos</div>
+                    </div>
+                    <div class="achievement-description">
+                        Cómo crear un contrato desde cero, registrando cliente, productos y condiciones específicas del acuerdo comercial.
+                    </div>
+                </div>
+
+                <!-- Achievement 2 -->
+                <div class="achievement-card">
+                    <div class="achievement-header">
+                        <div class="achievement-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="achievement-title">Consultar Documentos</div>
+                    </div>
+                    <div class="achievement-description">
+                        Cómo consultar y descargar documentos del contrato ya creado, incluyendo términos y condiciones.
+                    </div>
+                </div>
+
+                <!-- Achievement 3 -->
+                <div class="achievement-card">
+                    <div class="achievement-header">
+                        <div class="achievement-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <div class="achievement-title">Gestionar Retroventas</div>
+                    </div>
+                    <div class="achievement-description">
+                        Cómo aplicar retroventa y gestionar prórrogas de contratos según las necesidades del cliente.
+                    </div>
+                </div>
+
+                <!-- Achievement 4 -->
+                <div class="achievement-card">
+                    <div class="achievement-header">
+                        <div class="achievement-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <div class="achievement-title">Criterios de Uso</div>
+                    </div>
+                    <div class="achievement-description">
+                        Cuándo usar cada función según el estado del contrato y las mejores prácticas operativas.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Estadísticas del Módulo -->
+        <div class="stats-card">
+            <h3 style="color: var(--primary-color); font-size: 1.5rem; margin-bottom: var(--spacing-md); text-align: center;">
+                <i class="fas fa-chart-line"></i> Resumen del Módulo
+            </h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Lecciones Completadas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Videos Visualizados</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Progreso del Módulo</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Celebración Final -->
+        <div class="celebration-card">
+            <div class="celebration-icon">🎉</div>
+            <h3 style="color: var(--success-color); font-size: 1.75rem; margin-bottom: var(--spacing-md); position: relative; z-index: 2;">
+                ¡Excelente Trabajo!
+            </h3>
+            <p style="font-size: 1.125rem; margin-bottom: var(--spacing-lg); position: relative; z-index: 2;">
+                Has demostrado dedicación y compromiso con tu aprendizaje. Estás listo para aplicar estos conocimientos en tu trabajo diario.
+            </p>
+            <div style="background: rgba(255, 255, 255, 0.8); padding: var(--spacing-md); border-radius: var(--radius-lg); position: relative; z-index: 2;">
+                <strong>Próximo paso:</strong> Continúa con el módulo de Gestión de Facturas para completar tu formación integral en Sinnut ERP.
+            </div>
+        </div>
+
+        <!-- Botones de Navegación -->
+        <div class="navigation-buttons">
+            <a href="../facturas/introduccion-facturas.html" class="btn btn-success" style="font-size: 1.125rem; padding: var(--spacing-md) var(--spacing-xl);">
+                <i class="fas fa-arrow-right"></i>
+                Continuar con Gestión de Facturas
+            </a>
+            <a href="../../index.html" class="btn btn-secondary" style="font-size: 1.125rem; padding: var(--spacing-md) var(--spacing-xl);">
+                <i class="fas fa-home"></i>
+                Volver al Inicio
+            </a>
+        </div>
+
+        <!-- Footer de Navegación del Curso -->
+        <footer class="course-footer">
+            <div class="course-footer-content">
+                <h3>
+                    <i class="fas fa-route"></i>
+                    Navegación del Curso
+                </h3>
+                
+                <!-- Indicador de Progreso -->
+                <div class="progress-indicator">
+                    <div class="progress-dot completed" title="Introducción a Contratos"></div>
+                    <div class="progress-dot completed" title="Crear Contratos"></div>
+                    <div class="progress-dot completed" title="Consultar Contratos"></div>
+                    <div class="progress-dot completed" title="Pagar Prórroga"></div>
+                    <div class="progress-dot completed" title="Pagar Retroventa"></div>
+                    <div class="progress-dot current" title="Fin del Módulo: Gestión de Contratos"></div>
+                </div>
+
+                <!-- Navegación Principal -->
+                <nav class="course-navigation">
+                    <a href="pagar-retroventa.html" class="nav-item prev">
+                        <div class="nav-btn prev">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Anterior</span>
+                        </div>
+                    </a>
+
+                    <a href="../../index.html" class="nav-item home">
+                        <div class="nav-btn home">
+                            <i class="fas fa-home"></i>
+                            <span>Inicio</span>
+                        </div>
+                    </a>
+
+                    <a href="../facturas/introduccion-facturas.html" class="nav-item next">
+                        <div class="nav-btn next">
+                            <span>Siguiente</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </nav>
+
+                <!-- Información del Módulo -->
+                <div class="nav-info">
+                    <p>
+                        <strong>Módulo 6 de 6:</strong> Fin del Módulo: Gestión de Contratos | 
+                        <strong>Anterior:</strong> Pagar Retroventa | 
+                        <strong>Siguiente:</strong> Introducción a Facturas
+                    </p>
+                    <p style="margin-top: var(--spacing-sm); font-size: 0.8rem;">
+                        <i class="fas fa-graduation-cap"></i>
+                        Curso Sinnut ERP - OroExpress s.a.s
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript principal -->
+    <script src="../../assets/js/main.js"></script>
+    <script>
+        // Estado moderno del documento
+        const FinModuloContratosModule = {
+            init() {
+                this.setupAnimations();
+                this.setupInteractions();
+                this.initializeTracking();
+                this.setupCourseNavigation();
+                this.showCompletionCelebration();
+                console.log('🎉 Módulo Fin de Contratos inicializado');
+            },
+
+            // Sistema de animaciones mejorado
+            setupAnimations() {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry, index) => {
+                        if (entry.isIntersecting) {
+                            // Animaciones escalonadas para mejor UX
+                            setTimeout(() => {
+                                entry.target.classList.add('animate-in');
+                            }, index * 150);
+                        }
+                    });
+                }, observerOptions);
+
+                // Observar diferentes tipos de elementos
+                document.querySelectorAll('.section, .stats-card, .celebration-card').forEach((el) => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(30px)';
+                    observer.observe(el);
+                });
+
+                document.querySelectorAll('.achievement-card').forEach((el, index) => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        observer.observe(el);
+                    }, index * 100);
+                });
+            },
+
+            // Interacciones mejoradas
+            setupInteractions() {
+                // Efectos hover mejorados para botones
+                document.querySelectorAll('.btn').forEach(btn => {
+                    btn.addEventListener('mouseenter', this.createRippleEffect);
+                    btn.addEventListener('click', this.createClickEffect);
+                });
+
+                // Efectos de parallax sutil en el header
+                this.setupParallax();
+            },
+
+            // Efecto ripple moderno para botones
+            createRippleEffect(e) {
+                const button = e.currentTarget;
+                const rect = button.getBoundingClientRect();
+                const ripple = document.createElement('span');
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,0.3);
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                
+                button.style.position = 'relative';
+                button.style.overflow = 'hidden';
+                button.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            },
+
+            // Efecto click con feedback haptico visual
+            createClickEffect(e) {
+                const button = e.currentTarget;
+                button.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    button.style.transform = '';
+                }, 150);
+            },
+
+            // Parallax sutil para el header
+            setupParallax() {
+                const header = document.querySelector('.header');
+                if (!header) return;
+                
+                window.addEventListener('scroll', () => {
+                    const scrolled = window.pageYOffset;
+                    const rate = scrolled * -0.3;
+                    header.style.transform = `translateY(${rate}px)`;
+                    
+                    // Efecto sticky mejorado para breadcrumb
+                    this.updateBreadcrumbOnScroll(scrolled);
+                });
+            },
+
+            // Actualizar breadcrumb con el scroll
+            updateBreadcrumbOnScroll(scrolled) {
+                const breadcrumb = document.querySelector('.nav-breadcrumb');
+                if (!breadcrumb) return;
+                
+                if (scrolled > 100) {
+                    breadcrumb.classList.add('scrolled');
+                } else {
+                    breadcrumb.classList.remove('scrolled');
+                }
+            },
+
+            // Celebración de finalización
+            showCompletionCelebration() {
+                // Mostrar confetti
+                this.createConfetti();
+                
+                setTimeout(() => {
+                    if (typeof SinnutTraining !== 'undefined') {
+                        SinnutTraining.showNotification('🎉 ¡Módulo Completado!', 'Has terminado Gestión de Contratos', 'success');
+                    }
+                }, 1000);
+            },
+
+            // Efecto confetti mejorado
+            createConfetti() {
+                const colors = ['#22c55e', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6'];
+                const confettiCount = 60;
+                
+                for (let i = 0; i < confettiCount; i++) {
+                    setTimeout(() => {
+                        const confetti = document.createElement('div');
+                        confetti.style.cssText = `
+                            position: fixed;
+                            width: 12px;
+                            height: 12px;
+                            background: ${colors[Math.floor(Math.random() * colors.length)]};
+                            left: ${Math.random() * 100}vw;
+                            top: -20px;
+                            border-radius: 50%;
+                            pointer-events: none;
+                            z-index: 10000;
+                            animation: confettiFall 4s linear forwards;
+                        `;
+                        
+                        document.body.appendChild(confetti);
+                        setTimeout(() => confetti.remove(), 4000);
+                    }, i * 50);
+                }
+            },
+
+            // Configurar navegación del curso
+            setupCourseNavigation() {
+                // Añadir efectos hover mejorados a los botones de navegación
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.addEventListener('mouseenter', (e) => {
+                        this.createNavigationRipple(e);
+                    });
+                });
+
+                // Animar entrada del footer
+                this.animateCourseFooter();
+            },
+
+            // Ripple effect para navegación
+            createNavigationRipple(e) {
+                const button = e.currentTarget;
+                const rect = button.getBoundingClientRect();
+                const ripple = document.createElement('span');
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,0.4);
+                    transform: scale(0);
+                    animation: navRipple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                
+                button.style.position = 'relative';
+                button.style.overflow = 'hidden';
+                button.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            },
+
+            // Animar entrada del footer
+            animateCourseFooter() {
+                const footer = document.querySelector('.course-footer');
+                if (!footer) return;
+                
+                footer.style.opacity = '0';
+                footer.style.transform = 'translateY(50px)';
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                footer.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                                footer.style.opacity = '1';
+                                footer.style.transform = 'translateY(0)';
+                                
+                                // Animar dots de progreso
+                                this.animateProgressDots();
+                            }, 300);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+                
+                observer.observe(footer);
+            },
+
+            // Animar indicadores de progreso
+            animateProgressDots() {
+                const dots = document.querySelectorAll('.progress-dot');
+                dots.forEach((dot, index) => {
+                    setTimeout(() => {
+                        dot.style.transform = 'scale(1.3)';
+                        setTimeout(() => {
+                            dot.style.transform = dot.classList.contains('current') ? 'scale(1.2)' : 'scale(1)';
+                        }, 200);
+                    }, index * 150);
+                });
+            },
+
+            // Tracking mejorado
+            initializeTracking() {
+                if (typeof SinnutTraining !== 'undefined') {
+                    SinnutTraining.trackEvent('module_completed', {
+                        moduleId: 'contratos',
+                        moduleName: 'Gestión de Contratos',
+                        completionTime: new Date().toISOString()
+                    });
+
+                    // Tracking de navegación a siguiente módulo
+                    const nextModuleLink = document.querySelector('a[href*="facturas"]');
+                    if (nextModuleLink) {
+                        nextModuleLink.addEventListener('click', function() {
+                            SinnutTraining.trackEvent('navigation_next_module', {
+                                fromModule: 'contratos',
+                                toModule: 'facturas'
+                            });
+                        });
+                    }
+                }
+            }
+        };
+
+        // CSS adicional para nuevas animaciones
+        const additionalCSS = `
+            @keyframes ripple {
+                to { transform: scale(2); opacity: 0; }
+            }
+            
+            @keyframes navRipple {
+                to { transform: scale(2); opacity: 0; }
+            }
+            
+            @keyframes confettiFall {
+                to { 
+                    transform: translateY(100vh) rotate(720deg);
+                    opacity: 0;
+                }
+            }
+            
+            .animate-in {
+                animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+            }
+        `;
+
+        // Inyectar CSS adicional
+        const style = document.createElement('style');
+        style.textContent = additionalCSS;
+        document.head.appendChild(style);
+
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            FinModuloContratosModule.init();
+        });
+    </script>
+</body>
+</html>
