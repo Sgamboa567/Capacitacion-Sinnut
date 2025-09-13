@@ -11,8 +11,22 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                            <!-- VIDEO ELEMENT -->
+                    <video 
+                        id="testVideo" 
+                        class="video-player"
+                        controls
+                        preload="none"
+                        playsinline
+                        webkit-playsinline
+                        x-webkit-airplay="allow"
+                        muted>
+                        <!-- Múltiples sources para máxima compatibilidad -->
+                        <source src="./assets/videos/Caja/arqueo-caja/arqueo-caja.mp4" type="video/mp4">
+                        <source src="assets/videos/Caja/arqueo-caja/arqueo-caja.mp4" type="video/mp4">
+                        <source src="/assets/videos/Caja/arqueo-caja/arqueo-caja.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de video HTML5.
+                    </video>       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #f8fafc;
             padding: 20px;
             line-height: 1.6;
