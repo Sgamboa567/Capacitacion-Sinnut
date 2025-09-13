@@ -138,8 +138,17 @@
             margin-bottom: var(--spacing-8);
             box-shadow: var(--shadow-sm);
             font-size: var(--font-size-sm);
+            position: sticky;
+            top: var(--spacing-4);
+            z-index: 100;
             border: 1px solid var(--neutral-200);
             transition: var(--transition-normal);
+        }
+
+        .nav-breadcrumb.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
         }
 
         .nav-breadcrumb a {
@@ -919,8 +928,14 @@
         <!-- Navigation -->
         <nav class="nav-breadcrumb">
             <a href="../../index.html"><i class="fas fa-home"></i> Inicio</a>
-            <span class="separator">•</span>
+            <span class="separator">></span>
             <span style="color: var(--primary-color); font-weight: 600;">Introducción</span>
+            <span class="separator">></span>
+            <a href="arqueo-caja.html">Arqueo de Caja</a>
+            <span class="separator">></span>
+            <a href="apertura-caja.html">Apertura de Caja</a>
+            <span class="separator">></span>
+            <a href="fin-modulo-contabilidad.html">Fin del Módulo</a>
         </nav>
 
         <!-- Header -->
@@ -1134,5 +1149,22 @@
             </div>
         </footer>
     </div>
+
+    <!-- JavaScript para breadcrumb sticky -->
+    <script>
+        // Configurar comportamiento sticky del breadcrumb
+        document.addEventListener('DOMContentLoaded', function() {
+            const breadcrumb = document.querySelector('.nav-breadcrumb');
+            if (!breadcrumb) return;
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    breadcrumb.classList.add('scrolled');
+                } else {
+                    breadcrumb.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
