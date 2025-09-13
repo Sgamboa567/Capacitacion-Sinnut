@@ -280,7 +280,7 @@
             object-fit: contain;
         }
 
-        /* Controles nativos - NO modificar para mantener compatibilidad */
+        /* Controles nativos - NO modificar para mantener compatibilidad iOS */
         .video-container video::-webkit-media-controls-panel {
             /* Permitir que los controles nativos se muestren normalmente */
             background-color: rgba(0, 0, 0, 0.8);
@@ -303,51 +303,6 @@
         .video-container video:not([poster]) {
             min-height: 300px;
             background: linear-gradient(45deg, var(--neutral-200), var(--neutral-300));
-        }
-
-        /* Indicador de play overlay - solo decorativo */
-        .video-container::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 80px;
-            height: 80px;
-            background: rgba(13, 35, 57, 0.8);
-            border-radius: var(--radius-full);
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: var(--transition-normal);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .video-container:hover::before {
-            opacity: 1;
-        }
-
-        .video-container::after {
-            content: '▶';
-            position: absolute;
-            top: 50%;
-            left: 52%;
-            color: white;
-            font-size: 2rem;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: var(--transition-normal);
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        .video-container:hover::after {
-            opacity: 1;
-        }
-
-        /* Ocultar overlay cuando el video está reproduciéndose */
-        .video-container video:not([paused])::before,
-        .video-container video:not([paused])::after {
-            opacity: 0;
         }
 
         /* Pasos */
@@ -727,15 +682,6 @@
                 min-height: 200px;
             }
 
-            .video-container::before {
-                width: 60px;
-                height: 60px;
-            }
-
-            .video-container::after {
-                font-size: 1.5rem;
-            }
-
             .course-navigation {
                 grid-template-columns: 1fr;
                 gap: var(--space-4);
@@ -752,15 +698,6 @@
             .video-container video {
                 border-radius: var(--radius-md);
                 min-height: 180px;
-            }
-
-            .video-container::before {
-                width: 50px;
-                height: 50px;
-            }
-
-            .video-container::after {
-                font-size: 1.25rem;
             }
 
         @media (max-width: 480px) {
@@ -879,6 +816,7 @@
                     preload="metadata"
                     playsinline
                     webkit-playsinline
+                    muted
                     poster="../../assets/images/video-poster-apertura-caja.jpg"
                     aria-label="Video tutorial: Proceso completo de apertura de caja">
                     <source src="../../assets/videos/Caja/apertura-caja/apertura-caja.mp4" type="video/mp4">
@@ -887,6 +825,14 @@
                        <a href="../../assets/videos/Caja/apertura-caja/apertura-caja.mp4" download>Descargar video</a>
                     </p>
                 </video>
+            </div>
+
+            <div class="alert alert-info" role="alert">
+                <i class="fas fa-volume-up" aria-hidden="true"></i>
+                <div>
+                    <strong>📱 Nota para dispositivos móviles:</strong>
+                    <p>En iOS/iPhone, el video inicia sin sonido por políticas de navegador. Haz clic en el video para activar el audio y presiona play para reproducir.</p>
+                </div>
             </div>
 
             <div class="alert alert-success" role="alert">
@@ -1023,6 +969,7 @@
                     preload="metadata"
                     playsinline
                     webkit-playsinline
+                    muted
                     poster="../../assets/images/video-poster-apertura-contingencia.jpg"
                     aria-label="Video tutorial: Casos especiales en apertura de caja">
                     <source src="../../assets/videos/Caja/apertura-caja/apertura-caja-contingencia.mp4" type="video/mp4">
@@ -1031,6 +978,14 @@
                        <a href="../../assets/videos/Caja/apertura-caja/apertura-caja-contingencia.mp4" download>Descargar video</a>
                     </p>
                 </video>
+            </div>
+            
+            <div class="alert alert-info" role="alert">
+                <i class="fas fa-volume-up" aria-hidden="true"></i>
+                <div>
+                    <strong>📱 Nota para dispositivos móviles:</strong>
+                    <p>En iOS/iPhone, el video inicia sin sonido por políticas de navegador. Haz clic en el video para activar el audio y presiona play para reproducir.</p>
+                </div>
             </div>
         </section>
 
@@ -1105,7 +1060,8 @@
                     // Configuración específica para iOS Safari y compatibilidad universal
                     video.setAttribute('playsinline', true);
                     video.setAttribute('webkit-playsinline', true);
-                    // NO muted - permitir que el usuario controle la reproducción
+                    // Muted para compatibilidad iOS - el usuario puede activar audio después
+                    video.muted = true;
                     
                     // Error handling mejorado
                     video.addEventListener('error', (e) => {
@@ -1130,26 +1086,21 @@
                         }
                     });
 
-                    // Gestión del overlay de play
+                    // Gestión de reproducción - un video a la vez
                     video.addEventListener('play', () => {
-                        const container = video.closest('.video-container');
-                        if (container) {
-                            container.style.setProperty('--video-playing', '1');
-                        }
-                        
                         // Pausar otros videos cuando uno empiece a reproducirse
                         videos.forEach(otherVideo => {
                             if (otherVideo !== video && !otherVideo.paused) {
                                 otherVideo.pause();
                             }
                         });
+                        
+                        // Log para debugging
+                        console.log(`Reproduciendo: ${video.getAttribute('aria-label')}`);
                     });
 
                     video.addEventListener('pause', () => {
-                        const container = video.closest('.video-container');
-                        if (container) {
-                            container.style.removeProperty('--video-playing');
-                        }
+                        console.log(`Pausado: ${video.getAttribute('aria-label')}`);
                     });
 
                     // Mejorar accesibilidad con teclado
@@ -1172,7 +1123,7 @@
                         pauseObserver.observe(video);
                     }
 
-                    // Carga lazy para mejor rendimiento
+                    // Eventos de carga
                     video.addEventListener('loadstart', () => {
                         video.style.cursor = 'pointer';
                     });
@@ -1181,6 +1132,12 @@
                         // Video cargado y listo para reproducir
                         console.log(`Video "${video.getAttribute('aria-label')}" cargado correctamente`);
                     });
+
+                    // Especial para iOS: permitir que el primer tap desbloquee el audio
+                    video.addEventListener('click', function enableAudio() {
+                        video.muted = false;
+                        video.removeEventListener('click', enableAudio);
+                    }, { once: true });
                 });
             }
 
