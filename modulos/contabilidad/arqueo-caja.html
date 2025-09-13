@@ -185,25 +185,100 @@
             gap: var(--spacing-sm);
         }
 
-        /* Video Container */
+        /* Video Container - Moderno y Responsivo */
+        .responsive-video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: var(--spacing-xl) auto;
+            background: linear-gradient(135deg, var(--neutral-50) 0%, white 100%);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.08),
+                0 1px 8px rgba(0, 0, 0, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+            border: 1px solid var(--neutral-200);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .responsive-video-wrapper:hover {
+            transform: translateY(-4px);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.12),
+                0 8px 16px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+            border-color: var(--primary-color);
+        }
+
         .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%;
-            background: var(--neutral-100);
+            aspect-ratio: 16 / 9;
+            background: var(--neutral-900);
             border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: var(--shadow-md);
-            margin: var(--spacing-lg) 0;
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--neutral-300);
+            transition: border-color 0.3s ease;
         }
 
-        .video-container video {
+        .video-container:focus-within {
+            border-color: var(--primary-color);
+            outline: 2px solid rgba(13, 35, 57, 0.2);
+            outline-offset: 2px;
+        }
+
+        .video-player {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: calc(var(--radius-lg) - 2px);
+            background: var(--neutral-900);
+            outline: none;
+        }
+
+        .video-fallback {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--neutral-400);
+            background: rgba(0, 0, 0, 0.8);
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            backdrop-filter: blur(10px);
+        }
+
+        .video-fallback i {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--warning-color);
+        }
+
+        /* Poster personalizado cuando no hay video */
+        .video-poster {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .video-poster.show {
+            opacity: 1;
         }
 
         /* Steps */
@@ -515,35 +590,6 @@
             50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
         }
 
-        /* Video Container Enhanced */
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            background: linear-gradient(135deg, var(--neutral-100) 0%, var(--neutral-200) 100%);
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.1);
-            margin: var(--spacing-xl) 0;
-            border: 3px solid var(--neutral-200);
-        }
-
-        .video-container:hover {
-            border-color: var(--primary-color);
-            transform: scale(1.02);
-            box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.15);
-        }
-
-        .video-container video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: var(--radius-lg);
-        }
-
         /* Enhanced Animations */
         @keyframes fadeInUp {
             from {
@@ -737,7 +783,40 @@
             .step-header {
                 flex-direction: column;
                 text-align: center;
-            }      
+            }
+
+            /* Video responsive para móviles */
+            .responsive-video-wrapper {
+                padding: var(--spacing-md);
+                margin: var(--spacing-lg) auto;
+            }
+            
+            .video-container {
+                border-width: 1px;
+            }     
+
+        /* Responsive adicional para video en todos los tamaños */
+        @media (max-width: 768px) {
+            .responsive-video-wrapper {
+                padding: var(--spacing-sm);
+                margin: var(--spacing-md) 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .responsive-video-wrapper {
+                padding: var(--spacing-xs);
+                border-radius: var(--radius-lg);
+            }
+            
+            .video-container {
+                border-radius: var(--radius-md);
+            }
+            
+            .video-player {
+                border-radius: calc(var(--radius-md) - 1px);
+            }
+        }
 
         /* Completion Card Enhanced */
         .completion-card {
@@ -1012,19 +1091,28 @@
                 Observa el proceso completo de arqueo de caja paso a paso
             </p>
             
-            <div class="video-container">
-                <video id="videoPlayer" 
-                       controls 
-                       preload="none"
-                       playsinline="true"
-                       webkit-playsinline="true"
-                       muted="true">
-                    <source src="../../assets/videos/Caja/arqueo-caja/2025-09-04 16-00-55 (Copy).mp4" type="video/mp4">
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                        <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: var(--warning-color); margin-bottom: var(--spacing-md);"></i>
-                        <p>Video no disponible. Contacta con soporte técnico.</p>
-                    </div>
-                </video>
+            <div class="responsive-video-wrapper">
+                <div class="video-container">
+                    <video id="videoPlayer" 
+                           class="video-player"
+                           controls 
+                           preload="metadata"
+                           playsinline
+                           webkit-playsinline
+                           disablePictureInPicture
+                           controlsList="nodownload"
+                           poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3Cdefs%3E%3ClinearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%230D2339;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%231a3b5c;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1920' height='1080' fill='url(%23grad1)' /%3E%3Ctext x='960' y='490' text-anchor='middle' fill='white' font-family='Inter, sans-serif' font-size='48' font-weight='600'%3EArqueo de Caja%3C/text%3E%3Ctext x='960' y='550' text-anchor='middle' fill='rgba(255,255,255,0.8)' font-family='Inter, sans-serif' font-size='24'%3ETutorial Paso a Paso%3C/text%3E%3Ccircle cx='960' cy='640' r='60' fill='rgba(255,255,255,0.2)' /%3E%3Cpolygon points='930,620 990,650 930,680' fill='white' /%3E%3C/svg%3E">
+                        <source src="../../assets/videos/Caja/arqueo-caja/2025-09-04 16-00-55 (Copy).mp4" type="video/mp4">
+                        
+                        <div class="video-fallback">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h4 style="margin-bottom: var(--spacing-sm); color: white;">Video no disponible</h4>
+                            <p style="color: var(--neutral-300); margin: 0;">
+                                Contacta con soporte técnico o verifica tu conexión a internet.
+                            </p>
+                        </div>
+                    </video>
+                </div>
             </div>
         </section>
 
@@ -1619,6 +1707,174 @@
         // Inicializar cuando el DOM esté listo
         document.addEventListener('DOMContentLoaded', () => {
             ArqueoModule.init();
+        });
+    </script>
+
+    <!-- Script específico para mejorar experiencia del video -->
+    <script>
+        // Video Enhancement Module - Mejoras específicas para reproducción
+        const VideoEnhancer = {
+            init() {
+                this.setupVideoPlayer();
+                this.addVideoAnalytics();
+                console.log('🎬 Video Enhancer inicializado');
+            },
+
+            setupVideoPlayer() {
+                const video = document.getElementById('videoPlayer');
+                if (!video) return;
+
+                // Configuración específica para móviles
+                video.playsInline = true;
+                video.setAttribute('webkit-playsinline', 'true');
+                video.setAttribute('playsinline', 'true');
+                
+                // Eventos de video mejorados
+                video.addEventListener('loadstart', () => {
+                    console.log('📹 Iniciando carga del video...');
+                });
+
+                video.addEventListener('loadedmetadata', () => {
+                    console.log('📋 Metadatos del video cargados');
+                    this.updateVideoInfo(video);
+                });
+
+                video.addEventListener('canplay', () => {
+                    console.log('▶️ Video listo para reproducir');
+                });
+
+                video.addEventListener('play', () => {
+                    console.log('🎬 Reproducción iniciada');
+                    this.trackVideoEvent('play_started');
+                });
+
+                video.addEventListener('pause', () => {
+                    console.log('⏸️ Video pausado');
+                    this.trackVideoEvent('video_paused');
+                });
+
+                video.addEventListener('ended', () => {
+                    console.log('🏁 Video completado');
+                    this.trackVideoEvent('video_completed');
+                    this.showVideoCompletionFeedback();
+                });
+
+                video.addEventListener('error', (e) => {
+                    console.error('❌ Error en el video:', e);
+                    this.handleVideoError(video);
+                });
+
+                // Gestión de fullscreen para móviles
+                video.addEventListener('webkitbeginfullscreen', () => {
+                    console.log('📱 Pantalla completa iniciada (iOS)');
+                });
+
+                video.addEventListener('webkitendfullscreen', () => {
+                    console.log('📱 Pantalla completa finalizada (iOS)');
+                });
+            },
+
+            updateVideoInfo(video) {
+                if (video.duration) {
+                    const duration = Math.round(video.duration / 60);
+                    console.log(`⏱️ Duración del video: ${duration} minutos`);
+                }
+            },
+
+            handleVideoError(video) {
+                const fallback = video.nextElementSibling;
+                if (fallback && fallback.classList.contains('video-fallback')) {
+                    fallback.style.display = 'flex';
+                    console.log('🚨 Mostrando fallback del video');
+                }
+            },
+
+            showVideoCompletionFeedback() {
+                // Crear notificación de finalización
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: linear-gradient(135deg, var(--success-color), #16a34a);
+                    color: white;
+                    padding: var(--spacing-lg);
+                    border-radius: var(--radius-lg);
+                    box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+                    z-index: 1000;
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-sm);
+                    font-weight: 600;
+                    transform: translateX(400px);
+                    transition: transform 0.3s ease;
+                `;
+                
+                notification.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    <span>¡Video completado! 🎉</span>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Animar entrada
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(0)';
+                }, 100);
+                
+                // Auto-eliminar después de 4 segundos
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(400px)';
+                    setTimeout(() => notification.remove(), 300);
+                }, 4000);
+            },
+
+            trackVideoEvent(eventName) {
+                if (typeof SinnutTraining !== 'undefined') {
+                    SinnutTraining.trackEvent(eventName, {
+                        videoId: 'arqueo-caja-tutorial',
+                        moduleId: 'arqueo-caja',
+                        timestamp: new Date().toISOString()
+                    });
+                }
+            },
+
+            addVideoAnalytics() {
+                const video = document.getElementById('videoPlayer');
+                if (!video) return;
+
+                let watchedSegments = [];
+                let lastTime = 0;
+
+                video.addEventListener('timeupdate', () => {
+                    const currentTime = Math.floor(video.currentTime);
+                    
+                    // Rastrear segmentos de 10 segundos
+                    if (currentTime > lastTime && currentTime % 10 === 0) {
+                        if (!watchedSegments.includes(currentTime)) {
+                            watchedSegments.push(currentTime);
+                            
+                            // Calcular porcentaje visto
+                            if (video.duration) {
+                                const percentage = Math.round((currentTime / video.duration) * 100);
+                                console.log(`📊 Progreso del video: ${percentage}%`);
+                                
+                                // Hitos importantes
+                                if ([25, 50, 75, 100].includes(percentage)) {
+                                    this.trackVideoEvent(`video_progress_${percentage}`);
+                                }
+                            }
+                        }
+                    }
+                    
+                    lastTime = currentTime;
+                });
+            }
+        };
+
+        // Inicializar el mejorador de video
+        document.addEventListener('DOMContentLoaded', () => {
+            VideoEnhancer.init();
         });
     </script>
 
