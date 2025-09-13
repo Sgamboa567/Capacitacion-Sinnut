@@ -245,7 +245,7 @@
             gap: var(--space-3);
         }
 
-        /* Video Container - Responsivo con decoración separada de controles */
+        /* Video Container - Optimizado para videos H.264 re-codificados */
         .video-container {
             position: relative;
             width: 100%;
@@ -255,10 +255,6 @@
             box-shadow: var(--shadow-lg);
             margin: var(--space-6) 0;
             transition: var(--transition-normal);
-            /* Optimización para rendimiento en móviles */
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
-            will-change: transform;
         }
 
         .video-container:hover {
@@ -272,37 +268,8 @@
             display: block;
             background-color: #000;
             border-radius: var(--radius-xl);
-            /* NO interferir con controles nativos */
-            outline: none;
-            border: none;
-            /* Respetar aspect ratio natural del video */
             aspect-ratio: 16 / 9;
             object-fit: contain;
-        }
-
-        /* Controles nativos - NO modificar para mantener compatibilidad iOS */
-        .video-container video::-webkit-media-controls-panel {
-            /* Permitir que los controles nativos se muestren normalmente */
-            background-color: rgba(0, 0, 0, 0.8);
-            border-radius: 0 0 var(--radius-xl) var(--radius-xl);
-        }
-
-        .video-container video::-webkit-media-controls {
-            /* Mantener controles siempre visibles */
-            opacity: 1;
-        }
-
-        /* Estado de poster (antes de reproducir) */
-        .video-container video[poster] {
-            object-fit: cover;
-            background-size: cover;
-            background-position: center;
-        }
-
-        /* Estado de carga */
-        .video-container video:not([poster]) {
-            min-height: 300px;
-            background: linear-gradient(45deg, var(--neutral-200), var(--neutral-300));
         }
 
         /* Pasos */
@@ -814,16 +781,17 @@
             
             <div class="video-container">
                 <video 
+                    id="videoPlayer1"
                     controls 
                     preload="metadata"
                     playsinline
                     webkit-playsinline
-                    muted
+                    disablePictureInPicture
                     poster="../../assets/images/video-poster-apertura-caja.jpg"
                     aria-label="Video tutorial: Proceso completo de apertura de caja">
                     <source src="../../assets/videos/Caja/apertura-caja/apertura-caja.mp4" type="video/mp4">
                     <track kind="captions" src="../../assets/videos/Caja/apertura-caja/apertura-caja.vtt" srclang="es" label="Español" default>
-                    <p>Tu navegador no soporta la reproducción de videos. 
+                    <p>Tu navegador no soporta la reproducción de videos. El video ha sido optimizado para iOS Safari.
                        <a href="../../assets/videos/Caja/apertura-caja/apertura-caja.mp4" download>Descargar video</a>
                     </p>
                 </video>
@@ -967,16 +935,17 @@
             
             <div class="video-container">
                 <video 
+                    id="videoPlayer2"
                     controls 
                     preload="metadata"
                     playsinline
                     webkit-playsinline
-                    muted
+                    disablePictureInPicture
                     poster="../../assets/images/video-poster-apertura-contingencia.jpg"
                     aria-label="Video tutorial: Casos especiales en apertura de caja">
                     <source src="../../assets/videos/Caja/apertura-caja/apertura-caja-contingencia.mp4" type="video/mp4">
                     <track kind="captions" src="../../assets/videos/Caja/apertura-caja/apertura-caja-contingencia.vtt" srclang="es" label="Español" default>
-                    <p>Tu navegador no soporta la reproducción de videos. 
+                    <p>Tu navegador no soporta la reproducción de videos. El video ha sido optimizado para iOS Safari.
                        <a href="../../assets/videos/Caja/apertura-caja/apertura-caja-contingencia.mp4" download>Descargar video</a>
                     </p>
                 </video>
@@ -1019,23 +988,17 @@
         </footer>
     </div>
 
-    <!-- JavaScript Moderno -->
+    <!-- Script optimizado para videos H.264 re-codificados -->
     <script>
-        // Módulo de Apertura de Caja - Versión ES6+ Optimizada
-        class AperturaModule {
-            constructor() {
-                this.init();
-            }
-
+        // Navigation Handler - Simplificado
+        const NavigationHandler = {
             init() {
-                this.setupNavigation();
+                this.setupStickyBreadcrumb();
                 this.setupInteractivity();
-                this.setupVideoHandlers();
-                this.setupChecklist();
-                this.setupAccessibility();
-            }
+                console.log('🧭 Navegación inicializada');
+            },
 
-            setupNavigation() {
+            setupStickyBreadcrumb() {
                 const breadcrumb = document.querySelector('.nav-breadcrumb');
                 if (!breadcrumb) return;
 
@@ -1046,7 +1009,7 @@
                         breadcrumb.classList.remove('scrolled');
                     }
                 });
-            }
+            },
 
             setupInteractivity() {
                 // Mejorar hover effects en touch devices
@@ -1054,94 +1017,72 @@
                     document.body.classList.add('touch-device');
                 }
             }
+        };
 
-            setupVideoHandlers() {
-                const videos = document.querySelectorAll('video');
-                
-                videos.forEach(video => {
-                    // Configuración específica para iOS Safari y compatibilidad universal
-                    video.setAttribute('playsinline', true);
-                    video.setAttribute('webkit-playsinline', true);
-                    // Muted para compatibilidad iOS - el usuario puede activar audio después
-                    video.muted = true;
+        // Video Handler - Simplificado para videos H.264 re-codificados
+        const VideoHandler = {
+            init() {
+                this.videos = document.querySelectorAll('video');
+                this.setupVideos();
+                console.log(`🎬 ${this.videos.length} videos optimizados inicializados`);
+            },
+
+            setupVideos() {
+                this.videos.forEach((video, index) => {
+                    // Configuración para iOS Safari
+                    video.setAttribute('playsinline', 'true');
+                    video.setAttribute('webkit-playsinline', 'true');
                     
-                    // Error handling mejorado
-                    video.addEventListener('error', (e) => {
-                        console.warn('Error al cargar video:', e);
-                        const container = video.closest('.video-container');
-                        if (container) {
-                            container.innerHTML = `
-                                <div style="display: flex; align-items: center; justify-content: center; min-height: 300px; background: var(--neutral-100); border-radius: var(--radius-xl); padding: var(--space-6);">
-                                    <div style="text-align: center; color: var(--text-secondary);">
-                                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem; display: block; color: var(--warning-color);"></i>
-                                        <h3 style="margin-bottom: 1rem; color: var(--text-primary);">Error al cargar el video</h3>
-                                        <p style="margin-bottom: 1.5rem;">El archivo de video no se pudo cargar correctamente.</p>
-                                        <a href="${video.querySelector('source')?.src || '#'}" 
-                                           download 
-                                           class="btn btn-primary" 
-                                           style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--primary-color); color: white; text-decoration: none; border-radius: 8px;">
-                                            <i class="fas fa-download"></i> Descargar video
-                                        </a>
-                                    </div>
-                                </div>
-                            `;
-                        }
+                    // Event listeners esenciales
+                    video.addEventListener('loadedmetadata', () => {
+                        console.log(`✅ Video ${index + 1} H.264 cargado correctamente`);
                     });
 
-                    // Gestión de reproducción - un video a la vez
                     video.addEventListener('play', () => {
-                        // Pausar otros videos cuando uno empiece a reproducirse
-                        videos.forEach(otherVideo => {
+                        // Pausar otros videos cuando uno empiece
+                        this.videos.forEach(otherVideo => {
                             if (otherVideo !== video && !otherVideo.paused) {
                                 otherVideo.pause();
                             }
                         });
-                        
-                        // Log para debugging
-                        console.log(`Reproduciendo: ${video.getAttribute('aria-label')}`);
+                        console.log(`▶️ Video ${index + 1} reproduciendo`);
                     });
 
-                    video.addEventListener('pause', () => {
-                        console.log(`Pausado: ${video.getAttribute('aria-label')}`);
+                    video.addEventListener('error', (e) => {
+                        console.error(`❌ Error en video ${index + 1}:`, e);
+                        this.showVideoFallback(video);
                     });
-
-                    // Mejorar accesibilidad con teclado
-                    video.addEventListener('focus', () => {
-                        video.scrollIntoView({ 
-                            behavior: 'smooth', 
-                            block: 'center' 
-                        });
-                    });
-
-                    // Optimización: pausar videos fuera de vista para ahorrar batería
-                    if ('IntersectionObserver' in window) {
-                        const pauseObserver = new IntersectionObserver((entries) => {
-                            entries.forEach(entry => {
-                                if (!entry.isIntersecting && !video.paused) {
-                                    video.pause();
-                                }
-                            });
-                        }, { threshold: 0.1 });
-                        pauseObserver.observe(video);
-                    }
-
-                    // Eventos de carga
-                    video.addEventListener('loadstart', () => {
-                        video.style.cursor = 'pointer';
-                    });
-
-                    video.addEventListener('loadedmetadata', () => {
-                        // Video cargado y listo para reproducir
-                        console.log(`Video "${video.getAttribute('aria-label')}" cargado correctamente`);
-                    });
-
-                    // Especial para iOS: permitir que el primer tap desbloquee el audio
-                    video.addEventListener('click', function enableAudio() {
-                        video.muted = false;
-                        video.removeEventListener('click', enableAudio);
-                    }, { once: true });
                 });
+            },
+
+            showVideoFallback(video) {
+                const container = video.closest('.video-container');
+                if (container) {
+                    container.innerHTML = `
+                        <div style="display: flex; align-items: center; justify-content: center; min-height: 300px; background: var(--neutral-100); border-radius: var(--radius-xl); padding: var(--space-6);">
+                            <div style="text-align: center; color: var(--text-secondary);">
+                                <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem; display: block; color: var(--warning-color);"></i>
+                                <h3 style="margin-bottom: 1rem; color: var(--text-primary);">Error al cargar el video</h3>
+                                <p style="margin-bottom: 1.5rem;">El video ha sido re-codificado para iOS Safari. Intenta recargar la página.</p>
+                                <a href="${video.querySelector('source')?.src || '#'}" 
+                                   download 
+                                   class="btn btn-primary" 
+                                   style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--primary-color); color: white; text-decoration: none; border-radius: 8px;">
+                                    <i class="fas fa-download"></i> Descargar video
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                }
             }
+        };
+
+        // Checklist Handler - Simplificado
+        const ChecklistHandler = {
+            init() {
+                this.setupChecklist();
+                console.log('📋 Checklist inicializado');
+            },
 
             setupChecklist() {
                 const checkboxes = document.querySelectorAll('.checklist input[type="checkbox"]');
@@ -1151,71 +1092,25 @@
                         const listItem = e.target.closest('li');
                         if (e.target.checked) {
                             listItem.classList.add('completed');
-                            this.playCheckSound();
                         } else {
                             listItem.classList.remove('completed');
                         }
-                        
                         this.updateProgress();
                     });
                 });
-            }
-
-            setupAccessibility() {
-                // Mejorar navegación por teclado
-                const focusableElements = document.querySelectorAll('a, button, input, video, [tabindex]');
-                
-                focusableElements.forEach(element => {
-                    element.addEventListener('focus', () => {
-                        element.scrollIntoView({ 
-                            behavior: 'smooth', 
-                            block: 'nearest' 
-                        });
-                    });
-                });
-
-                // Agregar skip links
-                this.addSkipLinks();
-            }
-
-            addSkipLinks() {
-                const skipLink = document.createElement('a');
-                skipLink.href = '#main-content';
-                skipLink.textContent = 'Saltar al contenido principal';
-                skipLink.className = 'sr-only';
-                skipLink.style.cssText = `
-                    position: absolute;
-                    top: -40px;
-                    left: 6px;
-                    background: var(--primary-color);
-                    color: white;
-                    padding: 8px;
-                    text-decoration: none;
-                    z-index: 1000;
-                `;
-                
-                skipLink.addEventListener('focus', () => {
-                    skipLink.style.top = '6px';
-                });
-                
-                skipLink.addEventListener('blur', () => {
-                    skipLink.style.top = '-40px';
-                });
-                
-                document.body.insertBefore(skipLink, document.body.firstChild);
-            }
+            },
 
             updateProgress() {
                 const total = document.querySelectorAll('.checklist input[type="checkbox"]').length;
                 const completed = document.querySelectorAll('.checklist input[type="checkbox"]:checked').length;
                 const progress = Math.round((completed / total) * 100);
                 
-                console.log(`Progreso: ${progress}% (${completed}/${total})`);
+                console.log(`📊 Progreso: ${progress}% (${completed}/${total})`);
                 
                 if (progress === 100) {
                     this.showCompletionMessage();
                 }
-            }
+            },
 
             showCompletionMessage() {
                 const message = document.createElement('div');
@@ -1234,34 +1129,17 @@
                     message.scrollIntoView({ behavior: 'smooth' });
                 }
             }
-
-            playCheckSound() {
-                // Audio feedback sutil para accesibilidad
-                if ('speechSynthesis' in window) {
-                    const utterance = new SpeechSynthesisUtterance('Completado');
-                    utterance.volume = 0.1;
-                    utterance.rate = 2;
-                    speechSynthesis.speak(utterance);
-                }
-            }
-        }
+        };
 
         // Inicialización cuando el DOM esté listo
         document.addEventListener('DOMContentLoaded', () => {
-            new AperturaModule();
+            NavigationHandler.init();
+            VideoHandler.init();
+            ChecklistHandler.init();
         });
-
-        // Service Worker para mejor performance (opcional)
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .catch(err => console.log('SW registration failed'));
-            });
-        }
     </script>
 
-    <!-- Scripts externos optimizados -->
+    <!-- Scripts optimizados -->
     <script src="../../assets/js/main.js" defer></script>
-    <script src="../../ios-video-cleaner.js" defer></script>
 </body>
 </html>
