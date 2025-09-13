@@ -1,0 +1,1624 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Plan Separe - Curso Sinnut ERP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0D2339;
+            --primary-light: #1a3b5c;
+            --primary-dark: #051119;
+            --success-color: #22c55e;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --info-color: #3b82f6;
+            --neutral-50: #f8fafc;
+            --neutral-100: #f1f5f9;
+            --neutral-200: #e2e8f0;
+            --neutral-500: #64748b;
+            --neutral-600: #475569;
+            --neutral-700: #334155;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 0.75rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--neutral-50);
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--spacing-md);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translateX(-20px) translateY(-20px); }
+            50% { transform: translateX(20px) translateY(20px); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            font-size: 1.125rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto var(--spacing-lg);
+        }
+
+        .header-badges {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        /* Navigation Breadcrumb Sticky */
+        .nav-breadcrumb {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            font-size: 0.875rem;
+            position: sticky;
+            top: var(--spacing-md);
+            z-index: 100;
+            border: 1px solid var(--neutral-200);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-breadcrumb.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .nav-breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-breadcrumb a:hover {
+            color: var(--primary-light);
+        }
+
+        .separator {
+            margin: 0 var(--spacing-sm);
+            color: var(--neutral-500);
+        }
+
+        /* Section */
+        .section {
+            background: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--neutral-200);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        /* Video Container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: var(--neutral-100);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Steps */
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+
+        .step {
+            background: white;
+            border: 2px solid var(--neutral-200);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .step:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .step-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.7;
+        }
+
+        /* Alerts */
+        .alert {
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            margin: var(--spacing-lg) 0;
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-md);
+            border-left: 4px solid;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .alert::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shine 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shine {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        .alert:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .alert i {
+            margin-top: 2px;
+            z-index: 1;
+            font-size: 1.25rem;
+        }
+
+        .alert div {
+            z-index: 1;
+            flex: 1;
+        }
+
+        .alert-info {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-color: var(--info-color);
+            color: #1e40af;
+        }
+
+        .alert-info i {
+            color: var(--info-color);
+        }
+
+        .alert-success {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-color: var(--success-color);
+            color: #166534;
+        }
+
+        .alert-success i {
+            color: var(--success-color);
+        }
+
+        .alert-warning {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border-color: var(--warning-color);
+            color: #92400e;
+        }
+
+        .alert-warning i {
+            color: var(--warning-color);
+        }
+
+        .alert-danger {
+            background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+            border-color: var(--danger-color);
+            color: #991b1b;
+        }
+
+        .alert-danger i {
+            color: var(--danger-color);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            transform-origin: center;
+            user-select: none;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(13, 35, 57, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px 0 rgba(13, 35, 57, 0.35);
+            background: linear-gradient(135deg, var(--primary-light) 0%, #2a5a7f 100%);
+        }
+
+        .btn-primary:active {
+            transform: translateY(-1px) scale(0.98);
+            transition: all 0.1s ease;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success-color) 0%, #16a34a 100%);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(34, 197, 94, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px 0 rgba(34, 197, 94, 0.35);
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+        }
+
+        .btn-success:active {
+            transform: translateY(-1px) scale(0.98);
+            transition: all 0.1s ease;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--neutral-600) 0%, var(--neutral-700) 100%);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(71, 85, 105, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px 0 rgba(71, 85, 105, 0.35);
+            background: linear-gradient(135deg, var(--neutral-700) 0%, #1e293b 100%);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 4px 14px 0 rgba(13, 35, 57, 0.1);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px 0 rgba(13, 35, 57, 0.25);
+        }
+
+        /* Cards & Components Improvements */
+        .step {
+            background: linear-gradient(135deg, white 0%, var(--neutral-50) 100%);
+            border: 2px solid var(--neutral-200);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--success-color), var(--info-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .step:hover::before {
+            transform: scaleX(1);
+        }
+
+        .step:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 20px 40px 0 rgba(13, 35, 57, 0.15);
+            background: linear-gradient(135deg, white 0%, rgba(13, 35, 57, 0.02) 100%);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 20px 0 rgba(13, 35, 57, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-number::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.7; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+        }
+
+        /* Video Container Enhanced */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: linear-gradient(135deg, var(--neutral-100) 0%, var(--neutral-200) 100%);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.1);
+            margin: var(--spacing-xl) 0;
+            border: 3px solid var(--neutral-200);
+        }
+
+        .video-container:hover {
+            border-color: var(--primary-color);
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+        }
+
+        /* Enhanced Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .animate-left {
+            animation: fadeInLeft 0.6s ease-out forwards;
+        }
+
+        .animate-right {
+            animation: fadeInRight 0.6s ease-out forwards;
+        }
+
+        .animate-scale {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+
+        /* Loading States */
+        .loading {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Enhanced Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--spacing-sm);
+            }
+            
+            .header {
+                padding: var(--spacing-xl) var(--spacing-md);
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .header-badges {
+                justify-content: center;
+                gap: var(--spacing-sm);
+            }
+            
+            .badge {
+                padding: var(--spacing-xs) var(--spacing-sm);
+                font-size: 0.75rem;
+            }
+            
+            .section {
+                padding: var(--spacing-lg);
+            }
+            
+            .section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .step {
+                padding: var(--spacing-lg);
+            }
+            
+            .step-header {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--spacing-sm);
+            }
+            
+            .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+            
+            .btn {
+                padding: var(--spacing-sm) var(--spacing-md);
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .header-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-breadcrumb {
+                font-size: 0.75rem;
+                padding: var(--spacing-sm);
+                top: var(--spacing-xs);
+                margin-bottom: var(--spacing-lg);
+            }
+            
+            .nav-breadcrumb a {
+                display: inline-flex;
+                align-items: center;
+                gap: var(--spacing-xs);
+            }
+            
+            .separator {
+                display: none;
+            }
+            
+            .nav-breadcrumb::after {
+                content: '';
+                position: absolute;
+                bottom: -1px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 60%;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            
+            .nav-breadcrumb.scrolled::after {
+                opacity: 1;
+            }
+        }
+            
+            .header-badges {
+                justify-content: center;
+            }
+            
+            .step-header {
+                flex-direction: column;
+                text-align: center;
+            }      
+
+        /* Completion Card Enhanced */
+        .completion-card {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 3px solid var(--success-color);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+            text-align: center;
+            margin-top: var(--spacing-xl);
+            box-shadow: 0 20px 40px 0 rgba(34, 197, 94, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .completion-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+            animation: completionPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes completionPulse {
+            0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.5; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+        }
+
+        .completion-icon {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        /* Footer de NavegaciÃ³n del Curso */
+        .course-footer {
+            background: linear-gradient(135deg, var(--neutral-50) 0%, white 100%);
+            border: 2px solid var(--neutral-200);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--success-color), var(--info-color));
+        }
+
+        .course-footer-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .course-footer h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+        }
+
+        .course-navigation {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .nav-item.prev {
+            justify-self: start;
+        }
+
+        .nav-item.home {
+            justify-self: center;
+        }
+
+        .nav-item.next {
+            justify-self: end;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: 2px solid var(--neutral-300);
+            border-radius: var(--radius-lg);
+            background: white;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            min-width: 150px;
+            justify-content: center;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(13, 35, 57, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-btn.prev:hover {
+            border-color: var(--warning-color);
+            background: var(--warning-color);
+            color: white;
+        }
+
+        .nav-btn.home:hover {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .nav-btn.next:hover {
+            border-color: var(--success-color);
+            background: var(--success-color);
+            color: white;
+        }
+
+        .nav-info {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--neutral-200);
+        }
+
+        .progress-indicator {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--neutral-300);
+            transition: var(--transition);
+        }
+
+        .progress-dot.completed {
+            background: var(--success-color);
+        }
+
+        .progress-dot.current {
+            background: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        /* Responsive para el footer */
+        @media (max-width: 768px) {
+            .course-navigation {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+                text-align: center;
+            }
+
+            .nav-item {
+                justify-self: center !important;
+            }
+
+            .nav-btn {
+                width: 100%;
+                min-width: auto;
+            }
+
+            .course-footer {
+                padding: var(--spacing-lg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container animate-in">
+        <!-- Navigation -->
+        <nav class="nav-breadcrumb">
+            <a href="../../index.html"><i class="fas fa-home"></i> Inicio</a>
+            <span class="separator">â€¢</span>
+            <a href="introduccion-facturas.html">Facturas</a>
+            <span class="separator">â€¢</span>
+            <a href="factura-de-venta.html">Factura de Venta</a>
+            <span class="separator">â€¢</span>
+            <span style="color: var(--primary-color); font-weight: 600;">Crear Plan Separe</span>
+        </nav>
+
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-file-invoice"></i> Crear Plan Separe</h1>
+                <p>Aprende a crear un plan separe en SINNUT, permitiendo a los clientes separar productos con abonos hasta completar el pago total</p>
+                <div class="header-badges">
+                    <div class="badge">
+                        <i class="fas fa-video"></i>
+                        Video Tutorial
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-clock"></i>
+                        2 minutos
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-list-check"></i>
+                        6 Pasos
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Introduction -->
+        <section class="section">
+            <h2><i class="fas fa-lightbulb"></i> Â¿QuÃ© es el Plan Separe?</h2>
+            <p style="font-size: 1.125rem; line-height: 1.7; margin-bottom: var(--spacing-lg);">
+                El plan separe es una modalidad de venta que permite a los clientes reservar un producto 
+                mediante abonos hasta completar su pago total, asegurando trazabilidad en inventario, ventas y pagos.
+            </p>
+            
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle" style="font-size: 1.5rem;"></i>
+                <div>
+                    <strong>Objetivo:</strong> Facilitar la adquisiciÃ³n de productos a travÃ©s de pagos fraccionados, 
+                mejorando la experiencia del cliente y aumentando las oportunidades de venta.
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Tutorial -->
+        <section class="section">
+            <h2><i class="fas fa-play-circle"></i> Video Tutorial</h2>
+            <p style="margin-bottom: var(--spacing-lg); color: var(--text-secondary);">
+                Observa el proceso completo de creaciÃ³n de un plan separe paso a paso
+            </p>
+            
+            <div class="alert alert-warning">
+                <i class="fas fa-clock"></i>
+                <div>
+                    <strong>Tiempo estimado de operaciÃ³n:</strong> 2 minutos
+                </div>
+            </div>
+            
+            <div class="video-container">
+                <video id="videoPlayer" 
+                       controls 
+                       preload="none"
+                       playsinline="true"
+                       webkit-playsinline="true"
+                       muted="true">
+                    <source src="../../assets/videos/Facturas/plan separe 1.mp4" type="video/mp4">
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: var(--warning-color); margin-bottom: var(--spacing-md);"></i>
+                        <p>Video no disponible. Contacta con soporte tÃ©cnico.</p>
+                        <a href="../../assets/videos/Facturas/plan separe 1.mp4" 
+                           download 
+                           class="btn btn-outline">
+                            <i class="fas fa-download"></i> Descargar video
+                        </a>
+                    </div>
+                </video>
+            </div>
+        </section>
+
+        <!-- Steps -->
+        <section class="section">
+            <h2><i class="fas fa-list-ol"></i> Pasos del Proceso</h2>
+            <p style="margin-bottom: var(--spacing-xl); color: var(--text-secondary);">
+                Sigue estos pasos para crear un plan separe exitoso
+            </p>
+
+            <div class="steps-container">
+                <!-- Step 1 -->
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Acceder al MÃ³dulo</div>
+                    </div>
+                    <div class="step-description">
+                        Ve al mÃ³dulo <strong>GestiÃ³n de Ventas</strong> y selecciona <strong>Plan Separe</strong>. 
+                        Luego haz clic en el botÃ³n <strong>"+"</strong> para crear un nuevo plan.
+                    </div>
+                    <div class="alert alert-info">
+                        <i class="fas fa-lightbulb"></i>
+                        <div>
+                            <strong>Consejo:</strong> AsegÃºrate de estar en la joyerÃ­a correcta antes de iniciar el proceso.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Buscar o Registrar Cliente</div>
+                    </div>
+                    <div class="step-description">
+                        Busca al cliente por nÃºmero de documento. Si no existe en el sistema, 
+                        podrÃ¡s registrarlo directamente desde esta pantalla.
+                    </div>
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <strong>Importante:</strong> Verifica que la informaciÃ³n del cliente sea correcta 
+                            antes de continuar con el proceso.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Seleccionar Producto</div>
+                    </div>
+                    <div class="step-description">
+                        Ingresa el <strong>SKU</strong> del producto a separar y su <strong>cÃ³digo de bolsa de seguridad</strong>. 
+                        El sistema mostrarÃ¡ automÃ¡ticamente la informaciÃ³n del producto asociada.
+                    </div>
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Buena prÃ¡ctica:</strong> Verifica que el SKU sea correcto y que el producto 
+                            se encuentre disponible en inventario.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Establecer Abono Inicial</div>
+                    </div>
+                    <div class="step-description">
+                        Establece el <strong>valor del abono inicial</strong>. Este valor puede ser editado 
+                        dependiendo de la polÃ­tica comercial vigente de la empresa.
+                    </div>
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <strong>InformaciÃ³n:</strong> Valida que el abono inicial cumpla con las condiciones 
+                            mÃ­nimas establecidas por la empresa.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Procesar Pago</div>
+                    </div>
+                    <div class="step-description">
+                        Selecciona el <strong>medio de pago</strong> del abono inicial y haz clic en 
+                        <strong>"Causar y pagar"</strong> para finalizar el registro del plan separe.
+                    </div>
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <div>
+                            <strong>AtenciÃ³n:</strong> Una vez procesado el pago, el producto quedarÃ¡ reservado 
+                            en el sistema hasta completar el pago total.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="step">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Generar DocumentaciÃ³n</div>
+                    </div>
+                    <div class="step-description">
+                        Imprime el <strong>acuerdo del plan separe</strong>. Este documento debe ser entregado 
+                        al cliente como respaldo oficial de la transacciÃ³n.
+                    </div>
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>FinalizaciÃ³n:</strong> El plan separe ha sido creado exitosamente y 
+                            el producto estÃ¡ reservado para el cliente.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Section -->
+        <section class="section">
+            <h2><i class="fas fa-graduation-cap"></i> Ejercicio PrÃ¡ctico</h2>
+            <div class="alert alert-info">
+                <i class="fas fa-target"></i>
+                <div>
+                    <h4 style="margin-bottom: var(--spacing-sm);">Â¡Ahora es tu turno!</h4>
+                    <p style="margin-bottom: var(--spacing-md);">
+                        Practica creando un plan separe con los productos disponibles en el sistema de pruebas.
+                    </p>
+                    <strong>Ejercicio sugerido:</strong> Crea un plan separe completo, desde la bÃºsqueda del cliente 
+                    hasta la impresiÃ³n del acuerdo.
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources -->
+        <section class="section">
+            <h2><i class="fas fa-download"></i> Recursos Adicionales</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-lg);">
+                <div style="border: 2px solid var(--neutral-200); border-radius: var(--radius-lg); padding: var(--spacing-lg); text-align: center; transition: var(--transition);" onmouseover="this.style.borderColor='var(--primary-color)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--neutral-200)'; this.style.transform='translateY(0)'">
+                    <i class="fas fa-file-pdf" style="font-size: 2.5rem; color: var(--danger-color); margin-bottom: var(--spacing-md);"></i>
+                    <h4 style="color: var(--primary-color); margin-bottom: var(--spacing-sm);">Manual PDF</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">GuÃ­a detallada paso a paso</p>
+                    <a href="../../assets/documents/instructivos/Facturas/Instructivo PLAN SEPARE.pdf" 
+                       class="btn btn-primary" target="_blank">
+                        <i class="fas fa-download"></i> Descargar
+                    </a>
+                </div>
+                
+                <div style="border: 2px solid var(--neutral-200); border-radius: var(--radius-lg); padding: var(--spacing-lg); text-align: center; transition: var(--transition);" onmouseover="this.style.borderColor='var(--success-color)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--neutral-200)'; this.style.transform='translateY(0)'">
+                    <i class="fas fa-headset" style="font-size: 2.5rem; color: var(--success-color); margin-bottom: var(--spacing-md);"></i>
+                    <h4 style="color: var(--primary-color); margin-bottom: var(--spacing-sm);">Soporte TÃ©cnico</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">ObtÃ©n ayuda especializada</p>
+                    <a href="mailto:soporte.ti@oroexpress.com.co" class="btn btn-success">
+                        <i class="fas fa-envelope"></i> Contactar
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Completion Card -->
+        <div id="completionCard" class="completion-card" style="display: none;">
+            <div class="completion-icon">ðŸŽ‰</div>
+            <h3 style="color: var(--success-color); font-size: 1.75rem; margin-bottom: var(--spacing-md);">
+                Â¡Excelente trabajo!
+            </h3>
+            <p style="font-size: 1.125rem; margin-bottom: var(--spacing-xl);">
+                Has completado exitosamente el mÃ³dulo de Crear Plan Separe. 
+                Ahora puedes gestionar esta funcionalidad de manera eficiente.
+            </p>
+            <a href="../../index.html" class="btn btn-primary" style="font-size: 1.125rem; padding: var(--spacing-md) var(--spacing-xl);">
+                <i class="fas fa-home"></i> Volver al Inicio
+            </a>
+        </div>
+
+        <!-- Footer de NavegaciÃ³n del Curso -->
+        <footer class="course-footer">
+            <div class="course-footer-content">
+                <h3>
+                    <i class="fas fa-route"></i>
+                    NavegaciÃ³n del Curso
+                </h3>
+                
+                <!-- Indicador de Progreso -->
+                <div class="progress-indicator">
+                    <div class="progress-dot completed" title="IntroducciÃ³n a Facturas"></div>
+                    <div class="progress-dot completed" title="Factura de Venta"></div>
+                    <div class="progress-dot current" title="Crear Plan Separe - MÃ³dulo Actual"></div>
+                    <div class="progress-dot" title="Consultar Plan Separe"></div>
+                </div>
+
+                <!-- NavegaciÃ³n Principal -->
+                <nav class="course-navigation">
+                    <a href="factura-de-venta.html" class="nav-item prev">
+                        <div class="nav-btn prev">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Anterior</span>
+                        </div>
+                    </a>
+
+                    <a href="../../index.html" class="nav-item home">
+                        <div class="nav-btn home">
+                            <i class="fas fa-home"></i>
+                            <span>Inicio</span>
+                        </div>
+                    </a>
+
+                    <a href="consultar-plan-separe.html" class="nav-item next">
+                        <div class="nav-btn next">
+                            <span>Siguiente</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </nav>
+
+                <!-- InformaciÃ³n del MÃ³dulo -->
+                <div class="nav-info">
+                    <p>
+                        <strong>MÃ³dulo 2 de 4:</strong> Crear Plan Separe | 
+                        <strong>Anterior:</strong> Factura de Venta | 
+                        <strong>Siguiente:</strong> Consultar Plan Separe
+                    </p>
+                    <p style="margin-top: var(--spacing-sm); font-size: 0.8rem;">
+                        <i class="fas fa-graduation-cap"></i>
+                        Curso Sinnut ERP - OroExpress s.a.s
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript principal -->
+    <script src="../../assets/js/main.js"></script>
+    <!-- Script para mejorar compatibilidad de videos en mÃ³viles -->
+    <script src="../../fix-mobile-videos.js"></script>
+    <script>
+        // Estado moderno del documento
+        const PlanSepareModule = {
+            init() {
+                this.setupAnimations();
+                this.setupInteractions();
+                this.initializeTracking();
+                this.setupCourseNavigation();
+                console.log('ðŸš€ MÃ³dulo Crear Plan Separe inicializado');
+            },
+
+            // Sistema de animaciones mejorado
+            setupAnimations() {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry, index) => {
+                        if (entry.isIntersecting) {
+                            // Animaciones escalonadas para mejor UX
+                            setTimeout(() => {
+                                entry.target.classList.add('animate-in');
+                            }, index * 100);
+                        }
+                    });
+                }, observerOptions);
+
+                // Observar diferentes tipos de elementos con animaciones especÃ­ficas
+                document.querySelectorAll('.section').forEach((el, index) => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(30px)';
+                    el.classList.add(index % 2 === 0 ? 'animate-left' : 'animate-right');
+                    observer.observe(el);
+                });
+
+                document.querySelectorAll('.step').forEach((el) => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'scale(0.95)';
+                    el.classList.add('animate-scale');
+                    observer.observe(el);
+                });
+
+                document.querySelectorAll('.alert').forEach((el) => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateX(-20px)';
+                    observer.observe(el);
+                });
+            },
+
+            // Interacciones mejoradas
+            setupInteractions() {
+                // Efectos hover mejorados para botones
+                document.querySelectorAll('.btn').forEach(btn => {
+                    btn.addEventListener('mouseenter', this.createRippleEffect);
+                    btn.addEventListener('click', this.createClickEffect);
+                });
+
+                // Efectos de parallax sutil en el header
+                this.setupParallax();
+            },
+
+            // Efecto ripple moderno para botones
+            createRippleEffect(e) {
+                const button = e.currentTarget;
+                const rect = button.getBoundingClientRect();
+                const ripple = document.createElement('span');
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,0.3);
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                
+                button.style.position = 'relative';
+                button.style.overflow = 'hidden';
+                button.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            },
+
+            // Efecto click con feedback haptico visual
+            createClickEffect(e) {
+                const button = e.currentTarget;
+                button.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    button.style.transform = '';
+                }, 150);
+            },
+
+            // Parallax sutil para el header
+            setupParallax() {
+                const header = document.querySelector('.header');
+                if (!header) return;
+                
+                window.addEventListener('scroll', () => {
+                    const scrolled = window.pageYOffset;
+                    const rate = scrolled * -0.5;
+                    header.style.transform = `translateY(${rate}px)`;
+                    
+                    // Efecto sticky mejorado para breadcrumb
+                    this.updateBreadcrumbOnScroll(scrolled);
+                });
+            },
+
+            // Actualizar breadcrumb con el scroll
+            updateBreadcrumbOnScroll(scrolled) {
+                const breadcrumb = document.querySelector('.nav-breadcrumb');
+                if (!breadcrumb) return;
+                
+                if (scrolled > 100) {
+                    breadcrumb.classList.add('scrolled');
+                } else {
+                    breadcrumb.classList.remove('scrolled');
+                }
+            },
+
+            // Configurar navegaciÃ³n del curso
+            setupCourseNavigation() {
+                // AÃ±adir efectos hover mejorados a los botones de navegaciÃ³n
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.addEventListener('mouseenter', (e) => {
+                        this.createNavigationRipple(e);
+                    });
+                });
+
+                // AÃ±adir atajos de teclado para navegaciÃ³n
+                document.addEventListener('keydown', (e) => {
+                    if (e.ctrlKey || e.metaKey) {
+                        switch(e.key) {
+                            case 'ArrowLeft':
+                                e.preventDefault();
+                                this.navigateToPrevious();
+                                break;
+                            case 'ArrowRight':
+                                e.preventDefault();
+                                this.navigateToNext();
+                                break;
+                            case 'Home':
+                                e.preventDefault();
+                                this.navigateToHome();
+                                break;
+                        }
+                    }
+                });
+
+                // Animar entrada del footer
+                this.animateCourseFooter();
+            },
+
+            // NavegaciÃ³n con teclado
+            navigateToPrevious() {
+                const prevLink = document.querySelector('.nav-item.prev');
+                if (prevLink) {
+                    this.createPageTransition(() => {
+                        window.location.href = prevLink.href;
+                    });
+                }
+            },
+
+            navigateToNext() {
+                const nextLink = document.querySelector('.nav-item.next');
+                if (nextLink) {
+                    this.createPageTransition(() => {
+                        window.location.href = nextLink.href;
+                    });
+                }
+            },
+
+            navigateToHome() {
+                const homeLink = document.querySelector('.nav-item.home');
+                if (homeLink) {
+                    this.createPageTransition(() => {
+                        window.location.href = homeLink.href;
+                    });
+                }
+            },
+
+            // Efecto de transiciÃ³n de pÃ¡gina
+            createPageTransition(callback) {
+                const overlay = document.createElement('div');
+                overlay.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100vw;
+                    height: 100vh;
+                    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+                    z-index: 10000;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                    pointer-events: none;
+                `;
+                
+                document.body.appendChild(overlay);
+                
+                setTimeout(() => {
+                    overlay.style.opacity = '1';
+                    setTimeout(callback, 150);
+                }, 50);
+            },
+
+            // Ripple effect para navegaciÃ³n
+            createNavigationRipple(e) {
+                const button = e.currentTarget;
+                const rect = button.getBoundingClientRect();
+                const ripple = document.createElement('span');
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,0.4);
+                    transform: scale(0);
+                    animation: navRipple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                
+                button.style.position = 'relative';
+                button.style.overflow = 'hidden';
+                button.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            },
+
+            // Animar entrada del footer
+            animateCourseFooter() {
+                const footer = document.querySelector('.course-footer');
+                if (!footer) return;
+                
+                footer.style.opacity = '0';
+                footer.style.transform = 'translateY(50px)';
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                footer.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                                footer.style.opacity = '1';
+                                footer.style.transform = 'translateY(0)';
+                                
+                                // Animar dots de progreso
+                                this.animateProgressDots();
+                            }, 200);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+                
+                observer.observe(footer);
+            },
+
+            // Animar indicadores de progreso
+            animateProgressDots() {
+                const dots = document.querySelectorAll('.progress-dot');
+                dots.forEach((dot, index) => {
+                    setTimeout(() => {
+                        dot.style.transform = 'scale(1.3)';
+                        setTimeout(() => {
+                            dot.style.transform = dot.classList.contains('current') ? 'scale(1.2)' : 'scale(1)';
+                        }, 200);
+                    }, index * 100);
+                });
+            },
+
+            // Tracking mejorado
+            initializeTracking() {
+                if (typeof SinnutTraining !== 'undefined') {
+                    SinnutTraining.trackEvent('module_started', {
+                        moduleId: 'crear-plan-separe',
+                        moduleName: 'Crear Plan Separe',
+                        timestamp: new Date().toISOString()
+                    });
+                }
+
+                // Tracking de video cuando se reproduce
+                const video = document.querySelector('video');
+                if (video) {
+                    video.addEventListener('play', () => {
+                        if (typeof SinnutTraining !== 'undefined') {
+                            SinnutTraining.trackEvent('video_started', {
+                                moduleId: 'crear-plan-separe',
+                                videoTitle: 'Crear plan separe'
+                            });
+                        }
+                    });
+
+                    video.addEventListener('ended', () => {
+                        if (typeof SinnutTraining !== 'undefined') {
+                            SinnutTraining.trackEvent('video_completed', {
+                                moduleId: 'crear-plan-separe',
+                                videoTitle: 'Crear plan separe'
+                            });
+                        }
+                    });
+                }
+            }
+        };
+
+        // CSS adicional para nuevas animaciones
+        const additionalCSS = `
+            @keyframes ripple {
+                to { transform: scale(2); opacity: 0; }
+            }
+            
+            @keyframes navRipple {
+                to { transform: scale(2); opacity: 0; }
+            }
+            
+            .animate-in {
+                animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+            }
+        `;
+
+        // Inyectar CSS adicional
+        const style = document.createElement('style');
+        style.textContent = additionalCSS;
+        document.head.appendChild(style);
+
+        // Inicializar cuando el DOM estÃ© listo
+        document.addEventListener('DOMContentLoaded', () => {
+            PlanSepareModule.init();
+        });
+    </script>
+
+    <!-- iOS Safari Video Fix - Solución específica para reproducción de videos en móviles -->
+    <script src="../../ios-video-fix.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,1499 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar Contrato - Curso Sinnut ERP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0D2339;
+            --primary-light: #1a3b5c;
+            --primary-dark: #051119;
+            --success-color: #22c55e;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --info-color: #3b82f6;
+            --neutral-50: #f8fafc;
+            --neutral-100: #f1f5f9;
+            --neutral-200: #e2e8f0;
+            --neutral-500: #64748b;
+            --neutral-600: #475569;
+            --neutral-700: #334155;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 0.75rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--neutral-50);
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--spacing-md);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translateX(-20px) translateY(-20px); }
+            50% { transform: translateX(20px) translateY(20px); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            font-size: 1.125rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto var(--spacing-lg);
+        }
+
+        .header-badges {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        /* Navigation Breadcrumb Sticky */
+        .nav-breadcrumb {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            font-size: 0.875rem;
+            position: sticky;
+            top: var(--spacing-md);
+            z-index: 100;
+            border: 1px solid var(--neutral-200);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-breadcrumb.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .nav-breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-breadcrumb a:hover {
+            color: var(--primary-light);
+        }
+
+        .separator {
+            margin: 0 var(--spacing-sm);
+            color: var(--neutral-500);
+        }
+
+        /* Section */
+        .section {
+            background: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--neutral-200);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        /* Video Container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: linear-gradient(135deg, var(--neutral-100) 0%, var(--neutral-200) 100%);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.1);
+            margin: var(--spacing-xl) 0;
+            border: 3px solid var(--neutral-200);
+        }
+
+        .video-container:hover {
+            border-color: var(--primary-color);
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+        }
+
+        /* Steps */
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+
+        .step {
+            background: linear-gradient(135deg, white 0%, var(--neutral-50) 100%);
+            border: 2px solid var(--neutral-200);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--success-color), var(--info-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .step:hover::before {
+            transform: scaleX(1);
+        }
+
+        .step:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 20px 40px 0 rgba(13, 35, 57, 0.15);
+            background: linear-gradient(135deg, white 0%, rgba(13, 35, 57, 0.02) 100%);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 20px 0 rgba(13, 35, 57, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-number::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.7; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+        }
+
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .step-description {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.7;
+        }
+
+        /* Alerts */
+        .alert {
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            margin: var(--spacing-lg) 0;
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-md);
+            border-left: 4px solid;
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .alert::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shine 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shine {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        .alert:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .alert i {
+            margin-top: 2px;
+            z-index: 1;
+            font-size: 1.25rem;
+        }
+
+        .alert div {
+            z-index: 1;
+            flex: 1;
+        }
+
+        .alert-info {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-color: var(--info-color);
+            color: #1e40af;
+        }
+
+        .alert-info i {
+            color: var(--info-color);
+        }
+
+        .alert-success {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-color: var(--success-color);
+            color: #166534;
+        }
+
+        .alert-success i {
+            color: var(--success-color);
+        }
+
+        .alert-warning {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border-color: var(--warning-color);
+            color: #92400e;
+        }
+
+        .alert-warning i {
+            color: var(--warning-color);
+        }
+
+        .alert-danger {
+            background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+            border-color: var(--danger-color);
+            color: #991b1b;
+        }
+
+        .alert-danger i {
+            color: var(--danger-color);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            transform-origin: center;
+            user-select: none;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(13, 35, 57, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px 0 rgba(13, 35, 57, 0.35);
+            background: linear-gradient(135deg, var(--primary-light) 0%, #2a5a7f 100%);
+        }
+
+        .btn-primary:active {
+            transform: translateY(-1px) scale(0.98);
+            transition: all 0.1s ease;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success-color) 0%, #16a34a 100%);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(34, 197, 94, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px 0 rgba(34, 197, 94, 0.35);
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+        }
+
+        .btn-success:active {
+            transform: translateY(-1px) scale(0.98);
+            transition: all 0.1s ease;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--neutral-600) 0%, var(--neutral-700) 100%);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(71, 85, 105, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px 0 rgba(71, 85, 105, 0.35);
+            background: linear-gradient(135deg, var(--neutral-700) 0%, #1e293b 100%);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 4px 14px 0 rgba(13, 35, 57, 0.1);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px 0 rgba(13, 35, 57, 0.25);
+        }
+
+        /* Documents Grid */
+        .documents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .document-card {
+            background: linear-gradient(135deg, white 0%, var(--neutral-50) 100%);
+            border: 2px solid var(--neutral-200);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .document-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--info-color), var(--success-color), var(--warning-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .document-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .document-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 40px 0 rgba(13, 35, 57, 0.15);
+            background: linear-gradient(135deg, white 0%, rgba(13, 35, 57, 0.02) 100%);
+        }
+
+        .document-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--info-color) 0%, #2563eb 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 20px 0 rgba(59, 130, 246, 0.3);
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .document-icon::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            animation: documentPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes documentPulse {
+            0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.7; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+        }
+
+        .document-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* Exercise Card */
+        .exercise-card {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 3px solid var(--info-color);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+            text-align: center;
+            margin: var(--spacing-xl) 0;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exercise-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            animation: infoPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes infoPulse {
+            0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.5; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+        }
+
+        .exercise-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+            z-index: 2;
+        }
+
+        .exercise-title {
+            color: var(--info-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            position: relative;
+            z-index: 2;
+        }
+
+        .exercise-desc {
+            font-size: 1.125rem;
+            color: #1e40af;
+            margin-bottom: var(--spacing-lg);
+            position: relative;
+            z-index: 2;
+        }
+
+        .exercise-suggestion {
+            background: rgba(255, 255, 255, 0.8);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-lg);
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Enhanced Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .animate-left {
+            animation: fadeInLeft 0.6s ease-out forwards;
+        }
+
+        .animate-right {
+            animation: fadeInRight 0.6s ease-out forwards;
+        }
+
+        .animate-scale {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+
+        /* Navigation Buttons */
+        .navigation-buttons {
+            display: flex;
+            gap: var(--spacing-lg);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: var(--spacing-2xl);
+        }
+
+        /* Footer de NavegaciÃ³n del Curso */
+        .course-footer {
+            background: linear-gradient(135deg, var(--neutral-50) 0%, white 100%);
+            border: 2px solid var(--neutral-200);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--success-color), var(--info-color));
+        }
+
+        .course-footer-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .course-footer h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+        }
+
+        .course-navigation {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .nav-item.prev {
+            justify-self: start;
+        }
+
+        .nav-item.home {
+            justify-self: center;
+        }
+
+        .nav-item.next {
+            justify-self: end;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-lg);
+            border: 2px solid var(--neutral-300);
+            border-radius: var(--radius-lg);
+            background: white;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            min-width: 150px;
+            justify-content: center;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(13, 35, 57, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .nav-btn.prev:hover {
+            border-color: var(--warning-color);
+            background: var(--warning-color);
+            color: white;
+        }
+
+        .nav-btn.home:hover {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .nav-btn.next:hover {
+            border-color: var(--success-color);
+            background: var(--success-color);
+            color: white;
+        }
+
+        .nav-info {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--neutral-200);
+        }
+
+        .progress-indicator {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .progress-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--neutral-300);
+            transition: var(--transition);
+        }
+
+        .progress-dot.completed {
+            background: var(--success-color);
+        }
+
+        .progress-dot.current {
+            background: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--spacing-sm);
+            }
+            
+            .header {
+                padding: var(--spacing-xl) var(--spacing-md);
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .header-badges {
+                justify-content: center;
+                gap: var(--spacing-sm);
+            }
+            
+            .badge {
+                padding: var(--spacing-xs) var(--spacing-sm);
+                font-size: 0.75rem;
+            }
+            
+            .section {
+                padding: var(--spacing-lg);
+            }
+            
+            .section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .step {
+                padding: var(--spacing-lg);
+            }
+            
+            .step-header {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--spacing-sm);
+            }
+            
+            .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+            
+            .btn {
+                padding: var(--spacing-sm) var(--spacing-md);
+                font-size: 0.8rem;
+            }
+
+            .course-navigation {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+                text-align: center;
+            }
+
+            .nav-item {
+                justify-self: center !important;
+            }
+
+            .nav-btn {
+                width: 100%;
+                min-width: auto;
+            }
+
+            .course-footer {
+                padding: var(--spacing-lg);
+            }
+
+            .documents-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.75rem;
+            }
+            
+            .header-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-breadcrumb {
+                font-size: 0.75rem;
+                padding: var(--spacing-sm);
+                top: var(--spacing-xs);
+                margin-bottom: var(--spacing-lg);
+            }
+            
+            .nav-breadcrumb a {
+                display: inline-flex;
+                align-items: center;
+                gap: var(--spacing-xs);
+            }
+            
+            .separator {
+                display: none;
+            }
+            
+            .nav-breadcrumb::after {
+                content: '';
+                position: absolute;
+                bottom: -1px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 60%;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            
+            .nav-breadcrumb.scrolled::after {
+                opacity: 1;
+            }
+
+            .document-card {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- NavegaciÃ³n Breadcrumb -->
+        <div class="nav-breadcrumb animate-left">
+            <i class="fas fa-home" style="color: var(--primary-color);"></i>
+            <a href="../../index.html">Inicio</a>
+            <span class="separator">â€¢</span>
+            <a href="introduccion-contratos.html">IntroducciÃ³n</a>
+            <span class="separator">â€¢</span>
+            <a href="crear-contrato.html">Crear Contrato</a>
+            <span class="separator">â€¢</span>
+            <span style="color: var(--neutral-600); font-weight: 600;">Consultar Contrato</span>
+        </div>
+
+        <!-- Header -->
+        <div class="header animate-in">
+            <div class="header-content">
+                <h1><i class="fas fa-file-contract" style="color: rgba(255,255,255,0.8);"></i> Consultar Contrato</h1>
+                <p>Aprende a consultar contratos existentes de manera eficiente usando los filtros de bÃºsqueda del sistema</p>
+                <div class="header-badges">
+                    <div class="badge">
+                        <i class="fas fa-clock"></i>
+                        15 minutos
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-graduation-cap"></i>
+                        BÃ¡sico
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-tasks"></i>
+                        Consultas
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- IntroducciÃ³n -->
+        <div class="section animate-right">
+            <h2><i class="fas fa-info-circle" style="color: var(--info-color);"></i> IntroducciÃ³n</h2>
+            <p style="font-size: 1.125rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--spacing-lg);">
+                La consulta de contratos te permite visualizar, buscar y filtrar todos los contratos registrados en el sistema. 
+                Aprende a utilizar eficientemente las herramientas de bÃºsqueda para encontrar rÃ¡pidamente la informaciÃ³n que necesitas.
+            </p>
+
+            <div class="alert alert-info">
+                <i class="fas fa-lightbulb"></i>
+                <div>
+                    <strong>Funcionalidades clave:</strong><br>
+                    â€¢ BÃºsqueda por mÃºltiples filtros<br>
+                    â€¢ VisualizaciÃ³n detallada de contratos<br>
+                    â€¢ GeneraciÃ³n de reportes<br>
+                    â€¢ ExportaciÃ³n de datos
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Tutorial -->
+        <div class="section animate-scale">
+            <h2><i class="fas fa-play-circle" style="color: var(--success-color);"></i> Video Tutorial</h2>
+            <p style="font-size: 1rem; color: var(--text-secondary); margin-bottom: var(--spacing-md);">
+                Mira cÃ³mo realizar consultas efectivas de contratos en el sistema
+            </p>
+            
+            <div class="video-container">
+                <video controls
+                       preload="none"
+                       playsinline="true"
+                       webkit-playsinline="true"
+                       muted="true">
+                    <source src="../../assets/videos/Contratos/contratos 2 (consulta de documentos).mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+            </div>
+
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div>
+                    <strong>Importante:</strong> 
+                    AsegÃºrate de usar los filtros apropiados para optimizar tus bÃºsquedas y obtener resultados precisos.
+                </div>
+            </div>
+        </div>
+
+        <!-- Proceso Paso a Paso -->
+        <div class="section animate-in">
+            <h2><i class="fas fa-list-ol" style="color: var(--primary-color);"></i> Proceso Paso a Paso</h2>
+            
+            <div class="steps-container">
+                <!-- Paso 1 -->
+                <div class="step animate-left">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Acceder al MÃ³dulo de Consultas</div>
+                    </div>
+                    <div class="step-description">
+                        Navega al mÃ³dulo de contratos y selecciona la opciÃ³n "Consultar Contratos" desde el menÃº principal.
+                    </div>
+                    
+                    <div class="alert alert-info">
+                        <i class="fas fa-mouse-pointer"></i>
+                        <div>
+                            <strong>UbicaciÃ³n del mÃ³dulo:</strong> 
+                            MenÃº Principal â†’ Contratos â†’ Consultar Contratos
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paso 2 -->
+                <div class="step animate-right">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Configurar Filtros de BÃºsqueda</div>
+                    </div>
+                    <div class="step-description">
+                        Utiliza los diferentes filtros disponibles para delimitar tu bÃºsqueda y encontrar exactamente los contratos que necesitas.
+                    </div>
+
+                    <h4 style="color: var(--primary-color); margin: var(--spacing-lg) 0 var(--spacing-md) 0; font-size: 1.125rem; font-weight: 600;">
+                        <i class="fas fa-filter" style="color: var(--success-color);"></i> Filtros Disponibles:
+                    </h4>
+                    
+                    <div class="documents-grid">
+                        <div class="document-card">
+                            <div class="document-icon" style="background: linear-gradient(135deg, var(--success-color) 0%, #16a34a 100%);">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div>
+                                <div class="document-title">Fecha de Contrato</div>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon" style="background: linear-gradient(135deg, var(--warning-color) 0%, #d97706 100%);">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <div class="document-title">Cliente</div>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon" style="background: linear-gradient(135deg, var(--info-color) 0%, #2563eb 100%);">
+                                <i class="fas fa-hashtag"></i>
+                            </div>
+                            <div>
+                                <div class="document-title">NÃºmero de Contrato</div>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon" style="background: linear-gradient(135deg, var(--danger-color) 0%, #dc2626 100%);">
+                                <i class="fas fa-tags"></i>
+                            </div>
+                            <div>
+                                <div class="document-title">Estado del Contrato</div>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div>
+                                <div class="document-title">Rango de Montos</div>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div>
+                                <div class="document-title">Sucursal</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-success">
+                        <i class="fas fa-magic"></i>
+                        <div>
+                            <strong>Tip Pro:</strong> 
+                            Combina mÃºltiples filtros para bÃºsquedas mÃ¡s precisas. Por ejemplo: Cliente + Fecha + Estado.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paso 3 -->
+                <div class="step animate-left">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Ejecutar BÃºsqueda y Revisar Resultados</div>
+                    </div>
+                    <div class="step-description">
+                        Ejecuta la bÃºsqueda con los filtros configurados y revisa los contratos encontrados en la tabla de resultados.
+                    </div>
+
+                    <div class="alert alert-info">
+                        <i class="fas fa-table"></i>
+                        <div>
+                            <strong>InformaciÃ³n mostrada:</strong><br>
+                            â€¢ NÃºmero de contrato<br>
+                            â€¢ Cliente y datos de contacto<br>
+                            â€¢ Fecha y estado del contrato<br>
+                            â€¢ Monto total y saldo pendiente<br>
+                            â€¢ Acciones disponibles (ver, editar, imprimir)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paso 4 -->
+                <div class="step animate-right">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Acciones sobre Contratos Encontrados</div>
+                    </div>
+                    <div class="step-description">
+                        Una vez localizado el contrato deseado, puedes realizar diferentes acciones segÃºn tus necesidades operativas.
+                    </div>
+
+                    <h4 style="color: var(--primary-color); margin: var(--spacing-lg) 0 var(--spacing-md) 0; font-size: 1.125rem; font-weight: 600;">
+                        <i class="fas fa-cog" style="color: var(--info-color);"></i> Acciones Disponibles:
+                    </h4>
+
+                    <div class="documents-grid">
+                        <div class="document-card">
+                            <div class="document-icon" style="background: linear-gradient(135deg, var(--info-color) 0%, #2563eb 100%);">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div>
+                                <div class="document-title">Ver Detalles Completos</div>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon" style="background: linear-gradient(135deg, var(--warning-color) 0%, #d97706 100%);">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                            <div>
+                                <div class="document-title">Editar Contrato</div>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon" style="background: linear-gradient(135deg, var(--success-color) 0%, #16a34a 100%);">
+                                <i class="fas fa-print"></i>
+                            </div>
+                            <div>
+                                <div class="document-title">Imprimir Contrato</div>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <div>
+                                <div class="document-title">Exportar Datos</div>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div>
+                                <div class="document-title">Generar Reportes</div>
+                            </div>
+                        </div>
+                        
+                        <div class="document-card">
+                            <div class="document-icon" style="background: linear-gradient(135deg, var(--danger-color) 0%, #dc2626 100%);">
+                                <i class="fas fa-history"></i>
+                            </div>
+                            <div>
+                                <div class="document-title">Ver Historial</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i>
+                        <div>
+                            <strong>Â¡Proceso Completado!</strong> 
+                            Ahora puedes consultar contratos de manera eficiente y realizar las acciones necesarias sobre cada uno.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Consejos Adicionales -->
+        <div class="section animate-scale">
+            <h2><i class="fas fa-lightbulb" style="color: var(--warning-color);"></i> Consejos y Mejores PrÃ¡cticas</h2>
+            
+            <div class="alert alert-warning">
+                <i class="fas fa-star"></i>
+                <div>
+                    <strong>OptimizaciÃ³n de bÃºsquedas:</strong><br>
+                    â€¢ Usa fechas especÃ­ficas para reducir resultados<br>
+                    â€¢ Combina filtros por cliente y estado<br>
+                    â€¢ Guarda bÃºsquedas frecuentes como favoritas<br>
+                    â€¢ Utiliza exportaciÃ³n para anÃ¡lisis externos
+                </div>
+            </div>
+
+            <div class="alert alert-info">
+                <i class="fas fa-shield-alt"></i>
+                <div>
+                    <strong>Seguridad y permisos:</strong><br>
+                    Recuerda que solo puedes consultar contratos segÃºn tus permisos de usuario. Algunos datos pueden estar restringidos.
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio PrÃ¡ctico -->
+        <div class="exercise-card animate-in">
+            <div class="exercise-icon">
+                <i class="fas fa-graduation-cap" style="color: var(--info-color);"></i>
+            </div>
+            <div class="exercise-title">Ejercicio PrÃ¡ctico</div>
+            <div class="exercise-desc">
+                Realiza una bÃºsqueda de contratos del Ãºltimo mes para un cliente especÃ­fico y genera un reporte de los resultados encontrados.
+            </div>
+            <div class="exercise-suggestion">
+                <strong>Sugerencia:</strong> Utiliza los filtros de fecha, cliente y estado "Activo" para obtener informaciÃ³n relevante y actualizada.
+            </div>
+        </div>
+
+        <!-- NavegaciÃ³n del Curso -->
+        <div class="course-footer animate-in">
+            <div class="course-footer-content">
+                <h3><i class="fas fa-map-signs"></i> NavegaciÃ³n del Curso</h3>
+                
+                <div class="progress-indicator">
+                    <div class="progress-dot completed"></div>
+                    <div class="progress-dot completed"></div>
+                    <div class="progress-dot current"></div>
+                    <div class="progress-dot"></div>
+                </div>
+                
+                <div class="course-navigation">
+                    <a href="crear-contrato.html" class="nav-item prev">
+                        <div class="nav-btn prev">
+                            <i class="fas fa-arrow-left"></i>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Anterior</div>
+                                <div>Crear Contrato</div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <a href="index.html" class="nav-item home">
+                        <div class="nav-btn home">
+                            <i class="fas fa-home"></i>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">MÃ³dulo</div>
+                                <div>Contratos</div>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <a href="pagar-prorroga.html" class="nav-item next">
+                        <div class="nav-btn next">
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Siguiente</div>
+                                <div>Pagar PrÃ³rroga</div>
+                            </div>
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="nav-info">
+                    <p><i class="fas fa-info-circle"></i> MÃ³dulo 3 de 5 en el curso de Contratos â€¢ Progreso: 60%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.querySelector('.nav-breadcrumb');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0) translateX(0) scale(1)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe animated elements
+        document.querySelectorAll('.animate-in, .animate-left, .animate-right, .animate-scale').forEach(el => {
+            el.style.opacity = '0';
+            if (el.classList.contains('animate-left')) {
+                el.style.transform = 'translateX(-30px)';
+            } else if (el.classList.contains('animate-right')) {
+                el.style.transform = 'translateX(30px)';
+            } else if (el.classList.contains('animate-scale')) {
+                el.style.transform = 'scale(0.9)';
+            } else {
+                el.style.transform = 'translateY(30px)';
+            }
+            observer.observe(el);
+        });
+
+        // Enhanced hover effects for interactive elements
+        document.querySelectorAll('.document-card, .step, .btn').forEach(element => {
+            element.addEventListener('mouseenter', function() {
+                this.style.transform = this.style.transform.replace('scale(1)', 'scale(1.02)');
+            });
+            
+            element.addEventListener('mouseleave', function() {
+                this.style.transform = this.style.transform.replace('scale(1.02)', 'scale(1)');
+            });
+        });
+
+        // Analytics tracking
+        function trackModuleProgress(action, module) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', action, {
+                    'event_category': 'Contratos_Module',
+                    'event_label': module,
+                    'custom_parameter': 'consultar_contrato_page'
+                });
+            }
+            
+            console.log(`Analytics: ${action} - ${module}`);
+        }
+
+        // Track page visit
+        trackModuleProgress('page_view', 'consultar_contrato');
+
+        // Track section views
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const sectionTitle = entry.target.querySelector('h2')?.textContent || 'unknown_section';
+                    trackModuleProgress('section_view', sectionTitle.toLowerCase().replace(/\s+/g, '_'));
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.section').forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // Track navigation clicks
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const direction = btn.classList.contains('prev') ? 'previous' : 
+                                btn.classList.contains('next') ? 'next' : 'home';
+                trackModuleProgress('navigation_click', direction);
+            });
+        });
+
+        // Track video interaction
+        const video = document.querySelector('video');
+        if (video) {
+            video.addEventListener('play', () => trackModuleProgress('video_play', 'consultar_contrato_tutorial'));
+            video.addEventListener('pause', () => trackModuleProgress('video_pause', 'consultar_contrato_tutorial'));
+            video.addEventListener('ended', () => trackModuleProgress('video_complete', 'consultar_contrato_tutorial'));
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+    <!-- Script para mejorar compatibilidad de videos en mÃ³viles -->
+    <script src="../../fix-mobile-videos.js"></script>
+
+    <!-- iOS Safari Video Fix - Solución específica para reproducción de videos en móviles -->
+    <script src="../../ios-video-fix.js"></script>
+</body>
+</html>
+
+
