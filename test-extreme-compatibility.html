@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Compatibilidad Extrema - iOS Safari</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .test-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            background: #2d3748;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .test-section {
+            padding: 25px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .test-title {
+            color: #2d3748;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .device-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: #667eea;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin: 5px 5px 5px 0;
+        }
+        
+        /* VIDEO RESPONSIVE UNIVERSAL */
+        .video-responsive {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 */
+            margin: 15px 0;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        .video-responsive video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            background: #000;
+        }
+        
+        /* BOTONES DE CONTROL */
+        .controls {
+            margin: 15px 0;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            background: #667eea;
+            color: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        
+        .btn:hover {
+            background: #5a67d8;
+            transform: translateY(-1px);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .status {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+        
+        .success { color: #059669; }
+        .error { color: #dc2626; }
+        .warning { color: #d97706; }
+        .info { color: #2563eb; }
+        
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .test-section { padding: 15px; }
+            .controls { flex-direction: column; }
+            .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="header">
+            <h1>🧪 Test de Compatibilidad Extrema</h1>
+            <p>Prueba exhaustiva para iOS Safari y todos los navegadores</p>
+            <div id="deviceInfo"></div>
+        </div>
+        
+        <!-- TEST 1: CONFIGURACIÓN BÁSICA -->
+        <div class="test-section">
+            <h2 class="test-title">
+                🔧 Test 1: Configuración Básica
+            </h2>
+            <div class="video-responsive">
+                <video 
+                    id="video1"
+                    controls 
+                    playsinline 
+                    webkit-playsinline
+                    preload="metadata">
+                    <source src="assets/videos/Caja/arqueo-caja/arqueo-caja.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="controls">
+                <button class="btn" onclick="testVideo('video1', 'play')">▶ Reproducir</button>
+                <button class="btn" onclick="testVideo('video1', 'pause')">⏸ Pausar</button>
+                <button class="btn" onclick="testVideo('video1', 'load')">🔄 Recargar</button>
+            </div>
+            <div class="status" id="status1">Estado: Esperando...</div>
+        </div>
+        
+        <!-- TEST 2: CONFIGURACIÓN iOS ESPECÍFICA -->
+        <div class="test-section">
+            <h2 class="test-title">
+                🍎 Test 2: iOS Específico (Muted + Click)
+            </h2>
+            <div class="video-responsive">
+                <video 
+                    id="video2"
+                    controls 
+                    playsinline 
+                    webkit-playsinline
+                    muted
+                    preload="none">
+                    <source src="assets/videos/Caja/arqueo-caja/arqueo-caja.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="controls">
+                <button class="btn" onclick="playAndUnmute('video2')">🔊 Reproducir y Activar Audio</button>
+                <button class="btn" onclick="testVideo('video2', 'pause')">⏸ Pausar</button>
+                <button class="btn" onclick="testVideo('video2', 'load')">🔄 Recargar</button>
+            </div>
+            <div class="status" id="status2">Estado: Esperando...</div>
+        </div>
+        
+        <!-- TEST 3: PRELOAD AGRESIVO -->
+        <div class="test-section">
+            <h2 class="test-title">
+                ⚡ Test 3: Preload Agresivo
+            </h2>
+            <div class="video-responsive">
+                <video 
+                    id="video3"
+                    controls 
+                    playsinline 
+                    webkit-playsinline
+                    preload="auto">
+                    <source src="assets/videos/Caja/arqueo-caja/arqueo-caja.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="controls">
+                <button class="btn" onclick="testVideo('video3', 'play')">▶ Reproducir</button>
+                <button class="btn" onclick="testVideo('video3', 'pause')">⏸ Pausar</button>
+                <button class="btn" onclick="checkBuffer('video3')">📊 Ver Buffer</button>
+            </div>
+            <div class="status" id="status3">Estado: Esperando...</div>
+        </div>
+        
+        <!-- TEST 4: SIN PRELOAD -->
+        <div class="test-section">
+            <h2 class="test-title">
+                🚫 Test 4: Sin Preload (Carga Manual)
+            </h2>
+            <div class="video-responsive">
+                <video 
+                    id="video4"
+                    controls 
+                    playsinline 
+                    webkit-playsinline
+                    preload="none">
+                    <source src="assets/videos/Caja/arqueo-caja/arqueo-caja.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="controls">
+                <button class="btn" onclick="loadAndPlay('video4')">⚡ Cargar y Reproducir</button>
+                <button class="btn" onclick="testVideo('video4', 'pause')">⏸ Pausar</button>
+            </div>
+            <div class="status" id="status4">Estado: Esperando...</div>
+        </div>
+        
+        <!-- TEST 5: TODOS LOS ATRIBUTOS -->
+        <div class="test-section">
+            <h2 class="test-title">
+                🎯 Test 5: Configuración Completa
+            </h2>
+            <div class="video-responsive">
+                <video 
+                    id="video5"
+                    controls 
+                    playsinline 
+                    webkit-playsinline
+                    x-webkit-airplay="allow"
+                    muted
+                    preload="metadata"
+                    poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='450'%3E%3Crect width='800' height='450' fill='%23000'/%3E%3Ctext x='400' y='225' text-anchor='middle' fill='white' font-size='48'%3E▶%3C/text%3E%3C/svg%3E">
+                    <source src="assets/videos/Caja/arqueo-caja/arqueo-caja.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="controls">
+                <button class="btn" onclick="playAndUnmute('video5')">🎬 Iniciar Todo</button>
+                <button class="btn" onclick="testVideo('video5', 'pause')">⏸ Pausar</button>
+                <button class="btn" onclick="enterFullscreen('video5')">📱 Pantalla Completa</button>
+            </div>
+            <div class="status" id="status5">Estado: Esperando...</div>
+        </div>
+        
+        <!-- RESULTADOS GLOBALES -->
+        <div class="test-section">
+            <h2 class="test-title">
+                📊 Resultados Globales
+            </h2>
+            <div class="controls">
+                <button class="btn" onclick="testAllVideos()">🧪 Probar Todos</button>
+                <button class="btn" onclick="getDeviceReport()">📱 Reporte del Dispositivo</button>
+                <button class="btn" onclick="clearResults()">🗑️ Limpiar</button>
+            </div>
+            <div class="status" id="globalResults">Presiona "Probar Todos" para comenzar...</div>
+        </div>
+    </div>
+
+    <script>
+        // SISTEMA DE TESTING UNIVERSAL
+        const VideoTesterExtreme = {
+            init() {
+                this.detectDevice();
+                this.setupGlobalEventListeners();
+                this.log('🚀 VideoTesterExtreme inicializado');
+            },
+
+            detectDevice() {
+                const ua = navigator.userAgent;
+                this.device = {
+                    isIOS: /iPad|iPhone|iPod/.test(ua),
+                    isAndroid: /Android/.test(ua),
+                    isSafari: /Safari/.test(ua) && !/Chrome/.test(ua),
+                    isChrome: /Chrome/.test(ua),
+                    isMobile: /Mobi|Android/i.test(ua),
+                    isTablet: /iPad|Android(?=.*Tablet)/i.test(ua),
+                    screen: `${window.screen.width}x${window.screen.height}`,
+                    viewport: `${window.innerWidth}x${window.innerHeight}`,
+                    userAgent: ua
+                };
+                
+                this.updateDeviceInfo();
+            },
+
+            updateDeviceInfo() {
+                const info = document.getElementById('deviceInfo');
+                let badges = '';
+                
+                if (this.device.isIOS) badges += '<span class="device-badge">🍎 iOS</span>';
+                if (this.device.isAndroid) badges += '<span class="device-badge">🤖 Android</span>';
+                if (this.device.isSafari) badges += '<span class="device-badge">🦁 Safari</span>';
+                if (this.device.isChrome) badges += '<span class="device-badge">🟢 Chrome</span>';
+                if (this.device.isMobile) badges += '<span class="device-badge">📱 Mobile</span>';
+                if (this.device.isTablet) badges += '<span class="device-badge">📱 Tablet</span>';
+                
+                badges += `<span class="device-badge">📺 ${this.device.screen}</span>`;
+                
+                info.innerHTML = badges;
+            },
+
+            setupGlobalEventListeners() {
+                // Setup para cada video
+                for (let i = 1; i <= 5; i++) {
+                    const video = document.getElementById(`video${i}`);
+                    if (video) {
+                        this.setupVideoEvents(video, i);
+                    }
+                }
+            },
+
+            setupVideoEvents(video, index) {
+                const statusEl = document.getElementById(`status${index}`);
+                
+                video.addEventListener('loadstart', () => {
+                    this.updateStatus(statusEl, '📹 Cargando...', 'info');
+                });
+                
+                video.addEventListener('loadedmetadata', () => {
+                    this.updateStatus(statusEl, '📋 Metadatos OK', 'success');
+                });
+                
+                video.addEventListener('canplay', () => {
+                    this.updateStatus(statusEl, '▶️ Listo para reproducir', 'success');
+                });
+                
+                video.addEventListener('play', () => {
+                    this.updateStatus(statusEl, '🎬 Reproduciendo', 'success');
+                });
+                
+                video.addEventListener('pause', () => {
+                    this.updateStatus(statusEl, '⏸️ Pausado', 'info');
+                });
+                
+                video.addEventListener('ended', () => {
+                    this.updateStatus(statusEl, '🏁 Finalizado', 'success');
+                });
+                
+                video.addEventListener('error', (e) => {
+                    let errorMsg = 'Error desconocido';
+                    if (e.target.error) {
+                        const codes = ['ABORTED', 'NETWORK', 'DECODE', 'SRC_NOT_SUPPORTED'];
+                        errorMsg = codes[e.target.error.code - 1] || `Código ${e.target.error.code}`;
+                    }
+                    this.updateStatus(statusEl, `❌ ${errorMsg}`, 'error');
+                });
+                
+                video.addEventListener('stalled', () => {
+                    this.updateStatus(statusEl, '⚠️ Conexión lenta', 'warning');
+                });
+                
+                video.addEventListener('waiting', () => {
+                    this.updateStatus(statusEl, '⏳ Buffering...', 'warning');
+                });
+            },
+
+            updateStatus(element, message, type) {
+                const timestamp = new Date().toLocaleTimeString();
+                element.innerHTML = `<span class="${type}">[${timestamp}] ${message}</span>`;
+                console.log(`[VideoTest] ${message}`);
+            },
+
+            log(message) {
+                console.log(`[VideoTesterExtreme] ${message}`);
+            }
+        };
+
+        // FUNCIONES DE CONTROL
+        function testVideo(videoId, action) {
+            const video = document.getElementById(videoId);
+            const statusEl = document.getElementById(videoId.replace('video', 'status'));
+            
+            if (!video) return;
+            
+            try {
+                switch(action) {
+                    case 'play':
+                        const playPromise = video.play();
+                        if (playPromise !== undefined) {
+                            playPromise
+                                .then(() => {
+                                    VideoTesterExtreme.updateStatus(statusEl, '✅ Play() exitoso', 'success');
+                                })
+                                .catch((error) => {
+                                    VideoTesterExtreme.updateStatus(statusEl, `❌ Play() falló: ${error.name}`, 'error');
+                                });
+                        }
+                        break;
+                    case 'pause':
+                        video.pause();
+                        VideoTesterExtreme.updateStatus(statusEl, '⏸️ Pausado manualmente', 'info');
+                        break;
+                    case 'load':
+                        video.load();
+                        VideoTesterExtreme.updateStatus(statusEl, '🔄 Recargando...', 'info');
+                        break;
+                }
+            } catch (error) {
+                VideoTesterExtreme.updateStatus(statusEl, `❌ Excepción: ${error.message}`, 'error');
+            }
+        }
+
+        function playAndUnmute(videoId) {
+            const video = document.getElementById(videoId);
+            const statusEl = document.getElementById(videoId.replace('video', 'status'));
+            
+            if (!video) return;
+            
+            // Unmute first
+            video.muted = false;
+            VideoTesterExtreme.updateStatus(statusEl, '🔊 Audio activado', 'info');
+            
+            // Then play
+            setTimeout(() => {
+                testVideo(videoId, 'play');
+            }, 100);
+        }
+
+        function loadAndPlay(videoId) {
+            const video = document.getElementById(videoId);
+            const statusEl = document.getElementById(videoId.replace('video', 'status'));
+            
+            if (!video) return;
+            
+            VideoTesterExtreme.updateStatus(statusEl, '⚡ Cargando manualmente...', 'info');
+            video.load();
+            
+            video.addEventListener('canplay', () => {
+                testVideo(videoId, 'play');
+            }, { once: true });
+        }
+
+        function checkBuffer(videoId) {
+            const video = document.getElementById(videoId);
+            const statusEl = document.getElementById(videoId.replace('video', 'status'));
+            
+            if (!video) return;
+            
+            let bufferInfo = 'Sin buffer';
+            if (video.buffered.length > 0) {
+                const bufferedEnd = video.buffered.end(video.buffered.length - 1);
+                const percentage = video.duration ? Math.round((bufferedEnd / video.duration) * 100) : 0;
+                bufferInfo = `Buffer: ${Math.round(bufferedEnd)}s (${percentage}%)`;
+            }
+            
+            VideoTesterExtreme.updateStatus(statusEl, `📊 ${bufferInfo}`, 'info');
+        }
+
+        function enterFullscreen(videoId) {
+            const video = document.getElementById(videoId);
+            const statusEl = document.getElementById(videoId.replace('video', 'status'));
+            
+            if (!video) return;
+            
+            try {
+                if (video.requestFullscreen) {
+                    video.requestFullscreen();
+                } else if (video.webkitRequestFullscreen) {
+                    video.webkitRequestFullscreen();
+                } else if (video.webkitEnterFullscreen) {
+                    video.webkitEnterFullscreen();
+                }
+                VideoTesterExtreme.updateStatus(statusEl, '📱 Pantalla completa solicitada', 'info');
+            } catch (error) {
+                VideoTesterExtreme.updateStatus(statusEl, `❌ Fullscreen falló: ${error.message}`, 'error');
+            }
+        }
+
+        function testAllVideos() {
+            const results = document.getElementById('globalResults');
+            results.innerHTML = '<div class="info">🧪 Probando todos los videos...</div>';
+            
+            setTimeout(() => {
+                for (let i = 1; i <= 5; i++) {
+                    setTimeout(() => {
+                        testVideo(`video${i}`, 'play');
+                    }, i * 1000);
+                }
+                
+                setTimeout(() => {
+                    generateGlobalReport();
+                }, 6000);
+            }, 1000);
+        }
+
+        function generateGlobalReport() {
+            const results = document.getElementById('globalResults');
+            let report = '<h3>📋 Reporte Final:</h3>';
+            
+            for (let i = 1; i <= 5; i++) {
+                const video = document.getElementById(`video${i}`);
+                const status = document.getElementById(`status${i}`);
+                
+                if (video) {
+                    const state = video.paused ? '⏸️ Pausado' : '▶️ Reproduciendo';
+                    const readyState = ['NOTHING', 'METADATA', 'CURRENT_DATA', 'FUTURE_DATA', 'ENOUGH_DATA'][video.readyState];
+                    report += `<div><strong>Video ${i}:</strong> ${state} | Ready: ${readyState}</div>`;
+                }
+            }
+            
+            results.innerHTML = report;
+        }
+
+        function getDeviceReport() {
+            const results = document.getElementById('globalResults');
+            const device = VideoTesterExtreme.device;
+            
+            let report = '<h3>📱 Reporte del Dispositivo:</h3>';
+            report += `<div><strong>Sistema:</strong> ${device.isIOS ? 'iOS' : device.isAndroid ? 'Android' : 'Desktop'}</div>`;
+            report += `<div><strong>Navegador:</strong> ${device.isSafari ? 'Safari' : device.isChrome ? 'Chrome' : 'Otro'}</div>`;
+            report += `<div><strong>Tipo:</strong> ${device.isMobile ? 'Móvil' : device.isTablet ? 'Tablet' : 'Desktop'}</div>`;
+            report += `<div><strong>Pantalla:</strong> ${device.screen}</div>`;
+            report += `<div><strong>Viewport:</strong> ${device.viewport}</div>`;
+            
+            results.innerHTML = report;
+        }
+
+        function clearResults() {
+            for (let i = 1; i <= 5; i++) {
+                const statusEl = document.getElementById(`status${i}`);
+                if (statusEl) {
+                    statusEl.innerHTML = 'Estado: Limpiado';
+                }
+            }
+            document.getElementById('globalResults').innerHTML = 'Resultados limpiados.';
+        }
+
+        // INICIALIZAR
+        document.addEventListener('DOMContentLoaded', () => {
+            VideoTesterExtreme.init();
+        });
+    </script>
+</body>
+</html>
