@@ -245,18 +245,25 @@
             gap: var(--space-3);
         }
 
-        /* Video Container Optimizado para todos los dispositivos */
+        /* Video Container - Responsivo con decoración separada de controles */
         .video-container {
             position: relative;
             width: 100%;
             background: var(--neutral-100);
-            border-radius: var(--radius-lg);
+            border-radius: var(--radius-xl);
             overflow: hidden;
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-lg);
             margin: var(--space-6) 0;
-            /* Optimización para dispositivos móviles */
+            transition: var(--transition-normal);
+            /* Optimización para rendimiento en móviles */
             -webkit-transform: translateZ(0);
             transform: translateZ(0);
+            will-change: transform;
+        }
+
+        .video-container:hover {
+            box-shadow: var(--shadow-xl);
+            transform: translateY(-4px);
         }
 
         .video-container video {
@@ -264,28 +271,83 @@
             height: auto;
             display: block;
             background-color: #000;
+            border-radius: var(--radius-xl);
+            /* NO interferir con controles nativos */
             outline: none;
-            border-radius: var(--radius-lg);
-            /* NO usar object-fit: cover para evitar problemas con controles en iOS */
+            border: none;
+            /* Respetar aspect ratio natural del video */
+            aspect-ratio: 16 / 9;
+            object-fit: contain;
         }
 
-        /* Controles de video mejorados - Respeta los controles nativos */
+        /* Controles nativos - NO modificar para mantener compatibilidad */
+        .video-container video::-webkit-media-controls-panel {
+            /* Permitir que los controles nativos se muestren normalmente */
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+        }
+
         .video-container video::-webkit-media-controls {
+            /* Mantener controles siempre visibles */
             opacity: 1;
         }
 
-        .video-container video::-webkit-media-controls-panel {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        /* Poster/placeholder para videos */
+        /* Estado de poster (antes de reproducir) */
         .video-container video[poster] {
             object-fit: cover;
+            background-size: cover;
+            background-position: center;
         }
 
-        /* Estados de carga del video */
+        /* Estado de carga */
         .video-container video:not([poster]) {
-            min-height: 200px;
+            min-height: 300px;
+            background: linear-gradient(45deg, var(--neutral-200), var(--neutral-300));
+        }
+
+        /* Indicador de play overlay - solo decorativo */
+        .video-container::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 80px;
+            height: 80px;
+            background: rgba(13, 35, 57, 0.8);
+            border-radius: var(--radius-full);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: var(--transition-normal);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .video-container:hover::before {
+            opacity: 1;
+        }
+
+        .video-container::after {
+            content: '▶';
+            position: absolute;
+            top: 50%;
+            left: 52%;
+            color: white;
+            font-size: 2rem;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: var(--transition-normal);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .video-container:hover::after {
+            opacity: 1;
+        }
+
+        /* Ocultar overlay cuando el video está reproduciéndose */
+        .video-container video:not([paused])::before,
+        .video-container video:not([paused])::after {
+            opacity: 0;
         }
 
         /* Pasos */
@@ -657,11 +719,21 @@
             
             .video-container {
                 margin: var(--space-4) 0;
-                border-radius: var(--radius-md);
+                border-radius: var(--radius-lg);
             }
 
             .video-container video {
-                border-radius: var(--radius-md);
+                border-radius: var(--radius-lg);
+                min-height: 200px;
+            }
+
+            .video-container::before {
+                width: 60px;
+                height: 60px;
+            }
+
+            .video-container::after {
+                font-size: 1.5rem;
             }
 
             .course-navigation {
@@ -670,6 +742,26 @@
                 text-align: center;
             }
         }
+
+        @media (max-width: 480px) {
+            .video-container {
+                margin: var(--space-3) 0;
+                border-radius: var(--radius-md);
+            }
+
+            .video-container video {
+                border-radius: var(--radius-md);
+                min-height: 180px;
+            }
+
+            .video-container::before {
+                width: 50px;
+                height: 50px;
+            }
+
+            .video-container::after {
+                font-size: 1.25rem;
+            }
 
         @media (max-width: 480px) {
             .header h1 {
@@ -787,7 +879,6 @@
                     preload="metadata"
                     playsinline
                     webkit-playsinline
-                    muted
                     poster="../../assets/images/video-poster-apertura-caja.jpg"
                     aria-label="Video tutorial: Proceso completo de apertura de caja">
                     <source src="../../assets/videos/Caja/apertura-caja/apertura-caja.mp4" type="video/mp4">
@@ -932,8 +1023,6 @@
                     preload="metadata"
                     playsinline
                     webkit-playsinline
-                    muted
-<<<<<<< HEAD
                     poster="../../assets/images/video-poster-apertura-contingencia.jpg"
                     aria-label="Video tutorial: Casos especiales en apertura de caja">
                     <source src="../../assets/videos/Caja/apertura-caja/apertura-caja-contingencia.mp4" type="video/mp4">
@@ -1016,39 +1105,23 @@
                     // Configuración específica para iOS Safari y compatibilidad universal
                     video.setAttribute('playsinline', true);
                     video.setAttribute('webkit-playsinline', true);
-                    video.muted = true;
-
-                    // Manejo de autoplay responsable en móviles
-                    const enableAutoplay = () => {
-                        if (window.innerWidth <= 768 && 'IntersectionObserver' in window) {
-                            const observer = new IntersectionObserver((entries) => {
-                                entries.forEach(entry => {
-                                    if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-                                        video.play().catch(() => {
-                                            // Autoplay falló, está bien - el usuario puede iniciar manualmente
-                                        });
-                                        observer.unobserve(video);
-                                    }
-                                });
-                            }, { threshold: 0.5 });
-                            observer.observe(video);
-                        }
-                    };
-
+                    // NO muted - permitir que el usuario controle la reproducción
+                    
                     // Error handling mejorado
                     video.addEventListener('error', (e) => {
                         console.warn('Error al cargar video:', e);
                         const container = video.closest('.video-container');
                         if (container) {
                             container.innerHTML = `
-                                <div style="display: flex; align-items: center; justify-content: center; min-height: 200px; background: var(--neutral-100); border-radius: var(--radius-lg); padding: var(--space-6);">
+                                <div style="display: flex; align-items: center; justify-content: center; min-height: 300px; background: var(--neutral-100); border-radius: var(--radius-xl); padding: var(--space-6);">
                                     <div style="text-align: center; color: var(--text-secondary);">
-                                        <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 1rem; display: block; color: var(--warning-color);"></i>
-                                        <p style="margin-bottom: 1rem;">Error al cargar el video</p>
+                                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem; display: block; color: var(--warning-color);"></i>
+                                        <h3 style="margin-bottom: 1rem; color: var(--text-primary);">Error al cargar el video</h3>
+                                        <p style="margin-bottom: 1.5rem;">El archivo de video no se pudo cargar correctamente.</p>
                                         <a href="${video.querySelector('source')?.src || '#'}" 
                                            download 
-                                           class="btn btn-outline" 
-                                           style="color: var(--primary-color); text-decoration: none;">
+                                           class="btn btn-primary" 
+                                           style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--primary-color); color: white; text-decoration: none; border-radius: 8px;">
                                             <i class="fas fa-download"></i> Descargar video
                                         </a>
                                     </div>
@@ -1057,13 +1130,37 @@
                         }
                     });
 
-                    // Eventos de carga optimizados
-                    video.addEventListener('loadedmetadata', () => {
-                        video.style.cursor = 'pointer';
-                        enableAutoplay();
+                    // Gestión del overlay de play
+                    video.addEventListener('play', () => {
+                        const container = video.closest('.video-container');
+                        if (container) {
+                            container.style.setProperty('--video-playing', '1');
+                        }
+                        
+                        // Pausar otros videos cuando uno empiece a reproducirse
+                        videos.forEach(otherVideo => {
+                            if (otherVideo !== video && !otherVideo.paused) {
+                                otherVideo.pause();
+                            }
+                        });
                     });
 
-                    // Mejora de rendimiento: pausar videos fuera de vista
+                    video.addEventListener('pause', () => {
+                        const container = video.closest('.video-container');
+                        if (container) {
+                            container.style.removeProperty('--video-playing');
+                        }
+                    });
+
+                    // Mejorar accesibilidad con teclado
+                    video.addEventListener('focus', () => {
+                        video.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center' 
+                        });
+                    });
+
+                    // Optimización: pausar videos fuera de vista para ahorrar batería
                     if ('IntersectionObserver' in window) {
                         const pauseObserver = new IntersectionObserver((entries) => {
                             entries.forEach(entry => {
@@ -1075,14 +1172,14 @@
                         pauseObserver.observe(video);
                     }
 
-                    // Gestión de estado de reproducción
-                    video.addEventListener('play', () => {
-                        // Pausar otros videos cuando uno empiece a reproducirse
-                        videos.forEach(otherVideo => {
-                            if (otherVideo !== video && !otherVideo.paused) {
-                                otherVideo.pause();
-                            }
-                        });
+                    // Carga lazy para mejor rendimiento
+                    video.addEventListener('loadstart', () => {
+                        video.style.cursor = 'pointer';
+                    });
+
+                    video.addEventListener('loadedmetadata', () => {
+                        // Video cargado y listo para reproducir
+                        console.log(`Video "${video.getAttribute('aria-label')}" cargado correctamente`);
                     });
                 });
             }
