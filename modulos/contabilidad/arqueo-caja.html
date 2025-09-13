@@ -211,19 +211,6 @@
             border-color: var(--primary-color);
         }
 
-        /* ===== RESPONSIVE VIDEO SYSTEM ===== */
-        .responsive-video-wrapper {
-            width: 100%;
-            max-width: 900px;
-            margin: var(--spacing-xl) auto;
-            padding: var(--spacing-md);
-            background: linear-gradient(135deg, var(--neutral-50) 0%, white 100%);
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-lg);
-            position: relative;
-            overflow: hidden;
-        }
-
         .responsive-video-wrapper::before {
             content: '';
             position: absolute;
@@ -397,28 +384,6 @@
 
         @keyframes spin {
             to { transform: rotate(360deg); }
-        }
-
-        /* Poster personalizado cuando no hay video */
-        .video-poster {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
-
-        .video-poster.show {
-            opacity: 1;
         }
 
         /* Steps */
@@ -1255,16 +1220,21 @@
             <!-- Contenedor responsivo del video -->
             <div class="responsive-video-wrapper">
                 <div class="video-container">
-                    <!-- Video elemento con atributos optimizados para iOS -->
+                    <!-- Video optimizado para máxima compatibilidad iOS Safari -->
                     <video id="videoPlayer" 
                            class="video-player"
                            controls
-                           preload="none"
+                           preload="metadata"
                            playsinline
                            webkit-playsinline
-                           muted>
+                           muted
+                           disablePictureInPicture>
                         <source src="../../assets/videos/Caja/arqueo-caja/arqueo-caja.mp4" type="video/mp4">
-                        Tu navegador no soporta la reproducción de vídeo HTML5.
+                        <p>Tu navegador no soporta la reproducción de video HTML5. 
+                           <a href="../../assets/videos/Caja/arqueo-caja/arqueo-caja.mp4" target="_blank">
+                              Haz clic aquí para descargar el video
+                           </a>
+                        </p>
                     </video>
                     
                     <!-- Poster de carga personalizado -->
@@ -1473,8 +1443,6 @@
 
     <!-- JavaScript principal -->
     <script src="../../assets/js/main.js"></script>
-    <!-- Script para mejorar compatibilidad de videos en móviles -->
-    <script src="../../fix-mobile-videos.js"></script>
     <script>
         // Estado moderno del documento
         const ArqueoModule = {
@@ -1887,64 +1855,44 @@
 
     <!-- Script específico para mejorar experiencia del video -->
     <script>
-        // Video Handler - Sistema completo de manejo de video optimizado para iOS Safari
+        // Video Handler - Simplificado para video re-codificado H.264 Baseline Profile
         const VideoHandler = {
             init() {
                 this.video = document.getElementById('videoPlayer');
                 this.poster = document.getElementById('videoPoster');
                 this.fallback = document.getElementById('videoFallback');
-                this.container = document.querySelector('.video-container');
                 
-                if (!this.video) {
-                    console.warn('❌ Video element not found');
-                    return;
-                }
+                if (!this.video) return;
                 
                 this.isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
                 this.isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-                this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
                 
                 this.setupVideo();
                 this.setupEventListeners();
                 this.setupPoster();
                 
-                console.log(`🎬 Video Handler inicializado - iOS: ${this.isIOS}, Safari: ${this.isSafari}, Mobile: ${this.isMobile}`);
+                console.log(`🎬 Video optimizado inicializado - iOS: ${this.isIOS}, Safari: ${this.isSafari}`);
             },
             
             setupVideo() {
-                // Configuración específica para iOS/Safari
+                // Video ya optimizado con H.264 Baseline Profile para iOS Safari
                 if (this.isIOS || this.isSafari) {
                     this.video.setAttribute('playsinline', 'true');
                     this.video.setAttribute('webkit-playsinline', 'true');
-                    this.video.muted = true; // Requerido para autoplay en iOS
                     this.video.preload = 'metadata';
                 }
                 
-                // Configuración para móviles en general
-                if (this.isMobile) {
-                    this.video.controls = true;
-                    this.video.preload = 'metadata';
-                }
-                
-                // Timeout para detectar problemas de carga
+                // Timeout simple para detectar problemas
                 this.loadTimeout = setTimeout(() => {
                     if (this.video.readyState === 0) {
-                        console.warn('⚠️ Video load timeout - showing fallback');
-                        this.showFallback('Tiempo de carga agotado');
+                        this.showFallback('Error de carga del video');
                     }
-                }, 10000); // 10 segundos timeout
+                }, 8000);
             },
             
             setupEventListeners() {
-                // Eventos de carga
-                this.video.addEventListener('loadstart', () => {
-                    console.log('📹 Iniciando carga del video...');
-                    this.showLoading();
-                });
-                
                 this.video.addEventListener('loadedmetadata', () => {
-                    console.log('📋 Metadatos cargados');
-                    this.hideLoading();
+                    console.log('✅ Video H.264 cargado correctamente');
                     clearTimeout(this.loadTimeout);
                 });
                 
@@ -1954,19 +1902,9 @@
                     this.hideFallback();
                 });
                 
-                this.video.addEventListener('canplaythrough', () => {
-                    console.log('🎬 Video completamente cargado');
-                    this.hidePoster();
-                });
-                
-                // Eventos de reproducción
                 this.video.addEventListener('play', () => {
                     console.log('▶️ Reproducción iniciada');
                     this.hidePoster();
-                });
-                
-                this.video.addEventListener('pause', () => {
-                    console.log('⏸️ Video pausado');
                 });
                 
                 this.video.addEventListener('ended', () => {
@@ -1974,39 +1912,9 @@
                     this.showCompletionMessage();
                 });
                 
-                // Eventos de error críticos
                 this.video.addEventListener('error', (e) => {
-                    console.error('❌ Error en video:', e);
-                    this.handleVideoError(e);
-                });
-                
-                this.video.addEventListener('stalled', () => {
-                    console.warn('⚠️ Video stalled');
-                    this.showLoading();
-                });
-                
-                this.video.addEventListener('waiting', () => {
-                    console.log('⏳ Video buffering...');
-                    this.showLoading();
-                });
-                
-                this.video.addEventListener('playing', () => {
-                    console.log('▶️ Video playing');
-                    this.hideLoading();
-                });
-                
-                // Detectar si el source falla
-                const source = this.video.querySelector('source');
-                if (source) {
-                    source.addEventListener('error', (e) => {
-                        console.error('❌ Error en source:', e);
-                        this.handleSourceError();
-                    });
-                }
-                
-                // Evento de red
-                this.video.addEventListener('offline', () => {
-                    this.showFallback('Sin conexión a internet');
+                    console.error('❌ Error de video:', e);
+                    this.showFallback('Error de reproducción - Video re-codificado disponible');
                 });
             },
             
@@ -2019,96 +1927,37 @@
             },
             
             playVideo() {
-                if (this.video) {
-                    // Para iOS, necesitamos unmute al hacer click
-                    if (this.isIOS && this.video.muted) {
-                        this.video.muted = false;
-                    }
-                    
-                    const playPromise = this.video.play();
-                    
-                    if (playPromise !== undefined) {
-                        playPromise
-                            .then(() => {
-                                console.log('✅ Video iniciado correctamente');
-                                this.hidePoster();
-                            })
-                            .catch((error) => {
-                                console.error('❌ Error al reproducir:', error);
-                                
-                                // Si es un error de interacción, mostrar mensaje específico
-                                if (error.name === 'NotAllowedError') {
-                                    this.showFallback('Toca el video para iniciar la reproducción');
-                                } else {
-                                    this.handleVideoError(error);
-                                }
-                            });
-                    }
-                }
-            },
-            
-            handleVideoError(error) {
-                clearTimeout(this.loadTimeout);
-                let errorMessage = 'Video no disponible';
+                if (!this.video) return;
                 
-                if (error.target && error.target.error) {
-                    const errorCode = error.target.error.code;
-                    switch(errorCode) {
-                        case 1: // MEDIA_ERR_ABORTED
-                            errorMessage = 'Carga del video cancelada';
-                            break;
-                        case 2: // MEDIA_ERR_NETWORK
-                            errorMessage = 'Error de red - Verifica tu conexión';
-                            break;
-                        case 3: // MEDIA_ERR_DECODE
-                            errorMessage = 'Error de decodificación del video';
-                            break;
-                        case 4: // MEDIA_ERR_SRC_NOT_SUPPORTED
-                            errorMessage = 'Formato de video no soportado';
-                            break;
-                        default:
-                            errorMessage = 'Error desconocido en el video';
-                    }
-                } else if (error.name) {
-                    switch(error.name) {
-                        case 'NotSupportedError':
-                            errorMessage = 'Formato no soportado en este navegador';
-                            break;
-                        case 'NotAllowedError':
-                            errorMessage = 'Reproducción bloqueada - Toca para activar';
-                            break;
-                        case 'AbortError':
-                            errorMessage = 'Reproducción interrumpida';
-                            break;
-                    }
+                // Unmute para iOS al hacer click
+                if (this.isIOS && this.video.muted) {
+                    this.video.muted = false;
                 }
                 
-                console.error('🚨 Error detallado:', {
-                    error: error,
-                    code: error.target?.error?.code,
-                    networkState: this.video?.networkState,
-                    readyState: this.video?.readyState,
-                    src: this.video?.currentSrc || this.video?.src
-                });
-                
-                this.showFallback(errorMessage);
+                this.video.play()
+                    .then(() => {
+                        console.log('✅ Video iniciado correctamente');
+                        this.hidePoster();
+                    })
+                    .catch(error => {
+                        console.warn('⚠️ Autoplay bloqueado:', error.name);
+                        if (error.name === 'NotAllowedError') {
+                            // Normal en iOS Safari - usuario debe hacer click
+                            this.showFallback('Toca el video para iniciar reproducción');
+                        }
+                    });
             },
             
-            handleSourceError() {
-                console.error('❌ Error en el archivo source');
-                this.showFallback('Archivo de video no encontrado o corrupto');
-            },
             
             showFallback(message) {
                 if (this.fallback) {
                     const messageElement = this.fallback.querySelector('p');
-                    if (messageElement && message) {
+                    if (messageElement) {
                         messageElement.textContent = message;
                     }
                     this.fallback.style.display = 'block';
                 }
                 this.hidePoster();
-                this.hideLoading();
             },
             
             hideFallback() {
@@ -2185,10 +2034,7 @@
                 
                 document.body.appendChild(notification);
                 
-                setTimeout(() => {
-                    notification.style.transform = 'translateX(0)';
-                }, 100);
-                
+                setTimeout(() => notification.style.transform = 'translateX(0)', 100);
                 setTimeout(() => {
                     notification.style.transform = 'translateX(400px)';
                     setTimeout(() => notification.remove(), 300);
@@ -2207,8 +2053,7 @@
         } else {
             VideoHandler.init();
         }
-    <!-- iOS Safari Video Fix - Solución específica para reproducción de videos en móviles -->
-    <script src="../../ios-video-fix.js"></script>
+    </script>
 </body>
 </html>
 
