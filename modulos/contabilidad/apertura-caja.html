@@ -258,7 +258,208 @@
         }
 
         /* Video Container - Optimizado para videos H.264 re-codificados */
+        .responsive-video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: var(--space-8) auto;
+            background: linear-gradient(135deg, var(--neutral-50) 0%, white 100%);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.08),
+                0 1px 8px rgba(0, 0, 0, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+            border: 1px solid var(--neutral-200);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .responsive-video-wrapper:hover {
+            transform: translateY(-4px);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.12),
+                0 8px 16px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
+            border-color: var(--primary-color);
+        }
+
+        .responsive-video-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--success-color), var(--info-color));
+        }
+
         .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+            background: #000;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-container:focus-within {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* Video player optimizado para todos los dispositivos */
+        .video-player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            border: none;
+            border-radius: var(--radius-lg);
+            object-fit: cover;
+            background: #000;
+            z-index: 2;
+        }
+
+        /* Asegurar que funcione en iOS Safari */
+        .video-player::-webkit-media-controls {
+            display: flex !important;
+        }
+
+        .video-player::-webkit-media-controls-panel {
+            display: flex !important;
+        }
+
+        /* Poster personalizado */
+        .video-poster {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(13, 35, 57, 0.9) 0%, rgba(13, 35, 57, 0.7) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f1f5f9"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            z-index: 3;
+            transition: all 0.3s ease;
+            border-radius: var(--radius-lg);
+        }
+
+        .video-poster:hover {
+            background: linear-gradient(135deg, rgba(13, 35, 57, 0.8) 0%, rgba(13, 35, 57, 0.6) 100%);
+            transform: scale(1.02);
+        }
+
+        .poster-content {
+            text-align: center;
+            padding: var(--space-8);
+        }
+
+        .poster-content i {
+            font-size: 4rem;
+            margin-bottom: var(--space-6);
+            color: white;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        .poster-content h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .poster-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin: 0;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Video fallback mejorado */
+        .video-fallback {
+            width: 100%;
+            background: linear-gradient(135deg, var(--danger-color) 0%, #dc2626 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            text-align: center;
+            margin-top: var(--space-6);
+            box-shadow: 0 8px 32px rgba(239, 68, 68, 0.3);
+        }
+
+        .fallback-content i {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-6);
+            opacity: 0.9;
+        }
+
+        .fallback-content h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+        }
+
+        .fallback-content p {
+            opacity: 0.9;
+            margin-bottom: var(--space-6);
+            line-height: 1.6;
+        }
+
+        .retry-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: var(--space-2) var(--space-6);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .retry-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Estados del video */
+        .video-loading {
+            position: relative;
+        }
+
+        .video-loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            margin: -20px 0 0 -20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            z-index: 4;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Video container anterior - mantener para compatibilidad */
+        .video-container.legacy {
             position: relative;
             width: 100%;
             background: var(--neutral-100);
@@ -269,12 +470,12 @@
             transition: var(--transition-normal);
         }
 
-        .video-container:hover {
+        .video-container.legacy:hover {
             box-shadow: var(--shadow-xl);
             transform: translateY(-4px);
         }
 
-        .video-container video {
+        .video-container.legacy video {
             width: 100%;
             height: auto;
             display: block;
@@ -939,22 +1140,48 @@
             <h2><i class="fas fa-play-circle" aria-hidden="true"></i> Video Tutorial: Proceso Completo</h2>
             <p>Observa paso a paso cómo realizar una apertura de caja correcta en el sistema Sinnut ERP.</p>
             
-            <div class="video-container">
-                <video 
-                    id="videoPlayer1"
-                    controls 
-                    preload="metadata"
-                    playsinline
-                    webkit-playsinline
-                    disablePictureInPicture
-                    poster="../../assets/images/video-poster-apertura-caja.jpg"
-                    aria-label="Video tutorial: Proceso completo de apertura de caja">
-                    <source src="../../assets/videos/Caja/apertura-caja/apertura-caja.mp4" type="video/mp4">
-                    <track kind="captions" src="../../assets/videos/Caja/apertura-caja/apertura-caja.vtt" srclang="es" label="Español" default>
-                    <p>Tu navegador no soporta la reproducción de videos. El video ha sido optimizado para iOS Safari.
-                       <a href="../../assets/videos/Caja/apertura-caja/apertura-caja.mp4" download>Descargar video</a>
-                    </p>
-                </video>
+            <!-- Contenedor responsivo del video -->
+            <div class="responsive-video-wrapper">
+                <div class="video-container">
+                    <!-- Video optimizado para máxima compatibilidad iOS Safari -->
+                    <video id="videoPlayer1" 
+                           class="video-player"
+                           controls
+                           preload="metadata"
+                           playsinline
+                           webkit-playsinline
+                           muted
+                           disablePictureInPicture>
+                        <source src="../../assets/videos/Caja/apertura-caja/apertura-caja.mp4" type="video/mp4">
+                        <p>Tu navegador no soporta la reproducción de video HTML5. 
+                           <a href="../../assets/videos/Caja/apertura-caja/apertura-caja.mp4" target="_blank">
+                              Haz clic aquí para descargar el video
+                           </a>
+                        </p>
+                    </video>
+                    
+                    <!-- Poster de carga personalizado -->
+                    <div class="video-poster" id="videoPoster1">
+                        <div class="poster-content">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>Video Tutorial: Apertura de Caja</h4>
+                            <p>Toca para reproducir</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fallback para errores (fuera del video) -->
+                <div class="video-fallback" id="videoFallback1" style="display: none;">
+                    <div class="fallback-content">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h4>Video no disponible</h4>
+                        <p>Verifica tu conexión a internet o contacta con soporte técnico.</p>
+                        <button class="retry-btn" onclick="VideoHandler.retryLoad('videoPlayer1')">
+                            <i class="fas fa-redo"></i>
+                            Intentar de nuevo
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <div class="alert alert-success" role="alert">
@@ -1085,22 +1312,48 @@
             <h2><i class="fas fa-play-circle" aria-hidden="true"></i> Video Tutorial: Casos Especiales</h2>
             <p>Aprende a manejar situaciones especiales durante la apertura de caja.</p>
             
-            <div class="video-container">
-                <video 
-                    id="videoPlayer2"
-                    controls 
-                    preload="metadata"
-                    playsinline
-                    webkit-playsinline
-                    disablePictureInPicture
-                    poster="../../assets/images/video-poster-apertura-contingencia.jpg"
-                    aria-label="Video tutorial: Casos especiales en apertura de caja">
-                    <source src="../../assets/videos/Caja/apertura-caja/apertura-caja-contingencia.mp4" type="video/mp4">
-                    <track kind="captions" src="../../assets/videos/Caja/apertura-caja/apertura-caja-contingencia.vtt" srclang="es" label="Español" default>
-                    <p>Tu navegador no soporta la reproducción de videos. El video ha sido optimizado para iOS Safari.
-                       <a href="../../assets/videos/Caja/apertura-caja/apertura-caja-contingencia.mp4" download>Descargar video</a>
-                    </p>
-                </video>
+            <!-- Contenedor responsivo del video -->
+            <div class="responsive-video-wrapper">
+                <div class="video-container">
+                    <!-- Video optimizado para máxima compatibilidad iOS Safari -->
+                    <video id="videoPlayer2" 
+                           class="video-player"
+                           controls
+                           preload="metadata"
+                           playsinline
+                           webkit-playsinline
+                           muted
+                           disablePictureInPicture>
+                        <source src="../../assets/videos/Caja/apertura-caja/apertura-caja-contingencia.mp4" type="video/mp4">
+                        <p>Tu navegador no soporta la reproducción de video HTML5. 
+                           <a href="../../assets/videos/Caja/apertura-caja/apertura-caja-contingencia.mp4" target="_blank">
+                              Haz clic aquí para descargar el video
+                           </a>
+                        </p>
+                    </video>
+                    
+                    <!-- Poster de carga personalizado -->
+                    <div class="video-poster" id="videoPoster2">
+                        <div class="poster-content">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>Video Tutorial: Casos Especiales</h4>
+                            <p>Toca para reproducir</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fallback para errores (fuera del video) -->
+                <div class="video-fallback" id="videoFallback2" style="display: none;">
+                    <div class="fallback-content">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h4>Video no disponible</h4>
+                        <p>Verifica tu conexión a internet o contacta con soporte técnico.</p>
+                        <button class="retry-btn" onclick="VideoHandler.retryLoad('videoPlayer2')">
+                            <i class="fas fa-redo"></i>
+                            Intentar de nuevo
+                        </button>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1186,61 +1439,226 @@
             }
         };
 
-        // Video Handler - Simplificado para videos H.264 re-codificados
+        // Video Handler - Moderno para múltiples videos con poster personalizado
         const VideoHandler = {
             init() {
-                this.videos = document.querySelectorAll('video');
-                this.setupVideos();
-                console.log(`🎬 ${this.videos.length} videos optimizados inicializados`);
+                this.instances = [];
+                this.isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+                this.isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+                
+                // Inicializar cada video
+                const videoIds = ['videoPlayer1', 'videoPlayer2'];
+                videoIds.forEach(id => {
+                    const video = document.getElementById(id);
+                    if (video) {
+                        this.instances.push(new this.VideoInstance(video, id, this.isIOS, this.isSafari));
+                    }
+                });
+                
+                console.log(`🎬 ${this.instances.length} videos optimizados inicializados - iOS: ${this.isIOS}, Safari: ${this.isSafari}`);
             },
 
-            setupVideos() {
-                this.videos.forEach((video, index) => {
-                    // Configuración para iOS Safari
-                    video.setAttribute('playsinline', 'true');
-                    video.setAttribute('webkit-playsinline', 'true');
+            VideoInstance: function(video, id, isIOS, isSafari) {
+                this.video = video;
+                this.id = id;
+                this.isIOS = isIOS;
+                this.isSafari = isSafari;
+                this.poster = document.getElementById(id.replace('videoPlayer', 'videoPoster'));
+                this.fallback = document.getElementById(id.replace('videoPlayer', 'videoFallback'));
+                this.container = video.closest('.video-container');
+                
+                this.init();
+                
+                return this;
+            },
+            
+            retryLoad(videoId) {
+                const instance = VideoHandler.instances.find(inst => inst.id === videoId);
+                if (instance) {
+                    instance.retryLoad();
+                }
+            }
+        };
+
+        // Extender VideoInstance prototype
+        VideoHandler.VideoInstance.prototype = {
+            init() {
+                this.setupVideo();
+                this.setupEventListeners();
+                this.setupPoster();
+            },
+            
+            setupVideo() {
+                // Video ya optimizado con H.264 Baseline Profile para iOS Safari
+                if (this.isIOS || this.isSafari) {
+                    this.video.setAttribute('playsinline', 'true');
+                    this.video.setAttribute('webkit-playsinline', 'true');
+                    this.video.preload = 'metadata';
+                }
+                
+                // Timeout simple para detectar problemas
+                this.loadTimeout = setTimeout(() => {
+                    if (this.video.readyState === 0) {
+                        this.showFallback('Error de carga del video');
+                    }
+                }, 8000);
+            },
+            
+            setupEventListeners() {
+                this.video.addEventListener('loadedmetadata', () => {
+                    console.log(`✅ Video ${this.id} H.264 cargado correctamente`);
+                    clearTimeout(this.loadTimeout);
+                });
+                
+                this.video.addEventListener('canplay', () => {
+                    console.log(`▶️ Video ${this.id} listo para reproducir`);
+                    this.hidePoster();
+                    this.hideFallback();
+                });
+                
+                this.video.addEventListener('play', () => {
+                    console.log(`▶️ Reproducción iniciada ${this.id}`);
+                    this.hidePoster();
                     
-                    // Event listeners esenciales
-                    video.addEventListener('loadedmetadata', () => {
-                        console.log(`✅ Video ${index + 1} H.264 cargado correctamente`);
-                    });
-
-                    video.addEventListener('play', () => {
-                        // Pausar otros videos cuando uno empiece
-                        this.videos.forEach(otherVideo => {
-                            if (otherVideo !== video && !otherVideo.paused) {
-                                otherVideo.pause();
-                            }
-                        });
-                        console.log(`▶️ Video ${index + 1} reproduciendo`);
-                    });
-
-                    video.addEventListener('error', (e) => {
-                        console.error(`❌ Error en video ${index + 1}:`, e);
-                        this.showVideoFallback(video);
+                    // Pausar otros videos
+                    VideoHandler.instances.forEach(instance => {
+                        if (instance.id !== this.id && !instance.video.paused) {
+                            instance.video.pause();
+                        }
                     });
                 });
+                
+                this.video.addEventListener('ended', () => {
+                    console.log(`🏁 Video ${this.id} finalizado`);
+                    this.showCompletionMessage();
+                });
+                
+                this.video.addEventListener('error', (e) => {
+                    console.error(`❌ Error de video ${this.id}:`, e);
+                    this.showFallback('Error de reproducción - Video re-codificado disponible');
+                });
             },
-
-            showVideoFallback(video) {
-                const container = video.closest('.video-container');
-                if (container) {
-                    container.innerHTML = `
-                        <div style="display: flex; align-items: center; justify-content: center; min-height: 300px; background: var(--neutral-100); border-radius: var(--radius-xl); padding: var(--space-6);">
-                            <div style="text-align: center; color: var(--text-secondary);">
-                                <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 1rem; display: block; color: var(--warning-color);"></i>
-                                <h3 style="margin-bottom: 1rem; color: var(--text-primary);">Error al cargar el video</h3>
-                                <p style="margin-bottom: 1.5rem;">El video ha sido re-codificado para iOS Safari. Intenta recargar la página.</p>
-                                <a href="${video.querySelector('source')?.src || '#'}" 
-                                   download 
-                                   class="btn btn-primary" 
-                                   style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--primary-color); color: white; text-decoration: none; border-radius: 8px;">
-                                    <i class="fas fa-download"></i> Descargar video
-                                </a>
-                            </div>
-                        </div>
-                    `;
+            
+            setupPoster() {
+                if (this.poster) {
+                    this.poster.addEventListener('click', () => {
+                        this.playVideo();
+                    });
                 }
+            },
+            
+            playVideo() {
+                if (!this.video) return;
+                
+                // Unmute para iOS al hacer click
+                if (this.isIOS && this.video.muted) {
+                    this.video.muted = false;
+                }
+                
+                this.video.play()
+                    .then(() => {
+                        console.log(`✅ Video ${this.id} iniciado correctamente`);
+                        this.hidePoster();
+                    })
+                    .catch(error => {
+                        console.warn(`⚠️ Autoplay bloqueado ${this.id}:`, error.name);
+                        if (error.name === 'NotAllowedError') {
+                            // Normal en iOS Safari - usuario debe hacer click
+                            this.showFallback('Toca el video para iniciar reproducción');
+                        }
+                    });
+            },
+            
+            showFallback(message) {
+                if (this.fallback) {
+                    const messageElement = this.fallback.querySelector('p');
+                    if (messageElement) {
+                        messageElement.textContent = message;
+                    }
+                    this.fallback.style.display = 'block';
+                }
+                this.hidePoster();
+            },
+            
+            hideFallback() {
+                if (this.fallback) {
+                    this.fallback.style.display = 'none';
+                }
+            },
+            
+            showPoster() {
+                if (this.poster) {
+                    this.poster.style.display = 'flex';
+                }
+            },
+            
+            hidePoster() {
+                if (this.poster) {
+                    this.poster.style.display = 'none';
+                }
+            },
+            
+            showLoading() {
+                if (this.container) {
+                    this.container.classList.add('video-loading');
+                }
+            },
+            
+            hideLoading() {
+                if (this.container) {
+                    this.container.classList.remove('video-loading');
+                }
+            },
+            
+            retryLoad() {
+                console.log(`🔄 Reintentando cargar video ${this.id}...`);
+                this.hideFallback();
+                this.showLoading();
+                
+                // Reset video
+                this.video.load();
+                
+                // Nuevo timeout
+                this.loadTimeout = setTimeout(() => {
+                    if (this.video.readyState === 0) {
+                        this.showFallback('Reintentar falló - Verifica tu conexión');
+                    }
+                }, 15000);
+            },
+            
+            showCompletionMessage() {
+                // Crear notificación de finalización
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: linear-gradient(135deg, var(--success-color), #16a34a);
+                    color: white;
+                    padding: var(--space-6);
+                    border-radius: var(--radius-lg);
+                    box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+                    z-index: 10000;
+                    display: flex;
+                    align-items: center;
+                    gap: var(--space-2);
+                    font-weight: 600;
+                    transform: translateX(400px);
+                    transition: transform 0.3s ease;
+                `;
+                
+                notification.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    <span>¡Video completado! 🎉</span>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => notification.style.transform = 'translateX(0)', 100);
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(400px)';
+                    setTimeout(() => notification.remove(), 300);
+                }, 4000);
             }
         };
 
