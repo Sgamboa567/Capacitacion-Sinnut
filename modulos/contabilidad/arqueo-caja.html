@@ -211,52 +211,192 @@
             border-color: var(--primary-color);
         }
 
+        /* ===== RESPONSIVE VIDEO SYSTEM ===== */
+        .responsive-video-wrapper {
+            width: 100%;
+            max-width: 900px;
+            margin: var(--spacing-xl) auto;
+            padding: var(--spacing-md);
+            background: linear-gradient(135deg, var(--neutral-50) 0%, white 100%);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .responsive-video-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--success-color), var(--info-color));
+        }
+
         .video-container {
             position: relative;
             width: 100%;
-            aspect-ratio: 16 / 9;
-            background: var(--neutral-900);
+            height: 0;
+            padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+            background: #000;
             border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: 
-                0 8px 25px rgba(0, 0, 0, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border: 2px solid var(--neutral-300);
-            transition: border-color 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
         .video-container:focus-within {
-            border-color: var(--primary-color);
-            outline: 2px solid rgba(13, 35, 57, 0.2);
+            outline: 2px solid var(--primary-color);
             outline-offset: 2px;
         }
 
+        /* Video player optimizado para todos los dispositivos */
         .video-player {
-            width: 100%;
-            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
             border: none;
-            border-radius: calc(var(--radius-lg) - 2px);
-            background: var(--neutral-900);
-            outline: none;
+            border-radius: var(--radius-lg);
+            object-fit: cover;
+            background: #000;
+            z-index: 2;
         }
 
+        /* Asegurar que funcione en iOS Safari */
+        .video-player::-webkit-media-controls {
+            display: flex !important;
+        }
+
+        .video-player::-webkit-media-controls-panel {
+            display: flex !important;
+        }
+
+        /* Poster personalizado */
+        .video-poster {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(13, 35, 57, 0.9) 0%, rgba(13, 35, 57, 0.7) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f1f5f9"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            z-index: 3;
+            transition: all 0.3s ease;
+            border-radius: var(--radius-lg);
+        }
+
+        .video-poster:hover {
+            background: linear-gradient(135deg, rgba(13, 35, 57, 0.8) 0%, rgba(13, 35, 57, 0.6) 100%);
+            transform: scale(1.02);
+        }
+
+        .poster-content {
+            text-align: center;
+            padding: var(--spacing-xl);
+        }
+
+        .poster-content i {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-lg);
+            color: white;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        .poster-content h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .poster-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin: 0;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Video fallback mejorado */
         .video-fallback {
+            width: 100%;
+            background: linear-gradient(135deg, var(--danger-color) 0%, #dc2626 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-lg);
+            box-shadow: 0 8px 32px rgba(239, 68, 68, 0.3);
+        }
+
+        .fallback-content i {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-lg);
+            opacity: 0.9;
+        }
+
+        .fallback-content h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .fallback-content p {
+            opacity: 0.9;
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.6;
+        }
+
+        .retry-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .retry-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Estados del video */
+        .video-loading {
+            position: relative;
+        }
+
+        .video-loading::after {
+            content: '';
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: var(--neutral-400);
-            background: rgba(0, 0, 0, 0.8);
-            padding: var(--spacing-xl);
-            border-radius: var(--radius-lg);
-            backdrop-filter: blur(10px);
+            width: 40px;
+            height: 40px;
+            margin: -20px 0 0 -20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            z-index: 4;
         }
 
-        .video-fallback i {
-            font-size: 3rem;
-            margin-bottom: var(--spacing-md);
-            color: var(--warning-color);
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         /* Poster personalizado cuando no hay video */
@@ -787,25 +927,8 @@
 
             /* Video responsive para móviles */
             .responsive-video-wrapper {
-                padding: var(--spacing-md);
-                margin: var(--spacing-lg) auto;
-            }
-            
-            .video-container {
-                border-width: 1px;
-            }     
-
-        /* Responsive adicional para video en todos los tamaños */
-        @media (max-width: 768px) {
-            .responsive-video-wrapper {
+                margin: var(--spacing-lg) 0;
                 padding: var(--spacing-sm);
-                margin: var(--spacing-md) 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .responsive-video-wrapper {
-                padding: var(--spacing-xs);
                 border-radius: var(--radius-lg);
             }
             
@@ -814,7 +937,45 @@
             }
             
             .video-player {
-                border-radius: calc(var(--radius-md) - 1px);
+                border-radius: var(--radius-md);
+            }
+            
+            .poster-content {
+                padding: var(--spacing-lg);
+            }
+            
+            .poster-content i {
+                font-size: 3rem;
+            }
+            
+            .poster-content h4 {
+                font-size: 1.25rem;
+            }
+
+        @media (max-width: 480px) {
+            .responsive-video-wrapper {
+                padding: var(--spacing-xs);
+                margin: var(--spacing-md) 0;
+            }
+            
+            .video-container {
+                border-radius: var(--radius-sm);
+            }
+            
+            .poster-content {
+                padding: var(--spacing-md);
+            }
+            
+            .poster-content i {
+                font-size: 2.5rem;
+            }
+            
+            .poster-content h4 {
+                font-size: 1.125rem;
+            }
+            
+            .fallback-content {
+                padding: var(--spacing-lg);
             }
         }
 
@@ -1091,25 +1252,40 @@
                 Observa el proceso completo de arqueo de caja paso a paso
             </p>
             
+            <!-- Contenedor responsivo del video -->
             <div class="responsive-video-wrapper">
                 <div class="video-container">
+                    <!-- Video elemento con atributos optimizados para iOS -->
                     <video id="videoPlayer" 
                            class="video-player"
-                           controls 
-                           preload="metadata"
+                           controls
+                           preload="none"
                            playsinline
-                           webkit-playsinline>
+                           webkit-playsinline
+                           muted>
                         <source src="../../assets/videos/Caja/arqueo-caja/arqueo-caja.mp4" type="video/mp4">
-                        Tu navegador no soporta la reproducción de vídeo.
+                        Tu navegador no soporta la reproducción de vídeo HTML5.
                     </video>
-
-                    <!-- Fallback fuera del <video> -->
-                    <div class="video-fallback">
+                    
+                    <!-- Poster de carga personalizado -->
+                    <div class="video-poster" id="videoPoster">
+                        <div class="poster-content">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>Video Tutorial: Arqueo de Caja</h4>
+                            <p>Toca para reproducir</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fallback para errores (fuera del video) -->
+                <div class="video-fallback" id="videoFallback" style="display: none;">
+                    <div class="fallback-content">
                         <i class="fas fa-exclamation-triangle"></i>
-                        <h4 style="margin-bottom: var(--spacing-sm); color: white;">Video no disponible</h4>
-                        <p style="color: var(--neutral-300); margin: 0;">
-                            Contacta con soporte técnico o verifica tu conexión a internet.
-                        </p>
+                        <h4>Video no disponible</h4>
+                        <p>Verifica tu conexión a internet o contacta con soporte técnico.</p>
+                        <button class="retry-btn" onclick="VideoHandler.retryLoad()">
+                            <i class="fas fa-redo"></i> Reintentar
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1711,156 +1887,277 @@
 
     <!-- Script específico para mejorar experiencia del video -->
     <script>
-        // Video Enhancement Module - Versión optimizada para iOS
-        const VideoEnhancer = {
+        // Video Handler - Sistema completo de manejo de video optimizado para iOS Safari
+        const VideoHandler = {
             init() {
-                this.isIOS = this.detectIOS();
-                this.isSafari = this.detectSafari();
-                this.setupVideoPlayer();
-                this.addVideoAnalytics();
-                console.log(`🎬 Video Enhancer inicializado - iOS: ${this.isIOS}, Safari: ${this.isSafari}`);
+                this.video = document.getElementById('videoPlayer');
+                this.poster = document.getElementById('videoPoster');
+                this.fallback = document.getElementById('videoFallback');
+                this.container = document.querySelector('.video-container');
+                
+                if (!this.video) {
+                    console.warn('❌ Video element not found');
+                    return;
+                }
+                
+                this.isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+                this.isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+                this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                
+                this.setupVideo();
+                this.setupEventListeners();
+                this.setupPoster();
+                
+                console.log(`🎬 Video Handler inicializado - iOS: ${this.isIOS}, Safari: ${this.isSafari}, Mobile: ${this.isMobile}`);
             },
-
-            detectIOS() {
-                return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-            },
-
-            detectSafari() {
-                return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-            },
-
-            setupVideoPlayer() {
-                const video = document.getElementById('videoPlayer');
-                if (!video) return;
-
+            
+            setupVideo() {
                 // Configuración específica para iOS/Safari
                 if (this.isIOS || this.isSafari) {
-                    console.log('🍎 Aplicando configuración específica para iOS/Safari');
-                    
-                    // Asegurar atributos de iOS
-                    video.setAttribute('playsInline', 'true');
-                    video.setAttribute('webkit-playsinline', 'true');
-                    video.setAttribute('playsinline', 'true');
-                    
-                    // Configuración de preload específica para iOS
-                    video.preload = 'metadata';
+                    this.video.setAttribute('playsinline', 'true');
+                    this.video.setAttribute('webkit-playsinline', 'true');
+                    this.video.muted = true; // Requerido para autoplay en iOS
+                    this.video.preload = 'metadata';
                 }
-
-                // Eventos de video mejorados
-                video.addEventListener('loadstart', () => {
+                
+                // Configuración para móviles en general
+                if (this.isMobile) {
+                    this.video.controls = true;
+                    this.video.preload = 'metadata';
+                }
+                
+                // Timeout para detectar problemas de carga
+                this.loadTimeout = setTimeout(() => {
+                    if (this.video.readyState === 0) {
+                        console.warn('⚠️ Video load timeout - showing fallback');
+                        this.showFallback('Tiempo de carga agotado');
+                    }
+                }, 10000); // 10 segundos timeout
+            },
+            
+            setupEventListeners() {
+                // Eventos de carga
+                this.video.addEventListener('loadstart', () => {
                     console.log('📹 Iniciando carga del video...');
+                    this.showLoading();
                 });
-
-                video.addEventListener('loadedmetadata', () => {
-                    console.log('📋 Metadatos del video cargados');
-                    this.updateVideoInfo(video);
+                
+                this.video.addEventListener('loadedmetadata', () => {
+                    console.log('📋 Metadatos cargados');
+                    this.hideLoading();
+                    clearTimeout(this.loadTimeout);
                 });
-
-                video.addEventListener('canplay', () => {
+                
+                this.video.addEventListener('canplay', () => {
                     console.log('▶️ Video listo para reproducir');
-                    this.hideVideoFallback();
+                    this.hidePoster();
+                    this.hideFallback();
                 });
-
-                video.addEventListener('play', () => {
-                    console.log('🎬 Reproducción iniciada');
-                    this.trackVideoEvent('play_started');
+                
+                this.video.addEventListener('canplaythrough', () => {
+                    console.log('🎬 Video completamente cargado');
+                    this.hidePoster();
                 });
-
-                video.addEventListener('pause', () => {
+                
+                // Eventos de reproducción
+                this.video.addEventListener('play', () => {
+                    console.log('▶️ Reproducción iniciada');
+                    this.hidePoster();
+                });
+                
+                this.video.addEventListener('pause', () => {
                     console.log('⏸️ Video pausado');
-                    this.trackVideoEvent('video_paused');
                 });
-
-                video.addEventListener('ended', () => {
-                    console.log('🏁 Video completado');
-                    this.trackVideoEvent('video_completed');
-                    this.showVideoCompletionFeedback();
+                
+                this.video.addEventListener('ended', () => {
+                    console.log('🏁 Video finalizado');
+                    this.showCompletionMessage();
                 });
-
-                video.addEventListener('error', (e) => {
-                    console.error('❌ Error en el video:', e);
-                    this.handleVideoError(video, e);
+                
+                // Eventos de error críticos
+                this.video.addEventListener('error', (e) => {
+                    console.error('❌ Error en video:', e);
+                    this.handleVideoError(e);
                 });
-
-                video.addEventListener('stalled', () => {
-                    console.warn('⚠️ Video stalled - problema de red');
+                
+                this.video.addEventListener('stalled', () => {
+                    console.warn('⚠️ Video stalled');
+                    this.showLoading();
                 });
-
-                video.addEventListener('waiting', () => {
+                
+                this.video.addEventListener('waiting', () => {
                     console.log('⏳ Video buffering...');
+                    this.showLoading();
                 });
-
-                // Eventos específicos de iOS
-                if (this.isIOS) {
-                    video.addEventListener('webkitbeginfullscreen', () => {
-                        console.log('📱 Pantalla completa iniciada (iOS)');
-                    });
-
-                    video.addEventListener('webkitendfullscreen', () => {
-                        console.log('📱 Pantalla completa finalizada (iOS)');
-                    });
-                }
-
-                // iOS/Safari manejará la precarga automáticamente
-            },
-
-            hideVideoFallback() {
-                const fallback = document.querySelector('.video-fallback');
-                if (fallback) {
-                    fallback.style.display = 'none';
-                }
-            },
-
-            updateVideoInfo(video) {
-                if (video.duration && !isNaN(video.duration)) {
-                    const duration = Math.round(video.duration / 60);
-                    console.log(`⏱️ Duración del video: ${duration} minutos`);
-                }
-            },
-
-            handleVideoError(video, error) {
-                console.error('🚨 Error detallado del video:', {
-                    error: error,
-                    networkState: video.networkState,
-                    readyState: video.readyState,
-                    src: video.currentSrc || video.src
+                
+                this.video.addEventListener('playing', () => {
+                    console.log('▶️ Video playing');
+                    this.hideLoading();
                 });
-
-                const fallback = document.querySelector('.video-fallback');
-                if (fallback) {
-                    fallback.style.display = 'flex';
+                
+                // Detectar si el source falla
+                const source = this.video.querySelector('source');
+                if (source) {
+                    source.addEventListener('error', (e) => {
+                        console.error('❌ Error en source:', e);
+                        this.handleSourceError();
+                    });
+                }
+                
+                // Evento de red
+                this.video.addEventListener('offline', () => {
+                    this.showFallback('Sin conexión a internet');
+                });
+            },
+            
+            setupPoster() {
+                if (this.poster) {
+                    this.poster.addEventListener('click', () => {
+                        this.playVideo();
+                    });
+                }
+            },
+            
+            playVideo() {
+                if (this.video) {
+                    // Para iOS, necesitamos unmute al hacer click
+                    if (this.isIOS && this.video.muted) {
+                        this.video.muted = false;
+                    }
                     
-                    // Mensaje específico para iOS si es problema de red
-                    if (this.isIOS && error.target && error.target.error) {
-                        const errorCode = error.target.error.code;
-                        let errorMessage = 'Video no disponible';
-                        
-                        switch(errorCode) {
-                            case 1:
-                                errorMessage = 'Error de red - Verifica tu conexión WiFi';
-                                break;
-                            case 2:
-                                errorMessage = 'Error de formato - Formato no soportado';
-                                break;
-                            case 3:
-                                errorMessage = 'Error de decodificación';
-                                break;
-                            case 4:
-                                errorMessage = 'Video no encontrado';
-                                break;
-                        }
-                        
-                        const errorText = fallback.querySelector('p');
-                        if (errorText) {
-                            errorText.textContent = errorMessage;
-                        }
+                    const playPromise = this.video.play();
+                    
+                    if (playPromise !== undefined) {
+                        playPromise
+                            .then(() => {
+                                console.log('✅ Video iniciado correctamente');
+                                this.hidePoster();
+                            })
+                            .catch((error) => {
+                                console.error('❌ Error al reproducir:', error);
+                                
+                                // Si es un error de interacción, mostrar mensaje específico
+                                if (error.name === 'NotAllowedError') {
+                                    this.showFallback('Toca el video para iniciar la reproducción');
+                                } else {
+                                    this.handleVideoError(error);
+                                }
+                            });
+                    }
+                }
+            },
+            
+            handleVideoError(error) {
+                clearTimeout(this.loadTimeout);
+                let errorMessage = 'Video no disponible';
+                
+                if (error.target && error.target.error) {
+                    const errorCode = error.target.error.code;
+                    switch(errorCode) {
+                        case 1: // MEDIA_ERR_ABORTED
+                            errorMessage = 'Carga del video cancelada';
+                            break;
+                        case 2: // MEDIA_ERR_NETWORK
+                            errorMessage = 'Error de red - Verifica tu conexión';
+                            break;
+                        case 3: // MEDIA_ERR_DECODE
+                            errorMessage = 'Error de decodificación del video';
+                            break;
+                        case 4: // MEDIA_ERR_SRC_NOT_SUPPORTED
+                            errorMessage = 'Formato de video no soportado';
+                            break;
+                        default:
+                            errorMessage = 'Error desconocido en el video';
+                    }
+                } else if (error.name) {
+                    switch(error.name) {
+                        case 'NotSupportedError':
+                            errorMessage = 'Formato no soportado en este navegador';
+                            break;
+                        case 'NotAllowedError':
+                            errorMessage = 'Reproducción bloqueada - Toca para activar';
+                            break;
+                        case 'AbortError':
+                            errorMessage = 'Reproducción interrumpida';
+                            break;
                     }
                 }
                 
-                console.log('🚨 Mostrando fallback del video');
+                console.error('🚨 Error detallado:', {
+                    error: error,
+                    code: error.target?.error?.code,
+                    networkState: this.video?.networkState,
+                    readyState: this.video?.readyState,
+                    src: this.video?.currentSrc || this.video?.src
+                });
+                
+                this.showFallback(errorMessage);
             },
-
-            showVideoCompletionFeedback() {
+            
+            handleSourceError() {
+                console.error('❌ Error en el archivo source');
+                this.showFallback('Archivo de video no encontrado o corrupto');
+            },
+            
+            showFallback(message) {
+                if (this.fallback) {
+                    const messageElement = this.fallback.querySelector('p');
+                    if (messageElement && message) {
+                        messageElement.textContent = message;
+                    }
+                    this.fallback.style.display = 'block';
+                }
+                this.hidePoster();
+                this.hideLoading();
+            },
+            
+            hideFallback() {
+                if (this.fallback) {
+                    this.fallback.style.display = 'none';
+                }
+            },
+            
+            showPoster() {
+                if (this.poster) {
+                    this.poster.style.display = 'flex';
+                }
+            },
+            
+            hidePoster() {
+                if (this.poster) {
+                    this.poster.style.display = 'none';
+                }
+            },
+            
+            showLoading() {
+                if (this.container) {
+                    this.container.classList.add('video-loading');
+                }
+            },
+            
+            hideLoading() {
+                if (this.container) {
+                    this.container.classList.remove('video-loading');
+                }
+            },
+            
+            retryLoad() {
+                console.log('� Reintentando cargar video...');
+                this.hideFallback();
+                this.showLoading();
+                
+                // Reset video
+                this.video.load();
+                
+                // Nuevo timeout
+                this.loadTimeout = setTimeout(() => {
+                    if (this.video.readyState === 0) {
+                        this.showFallback('Reintentar falló - Verifica tu conexión');
+                    }
+                }, 15000);
+            },
+            
+            showCompletionMessage() {
                 // Crear notificación de finalización
                 const notification = document.createElement('div');
                 notification.style.cssText = `
@@ -1872,7 +2169,7 @@
                     padding: var(--spacing-lg);
                     border-radius: var(--radius-lg);
                     box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
-                    z-index: 1000;
+                    z-index: 10000;
                     display: flex;
                     align-items: center;
                     gap: var(--spacing-sm);
@@ -1888,67 +2185,28 @@
                 
                 document.body.appendChild(notification);
                 
-                // Animar entrada
                 setTimeout(() => {
                     notification.style.transform = 'translateX(0)';
                 }, 100);
                 
-                // Auto-eliminar después de 4 segundos
                 setTimeout(() => {
                     notification.style.transform = 'translateX(400px)';
                     setTimeout(() => notification.remove(), 300);
                 }, 4000);
-            },
-
-            trackVideoEvent(eventName) {
-                if (typeof SinnutTraining !== 'undefined') {
-                    SinnutTraining.trackEvent(eventName, {
-                        videoId: 'arqueo-caja-tutorial',
-                        moduleId: 'arqueo-caja',
-                        timestamp: new Date().toISOString()
-                    });
-                }
-            },
-
-            addVideoAnalytics() {
-                const video = document.getElementById('videoPlayer');
-                if (!video) return;
-
-                let watchedSegments = [];
-                let lastTime = 0;
-
-                video.addEventListener('timeupdate', () => {
-                    const currentTime = Math.floor(video.currentTime);
-                    
-                    // Rastrear segmentos de 10 segundos
-                    if (currentTime > lastTime && currentTime % 10 === 0) {
-                        if (!watchedSegments.includes(currentTime)) {
-                            watchedSegments.push(currentTime);
-                            
-                            // Calcular porcentaje visto
-                            if (video.duration && !isNaN(video.duration)) {
-                                const percentage = Math.round((currentTime / video.duration) * 100);
-                                console.log(`📊 Progreso del video: ${percentage}%`);
-                                
-                                // Hitos importantes
-                                if ([25, 50, 75, 100].includes(percentage)) {
-                                    this.trackVideoEvent(`video_progress_${percentage}`);
-                                }
-                            }
-                        }
-                    }
-                    
-                    lastTime = currentTime;
-                });
             }
         };
 
-        // Inicializar el mejorador de video
+        // Inicializar cuando el DOM esté listo
         document.addEventListener('DOMContentLoaded', () => {
-            VideoEnhancer.init();
+            VideoHandler.init();
         });
-    </script>
 
+        // Backup para navegadores que no soporten DOMContentLoaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', VideoHandler.init.bind(VideoHandler));
+        } else {
+            VideoHandler.init();
+        }
     <!-- iOS Safari Video Fix - Solución específica para reproducción de videos en móviles -->
     <script src="../../ios-video-fix.js"></script>
 </body>
