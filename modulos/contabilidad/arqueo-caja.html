@@ -1097,10 +1097,10 @@
                            class="video-player"
                            controls 
                            preload="metadata"
-                           playsinline
-                           webkit-playsinline
-                           disablePictureInPicture
-                           controlsList="nodownload"
+                           playsinline="true"
+                           webkit-playsinline="true"
+                           muted="true"
+                           x-webkit-airplay="deny"
                            poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3Cdefs%3E%3ClinearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%230D2339;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%231a3b5c;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1920' height='1080' fill='url(%23grad1)' /%3E%3Ctext x='960' y='490' text-anchor='middle' fill='white' font-family='Inter, sans-serif' font-size='48' font-weight='600'%3EArqueo de Caja%3C/text%3E%3Ctext x='960' y='550' text-anchor='middle' fill='rgba(255,255,255,0.8)' font-family='Inter, sans-serif' font-size='24'%3ETutorial Paso a Paso%3C/text%3E%3Ccircle cx='960' cy='640' r='60' fill='rgba(255,255,255,0.2)' /%3E%3Cpolygon points='930,620 990,650 930,680' fill='white' /%3E%3C/svg%3E">
                         <source src="../../assets/videos/Caja/arqueo-caja/2025-09-04 16-00-55 (Copy).mp4" type="video/mp4">
                         
@@ -1712,23 +1712,50 @@
 
     <!-- Script específico para mejorar experiencia del video -->
     <script>
-        // Video Enhancement Module - Mejoras específicas para reproducción
+        // Video Enhancement Module - Versión optimizada para iOS
         const VideoEnhancer = {
             init() {
+                this.isIOS = this.detectIOS();
+                this.isSafari = this.detectSafari();
                 this.setupVideoPlayer();
                 this.addVideoAnalytics();
-                console.log('🎬 Video Enhancer inicializado');
+                console.log(`🎬 Video Enhancer inicializado - iOS: ${this.isIOS}, Safari: ${this.isSafari}`);
+            },
+
+            detectIOS() {
+                return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            },
+
+            detectSafari() {
+                return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
             },
 
             setupVideoPlayer() {
                 const video = document.getElementById('videoPlayer');
                 if (!video) return;
 
-                // Configuración específica para móviles
-                video.playsInline = true;
-                video.setAttribute('webkit-playsinline', 'true');
-                video.setAttribute('playsinline', 'true');
-                
+                // Configuración específica para iOS/Safari
+                if (this.isIOS || this.isSafari) {
+                    console.log('🍎 Aplicando configuración específica para iOS/Safari');
+                    
+                    // Asegurar atributos de iOS
+                    video.setAttribute('playsInline', 'true');
+                    video.setAttribute('webkit-playsinline', 'true');
+                    video.setAttribute('playsinline', 'true');
+                    video.muted = true; // CRÍTICO para iOS
+                    
+                    // Configuración de preload específica para iOS
+                    video.preload = 'none';
+                    
+                    // Event listener específico para iOS para habilitar audio después del primer toque
+                    const enableAudio = () => {
+                        video.muted = false;
+                        video.removeEventListener('play', enableAudio);
+                        console.log('🔊 Audio habilitado después del primer play');
+                    };
+                    video.addEventListener('play', enableAudio, { once: true });
+                }
+
                 // Eventos de video mejorados
                 video.addEventListener('loadstart', () => {
                     console.log('📹 Iniciando carga del video...');
@@ -1741,6 +1768,7 @@
 
                 video.addEventListener('canplay', () => {
                     console.log('▶️ Video listo para reproducir');
+                    this.hideVideoFallback();
                 });
 
                 video.addEventListener('play', () => {
@@ -1761,32 +1789,91 @@
 
                 video.addEventListener('error', (e) => {
                     console.error('❌ Error en el video:', e);
-                    this.handleVideoError(video);
+                    this.handleVideoError(video, e);
                 });
 
-                // Gestión de fullscreen para móviles
-                video.addEventListener('webkitbeginfullscreen', () => {
-                    console.log('📱 Pantalla completa iniciada (iOS)');
+                video.addEventListener('stalled', () => {
+                    console.warn('⚠️ Video stalled - problema de red');
                 });
 
-                video.addEventListener('webkitendfullscreen', () => {
-                    console.log('📱 Pantalla completa finalizada (iOS)');
+                video.addEventListener('waiting', () => {
+                    console.log('⏳ Video buffering...');
                 });
+
+                // Eventos específicos de iOS
+                if (this.isIOS) {
+                    video.addEventListener('webkitbeginfullscreen', () => {
+                        console.log('📱 Pantalla completa iniciada (iOS)');
+                    });
+
+                    video.addEventListener('webkitendfullscreen', () => {
+                        console.log('📱 Pantalla completa finalizada (iOS)');
+                    });
+                }
+
+                // Intentar precargar el video después de un delay para iOS
+                if (this.isIOS || this.isSafari) {
+                    setTimeout(() => {
+                        video.load();
+                        console.log('🔄 Video recargado para iOS/Safari');
+                    }, 1000);
+                }
+            },
+
+            hideVideoFallback() {
+                const fallback = document.querySelector('.video-fallback');
+                if (fallback) {
+                    fallback.style.display = 'none';
+                }
             },
 
             updateVideoInfo(video) {
-                if (video.duration) {
+                if (video.duration && !isNaN(video.duration)) {
                     const duration = Math.round(video.duration / 60);
                     console.log(`⏱️ Duración del video: ${duration} minutos`);
                 }
             },
 
-            handleVideoError(video) {
-                const fallback = video.nextElementSibling;
-                if (fallback && fallback.classList.contains('video-fallback')) {
+            handleVideoError(video, error) {
+                console.error('🚨 Error detallado del video:', {
+                    error: error,
+                    networkState: video.networkState,
+                    readyState: video.readyState,
+                    src: video.currentSrc || video.src
+                });
+
+                const fallback = document.querySelector('.video-fallback');
+                if (fallback) {
                     fallback.style.display = 'flex';
-                    console.log('🚨 Mostrando fallback del video');
+                    
+                    // Mensaje específico para iOS si es problema de red
+                    if (this.isIOS && error.target && error.target.error) {
+                        const errorCode = error.target.error.code;
+                        let errorMessage = 'Video no disponible';
+                        
+                        switch(errorCode) {
+                            case 1:
+                                errorMessage = 'Error de red - Verifica tu conexión WiFi';
+                                break;
+                            case 2:
+                                errorMessage = 'Error de formato - Formato no soportado';
+                                break;
+                            case 3:
+                                errorMessage = 'Error de decodificación';
+                                break;
+                            case 4:
+                                errorMessage = 'Video no encontrado';
+                                break;
+                        }
+                        
+                        const errorText = fallback.querySelector('p');
+                        if (errorText) {
+                            errorText.textContent = errorMessage;
+                        }
+                    }
                 }
+                
+                console.log('🚨 Mostrando fallback del video');
             },
 
             showVideoCompletionFeedback() {
@@ -1855,7 +1942,7 @@
                             watchedSegments.push(currentTime);
                             
                             // Calcular porcentaje visto
-                            if (video.duration) {
+                            if (video.duration && !isNaN(video.duration)) {
                                 const percentage = Math.round((currentTime / video.duration) * 100);
                                 console.log(`📊 Progreso del video: ${percentage}%`);
                                 
