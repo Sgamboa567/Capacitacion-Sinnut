@@ -19,6 +19,7 @@
             --neutral-50: #f8fafc;
             --neutral-100: #f1f5f9;
             --neutral-200: #e2e8f0;
+            --neutral-300: #cbd5e1;
             --neutral-500: #64748b;
             --neutral-600: #475569;
             --neutral-700: #334155;
@@ -158,6 +159,11 @@
 
         .nav-breadcrumb a:hover {
             color: var(--primary-light);
+        }
+
+        .nav-breadcrumb [aria-current="page"] {
+            font-weight: 700;
+            color: #0D2339;
         }
 
         .separator {
@@ -708,7 +714,7 @@
             margin-top: var(--spacing-2xl);
         }
 
-        /* Footer de NavegaciÃ³n del Curso */
+        /* Footer de Navegación del Curso */
         .course-footer {
             background: linear-gradient(135deg, var(--neutral-50) 0%, white 100%);
             border: 2px solid var(--neutral-200);
@@ -780,7 +786,7 @@
             align-items: center;
             gap: var(--spacing-sm);
             padding: var(--spacing-md) var(--spacing-lg);
-            border: 2px solid var(--neutral-300);
+            border: none;
             border-radius: var(--radius-lg);
             background: white;
             color: var(--text-primary);
@@ -791,6 +797,7 @@
             overflow: hidden;
             min-width: 150px;
             justify-content: center;
+            box-shadow: var(--shadow-sm);
         }
 
         .nav-btn::before {
@@ -997,23 +1004,29 @@
 </head>
 <body>
     <div class="container">
-        <!-- NavegaciÃ³n Breadcrumb -->
+        <!-- Navegación Breadcrumb -->
         <div class="nav-breadcrumb animate-left">
             <i class="fas fa-home" style="color: var(--primary-color);"></i>
             <a href="../../index.html">Inicio</a>
-            <span class="separator">â€¢</span>
-            <a href="introduccion-contratos.html">IntroducciÃ³n</a>
-            <span class="separator">â€¢</span>
+            <span class="separator">></span>
+            <a href="introduccion-contratos.html">Introducción</a>
+            <span class="separator">></span>
             <a href="crear-contrato.html">Crear Contrato</a>
-            <span class="separator">â€¢</span>
-            <span style="color: var(--neutral-600); font-weight: 600;">Consultar Contrato</span>
+            <span class="separator">></span>
+            <span aria-current="page">Consultar Contrato</span>
+            <span class="separator">></span>
+            <a href="pagar-prorroga.html">Pagar Prórroga</a>
+            <span class="separator">></span>
+            <a href="pagar-retroventa.html">Pagar Retroventa</a>
+            <span class="separator">></span>
+            <a href="fin-modulo-contratos.html">Fin del Módulo</a>
         </div>
 
         <!-- Header -->
         <div class="header animate-in">
             <div class="header-content">
                 <h1><i class="fas fa-file-contract" style="color: rgba(255,255,255,0.8);"></i> Consultar Contrato</h1>
-                <p>Aprende a consultar contratos existentes de manera eficiente usando los filtros de bÃºsqueda del sistema</p>
+                <p>Aprende a consultar contratos existentes de manera eficiente usando los filtros de búsqueda del sistema</p>
                 <div class="header-badges">
                     <div class="badge">
                         <i class="fas fa-clock"></i>
@@ -1021,7 +1034,7 @@
                     </div>
                     <div class="badge">
                         <i class="fas fa-graduation-cap"></i>
-                        BÃ¡sico
+                        Básico
                     </div>
                     <div class="badge">
                         <i class="fas fa-tasks"></i>
@@ -1031,22 +1044,22 @@
             </div>
         </div>
 
-        <!-- IntroducciÃ³n -->
+        <!-- Introducción -->
         <div class="section animate-right">
-            <h2><i class="fas fa-info-circle" style="color: var(--info-color);"></i> IntroducciÃ³n</h2>
+            <h2><i class="fas fa-info-circle" style="color: var(--info-color);"></i> Introducción</h2>
             <p style="font-size: 1.125rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: var(--spacing-lg);">
                 La consulta de contratos te permite visualizar, buscar y filtrar todos los contratos registrados en el sistema. 
-                Aprende a utilizar eficientemente las herramientas de bÃºsqueda para encontrar rÃ¡pidamente la informaciÃ³n que necesitas.
+                Aprende a utilizar eficientemente las herramientas de búsqueda para encontrar rápidamente la información que necesitas.
             </p>
 
             <div class="alert alert-info">
                 <i class="fas fa-lightbulb"></i>
                 <div>
                     <strong>Funcionalidades clave:</strong><br>
-                    â€¢ BÃºsqueda por mÃºltiples filtros<br>
-                    â€¢ VisualizaciÃ³n detallada de contratos<br>
-                    â€¢ GeneraciÃ³n de reportes<br>
-                    â€¢ ExportaciÃ³n de datos
+                    • Búsqueda por múltiples filtros<br>
+                    • Visualización detallada de contratos<br>
+                    • Generación de reportes<br>
+                    • Exportación de datos
                 </div>
             </div>
         </div>
@@ -1055,17 +1068,18 @@
         <div class="section animate-scale">
             <h2><i class="fas fa-play-circle" style="color: var(--success-color);"></i> Video Tutorial</h2>
             <p style="font-size: 1rem; color: var(--text-secondary); margin-bottom: var(--spacing-md);">
-                Mira cÃ³mo realizar consultas efectivas de contratos en el sistema
+                Mira cómo realizar consultas efectivas de contratos en el sistema
             </p>
             
             <div class="video-container">
                 <video controls
-                       preload="none"
+                       preload="metadata"
                        playsinline="true"
                        webkit-playsinline="true"
-                       muted="true">
-                    <source src="../../assets/videos/Contratos/contratos 2 (consulta de documentos).mp4" type="video/mp4">
-                    Tu navegador no soporta el elemento de video.
+                       disablePictureInPicture>
+                    <source src="../../assets/videos/Contratos/consultar-contratos/consultar-contratos.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video. El video ha sido optimizado para iOS Safari.
+                    <a href="../../assets/videos/Contratos/consultar-contratos/consultar-contratos.mp4" download>Descargar video</a>
                 </video>
             </div>
 
@@ -1073,7 +1087,7 @@
                 <i class="fas fa-exclamation-triangle"></i>
                 <div>
                     <strong>Importante:</strong> 
-                    AsegÃºrate de usar los filtros apropiados para optimizar tus bÃºsquedas y obtener resultados precisos.
+                    Asegúrate de usar los filtros apropiados para optimizar tus búsquedas y obtener resultados precisos.
                 </div>
             </div>
         </div>
@@ -1087,17 +1101,17 @@
                 <div class="step animate-left">
                     <div class="step-header">
                         <div class="step-number">1</div>
-                        <div class="step-title">Acceder al MÃ³dulo de Consultas</div>
+                        <div class="step-title">Acceder al Módulo de Consultas</div>
                     </div>
                     <div class="step-description">
-                        Navega al mÃ³dulo de contratos y selecciona la opciÃ³n "Consultar Contratos" desde el menÃº principal.
+                        Navega al módulo de contratos y selecciona la opción "Consultar Contratos" desde el menú principal.
                     </div>
                     
                     <div class="alert alert-info">
                         <i class="fas fa-mouse-pointer"></i>
                         <div>
-                            <strong>UbicaciÃ³n del mÃ³dulo:</strong> 
-                            MenÃº Principal â†’ Contratos â†’ Consultar Contratos
+                            <strong>Ubicación del módulo:</strong> 
+                            Menú Principal â†’ Contratos â†’ Consultar Contratos
                         </div>
                     </div>
                 </div>
@@ -1106,10 +1120,10 @@
                 <div class="step animate-right">
                     <div class="step-header">
                         <div class="step-number">2</div>
-                        <div class="step-title">Configurar Filtros de BÃºsqueda</div>
+                        <div class="step-title">Configurar Filtros de Búsqueda</div>
                     </div>
                     <div class="step-description">
-                        Utiliza los diferentes filtros disponibles para delimitar tu bÃºsqueda y encontrar exactamente los contratos que necesitas.
+                        Utiliza los diferentes filtros disponibles para delimitar tu búsqueda y encontrar exactamente los contratos que necesitas.
                     </div>
 
                     <h4 style="color: var(--primary-color); margin: var(--spacing-lg) 0 var(--spacing-md) 0; font-size: 1.125rem; font-weight: 600;">
@@ -1140,7 +1154,7 @@
                                 <i class="fas fa-hashtag"></i>
                             </div>
                             <div>
-                                <div class="document-title">NÃºmero de Contrato</div>
+                                <div class="document-title">Número de Contrato</div>
                             </div>
                         </div>
                         
@@ -1176,7 +1190,7 @@
                         <i class="fas fa-magic"></i>
                         <div>
                             <strong>Tip Pro:</strong> 
-                            Combina mÃºltiples filtros para bÃºsquedas mÃ¡s precisas. Por ejemplo: Cliente + Fecha + Estado.
+                            Combina múltiples filtros para búsquedas más precisas. Por ejemplo: Cliente + Fecha + Estado.
                         </div>
                     </div>
                 </div>
@@ -1185,21 +1199,21 @@
                 <div class="step animate-left">
                     <div class="step-header">
                         <div class="step-number">3</div>
-                        <div class="step-title">Ejecutar BÃºsqueda y Revisar Resultados</div>
+                        <div class="step-title">Ejecutar Búsqueda y Revisar Resultados</div>
                     </div>
                     <div class="step-description">
-                        Ejecuta la bÃºsqueda con los filtros configurados y revisa los contratos encontrados en la tabla de resultados.
+                        Ejecuta la búsqueda con los filtros configurados y revisa los contratos encontrados en la tabla de resultados.
                     </div>
 
                     <div class="alert alert-info">
                         <i class="fas fa-table"></i>
                         <div>
-                            <strong>InformaciÃ³n mostrada:</strong><br>
-                            â€¢ NÃºmero de contrato<br>
-                            â€¢ Cliente y datos de contacto<br>
-                            â€¢ Fecha y estado del contrato<br>
-                            â€¢ Monto total y saldo pendiente<br>
-                            â€¢ Acciones disponibles (ver, editar, imprimir)
+                            <strong>Información mostrada:</strong><br>
+                            • Número de contrato<br>
+                            • Cliente y datos de contacto<br>
+                            • Fecha y estado del contrato<br>
+                            • Monto total y saldo pendiente<br>
+                            • Acciones disponibles (ver, editar, imprimir)
                         </div>
                     </div>
                 </div>
@@ -1211,7 +1225,7 @@
                         <div class="step-title">Acciones sobre Contratos Encontrados</div>
                     </div>
                     <div class="step-description">
-                        Una vez localizado el contrato deseado, puedes realizar diferentes acciones segÃºn tus necesidades operativas.
+                        Una vez localizado el contrato deseado, puedes realizar diferentes acciones según tus necesidades operativas.
                     </div>
 
                     <h4 style="color: var(--primary-color); margin: var(--spacing-lg) 0 var(--spacing-md) 0; font-size: 1.125rem; font-weight: 600;">
@@ -1277,7 +1291,7 @@
                     <div class="alert alert-success">
                         <i class="fas fa-check-circle"></i>
                         <div>
-                            <strong>Â¡Proceso Completado!</strong> 
+                            <strong>¡Proceso Completado!</strong> 
                             Ahora puedes consultar contratos de manera eficiente y realizar las acciones necesarias sobre cada uno.
                         </div>
                     </div>
@@ -1287,16 +1301,16 @@
 
         <!-- Consejos Adicionales -->
         <div class="section animate-scale">
-            <h2><i class="fas fa-lightbulb" style="color: var(--warning-color);"></i> Consejos y Mejores PrÃ¡cticas</h2>
+            <h2><i class="fas fa-lightbulb" style="color: var(--warning-color);"></i> Consejos y Mejores Prácticas</h2>
             
             <div class="alert alert-warning">
                 <i class="fas fa-star"></i>
                 <div>
-                    <strong>OptimizaciÃ³n de bÃºsquedas:</strong><br>
-                    â€¢ Usa fechas especÃ­ficas para reducir resultados<br>
-                    â€¢ Combina filtros por cliente y estado<br>
-                    â€¢ Guarda bÃºsquedas frecuentes como favoritas<br>
-                    â€¢ Utiliza exportaciÃ³n para anÃ¡lisis externos
+                    <strong>Optimización de búsquedas:</strong><br>
+                    • Usa fechas específicas para reducir resultados<br>
+                    • Combina filtros por cliente y estado<br>
+                    • Guarda búsquedas frecuentes como favoritas<br>
+                    • Utiliza exportación para análisis externos
                 </div>
             </div>
 
@@ -1304,29 +1318,29 @@
                 <i class="fas fa-shield-alt"></i>
                 <div>
                     <strong>Seguridad y permisos:</strong><br>
-                    Recuerda que solo puedes consultar contratos segÃºn tus permisos de usuario. Algunos datos pueden estar restringidos.
+                    Recuerda que solo puedes consultar contratos según tus permisos de usuario. Algunos datos pueden estar restringidos.
                 </div>
             </div>
         </div>
 
-        <!-- Ejercicio PrÃ¡ctico -->
+        <!-- Ejercicio Práctico -->
         <div class="exercise-card animate-in">
             <div class="exercise-icon">
                 <i class="fas fa-graduation-cap" style="color: var(--info-color);"></i>
             </div>
-            <div class="exercise-title">Ejercicio PrÃ¡ctico</div>
+            <div class="exercise-title">Ejercicio Práctico</div>
             <div class="exercise-desc">
-                Realiza una bÃºsqueda de contratos del Ãºltimo mes para un cliente especÃ­fico y genera un reporte de los resultados encontrados.
+                Realiza una búsqueda de contratos del último mes para un cliente específico y genera un reporte de los resultados encontrados.
             </div>
             <div class="exercise-suggestion">
-                <strong>Sugerencia:</strong> Utiliza los filtros de fecha, cliente y estado "Activo" para obtener informaciÃ³n relevante y actualizada.
+                <strong>Sugerencia:</strong> Utiliza los filtros de fecha, cliente y estado "Activo" para obtener información relevante y actualizada.
             </div>
         </div>
 
-        <!-- NavegaciÃ³n del Curso -->
+        <!-- Navegación del Curso -->
         <div class="course-footer animate-in">
             <div class="course-footer-content">
-                <h3><i class="fas fa-map-signs"></i> NavegaciÃ³n del Curso</h3>
+                <h3><i class="fas fa-route"></i> Navegación del Curso</h3>
                 
                 <div class="progress-indicator">
                     <div class="progress-dot completed"></div>
@@ -1350,7 +1364,7 @@
                         <div class="nav-btn home">
                             <i class="fas fa-home"></i>
                             <div>
-                                <div style="font-size: 0.75rem; color: var(--neutral-500);">MÃ³dulo</div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Módulo</div>
                                 <div>Contratos</div>
                             </div>
                         </div>
@@ -1360,7 +1374,7 @@
                         <div class="nav-btn next">
                             <div>
                                 <div style="font-size: 0.75rem; color: var(--neutral-500);">Siguiente</div>
-                                <div>Pagar PrÃ³rroga</div>
+                                <div>Pagar Prórroga</div>
                             </div>
                             <i class="fas fa-arrow-right"></i>
                         </div>
@@ -1368,7 +1382,7 @@
                 </div>
                 
                 <div class="nav-info">
-                    <p><i class="fas fa-info-circle"></i> MÃ³dulo 3 de 5 en el curso de Contratos â€¢ Progreso: 60%</p>
+                    <p><i class="fas fa-info-circle"></i> Módulo 2 de 3 en el curso de Contratos • Progreso: 60%</p>
                 </div>
             </div>
         </div>
@@ -1488,7 +1502,7 @@
             });
         });
     </script>
-    <!-- Script para mejorar compatibilidad de videos en mÃ³viles -->
+    <!-- Script para mejorar compatibilidad de videos en móviles -->
     <script src="../../fix-mobile-videos.js"></script>
 
     <!-- iOS Safari Video Fix - Solución específica para reproducción de videos en móviles -->

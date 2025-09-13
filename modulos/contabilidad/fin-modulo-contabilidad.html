@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -19,6 +19,7 @@
             --neutral-50: #f8fafc;
             --neutral-100: #f1f5f9;
             --neutral-200: #e2e8f0;
+            --neutral-300: #cbd5e1;
             --neutral-500: #64748b;
             --neutral-600: #475569;
             --neutral-700: #334155;
@@ -37,7 +38,7 @@
             --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -564,7 +565,7 @@
             align-items: center;
             gap: var(--spacing-sm);
             padding: var(--spacing-md) var(--spacing-lg);
-            border: 2px solid var(--neutral-300);
+            border: none;
             border-radius: var(--radius-lg);
             background: white;
             color: var(--text-primary);
@@ -575,6 +576,7 @@
             overflow: hidden;
             min-width: 150px;
             justify-content: center;
+            box-shadow: var(--shadow-sm);
         }
 
         .nav-btn::before {
@@ -613,6 +615,12 @@
             border-color: var(--success-color);
             background: var(--success-color);
             color: white;
+        }
+
+        .nav-btn.prev:hover div div,
+        .nav-btn.home:hover div div,
+        .nav-btn.next:hover div div {
+            color: rgba(255, 255, 255, 0.8) !important;
         }
 
         .nav-info {
@@ -895,9 +903,10 @@
                 
                 <!-- Indicador de Progreso -->
                 <div class="progress-indicator">
-                    <div class="progress-dot completed" title="Introducción a Contabilidad"></div>
-                    <div class="progress-dot completed" title="Arqueo de Caja"></div>
-                    <div class="progress-dot current" title="Fin del Módulo: Gestión de Contabilidad - Módulo Actual"></div>
+                    <div class="progress-dot completed" title="Introducción a Contabilidad - Completado"></div>
+                    <div class="progress-dot completed" title="Arqueo de Caja - Completado"></div>
+                    <div class="progress-dot completed" title="Apertura de Caja - Completado"></div>
+                    <div class="progress-dot current" title="Fin del Módulo de Contabilidad - Módulo Actual"></div>
                 </div>
 
                 <!-- Navegación Principal -->
@@ -905,20 +914,29 @@
                     <a href="apertura-caja.html" class="nav-item prev">
                         <div class="nav-btn prev">
                             <i class="fas fa-arrow-left"></i>
-                            <span>Anterior</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Anterior</div>
+                                <div>Apertura de Caja</div>
+                            </div>
                         </div>
                     </a>
 
                     <a href="../../index.html" class="nav-item home">
                         <div class="nav-btn home">
                             <i class="fas fa-home"></i>
-                            <span>Inicio</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Inicio</div>
+                                <div>Curso Sinnut</div>
+                            </div>
                         </div>
                     </a>
 
                     <a href="../contratos/introduccion-contratos.html" class="nav-item next">
                         <div class="nav-btn next">
-                            <span>Siguiente</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Siguiente</div>
+                                <div>Módulo Contratos</div>
+                            </div>
                             <i class="fas fa-arrow-right"></i>
                         </div>
                     </a>
@@ -926,11 +944,7 @@
 
                 <!-- Información del Módulo -->
                 <div class="nav-info">
-                    <p>
-                        <strong>Fin del Módulo:</strong> Gestión de Contabilidad | 
-                        <strong>Anterior:</strong> Arqueo de Caja | 
-                        <strong>Siguiente:</strong> Introducción a Contratos
-                    </p>
+                    <p>Módulo de Contabilidad completado • Siguiente: Contratos</p>
                     <p style="margin-top: var(--spacing-sm); font-size: 0.8rem;">
                         <i class="fas fa-graduation-cap"></i>
                         Curso Sinnut ERP - OroExpress s.a.s
