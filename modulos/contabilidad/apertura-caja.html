@@ -245,10 +245,18 @@
             gap: var(--space-3);
         }
 
+<<<<<<< HEAD
         /* Video Container Optimizado para todos los dispositivos */
         .video-container {
             position: relative;
             width: 100%;
+=======
+        /* Video Container Optimizado */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+>>>>>>> 31588abf5387e23e69569906829fd37cf025dea2
             background: var(--neutral-100);
             border-radius: var(--radius-lg);
             overflow: hidden;
@@ -260,6 +268,7 @@
         }
 
         .video-container video {
+<<<<<<< HEAD
             width: 100%;
             height: auto;
             display: block;
@@ -270,6 +279,19 @@
         }
 
         /* Controles de video mejorados - Respeta los controles nativos */
+=======
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-color: #000;
+            outline: none;
+        }
+
+        /* Controles de video mejorados */
+>>>>>>> 31588abf5387e23e69569906829fd37cf025dea2
         .video-container video::-webkit-media-controls {
             opacity: 1;
         }
@@ -278,6 +300,7 @@
             background-color: rgba(0, 0, 0, 0.8);
         }
 
+<<<<<<< HEAD
         /* Poster/placeholder para videos */
         .video-container video[poster] {
             object-fit: cover;
@@ -288,6 +311,8 @@
             min-height: 200px;
         }
 
+=======
+>>>>>>> 31588abf5387e23e69569906829fd37cf025dea2
         /* Pasos */
         .steps-container {
             display: flex;
@@ -660,10 +685,13 @@
                 border-radius: var(--radius-md);
             }
 
+<<<<<<< HEAD
             .video-container video {
                 border-radius: var(--radius-md);
             }
 
+=======
+>>>>>>> 31588abf5387e23e69569906829fd37cf025dea2
             .course-navigation {
                 grid-template-columns: 1fr;
                 gap: var(--space-4);
@@ -788,12 +816,19 @@
                     playsinline
                     webkit-playsinline
                     muted
+<<<<<<< HEAD
                     poster="../../assets/images/video-poster-apertura-caja.jpg"
                     aria-label="Video tutorial: Proceso completo de apertura de caja">
                     <source src="../../assets/videos/Caja/apertura-caja/apertura-caja.mp4" type="video/mp4">
                     <track kind="captions" src="../../assets/videos/Caja/apertura-caja/apertura-caja.vtt" srclang="es" label="Español" default>
                     <p>Tu navegador no soporta la reproducción de videos. 
                        <a href="../../assets/videos/Caja/apertura-caja/apertura-caja.mp4" download>Descargar video</a>
+=======
+                    aria-label="Video tutorial: Proceso completo de apertura de caja">
+                    <source src="../../assets/videos/Caja/apertura-caja/2025-09-04 16-27-28 (Copy).mp4" type="video/mp4">
+                    <p>Tu navegador no soporta la reproducción de videos. 
+                       <a href="../../assets/videos/Caja/apertura-caja/2025-09-04 16-27-28 (Copy).mp4">Descargar video</a>
+>>>>>>> 31588abf5387e23e69569906829fd37cf025dea2
                     </p>
                 </video>
             </div>
@@ -933,12 +968,19 @@
                     playsinline
                     webkit-playsinline
                     muted
+<<<<<<< HEAD
                     poster="../../assets/images/video-poster-apertura-contingencia.jpg"
                     aria-label="Video tutorial: Casos especiales en apertura de caja">
                     <source src="../../assets/videos/Caja/apertura-caja/apertura-caja-contingencia.mp4" type="video/mp4">
                     <track kind="captions" src="../../assets/videos/Caja/apertura-caja/apertura-caja-contingencia.vtt" srclang="es" label="Español" default>
                     <p>Tu navegador no soporta la reproducción de videos. 
                        <a href="../../assets/videos/Caja/apertura-caja/apertura-caja-contingencia.mp4" download>Descargar video</a>
+=======
+                    aria-label="Video tutorial: Casos especiales en apertura de caja">
+                    <source src="../../assets/videos/Caja/apertura-caja/2025-09-04 17-04-32 (Copy).mp4" type="video/mp4">
+                    <p>Tu navegador no soporta la reproducción de videos. 
+                       <a href="../../assets/videos/Caja/apertura-caja/2025-09-04 17-04-32 (Copy).mp4">Descargar video</a>
+>>>>>>> 31588abf5387e23e69569906829fd37cf025dea2
                     </p>
                 </video>
             </div>
@@ -1012,11 +1054,16 @@
                 const videos = document.querySelectorAll('video');
                 
                 videos.forEach(video => {
+<<<<<<< HEAD
                     // Configuración específica para iOS Safari y compatibilidad universal
+=======
+                    // Configuración específica para iOS Safari
+>>>>>>> 31588abf5387e23e69569906829fd37cf025dea2
                     video.setAttribute('playsinline', true);
                     video.setAttribute('webkit-playsinline', true);
                     video.muted = true;
 
+<<<<<<< HEAD
                     // Manejo de autoplay responsable en móviles
                     const enableAutoplay = () => {
                         if (window.innerWidth <= 768 && 'IntersectionObserver' in window) {
@@ -1035,11 +1082,15 @@
                     };
 
                     // Error handling mejorado
+=======
+                    // Error handling
+>>>>>>> 31588abf5387e23e69569906829fd37cf025dea2
                     video.addEventListener('error', (e) => {
                         console.warn('Error al cargar video:', e);
                         const container = video.closest('.video-container');
                         if (container) {
                             container.innerHTML = `
+<<<<<<< HEAD
                                 <div style="display: flex; align-items: center; justify-content: center; min-height: 200px; background: var(--neutral-100); border-radius: var(--radius-lg); padding: var(--space-6);">
                                     <div style="text-align: center; color: var(--text-secondary);">
                                         <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 1rem; display: block; color: var(--warning-color);"></i>
@@ -1051,11 +1102,20 @@
                                             <i class="fas fa-download"></i> Descargar video
                                         </a>
                                     </div>
+=======
+                                <div style="display: flex; align-items: center; justify-content: center; height: 200px; background: var(--neutral-100); border-radius: var(--radius-lg);">
+                                    <p style="color: var(--text-secondary); text-align: center;">
+                                        <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 1rem; display: block;"></i>
+                                        Error al cargar el video.<br>
+                                        <a href="${video.src}" style="color: var(--primary-color);">Descargar video</a>
+                                    </p>
+>>>>>>> 31588abf5387e23e69569906829fd37cf025dea2
                                 </div>
                             `;
                         }
                     });
 
+<<<<<<< HEAD
                     // Eventos de carga optimizados
                     video.addEventListener('loadedmetadata', () => {
                         video.style.cursor = 'pointer';
@@ -1082,6 +1142,11 @@
                                 otherVideo.pause();
                             }
                         });
+=======
+                    // Play/pause mejorado
+                    video.addEventListener('loadstart', () => {
+                        video.style.cursor = 'pointer';
+>>>>>>> 31588abf5387e23e69569906829fd37cf025dea2
                     });
                 });
             }
