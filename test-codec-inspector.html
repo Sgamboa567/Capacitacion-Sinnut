@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎬 Análisis de Codec - Video Inspector</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            margin: 0;
+            padding: 20px;
+            color: white;
+        }
+        
+        .inspector-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: #ecf0f1;
+        }
+        
+        .device-info {
+            background: #34495e;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .codec-section {
+            background: rgba(0,0,0,0.4);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+        }
+        
+        .video-container {
+            position: relative;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 15px 0;
+            aspect-ratio: 16/9;
+        }
+        
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .info-card {
+            background: #2c3e50;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #e74c3c;
+        }
+        
+        .info-card h4 {
+            margin: 0 0 10px 0;
+            color: #e74c3c;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        
+        .info-card p {
+            margin: 5px 0;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+        
+        .status {
+            padding: 12px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-weight: 500;
+            text-align: center;
+        }
+        
+        .success { background: #27ae60; color: white; }
+        .error { background: #e74c3c; color: white; }
+        .warning { background: #f39c12; color: white; }
+        .info { background: #3498db; color: white; }
+        
+        .btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #c0392b;
+            transform: translateY(-1px);
+        }
+        
+        .btn.primary {
+            background: #3498db;
+            font-size: 1.1rem;
+            padding: 15px 30px;
+        }
+        
+        .btn.primary:hover {
+            background: #2980b9;
+        }
+        
+        .compatibility-report {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+        
+        .log {
+            background: #1a252f;
+            padding: 20px;
+            border-radius: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 0.8rem;
+            border: 1px solid #34495e;
+        }
+        
+        .highlight {
+            background: rgba(231, 76, 60, 0.2);
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .inspector-container { padding: 20px; }
+            .info-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="inspector-container">
+        <h1>🎬 Inspector de Codec de Video</h1>
+        
+        <!-- Información del dispositivo y navegador -->
+        <div class="device-info">
+            <h3>📱 Información del Sistema:</h3>
+            <div id="deviceInfo"></div>
+        </div>
+        
+        <!-- Video principal para análisis -->
+        <div class="codec-section">
+            <h2>🔍 Video en Análisis</h2>
+            <div class="video-container">
+                <video id="mainVideo" controls playsinline webkit-playsinline muted preload="metadata">
+                    <source src="assets/videos/Caja/arqueo-caja/arqueo-caja.mp4" type="video/mp4">
+                    <source src="https://sgamboa567.github.io/Capacitacion-Sinnut/assets/videos/Caja/arqueo-caja/arqueo-caja.mp4" type="video/mp4">
+                </video>
+            </div>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <button class="btn primary" onclick="analyzeVideo()">
+                    🧪 Analizar Codec y Compatibilidad
+                </button>
+                <button class="btn" onclick="forceLoad()">
+                    🔄 Forzar Carga
+                </button>
+            </div>
+            
+            <div id="videoStatus" class="status info">
+                Presiona "Analizar Codec" para comenzar
+            </div>
+        </div>
+        
+        <!-- Información técnica del video -->
+        <div class="info-grid" id="videoDetails" style="display: none;">
+            <div class="info-card">
+                <h4>📏 Dimensiones</h4>
+                <p>Ancho: <span id="videoWidth">-</span>px</p>
+                <p>Alto: <span id="videoHeight">-</span>px</p>
+                <p>Ratio: <span id="videoRatio">-</span></p>
+            </div>
+            
+            <div class="info-card">
+                <h4>⏱️ Tiempo</h4>
+                <p>Duración: <span id="videoDuration">-</span>s</p>
+                <p>Estado: <span id="readyState">-</span></p>
+                <p>Buffered: <span id="buffered">-</span></p>
+            </div>
+            
+            <div class="info-card">
+                <h4>🎯 Propiedades</h4>
+                <p>Src Activo: <span id="currentSrc" class="highlight">-</span></p>
+                <p>Puede Reproducir: <span id="canPlay">-</span></p>
+                <p>Formato: <span id="format">MP4</span></p>
+            </div>
+            
+            <div class="info-card">
+                <h4>🔧 Soporte</h4>
+                <p>MP4 H.264: <span id="h264Support">-</span></p>
+                <p>MP4 AVC1: <span id="avc1Support">-</span></p>
+                <p>WebM: <span id="webmSupport">-</span></p>
+            </div>
+        </div>
+        
+        <!-- Reporte de compatibilidad -->
+        <div class="compatibility-report">
+            <h3>📊 Reporte de Compatibilidad iOS Safari:</h3>
+            <div id="compatibilityResults"></div>
+        </div>
+        
+        <!-- Test de formatos alternativos -->
+        <div class="codec-section">
+            <h2>🧪 Prueba de Video Simple (Para Comparar)</h2>
+            <p>Este es un video de prueba simple para ver si el problema es específico de tu archivo:</p>
+            <div class="video-container">
+                <video controls playsinline webkit-playsinline muted preload="metadata">
+                    <!-- Video de prueba simple desde internet -->
+                    <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="status info">
+                Si este video funciona, el problema es específico de tu archivo MP4
+            </div>
+        </div>
+        
+        <!-- Log de eventos detallado -->
+        <div>
+            <h3>📋 Log Detallado de Eventos:</h3>
+            <div id="eventLog" class="log"></div>
+        </div>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <button class="btn" onclick="clearLog()">🧹 Limpiar Log</button>
+            <button class="btn" onclick="downloadReport()">📄 Descargar Reporte</button>
+        </div>
+    </div>
+
+    <script>
+        let analysisData = {};
+        
+        // Detectar capacidades del dispositivo
+        function detectDevice() {
+            const ua = navigator.userAgent;
+            const isIOS = /iPad|iPhone|iPod/.test(ua);
+            const isSafari = /Safari/.test(ua) && !/Chrome/.test(ua);
+            const isChrome = /Chrome/.test(ua);
+            const isMobile = /Mobi|Android/i.test(ua);
+            
+            const videoElement = document.createElement('video');
+            const codecSupport = {
+                h264: videoElement.canPlayType('video/mp4; codecs="avc1.42E01E"'),
+                h264High: videoElement.canPlayType('video/mp4; codecs="avc1.64001E"'),
+                h264Main: videoElement.canPlayType('video/mp4; codecs="avc1.4D401E"'),
+                mp4: videoElement.canPlayType('video/mp4'),
+                webm: videoElement.canPlayType('video/webm'),
+                webmVP8: videoElement.canPlayType('video/webm; codecs="vp8"'),
+                webmVP9: videoElement.canPlayType('video/webm; codecs="vp9"')
+            };
+            
+            return {
+                userAgent: ua,
+                isIOS: isIOS,
+                isSafari: isSafari,
+                isChrome: isChrome,
+                isMobile: isMobile,
+                platform: navigator.platform,
+                language: navigator.language,
+                cookieEnabled: navigator.cookieEnabled,
+                onLine: navigator.onLine,
+                codecSupport: codecSupport,
+                hardwareConcurrency: navigator.hardwareConcurrency || 'N/A',
+                memory: navigator.deviceMemory || 'N/A'
+            };
+        }
+        
+        // Mostrar información del dispositivo
+        function showDeviceInfo() {
+            const device = detectDevice();
+            const deviceDiv = document.getElementById('deviceInfo');
+            
+            deviceDiv.innerHTML = `
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div>
+                        <strong>🔍 Detección:</strong><br>
+                        • iOS: ${device.isIOS ? '✅ SÍ' : '❌ NO'}<br>
+                        • Safari: ${device.isSafari ? '✅ SÍ' : '❌ NO'}<br>
+                        • Móvil: ${device.isMobile ? '✅ SÍ' : '❌ NO'}<br>
+                        • Online: ${device.onLine ? '✅ SÍ' : '❌ NO'}
+                    </div>
+                    <div>
+                        <strong>⚙️ Hardware:</strong><br>
+                        • Platform: ${device.platform}<br>
+                        • Cores: ${device.hardwareConcurrency}<br>
+                        • Memory: ${device.memory}GB<br>
+                        • Language: ${device.language}
+                    </div>
+                    <div>
+                        <strong>🎬 Codec Support:</strong><br>
+                        • MP4: ${getSupportText(device.codecSupport.mp4)}<br>
+                        • H.264 Base: ${getSupportText(device.codecSupport.h264)}<br>
+                        • H.264 Main: ${getSupportText(device.codecSupport.h264Main)}<br>
+                        • WebM: ${getSupportText(device.codecSupport.webm)}
+                    </div>
+                </div>
+            `;
+            
+            analysisData.device = device;
+        }
+        
+        function getSupportText(support) {
+            if (support === 'probably') return '✅ SÍ';
+            if (support === 'maybe') return '⚠️ QUIZÁS';
+            return '❌ NO';
+        }
+        
+        // Log de eventos
+        function logEvent(message, type = 'info') {
+            const log = document.getElementById('eventLog');
+            const timestamp = new Date().toLocaleTimeString();
+            const colors = {
+                info: '#3498db',
+                success: '#27ae60', 
+                error: '#e74c3c',
+                warning: '#f39c12',
+                codec: '#9b59b6'
+            };
+            
+            log.innerHTML = `<div style="color: ${colors[type]}; margin-bottom: 5px;">
+                [${timestamp}] ${message}
+            </div>` + log.innerHTML;
+            
+            // Limitar a 100 líneas
+            const lines = log.querySelectorAll('div');
+            if (lines.length > 100) {
+                lines[lines.length - 1].remove();
+            }
+        }
+        
+        // Analizar video en detalle
+        function analyzeVideo() {
+            const video = document.getElementById('mainVideo');
+            const status = document.getElementById('videoStatus');
+            
+            logEvent('🧪 INICIANDO ANÁLISIS COMPLETO DE CODEC', 'codec');
+            status.className = 'status info';
+            status.textContent = '🔄 Analizando video...';
+            
+            // Configurar eventos del video
+            setupVideoEvents(video);
+            
+            // Forzar carga del video
+            video.load();
+            
+            // Timeout para el análisis
+            setTimeout(() => {
+                if (video.readyState < 2) {
+                    status.className = 'status error';
+                    status.textContent = '❌ Error: Video no se puede cargar';
+                    logEvent('❌ ANÁLISIS FALLIDO: Video no carga después de 15 segundos', 'error');
+                    generateCompatibilityReport(false);
+                } else {
+                    analyzeVideoProperties(video);
+                }
+            }, 15000);
+        }
+        
+        // Configurar eventos del video
+        function setupVideoEvents(video) {
+            video.onloadstart = () => {
+                logEvent('📥 Video: Iniciando carga', 'info');
+            };
+            
+            video.onloadedmetadata = () => {
+                logEvent('✅ Video: Metadata cargada', 'success');
+                analyzeVideoProperties(video);
+            };
+            
+            video.onloadeddata = () => {
+                logEvent('📊 Video: Datos cargados', 'success');
+            };
+            
+            video.oncanplay = () => {
+                logEvent('▶️ Video: Listo para reproducir', 'success');
+                document.getElementById('videoStatus').className = 'status success';
+                document.getElementById('videoStatus').textContent = '✅ Video listo para reproducir';
+                generateCompatibilityReport(true);
+            };
+            
+            video.onerror = (e) => {
+                const error = video.error;
+                const errorMessages = {
+                    1: 'MEDIA_ERR_ABORTED - Carga abortada',
+                    2: 'MEDIA_ERR_NETWORK - Error de red',
+                    3: 'MEDIA_ERR_DECODE - Error de decodificación (POSIBLE PROBLEMA DE CODEC)',
+                    4: 'MEDIA_ERR_SRC_NOT_SUPPORTED - Formato no soportado (PROBLEMA DE CODEC)'
+                };
+                
+                const errorMsg = error ? errorMessages[error.code] || `Error ${error.code}` : 'Error desconocido';
+                logEvent(`❌ ERROR DE VIDEO: ${errorMsg}`, 'error');
+                
+                document.getElementById('videoStatus').className = 'status error';
+                document.getElementById('videoStatus').textContent = `❌ ${errorMsg}`;
+                generateCompatibilityReport(false, errorMsg);
+            };
+            
+            video.onstalled = () => {
+                logEvent('⏸️ Video: Carga estancada', 'warning');
+            };
+            
+            video.onsuspend = () => {
+                logEvent('⏹️ Video: Carga suspendida', 'warning');
+            };
+        }
+        
+        // Analizar propiedades técnicas del video
+        function analyzeVideoProperties(video) {
+            logEvent('📊 Analizando propiedades técnicas del video', 'codec');
+            
+            const details = {
+                width: video.videoWidth,
+                height: video.videoHeight,
+                duration: video.duration,
+                readyState: video.readyState,
+                currentSrc: video.currentSrc,
+                ratio: video.videoWidth && video.videoHeight ? (video.videoWidth / video.videoHeight).toFixed(2) : 'N/A'
+            };
+            
+            // Actualizar UI
+            document.getElementById('videoWidth').textContent = details.width || 'N/A';
+            document.getElementById('videoHeight').textContent = details.height || 'N/A';
+            document.getElementById('videoDuration').textContent = details.duration ? details.duration.toFixed(1) : 'N/A';
+            document.getElementById('videoRatio').textContent = details.ratio;
+            document.getElementById('readyState').textContent = getReadyStateText(details.readyState);
+            document.getElementById('currentSrc').textContent = details.currentSrc ? details.currentSrc.split('/').pop() : 'N/A';
+            
+            // Mostrar sección de detalles
+            document.getElementById('videoDetails').style.display = 'grid';
+            
+            // Análisis de compatibilidad de codec
+            updateCodecSupport();
+            
+            analysisData.video = details;
+            
+            logEvent(`📏 Dimensiones: ${details.width}x${details.height} (${details.ratio})`, 'codec');
+            logEvent(`⏱️ Duración: ${details.duration}s | Estado: ${getReadyStateText(details.readyState)}`, 'codec');
+            logEvent(`🔗 Src: ${details.currentSrc}`, 'codec');
+        }
+        
+        function getReadyStateText(state) {
+            const states = {
+                0: 'HAVE_NOTHING',
+                1: 'HAVE_METADATA', 
+                2: 'HAVE_CURRENT_DATA',
+                3: 'HAVE_FUTURE_DATA',
+                4: 'HAVE_ENOUGH_DATA'
+            };
+            return `${state} (${states[state] || 'UNKNOWN'})`;
+        }
+        
+        // Actualizar información de soporte de codec
+        function updateCodecSupport() {
+            const device = analysisData.device;
+            document.getElementById('h264Support').textContent = getSupportText(device.codecSupport.h264);
+            document.getElementById('avc1Support').textContent = getSupportText(device.codecSupport.h264Main);
+            document.getElementById('webmSupport').textContent = getSupportText(device.codecSupport.webm);
+            document.getElementById('canPlay').textContent = document.getElementById('mainVideo').readyState >= 3 ? '✅ SÍ' : '❌ NO';
+        }
+        
+        // Generar reporte de compatibilidad
+        function generateCompatibilityReport(success, errorMsg = '') {
+            const device = analysisData.device;
+            const resultsDiv = document.getElementById('compatibilityResults');
+            
+            let report = '';
+            
+            if (success) {
+                report = `
+                    <div class="status success">
+                        ✅ VIDEO COMPATIBLE CON iOS SAFARI
+                    </div>
+                    <p><strong>🎉 ¡Excelente!</strong> Tu video funciona correctamente en iOS Safari.</p>
+                `;
+            } else {
+                report = `
+                    <div class="status error">
+                        ❌ PROBLEMA DE COMPATIBILIDAD DETECTADO
+                    </div>
+                    <p><strong>🚨 Problema encontrado:</strong> ${errorMsg || 'Video no se puede cargar'}</p>
+                    
+                    <h4>💡 Posibles Soluciones:</h4>
+                    <ul>
+                        <li><strong>Re-codificar el video</strong> con H.264 Baseline Profile</li>
+                        <li><strong>Reducir la resolución</strong> (máximo 1080p para iOS)</li>
+                        <li><strong>Reducir el bitrate</strong> para mejor streaming</li>
+                        <li><strong>Usar un conversor online</strong> como CloudConvert</li>
+                    </ul>
+                    
+                    <h4>🔧 Configuración Recomendada:</h4>
+                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; font-family: monospace; margin: 10px 0;">
+                        • Codec: H.264 (AVC)<br>
+                        • Profile: Baseline o Main<br>
+                        • Resolution: 1280x720 o menor<br>
+                        • Bitrate: 1-2 Mbps<br>
+                        • Audio: AAC<br>
+                        • Container: MP4
+                    </div>
+                `;
+                
+                if (device.isIOS && device.codecSupport.mp4 === '') {
+                    report += `
+                        <div class="status warning" style="margin-top: 15px;">
+                            ⚠️ ATENCIÓN: Tu dispositivo iOS tiene soporte limitado de MP4
+                        </div>
+                    `;
+                }
+            }
+            
+            resultsDiv.innerHTML = report;
+            logEvent(`📊 Reporte generado: ${success ? 'COMPATIBLE' : 'INCOMPATIBLE'}`, 'codec');
+        }
+        
+        // Forzar carga del video
+        function forceLoad() {
+            const video = document.getElementById('mainVideo');
+            logEvent('🔄 Forzando recarga del video', 'info');
+            video.load();
+        }
+        
+        // Limpiar log
+        function clearLog() {
+            document.getElementById('eventLog').innerHTML = '';
+            logEvent('🧹 Log limpiado', 'info');
+        }
+        
+        // Descargar reporte
+        function downloadReport() {
+            const report = generateTextReport();
+            const blob = new Blob([report], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `video-compatibility-report-${new Date().toISOString().split('T')[0]}.txt`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+        
+        function generateTextReport() {
+            const device = analysisData.device || {};
+            const video = analysisData.video || {};
+            
+            return `
+REPORTE DE COMPATIBILIDAD DE VIDEO
+===================================
+
+FECHA: ${new Date().toLocaleString()}
+ARCHIVO: arqueo-caja.mp4
+
+DISPOSITIVO:
+- iOS: ${device.isIOS ? 'SÍ' : 'NO'}
+- Safari: ${device.isSafari ? 'SÍ' : 'NO'}  
+- Platform: ${device.platform}
+- User Agent: ${device.userAgent}
+
+SOPORTE DE CODEC:
+- MP4: ${device.codecSupport?.mp4 || 'N/A'}
+- H.264 Baseline: ${device.codecSupport?.h264 || 'N/A'}
+- H.264 Main: ${device.codecSupport?.h264Main || 'N/A'}
+
+PROPIEDADES DEL VIDEO:
+- Dimensiones: ${video.width}x${video.height}
+- Duración: ${video.duration}s
+- Estado: ${video.readyState}
+- Src: ${video.currentSrc}
+
+LOG DE EVENTOS:
+${document.getElementById('eventLog').innerText}
+            `;
+        }
+        
+        // Inicializar al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            showDeviceInfo();
+            logEvent('🎬 Inspector de Codec cargado - Listo para análisis', 'success');
+        });
+    </script>
+</body>
+</html>
