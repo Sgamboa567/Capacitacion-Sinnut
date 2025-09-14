@@ -162,6 +162,11 @@
             color: var(--primary-light);
         }
 
+        .nav-breadcrumb [aria-current="page"] {
+            font-weight: 700;
+            color: #0D2339;
+        }
+
         .separator {
             margin: 0 var(--spacing-2);
             color: var(--neutral-500);
@@ -703,7 +708,7 @@
             align-items: center;
             gap: var(--spacing-3);
             padding: var(--spacing-4) var(--spacing-6);
-            border: 2px solid var(--neutral-300);
+            border: none;
             border-radius: var(--radius-lg);
             background: white;
             color: var(--text-primary);
@@ -737,19 +742,16 @@
         }
 
         .nav-btn.prev:hover {
-            border-color: var(--warning-color);
             background: var(--warning-color);
             color: white;
         }
 
         .nav-btn.home:hover {
-            border-color: var(--primary-color);
             background: var(--primary-color);
             color: white;
         }
 
         .nav-btn.next:hover {
-            border-color: var(--success-color);
             background: var(--success-color);
             color: white;
         }
@@ -861,40 +863,6 @@
                 width: 100%;
                 min-width: auto;
             }
-            
-            .nav-breadcrumb {
-                font-size: var(--font-size-xs);
-                padding: var(--spacing-3);
-                top: var(--spacing-2);
-                margin-bottom: var(--spacing-6);
-            }
-            
-            .nav-breadcrumb a {
-                display: inline-flex;
-                align-items: center;
-                gap: var(--spacing-1);
-            }
-            
-            .separator {
-                display: none;
-            }
-            
-            .nav-breadcrumb::after {
-                content: '';
-                position: absolute;
-                bottom: -1px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 60%;
-                height: 2px;
-                background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            }
-            
-            .nav-breadcrumb.scrolled::after {
-                opacity: 1;
-            }
         }
 
         /* Animaciones de entrada */
@@ -952,13 +920,21 @@
 <body>
     <div class="container">
         <!-- Navegación Breadcrumb Sticky -->
-        <nav class="nav-breadcrumb" id="navBreadcrumb">
-            <a href="../../index.html">
-                <i class="fas fa-home"></i> Inicio
-            </a>
-            <span class="separator">›</span>
-            <span>Introducción</span>
-        </nav>
+        <div class="nav-breadcrumb animate-in" id="navBreadcrumb">
+            <a href="../../index.html"><i class="fas fa-home"></i> Inicio</a>
+            <span class="separator">></span>
+            <span aria-current="page">Introducción</span>
+            <span class="separator">></span>
+            <a href="factura-de-venta.html">Factura de Venta</a>
+            <span class="separator">></span>
+            <a href="crear-plan-separe.html">Crear Plan Separe</a>
+            <span class="separator">></span>
+            <a href="consultar-plan-separe.html">Consultar Plan Separe</a>
+            <span class="separator">></span>
+            <a href="abonar-facturar-plan-separe.html">Abonar/Facturar Plan Separe</a>
+            <span class="separator">></span>
+            <a href="fin-modulo-facturas.html">Fin Módulo</a>
+        </div>
 
         <!-- Header Moderno -->
         <div class="header animate-in">
@@ -1073,53 +1049,51 @@
         <!-- Footer de Navegación del Curso ejemplo -->
         <footer class="course-footer">
             <div class="course-footer-content">
-                <h3>
-                    <i class="fas fa-route"></i>
-                    Navegación del Curso
-                </h3>
+                <h3><i class="fas fa-route"></i> Navegación del Curso</h3>
                 
-                <!-- Indicador de Progreso -->
                 <div class="progress-indicator">
-                    <div class="progress-dot completed" title="Fin del módulo: Gestión de Contratos"></div>
-                    <div class="progress-dot current" title="Introducción a facturas - Módulo Actual"></div>
-                    <div class="progress-dot" title="Factura de venta"></div>
+                    <div class="progress-dot current"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
                 </div>
-
-                <!-- Navegación Principal -->
-                <nav class="course-navigation">
-                    <a href="fin-modulo-factura.html" class="nav-item prev">
+                
+                <div class="course-navigation">
+                    <a href="../contratos/fin-modulo-contratos.html" class="nav-item prev">
                         <div class="nav-btn prev">
                             <i class="fas fa-arrow-left"></i>
-                            <span>Anterior</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Anterior</div>
+                                <div>Fin Contratos</div>
+                            </div>
                         </div>
                     </a>
-
+                    
                     <a href="../../index.html" class="nav-item home">
                         <div class="nav-btn home">
                             <i class="fas fa-home"></i>
-                            <span>Inicio</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Curso</div>
+                                <div>Inicio</div>
+                            </div>
                         </div>
                     </a>
-
-                    <a href="factura-de-venta.html" class="nav-item next">
+                    
+                    <a href="crear-plan-separe.html" class="nav-item next">
                         <div class="nav-btn next">
-                            <span>Siguiente</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Siguiente</div>
+                                <div>Crear Plan Separe</div>
+                            </div>
                             <i class="fas fa-arrow-right"></i>
                         </div>
                     </a>
-                </nav>
-
-                <!-- Información del Módulo -->
+                </div>
+                
                 <div class="nav-info">
-                    <p>
-                        <strong>Módulo 3 de 3:</strong> Introducción a Facturas | 
-                        <strong>Anterior:</strong> Fin del módulo: Gestión de Contratos | 
-                        <strong>Siguiente:</strong> Factura de venta
-                    </p>
-                    <p style="margin-top: var(--spacing-2); font-size: 0.8rem;">
-                        <i class="fas fa-graduation-cap"></i>
-                        Curso Sinnut ERP - OroExpress s.a.s
-                    </p>
+                    <p><i class="fas fa-info-circle"></i> Módulo 1 de 6 en el curso de Facturas • Progreso: 17%</p>
                 </div>
             </div>
         </footer>

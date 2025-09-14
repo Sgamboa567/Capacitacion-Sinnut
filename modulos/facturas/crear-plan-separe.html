@@ -160,6 +160,11 @@
             color: var(--primary-light);
         }
 
+        .nav-breadcrumb [aria-current="page"] {
+            font-weight: 700;
+            color: #0D2339;
+        }
+
         .separator {
             margin: 0 var(--spacing-sm);
             color: var(--neutral-500);
@@ -692,42 +697,7 @@
                 flex-direction: column;
                 align-items: center;
             }
-            
-            .nav-breadcrumb {
-                font-size: 0.75rem;
-                padding: var(--spacing-sm);
-                top: var(--spacing-xs);
-                margin-bottom: var(--spacing-lg);
-            }
-            
-            .nav-breadcrumb a {
-                display: inline-flex;
-                align-items: center;
-                gap: var(--spacing-xs);
-            }
-            
-            .separator {
-                display: none;
-            }
-            
-            .nav-breadcrumb::after {
-                content: '';
-                position: absolute;
-                bottom: -1px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 60%;
-                height: 2px;
-                background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            }
-            
-            .nav-breadcrumb.scrolled::after {
-                opacity: 1;
-            }
-        }
-            
+        }         
             .header-badges {
                 justify-content: center;
             }
@@ -771,7 +741,7 @@
             margin-bottom: var(--spacing-lg);
         }
 
-        /* Footer de Navegacií³n del Curso */
+    /* Footer de Navegación del Curso */
         .course-footer {
             background: linear-gradient(135deg, var(--neutral-50) 0%, white 100%);
             border: 2px solid var(--neutral-200);
@@ -843,7 +813,6 @@
             align-items: center;
             gap: var(--spacing-sm);
             padding: var(--spacing-md) var(--spacing-lg);
-            border: 2px solid var(--neutral-300);
             border-radius: var(--radius-lg);
             background: white;
             color: var(--text-primary);
@@ -877,19 +846,16 @@
         }
 
         .nav-btn.prev:hover {
-            border-color: var(--warning-color);
             background: var(--warning-color);
             color: white;
         }
 
         .nav-btn.home:hover {
-            border-color: var(--primary-color);
             background: var(--primary-color);
             color: white;
         }
 
         .nav-btn.next:hover {
-            border-color: var(--success-color);
             background: var(--success-color);
             color: white;
         }
@@ -909,21 +875,26 @@
             margin-bottom: var(--spacing-lg);
         }
 
+
         .progress-dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
             background: var(--neutral-300);
             transition: var(--transition);
+            cursor: pointer;
+            position: relative;
         }
 
         .progress-dot.completed {
             background: var(--success-color);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
         }
 
         .progress-dot.current {
             background: var(--primary-color);
-            transform: scale(1.2);
+            transform: scale(1.3);
+            box-shadow: 0 0 0 4px rgba(13, 35, 57, 0.2);
         }
 
         /* Responsive para el footer */
@@ -952,15 +923,21 @@
 <body>
     <div class="container animate-in">
         <!-- Navigation -->
-        <nav class="nav-breadcrumb">
+        <div class="nav-breadcrumb">
             <a href="../../index.html"><i class="fas fa-home"></i> Inicio</a>
-            <span class="separator">â€¢</span>
-            <a href="introduccion-facturas.html">Facturas</a>
-            <span class="separator">â€¢</span>
+            <span class="separator">></span>
+            <a href="introduccion-facturas.html">Introducción</a>
+            <span class="separator">></span>
             <a href="factura-de-venta.html">Factura de Venta</a>
-            <span class="separator">â€¢</span>
-            <span style="color: var(--primary-color); font-weight: 600;">Crear Plan Separe</span>
-        </nav>
+            <span class="separator">></span>
+            <span aria-current="page">Crear Plan Separe</span>
+            <span class="separator">></span>
+            <a href="consultar-plan-separe.html">Consultar Plan Separe</a>
+            <span class="separator">></span>
+            <a href="abonar-facturar-plan-separe.html">Abonar/Facturar Plan Separe</a>
+            <span class="separator">></span>
+            <a href="fin-modulo-facturas.html">Fin Módulo</a>
+        </div>
 
         <!-- Header -->
         <header class="header">
@@ -995,7 +972,7 @@
             <div class="alert alert-info">
                 <i class="fas fa-info-circle" style="font-size: 1.5rem;"></i>
                 <div>
-                    <strong>Objetivo:</strong> Facilitar la adquisicií³n de productos a través de pagos fraccionados, 
+                    <strong>Objetivo:</strong> Facilitar la adquisición de productos a través de pagos fraccionados, 
                 mejorando la experiencia del cliente y aumentando las oportunidades de venta.
                 </div>
             </div>
@@ -1005,13 +982,13 @@
         <section class="section">
             <h2><i class="fas fa-play-circle"></i> Video Tutorial</h2>
             <p style="margin-bottom: var(--spacing-lg); color: var(--text-secondary);">
-                Observa el proceso completo de creacií³n de un plan separe paso a paso
+                Observa el proceso completo de creación de un plan separe paso a paso
             </p>
             
             <div class="alert alert-warning">
                 <i class="fas fa-clock"></i>
                 <div>
-                    <strong>Tiempo estimado de operacií³n:</strong> 2 minutos
+                    <strong>Tiempo estimado de operación:</strong> 2 minutos
                 </div>
             </div>
             
@@ -1022,7 +999,7 @@
                        playsinline="true"
                        webkit-playsinline="true"
                        muted="true">
-                    <source src="../../assets/videos/Facturas/plan separe 1.mp4" type="video/mp4">
+                    <source src="../../assets/videos/Facturas/crear-plan-separe/crear-plan-separe.mp4" type="video/mp4">
                     <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
                         <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: var(--warning-color); margin-bottom: var(--spacing-md);"></i>
                         <p>Video no disponible. Contacta con soporte técnico.</p>
@@ -1048,16 +1025,16 @@
                 <div class="step">
                     <div class="step-header">
                         <div class="step-number">1</div>
-                        <div class="step-title">Acceder al Mí³dulo</div>
+                        <div class="step-title">Acceder al Módulo</div>
                     </div>
                     <div class="step-description">
-                        Ve al mí³dulo <strong>Gestií³n de Ventas</strong> y selecciona <strong>Plan Separe</strong>. 
-                        Luego haz clic en el botí³n <strong>"+"</strong> para crear un nuevo plan.
+                        Ve al módulo <strong>Gestión de Ventas</strong> y selecciona <strong>Plan Separe</strong>. 
+                        Luego haz clic en el botón <strong>"+"</strong> para crear un nuevo plan.
                     </div>
                     <div class="alert alert-info">
                         <i class="fas fa-lightbulb"></i>
                         <div>
-                            <strong>Consejo:</strong> Asegíºrate de estar en la joyerí­a correcta antes de iniciar el proceso.
+                            <strong>Consejo:</strong> Asegúrate de estar en la joyerí­a correcta antes de iniciar el proceso.
                         </div>
                     </div>
                 </div>
@@ -1069,13 +1046,13 @@
                         <div class="step-title">Buscar o Registrar Cliente</div>
                     </div>
                     <div class="step-description">
-                        Busca al cliente por níºmero de documento. Si no existe en el sistema, 
+                        Busca al cliente por número de documento. Si no existe en el sistema, 
                         podrás registrarlo directamente desde esta pantalla.
                     </div>
                     <div class="alert alert-warning">
                         <i class="fas fa-exclamation-triangle"></i>
                         <div>
-                            <strong>Importante:</strong> Verifica que la informacií³n del cliente sea correcta 
+                            <strong>Importante:</strong> Verifica que la información del cliente sea correcta 
                             antes de continuar con el proceso.
                         </div>
                     </div>
@@ -1088,8 +1065,8 @@
                         <div class="step-title">Seleccionar Producto</div>
                     </div>
                     <div class="step-description">
-                        Ingresa el <strong>SKU</strong> del producto a separar y su <strong>cí³digo de bolsa de seguridad</strong>. 
-                        El sistema mostrará automáticamente la informacií³n del producto asociada.
+                        Ingresa el <strong>SKU</strong> del producto a separar y su <strong>código de bolsa de seguridad</strong>. 
+                        El sistema mostrará automáticamente la información del producto asociada.
                     </div>
                     <div class="alert alert-success">
                         <i class="fas fa-check-circle"></i>
@@ -1108,13 +1085,13 @@
                     </div>
                     <div class="step-description">
                         Establece el <strong>valor del abono inicial</strong>. Este valor puede ser editado 
-                        dependiendo de la polí­tica comercial vigente de la empresa.
+                        dependiendo de la política comercial vigente de la empresa.
                     </div>
                     <div class="alert alert-info">
                         <i class="fas fa-info-circle"></i>
                         <div>
-                            <strong>Informacií³n:</strong> Valida que el abono inicial cumpla con las condiciones 
-                            mí­nimas establecidas por la empresa.
+                            <strong>Información:</strong> Valida que el abono inicial cumpla con las condiciones 
+                            mínimas establecidas por la empresa.
                         </div>
                     </div>
                 </div>
@@ -1132,7 +1109,7 @@
                     <div class="alert alert-warning">
                         <i class="fas fa-exclamation-triangle"></i>
                         <div>
-                            <strong>Atencií³n:</strong> Una vez procesado el pago, el producto quedará reservado 
+                            <strong>Atención:</strong> Una vez procesado el pago, el producto quedará reservado 
                             en el sistema hasta completar el pago total.
                         </div>
                     </div>
@@ -1142,16 +1119,16 @@
                 <div class="step">
                     <div class="step-header">
                         <div class="step-number">6</div>
-                        <div class="step-title">Generar Documentacií³n</div>
+                        <div class="step-title">Generar Documentación</div>
                     </div>
                     <div class="step-description">
                         Imprime el <strong>acuerdo del plan separe</strong>. Este documento debe ser entregado 
-                        al cliente como respaldo oficial de la transaccií³n.
+                        al cliente como respaldo oficial de la transacción.
                     </div>
                     <div class="alert alert-success">
                         <i class="fas fa-check-circle"></i>
                         <div>
-                            <strong>Finalizacií³n:</strong> El plan separe ha sido creado exitosamente y 
+                            <strong>Finalización:</strong> El plan separe ha sido creado exitosamente y 
                             el producto está reservado para el cliente.
                         </div>
                     </div>
@@ -1165,12 +1142,12 @@
             <div class="alert alert-info">
                 <i class="fas fa-target"></i>
                 <div>
-                    <h4 style="margin-bottom: var(--spacing-sm);">Â¡Ahora es tu turno!</h4>
+                    <h4 style="margin-bottom: var(--spacing-sm);">¡Ahora es tu turno!</h4>
                     <p style="margin-bottom: var(--spacing-md);">
                         Practica creando un plan separe con los productos disponibles en el sistema de pruebas.
                     </p>
-                    <strong>Ejercicio sugerido:</strong> Crea un plan separe completo, desde la bíºsqueda del cliente 
-                    hasta la impresií³n del acuerdo.
+                    <strong>Ejercicio sugerido:</strong> Crea un plan separe completo, desde la búsqueda del cliente 
+                    hasta la impresión del acuerdo.
                 </div>
             </div>
         </section>
@@ -1182,7 +1159,7 @@
                 <div style="border: 2px solid var(--neutral-200); border-radius: var(--radius-lg); padding: var(--spacing-lg); text-align: center; transition: var(--transition);" onmouseover="this.style.borderColor='var(--primary-color)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--neutral-200)'; this.style.transform='translateY(0)'">
                     <i class="fas fa-file-pdf" style="font-size: 2.5rem; color: var(--danger-color); margin-bottom: var(--spacing-md);"></i>
                     <h4 style="color: var(--primary-color); margin-bottom: var(--spacing-sm);">Manual PDF</h4>
-                    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">Guí­a detallada paso a paso</p>
+                    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">Guía detallada paso a paso</p>
                     <a href="../../assets/documents/instructivos/Facturas/Instructivo PLAN SEPARE.pdf" 
                        class="btn btn-primary" target="_blank">
                         <i class="fas fa-download"></i> Descargar
@@ -1190,11 +1167,11 @@
                 </div>
                 
                 <div style="border: 2px solid var(--neutral-200); border-radius: var(--radius-lg); padding: var(--spacing-lg); text-align: center; transition: var(--transition);" onmouseover="this.style.borderColor='var(--success-color)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--neutral-200)'; this.style.transform='translateY(0)'">
-                    <i class="fas fa-headset" style="font-size: 2.5rem; color: var(--success-color); margin-bottom: var(--spacing-md);"></i>
+                    <i class="fab fa-whatsapp" style="font-size: 2.5rem; color: var(--success-color); margin-bottom: var(--spacing-md);"></i>
                     <h4 style="color: var(--primary-color); margin-bottom: var(--spacing-sm);">Soporte Técnico</h4>
                     <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">Obtén ayuda especializada</p>
-                    <a href="mailto:soporte.ti@oroexpress.com.co" class="btn btn-success">
-                        <i class="fas fa-envelope"></i> Contactar
+                    <a href="https://wa.me/573164706103?text=Hola,%20necesito%20ayuda%20con%20el%20módulo%20de%20facturas" class="btn btn-success" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
                     </a>
                 </div>
             </div>
@@ -1207,7 +1184,7 @@
                 Â¡Excelente trabajo!
             </h3>
             <p style="font-size: 1.125rem; margin-bottom: var(--spacing-xl);">
-                Has completado exitosamente el mí³dulo de Crear Plan Separe. 
+                Has completado exitosamente el módulo de Crear Plan Separe. 
                 Ahora puedes gestionar esta funcionalidad de manera eficiente.
             </p>
             <a href="../../index.html" class="btn btn-primary" style="font-size: 1.125rem; padding: var(--spacing-md) var(--spacing-xl);">
@@ -1215,56 +1192,59 @@
             </a>
         </div>
 
-        <!-- Footer de Navegacií³n del Curso -->
+    <!-- Footer de Navegación del Curso -->
         <footer class="course-footer">
             <div class="course-footer-content">
                 <h3>
                     <i class="fas fa-route"></i>
-                    Navegacií³n del Curso
+                    Navegación del Curso
                 </h3>
                 
-                <!-- Indicador de Progreso -->
                 <div class="progress-indicator">
-                    <div class="progress-dot completed" title="Introduccií³n a Facturas"></div>
-                    <div class="progress-dot completed" title="Factura de Venta"></div>
-                    <div class="progress-dot current" title="Crear Plan Separe - Mí³dulo Actual"></div>
-                    <div class="progress-dot" title="Consultar Plan Separe"></div>
+                    <div class="progress-dot completed"></div>
+                    <div class="progress-dot completed"></div>
+                    <div class="progress-dot current"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
                 </div>
-
-                <!-- Navegacií³n Principal -->
-                <nav class="course-navigation">
+                
+                <div class="course-navigation">
                     <a href="factura-de-venta.html" class="nav-item prev">
                         <div class="nav-btn prev">
                             <i class="fas fa-arrow-left"></i>
-                            <span>Anterior</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Anterior</div>
+                                <div>Factura de Venta</div>
+                            </div>
                         </div>
                     </a>
 
                     <a href="../../index.html" class="nav-item home">
                         <div class="nav-btn home">
                             <i class="fas fa-home"></i>
-                            <span>Inicio</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Curso</div>
+                                <div>Inicio</div>
+                            </div>
                         </div>
                     </a>
 
                     <a href="consultar-plan-separe.html" class="nav-item next">
                         <div class="nav-btn next">
-                            <span>Siguiente</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Siguiente</div>
+                                <div>Consultar Plan Separe</div>
+                            </div>
                             <i class="fas fa-arrow-right"></i>
                         </div>
                     </a>
-                </nav>
-
-                <!-- Informacií³n del Mí³dulo -->
+                </div>
+                
                 <div class="nav-info">
                     <p>
-                        <strong>Mí³dulo 2 de 4:</strong> Crear Plan Separe | 
-                        <strong>Anterior:</strong> Factura de Venta | 
-                        <strong>Siguiente:</strong> Consultar Plan Separe
-                    </p>
-                    <p style="margin-top: var(--spacing-sm); font-size: 0.8rem;">
-                        <i class="fas fa-graduation-cap"></i>
-                        Curso Sinnut ERP - OroExpress s.a.s
+                        <i class="fas fa-info-circle"></i>
+                        Módulo 3 de 6 en el curso de Facturas • Progreso: 50%
                     </p>
                 </div>
             </div>
@@ -1273,7 +1253,7 @@
 
     <!-- JavaScript principal -->
     <script src="../../assets/js/main.js"></script>
-    <!-- Script para mejorar compatibilidad de videos en mí³viles -->
+    <!-- Script para mejorar compatibilidad de videos en móviles -->
     <script src="../../fix-mobile-videos.js"></script>
     <script>
         // Estado moderno del documento
@@ -1283,7 +1263,7 @@
                 this.setupInteractions();
                 this.initializeTracking();
                 this.setupCourseNavigation();
-                console.log('ðŸš€ Mí³dulo Crear Plan Separe inicializado');
+                console.log('🚀 Módulo Crear Plan Separe inicializado');
             },
 
             // Sistema de animaciones mejorado
@@ -1304,7 +1284,7 @@
                     });
                 }, observerOptions);
 
-                // Observar diferentes tipos de elementos con animaciones especí­ficas
+                // Observar diferentes tipos de elementos con animaciones específicas
                 document.querySelectorAll('.section').forEach((el, index) => {
                     el.style.opacity = '0';
                     el.style.transform = 'translateY(30px)';
@@ -1403,16 +1383,16 @@
                 }
             },
 
-            // Configurar navegacií³n del curso
+            // Configurar navegación del curso
             setupCourseNavigation() {
-                // Aí±adir efectos hover mejorados a los botones de navegacií³n
+                // Añadir efectos hover mejorados a los botones de navegación
                 document.querySelectorAll('.nav-btn').forEach(btn => {
                     btn.addEventListener('mouseenter', (e) => {
                         this.createNavigationRipple(e);
                     });
                 });
 
-                // Aí±adir atajos de teclado para navegacií³n
+                // Añadir atajos de teclado para navegación
                 document.addEventListener('keydown', (e) => {
                     if (e.ctrlKey || e.metaKey) {
                         switch(e.key) {
@@ -1436,7 +1416,7 @@
                 this.animateCourseFooter();
             },
 
-            // Navegacií³n con teclado
+            // Navegación con teclado
             navigateToPrevious() {
                 const prevLink = document.querySelector('.nav-item.prev');
                 if (prevLink) {
@@ -1464,7 +1444,7 @@
                 }
             },
 
-            // Efecto de transicií³n de página
+            // Efecto de transición de página
             createPageTransition(callback) {
                 const overlay = document.createElement('div');
                 overlay.style.cssText = `
@@ -1488,7 +1468,7 @@
                 }, 50);
             },
 
-            // Ripple effect para navegacií³n
+            // Ripple effect para navegación
             createNavigationRipple(e) {
                 const button = e.currentTarget;
                 const rect = button.getBoundingClientRect();

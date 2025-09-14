@@ -1057,20 +1057,11 @@
             }
             
             .nav-breadcrumb {
-                font-size: 0.75rem;
                 padding: var(--spacing-sm);
-                top: var(--spacing-xs);
-                margin-bottom: var(--spacing-lg);
-            }
-            
-            .nav-breadcrumb a {
-                display: inline-flex;
-                align-items: center;
-                gap: var(--spacing-xs);
-            }
-            
-            .separator {
-                display: none;
+                font-size: 0.75rem;
+                position: relative;
+                top: auto;
+                margin-bottom: var(--spacing-2xl);
             }
             
             .nav-breadcrumb::after {
@@ -1121,8 +1112,7 @@
     <div class="container animate-in">
         <!-- Navegación Breadcrumb -->
         <div class="nav-breadcrumb animate-left">
-            <i class="fas fa-home" style="color: var(--primary-color);"></i>
-            <a href="../../index.html">Inicio</a>
+            <a href="../../index.html"><i class="fas fa-home"></i> Inicio</a>
             <span class="separator">></span>
             <a href="introduccion-contratos.html">Introducción</a>
             <span class="separator">></span>

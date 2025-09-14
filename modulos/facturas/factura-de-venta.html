@@ -53,7 +53,7 @@
             --text-secondary: #64748b;
             --text-white: #ffffff;
             
-            /* Tipografí­a */
+            /* Tipografía */
             --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             --font-size-xs: 0.75rem;
             --font-size-sm: 0.875rem;
@@ -160,6 +160,11 @@
 
         .nav-breadcrumb a:hover {
             color: var(--primary-light);
+        }
+
+        .nav-breadcrumb [aria-current="page"] {
+            font-weight: 700;
+            color: #0D2339;
         }
 
         .separator {
@@ -685,7 +690,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--info-color));
+            background: linear-gradient(90deg, var(--primary-color), var(--info-color), var(--success-color));
         }
 
         .course-footer-content {
@@ -738,7 +743,6 @@
             align-items: center;
             gap: var(--spacing-3);
             padding: var(--spacing-4) var(--spacing-6);
-            border: 2px solid var(--neutral-300);
             border-radius: var(--radius-lg);
             background: white;
             color: var(--text-primary);
@@ -772,19 +776,16 @@
         }
 
         .nav-btn.prev:hover {
-            border-color: var(--warning-color);
             background: var(--warning-color);
             color: white;
         }
 
         .nav-btn.home:hover {
-            border-color: var(--primary-color);
             background: var(--primary-color);
             color: white;
         }
 
         .nav-btn.next:hover {
-            border-color: var(--success-color);
             background: var(--success-color);
             color: white;
         }
@@ -987,16 +988,22 @@
 <body>
     <div class="container">
         <!-- Navegación Breadcrumb Sticky -->
-        <nav class="nav-breadcrumb" id="navBreadcrumb">
-            <a href="../../index.html">
-                <i class="fas fa-home"></i> Inicio
-            </a>
-            <span class="separator">â€º</span>
-            <a href="introduccion-facturas.html">Introduccion </a>
-            </a>
-            <span class="separator">â€º</span>
-            <span>Factura de Venta</span>
-        </nav>
+        <div class="nav-breadcrumb animate-in" id="navBreadcrumb">
+            <i class="fas fa-home" style="color: var(--primary-color);"></i>
+            <a href="../../index.html">Inicio</a>
+            <span class="separator">></span>
+            <a href="introduccion-facturas.html">Introducción</a>
+            <span class="separator">></span>
+            <span aria-current="page">Factura de Venta</span>
+            <span class="separator">></span>
+            <a href="crear-plan-separe.html">Crear Plan Separe</a>
+            <span class="separator">></span>
+            <a href="consultar-plan-separe.html">Consultar Plan Separe</a>
+            <span class="separator">></span>
+            <a href="abonar-facturar-plan-separe.html">Abonar/Facturar Plan Separe</a>
+            <span class="separator">></span>
+            <a href="fin-modulo-facturas.html">Fin del Módulo</a>
+        </div>
 
         <!-- Header Moderno -->
         <div class="header animate-in">
@@ -1005,7 +1012,7 @@
                     <i class="fas fa-receipt"></i>
                 </div>
                 <h1>Factura de Venta en Sinnut ERP</h1>
-                <p>Aprende a registrar ventas directas de productos disponibles en inventario de manera ágil y profesional, con aplicacií³n de descuentos y generacií³n automática de documentos</p>
+                <p>Aprende a registrar ventas directas de productos disponibles en inventario de manera ágil y profesional, con aplicación de descuentos y generación automática de documentos</p>
                 
                 <div class="header-badges">
                     <div class="badge">
@@ -1024,19 +1031,19 @@
             </div>
         </div>
 
-        <!-- Seccií³n de Video Tutorial -->
+        <!-- Sección de Video Tutorial -->
         <div class="section animate-in">
             <h2>
                 <i class="fas fa-play-circle"></i>
                 Video Tutorial
             </h2>
             <p style="margin-bottom: var(--spacing-8); color: var(--text-secondary); font-size: var(--font-size-lg);">
-                Observa el proceso completo de facturación de venta en Sinnut ERP desde la validacií³n del cliente hasta la generacií³n del PDF final.</p>
+                Observa el proceso completo de facturación de venta en Sinnut ERP desde la validación del cliente hasta la generación del PDF final.</p>
             
             <div class="alert alert-info">
                 <i class="fas fa-stopwatch"></i>
                 <div>
-                    <strong>Tiempo estimado de operacií³n:</strong>
+                    <strong>Tiempo estimado de operación:</strong>
                     <p>Aproximadamente 2 minutos para completar una factura completa en el sistema.</p>
                 </div>
             </div>
@@ -1048,24 +1055,24 @@
                        webkit-playsinline="true"
                        muted="true"
                        poster="../../assets/images/video-placeholder.jpg">
-                    <source src="../../assets/videos/Facturas/factura de ventas 1.mp4" type="video/mp4">
+                    <source src="../../assets/videos/Facturas/factura-de-venta/factura-de-venta.mp4" type="video/mp4">
                     <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #666;">
                         <p>Tu navegador no soporta este formato de video.</p>
                         <a href="../../assets/videos/Facturas/factura de ventas 1.mp4" 
                            download 
                            style="color: var(--accent-color); text-decoration: none; font-weight: bold;">
-                            ðŸ“¥ Descargar video
+                            📥 Descargar video
                         </a>
                     </div>
                 </video>
             </div>
         </div>
 
-        <!-- Seccií³n de Pasos del Proceso -->
+        <!-- Sección de Pasos del Proceso -->
         <div class="section animate-in">
             <h2>
                 <i class="fas fa-list-ol"></i>
-                Pasos del Proceso de Facturacií³n
+                Pasos del Proceso de Facturación
             </h2>
             <p style="margin-bottom: var(--spacing-8); color: var(--text-secondary); font-size: var(--font-size-lg);">
                 Sigue estos pasos secuenciales para registrar una venta exitosa en el sistema Sinnut ERP:</p>
@@ -1074,10 +1081,10 @@
                 <div class="step">
                     <div class="step-header">
                         <div class="step-number">1</div>
-                        <div class="step-title">Acceder al Mí³dulo</div>
+                        <div class="step-title">Acceder al Módulo</div>
                     </div>
                     <div class="step-description">
-                        Accede al mí³dulo <strong>Gestií³n de ventas</strong> y haz clic en <strong>Facturas propias</strong> para iniciar el proceso de facturación.
+                        Accede al módulo <strong>Gestión de ventas</strong> y haz clic en <strong>Facturas propias</strong> para iniciar el proceso de facturación.
                     </div>
                 </div>
 
@@ -1087,7 +1094,7 @@
                         <div class="step-title">Validar Cliente</div>
                     </div>
                     <div class="step-description">
-                        Haz clic en el botí³n <strong>+</strong> arriba a la derecha e ingresa el tipo y níºmero de documento. Si el cliente no está registrado, el sistema te permitirá crear un nuevo registro.
+                        Haz clic en el botón <strong>+</strong> arriba a la derecha e ingresa el tipo y número de documento. Si el cliente no está registrado, el sistema te permitirá crear un nuevo registro.
                     </div>
                 </div>
 
@@ -1097,7 +1104,7 @@
                         <div class="step-title">Agregar Productos</div>
                     </div>
                     <div class="step-description">
-                        Ingresa el o los <strong>SKU's</strong> de los productos y oprime el botí³n <strong>Agregar</strong> para incorporarlos a la factura. Puedes filtrar por tipo, estado o familia si es necesario.
+                        Ingresa el o los <strong>SKU's</strong> de los productos y oprime el botón <strong>Agregar</strong> para incorporarlos a la factura. Puedes filtrar por tipo, estado o familia si es necesario.
                     </div>
                 </div>
 
@@ -1107,7 +1114,7 @@
                         <div class="step-title">Revisar y Aplicar Descuentos</div>
                     </div>
                     <div class="step-description">
-                        Revisa el total de la venta y aplica un <strong>cí³digo de descuento</strong> si corresponde. Verifica que todos los datos sean correctos antes de proceder.
+                        Revisa el total de la venta y aplica un <strong>código de descuento</strong> si corresponde. Verifica que todos los datos sean correctos antes de proceder.
                     </div>
                 </div>
 
@@ -1128,7 +1135,7 @@
             <i class="fas fa-lightbulb"></i>
             <div>
                 <strong>Consejo Importante</strong>
-                <p>Asegíºrate que el SKU ingresado sea el correcto para el producto que se quiere vender y que se encuentre disponible en inventario para evitar errores al momento de facturar.</p>
+                <p>Asegúrate que el SKU ingresado sea el correcto para el producto que se quiere vender y que se encuentre disponible en inventario para evitar errores al momento de facturar.</p>
             </div>
         </div>
 
@@ -1144,55 +1151,51 @@
         <!-- Footer de Navegación del Curso -->
         <footer class="course-footer animate-in">
             <div class="course-footer-content">
-                <h3>
-                    <i class="fas fa-route"></i>
-                    Navegación del Curso
-                </h3>
+                <h3><i class="fas fa-route"></i> Navegación del Curso</h3>
                 
-                <!-- Indicador de Progreso -->
                 <div class="progress-indicator">
-                    <div class="progress-dot completed" title="Introduccií³n a facturas"></div>
-                    <div class="progress-dot current" title="Factura de venta - Mí³dulo Actual"></div>
-                    <div class="progress-dot" title="Crear Plan Separe"></div>
-                    <div class="progress-dot" title="Consultar plan separe"></div>
-                    <div class="progress-dot" title="Abonar y facturar plan separe"></div>
+                    <div class="progress-dot completed"></div>
+                    <div class="progress-dot current"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
                 </div>
-
-                <!-- Navegación Principal -->
-                <nav class="course-navigation">
+                
+                <div class="course-navigation">
                     <a href="introduccion-facturas.html" class="nav-item prev">
                         <div class="nav-btn prev">
                             <i class="fas fa-arrow-left"></i>
-                            <span>Anterior</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Anterior</div>
+                                <div>Introducción</div>
+                            </div>
                         </div>
                     </a>
-
+                    
                     <a href="../../index.html" class="nav-item home">
                         <div class="nav-btn home">
                             <i class="fas fa-home"></i>
-                            <span>Inicio</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Curso</div>
+                                <div>Inicio</div>
+                            </div>
                         </div>
                     </a>
-
+                    
                     <a href="crear-plan-separe.html" class="nav-item next">
                         <div class="nav-btn next">
-                            <span>Siguiente</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Siguiente</div>
+                                <div>Crear Plan Separe</div>
+                            </div>
                             <i class="fas fa-arrow-right"></i>
                         </div>
                     </a>
-                </nav>
-
-                <!-- Informacií³n del Mí³dulo -->
+                </div>
+                
                 <div class="nav-info">
-                    <p>
-                        <strong>Mí³dulo Facturas:</strong> Factura de Venta | 
-                        <strong>Anterior:</strong> Introduccií³n a facturas | 
-                        <strong>Siguiente:</strong> Crear Plan Separe
-                    </p>
-                    <p style="margin-top: var(--spacing-2); font-size: 0.8rem;">
-                        <i class="fas fa-graduation-cap"></i>
-                        Curso Sinnut ERP - OroExpress s.a.s
-                    </p>
+                    <p><i class="fas fa-info-circle"></i> Módulo 2 de 6 en el curso de Facturas • Progreso: 33%</p>
                 </div>
             </div>
         </footer>
@@ -1272,7 +1275,7 @@
                 }
             });
 
-            // Smooth scroll para navegacií³n interna
+            // Smooth scroll para navegación interna
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -1298,7 +1301,7 @@
             });
         });
     </script>
-    <!-- Script para mejorar compatibilidad de videos en mí³viles -->
+    <!-- Script para mejorar compatibilidad de videos en móviles -->
     <script src="../../fix-mobile-videos.js"></script>
 
     <!-- iOS Safari Video Fix - Solución específica para reproducción de videos en móviles -->

@@ -160,6 +160,11 @@
             color: var(--primary-light);
         }
 
+        .nav-breadcrumb [aria-current="page"] {
+            font-weight: 700;
+            color: #0D2339;
+        }
+
         .separator {
             margin: 0 var(--spacing-sm);
             color: var(--neutral-500);
@@ -610,7 +615,7 @@
             z-index: 2;
         }
 
-        /* Footer de Navegacií³n del Curso */
+    /* Footer de Navegación del Curso */
         .course-footer {
             background: linear-gradient(135deg, var(--neutral-50) 0%, white 100%);
             border: 2px solid var(--neutral-200);
@@ -682,7 +687,6 @@
             align-items: center;
             gap: var(--spacing-sm);
             padding: var(--spacing-md) var(--spacing-lg);
-            border: 2px solid var(--neutral-300);
             border-radius: var(--radius-lg);
             background: white;
             color: var(--text-primary);
@@ -716,19 +720,16 @@
         }
 
         .nav-btn.prev:hover {
-            border-color: var(--warning-color);
             background: var(--warning-color);
             color: white;
         }
 
         .nav-btn.home:hover {
-            border-color: var(--primary-color);
             background: var(--primary-color);
             color: white;
         }
 
         .nav-btn.next:hover {
-            border-color: var(--success-color);
             background: var(--success-color);
             color: white;
         }
@@ -843,20 +844,24 @@
         }
     </style>
 </head>
-<<body>
+<body>
     <div class="container animate-in">
         <!-- Navigation -->
-        <nav class="nav-breadcrumb">
+        <div class="nav-breadcrumb">
             <a href="../../index.html"><i class="fas fa-home"></i> Inicio</a>
-            <span class="separator">â€¢</span>
-            <a href="introduccion-facturas.html">Introduccií³n</a>
-            <span class="separator">â€¢</span>
+            <span class="separator">></span>
+            <a href="introduccion-facturas.html">Introducción</a>
+            <span class="separator">></span>
             <a href="factura-de-venta.html">Factura de Venta</a>
-            <span class="separator">â€¢</span>
+            <span class="separator">></span>
             <a href="crear-plan-separe.html">Crear Plan Separe</a>
-            <span class="separator">â€¢</span>
-            <span style="color: var(--primary-color); font-weight: 600;">Consultar Plan Separe</span>
-        </nav>
+            <span class="separator">></span>
+            <span aria-current="page">Consultar Plan Separe</span>
+            <span class="separator">></span>
+            <a href="abonar-facturar-plan-separe.html">Abonar/Facturar Plan Separe</a>
+            <span class="separator">></span>
+            <a href="fin-modulo-facturas.html">Fin Módulo</a>
+        </div>
 
         <!-- Header -->
         <header class="header">
@@ -882,17 +887,17 @@
 
         <!-- Introduction -->
         <section class="section">
-            <h2><i class="fas fa-lightbulb"></i> Â¿Qué es la Consulta de Plan Separe?</h2>
+            <h2><i class="fas fa-lightbulb"></i> ¿Qué es la Consulta de Plan Separe?</h2>
             <p style="font-size: 1.125rem; line-height: 1.7; margin-bottom: var(--spacing-lg);">
                 La consulta de plan separe te permite buscar y visualizar planes separe existentes para 
-                verificar su estado, realizar abonos, revisar pagos realizados o continuar con el proceso de facturacií³n.
+                verificar su estado, realizar abonos, revisar pagos realizados o continuar con el proceso de facturación.
             </p>
             
             <div class="alert alert-info">
                 <i class="fas fa-info-circle" style="font-size: 1.5rem;"></i>
                 <div>
                     <strong>Objetivo:</strong> Localizar rápidamente cualquier plan separe utilizando diferentes 
-                    criterios de bíºsqueda y acceder a toda la informacií³n relacionada con el mismo.
+                    criterios de búsqueda y acceder a toda la información relacionada con el mismo.
                 </div>
             </div>
         </section>
@@ -909,16 +914,16 @@
                 <div class="step">
                     <div class="step-header">
                         <div class="step-number">1</div>
-                        <div class="step-title">Acceder al Mí³dulo</div>
+                        <div class="step-title">Acceder al Módulo</div>
                     </div>
                     <div class="step-description">
-                        Dirí­gete al mí³dulo <strong>Gestií³n de Ventas</strong> y selecciona <strong>Plan Separe</strong>. 
-                        Allí­ verás un listado completo de todos los planes separe creados en el sistema.
+                        Dirígete al módulo <strong>Gestión de Ventas</strong> y selecciona <strong>Plan Separe</strong>. 
+                        Allí verás un listado completo de todos los planes separe creados en el sistema.
                     </div>
                     <div class="alert alert-info">
                         <i class="fas fa-lightbulb"></i>
                         <div>
-                            <strong>Navegacií³n:</strong> Gestií³n de Ventas â†’ Plan Separe â†’ Ver listado completo
+                            <strong>Navegación:</strong> Gestión de Ventas → Plan Separe → Ver listado completo
                         </div>
                     </div>
                 </div>
@@ -927,17 +932,17 @@
                 <div class="step">
                     <div class="step-header">
                         <div class="step-number">2</div>
-                        <div class="step-title">Utilizar Filtros de Bíºsqueda</div>
+                        <div class="step-title">Utilizar Filtros de Búsqueda</div>
                     </div>
                     <div class="step-description">
-                        Usa la barra de bíºsqueda para filtrar los planes utilizando diferentes criterios como 
-                        <strong>níºmero de secuencia</strong> o <strong>documento del cliente</strong>.
+                        Usa la barra de búsqueda para filtrar los planes utilizando diferentes criterios como 
+                        <strong>número de secuencia</strong> o <strong>documento del cliente</strong>.
                     </div>
                     <div class="alert alert-success">
                         <i class="fas fa-search"></i>
                         <div>
-                            <strong>Tip de bíºsqueda:</strong> Puedes buscar por níºmero de documento, nombre del cliente 
-                            o níºmero de secuencia del plan para encontrar rápidamente lo que necesitas.
+                            <strong>Tip de búsqueda:</strong> Puedes buscar por número de documento, nombre del cliente 
+                            o número de secuencia del plan para encontrar rápidamente lo que necesitas.
                         </div>
                     </div>
                 </div>
@@ -949,13 +954,13 @@
                         <div class="step-title">Ver Detalles del Plan</div>
                     </div>
                     <div class="step-description">
-                        Haz clic sobre la fila del plan separe que deseas consultar para ver informacií³n detallada: 
+                        Haz clic sobre la fila del plan separe que deseas consultar para ver información detallada: 
                         estado actual, abonos realizados, saldo pendiente y documentos relacionados.
                     </div>
                     <div class="alert alert-warning">
                         <i class="fas fa-eye"></i>
                         <div>
-                            <strong>Informacií³n disponible:</strong> Estado del plan, historial de abonos, 
+                            <strong>Información disponible:</strong> Estado del plan, historial de abonos, 
                             saldo pendiente, fechas importantes y documentos generados.
                         </div>
                     </div>
@@ -984,9 +989,9 @@
 
         <!-- Practice Card -->
         <div class="practice-card">
-            <div class="practice-icon">ðŸŽ¯</div>
+            <div class="practice-icon">🎯</div>
             <h3 style="color: var(--primary-color); font-size: 1.75rem; margin-bottom: var(--spacing-md); position: relative; z-index: 2;">
-                Â¡Ahora es tu turno!
+                ¡Ahora es tu turno!
             </h3>
             <p style="font-size: 1.125rem; margin-bottom: var(--spacing-lg); position: relative; z-index: 2;">
                 Practica consultando diferentes planes separe en el sistema para familiarizarte con la interfaz y las opciones disponibles.
@@ -1003,75 +1008,73 @@
                 <div style="border: 2px solid var(--neutral-200); border-radius: var(--radius-lg); padding: var(--spacing-lg); text-align: center; transition: var(--transition);" onmouseover="this.style.borderColor='var(--primary-color)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--neutral-200)'; this.style.transform='translateY(0)'">
                     <i class="fas fa-file-pdf" style="font-size: 2.5rem; color: var(--danger-color); margin-bottom: var(--spacing-md);"></i>
                     <h4 style="color: var(--primary-color); margin-bottom: var(--spacing-sm);">Manual PDF</h4>
-                    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">Guí­a detallada paso a paso</p>
-                    <a href="../../assets/documents/manuales-facturas/consultar-plan-separe.pdf" 
+                    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">Guía detallada paso a paso</p>
+                    <a href="../../assets/documents/instructivos/Facturas/Instructivo PLAN SEPARE.pdf"
                        class="btn btn-primary" target="_blank">
                         <i class="fas fa-download"></i> Descargar
                     </a>
                 </div>
                 
                 <div style="border: 2px solid var(--neutral-200); border-radius: var(--radius-lg); padding: var(--spacing-lg); text-align: center; transition: var(--transition);" onmouseover="this.style.borderColor='var(--success-color)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--neutral-200)'; this.style.transform='translateY(0)'">
-                    <i class="fas fa-headset" style="font-size: 2.5rem; color: var(--success-color); margin-bottom: var(--spacing-md);"></i>
+                    <i class="fab fa-whatsapp" style="font-size: 2.5rem; color: var(--success-color); margin-bottom: var(--spacing-md);"></i>
                     <h4 style="color: var(--primary-color); margin-bottom: var(--spacing-sm);">Soporte Técnico</h4>
                     <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">Obtén ayuda especializada</p>
-                    <a href="mailto:soporte.ti@oroexpress.com.co" class="btn btn-success">
-                        <i class="fas fa-envelope"></i> Contactar
+                    <a href="https://wa.me/573164706103?text=Hola,%20necesito%20ayuda%20con%20el%20módulo%20de%20facturas" class="btn btn-success" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- Footer de Navegacií³n del Curso -->
+    <!-- Footer de Navegación del Curso -->
         <footer class="course-footer">
             <div class="course-footer-content">
                 <h3>
                     <i class="fas fa-route"></i>
-                    Navegacií³n del Curso
+                    Navegación del Curso
                 </h3>
-                
                 <!-- Indicador de Progreso -->
                 <div class="progress-indicator">
-                    <div class="progress-dot completed" title="Factura de Venta"></div>
+                    <div class="progress-dot completed" title="Introducción a facturas"></div>
+                    <div class="progress-dot completed" title="Factura de venta"></div>
                     <div class="progress-dot completed" title="Crear Plan Separe"></div>
-                    <div class="progress-dot current" title="Consultar Plan Separe - Mí³dulo Actual"></div>
-                    <div class="progress-dot" title="Abonar y Facturar Plan Separe"></div>
+                    <div class="progress-dot current" title="Consultar plan separe - Módulo Actual"></div>
+                    <div class="progress-dot" title="Abonar y facturar plan separe"></div>
+                    <div class="progress-dot" title="Fin del modulo"></div>
                 </div>
-
-                <!-- Navegacií³n Principal -->
+                <!-- Navegación Principal -->
                 <nav class="course-navigation">
                     <a href="crear-plan-separe.html" class="nav-item prev">
                         <div class="nav-btn prev">
                             <i class="fas fa-arrow-left"></i>
-                            <span>Anterior</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Anterior</div>
+                                <div>Crear Plan Separe</div>
+                            </div>
                         </div>
                     </a>
-
                     <a href="../../index.html" class="nav-item home">
                         <div class="nav-btn home">
                             <i class="fas fa-home"></i>
-                            <span>Inicio</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Curso</div>
+                                <div>Inicio</div>
+                            </div>
                         </div>
                     </a>
-
                     <a href="abonar-facturar-plan-separe.html" class="nav-item next">
                         <div class="nav-btn next">
-                            <span>Siguiente</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Siguiente</div>
+                                <div>Abonar y Facturar Plan Separe</div>
+                            </div>
                             <i class="fas fa-arrow-right"></i>
                         </div>
                     </a>
                 </nav>
-
-                <!-- Informacií³n del Mí³dulo -->
+                <!-- Información del Módulo -->
                 <div class="nav-info">
-                    <p>
-                        <strong>Mí³dulo 3 de 4:</strong> Consultar Plan Separe | 
-                        <strong>Anterior:</strong> Crear Plan Separe | 
-                        <strong>Siguiente:</strong> Abonar y Facturar Plan Separe
-                    </p>
-                    <p style="margin-top: var(--spacing-sm); font-size: 0.8rem;">
-                        <i class="fas fa-graduation-cap"></i>
-                        Curso Sinnut ERP - OroExpress s.a.s
-                    </p>
+                    <p><i class="fas fa-info-circle"></i> Módulo 4 de 6 en el curso de Facturas • Progreso: 67%</p>
                 </div>
             </div>
         </footer>
@@ -1087,7 +1090,7 @@
                 this.setupInteractions();
                 this.initializeTracking();
                 this.setupCourseNavigation();
-                console.log('ðŸš€ Mí³dulo Consultar Plan Separe inicializado');
+                console.log('🚀 Módulo Consultar Plan Separe inicializado');
             },
 
             // Sistema de animaciones mejorado
@@ -1108,7 +1111,7 @@
                     });
                 }, observerOptions);
 
-                // Observar diferentes tipos de elementos con animaciones especí­ficas
+                // Observar diferentes tipos de elementos con animaciones específicas
                 document.querySelectorAll('.section').forEach((el, index) => {
                     el.style.opacity = '0';
                     el.style.transform = 'translateY(30px)';
@@ -1207,16 +1210,16 @@
                 }
             },
 
-            // Configurar navegacií³n del curso
+            // Configurar navegación del curso
             setupCourseNavigation() {
-                // Aí±adir efectos hover mejorados a los botones de navegacií³n
+                // Añadir efectos hover mejorados a los botones de navegación
                 document.querySelectorAll('.nav-btn').forEach(btn => {
                     btn.addEventListener('mouseenter', (e) => {
                         this.createNavigationRipple(e);
                     });
                 });
 
-                // Aí±adir atajos de teclado para navegacií³n
+                // Añadir atajos de teclado para navegación
                 document.addEventListener('keydown', (e) => {
                     if (e.ctrlKey || e.metaKey) {
                         switch(e.key) {
@@ -1240,7 +1243,7 @@
                 this.animateCourseFooter();
             },
 
-            // Navegacií³n con teclado
+            // Navegación con teclado
             navigateToPrevious() {
                 const prevLink = document.querySelector('.nav-item.prev');
                 if (prevLink) {
@@ -1268,7 +1271,7 @@
                 }
             },
 
-            // Efecto de transicií³n de página
+            // Efecto de transición de página
             createPageTransition(callback) {
                 const overlay = document.createElement('div');
                 overlay.style.cssText = `
@@ -1292,7 +1295,7 @@
                 }, 50);
             },
 
-            // Ripple effect para navegacií³n
+            // Ripple effect para navegación
             createNavigationRipple(e) {
                 const button = e.currentTarget;
                 const rect = button.getBoundingClientRect();

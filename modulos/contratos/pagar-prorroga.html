@@ -1428,7 +1428,7 @@
                     });
                 }, observerOptions);
 
-                // Observar diferentes tipos de elementos con animaciones especí­ficas
+                // Observar diferentes tipos de elementos con animaciones específicas
                 document.querySelectorAll('.section').forEach((el, index) => {
                     el.style.opacity = '0';
                     el.style.transform = 'translateY(30px)';
@@ -1527,16 +1527,16 @@
                 }
             },
 
-            // Configurar navegacií³n del curso
+            // Configurar navegación del curso
             setupCourseNavigation() {
-                // Aí±adir efectos hover mejorados a los botones de navegacií³n
+                // Añadir efectos hover mejorados a los botones de navegación
                 document.querySelectorAll('.nav-btn').forEach(btn => {
                     btn.addEventListener('mouseenter', (e) => {
                         this.createNavigationRipple(e);
                     });
                 });
 
-                // Aí±adir atajos de teclado para navegacií³n
+                // Añadir atajos de teclado para navegación
                 document.addEventListener('keydown', (e) => {
                     if (e.ctrlKey || e.metaKey) {
                         switch(e.key) {
@@ -1560,7 +1560,7 @@
                 this.animateCourseFooter();
             },
 
-            // Navegacií³n con teclado
+            // Navegación con teclado
             navigateToPrevious() {
                 const prevLink = document.querySelector('.nav-item.prev');
                 if (prevLink) {
@@ -1588,7 +1588,7 @@
                 }
             },
 
-            // Efecto de transicií³n de página
+            // Efecto de transición de página
             createPageTransition(callback) {
                 const overlay = document.createElement('div');
                 overlay.style.cssText = `
@@ -1612,7 +1612,7 @@
                 }, 50);
             },
 
-            // Ripple effect para navegacií³n
+            // Ripple effect para navegación
             createNavigationRipple(e) {
                 const button = e.currentTarget;
                 const rect = button.getBoundingClientRect();

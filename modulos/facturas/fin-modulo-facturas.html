@@ -283,6 +283,11 @@
             transform: translateY(-1px);
         }
 
+        .nav-breadcrumb [aria-current="page"] {
+            font-weight: 700;
+            color: #0D2339;
+        }
+
         .separator {
             margin: 0 var(--spacing-sm);
             color: var(--neutral-500);
@@ -675,7 +680,6 @@
             align-items: center;
             gap: var(--spacing-sm);
             padding: var(--spacing-lg) var(--spacing-2xl);
-            border: 2px solid var(--neutral-300);
             border-radius: var(--radius-2xl);
             background: white;
             color: var(--text-primary);
@@ -710,19 +714,16 @@
         }
 
         .nav-btn.prev:hover {
-            border-color: var(--warning-color);
             background: var(--warning-color);
             color: var(--text-inverse);
         }
 
         .nav-btn.home:hover {
-            border-color: var(--primary-color);
             background: var(--primary-color);
             color: var(--text-inverse);
         }
 
         .nav-btn.next:hover {
-            border-color: var(--success-color);
             background: var(--success-color);
             color: var(--text-inverse);
         }
@@ -915,63 +916,27 @@
                 flex-direction: column;
                 align-items: center;
             }
-            
-            .nav-breadcrumb {
-                font-size: var(--font-size-xs);
-                padding: var(--spacing-sm);
-                top: var(--spacing-xs);
-                margin-bottom: var(--spacing-2xl);
-            }
-            
-            .nav-breadcrumb a {
-                display: inline-flex;
-                align-items: center;
-                gap: var(--spacing-xs);
-            }
-            
-            .separator {
-                display: none;
-            }
-            
-            .nav-breadcrumb::after {
-                content: '';
-                position: absolute;
-                bottom: -1px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 60%;
-                height: 2px;
-                background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            }
-            
-            .nav-breadcrumb.scrolled::after {
-                opacity: 1;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Navegación Breadcrumb -->
-        <nav class="nav-breadcrumb" id="breadcrumb">
+        <div class="nav-breadcrumb" id="breadcrumb">
             <a href="../../index.html"><i class="fas fa-home"></i> Inicio</a>
-            <span class="separator">•</span>
-            <a href="../../Introduccion/Pagina-inicio.html">Introducción</a>
-            <span class="separator">•</span>
+            <span class="separator">></span>
+            <a href="introduccion-facturas.html">Introducción</a>
+            <span class="separator">></span>
             <a href="factura-de-venta.html">Factura de Venta</a>
-            <span class="separator">•</span>
+            <span class="separator">></span>
             <a href="crear-plan-separe.html">Crear Plan Separe</a>
-            <span class="separator">•</span>
+            <span class="separator">></span>
             <a href="consultar-plan-separe.html">Consultar Plan Separe</a>
-            <span class="separator">•</span>
-            <a href="abonar-facturar-plan-separe.html">Abonar y Facturar Plan Separe</a>
-            <span class="separator">•</span>
-            <span style="color: var(--success-color); font-weight: var(--font-weight-semibold);">
-                <i class="fas fa-trophy"></i> Fin del Módulo
-            </span>
-        </nav>
+            <span class="separator">></span>
+            <a href="abonar-facturar-plan-separe.html">Abonar/Facturar Plan Separe</a>
+            <span class="separator">></span>
+            <span aria-current="page">Fin Módulo</span>
+        </div>
 
         <!-- Header de Completación -->
         <header class="completion-header animate-scale">
