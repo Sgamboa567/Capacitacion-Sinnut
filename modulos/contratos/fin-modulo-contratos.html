@@ -19,6 +19,7 @@
             --neutral-50: #f8fafc;
             --neutral-100: #f1f5f9;
             --neutral-200: #e2e8f0;
+            --neutral-300: #cbd5e1;
             --neutral-500: #64748b;
             --neutral-600: #475569;
             --neutral-700: #334155;
@@ -549,7 +550,7 @@
             align-items: center;
             gap: var(--spacing-sm);
             padding: var(--spacing-md) var(--spacing-lg);
-            border: 2px solid var(--neutral-300);
+            border: none;
             border-radius: var(--radius-lg);
             background: white;
             color: var(--text-primary);
@@ -734,24 +735,25 @@
         }
     </style>
 </head>
-<<body>
-    <div class="container animate-in">
-        <!-- Navigation -->
-        <nav class="nav-breadcrumb">
-            <a href="../../index.html"><i class="fas fa-home"></i> Inicio</a>
-            <span class="separator">•</span>
+<body>
+    <div class="container">
+        <!-- Navegación Breadcrumb -->
+        <div class="nav-breadcrumb animate-left">
+            <i class="fas fa-home" style="color: var(--primary-color);"></i>
+            <a href="../../index.html">Inicio</a>
+            <span class="separator">></span>
             <a href="introduccion-contratos.html">Introducción</a>
-            <span class="separator">•</span>
+            <span class="separator">></span>
             <a href="crear-contrato.html">Crear Contrato</a>
-            <span class="separator">•</span>
+            <span class="separator">></span>
             <a href="consultar-contrato.html">Consultar Contrato</a>
-            <span class="separator">•</span>
+            <span class="separator">></span>
             <a href="pagar-prorroga.html">Pagar Prórroga</a>
-            <span class="separator">•</span>
+            <span class="separator">></span>
             <a href="pagar-retroventa.html">Pagar Retroventa</a>
-            <span class="separator">•</span>
-            <span style="color: var(--primary-color); font-weight: 600;">Fin del Módulo</span>
-        </nav>
+            <span class="separator">></span>
+            <a aria-current="page">Fin del Módulo</a>
+        </div>
 
         <!-- Header de Celebración -->
         <header class="header">
@@ -901,62 +903,57 @@
             </a>
         </div>
 
-        <!-- Footer de Navegación del Curso -->
-        <footer class="course-footer">
+        <!-- Navegación del Curso -->
+        <div class="course-footer animate-in">
             <div class="course-footer-content">
-                <h3>
-                    <i class="fas fa-route"></i>
-                    Navegación del Curso
-                </h3>
+                <h3><i class="fas fa-route"></i> Navegación del Curso</h3>
                 
-                <!-- Indicador de Progreso -->
                 <div class="progress-indicator">
-                    <div class="progress-dot completed" title="Introducción a Contratos"></div>
-                    <div class="progress-dot completed" title="Crear Contratos"></div>
-                    <div class="progress-dot completed" title="Consultar Contratos"></div>
-                    <div class="progress-dot completed" title="Pagar Prórroga"></div>
-                    <div class="progress-dot completed" title="Pagar Retroventa"></div>
-                    <div class="progress-dot current" title="Fin del Módulo: Gestión de Contratos"></div>
+                    <div class="progress-dot completed"></div>
+                    <div class="progress-dot completed"></div>
+                    <div class="progress-dot completed"></div>
+                    <div class="progress-dot completed"></div>
+                    <div class="progress-dot completed"></div>
+                    <div class="progress-dot current"></div>
                 </div>
-
-                <!-- Navegación Principal -->
-                <nav class="course-navigation">
+                
+                <div class="course-navigation">
                     <a href="pagar-retroventa.html" class="nav-item prev">
                         <div class="nav-btn prev">
                             <i class="fas fa-arrow-left"></i>
-                            <span>Anterior</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Anterior</div>
+                                <div>Pagar Retroventa</div>
+                            </div>
                         </div>
                     </a>
-
+                    
                     <a href="../../index.html" class="nav-item home">
                         <div class="nav-btn home">
                             <i class="fas fa-home"></i>
-                            <span>Inicio</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Curso</div>
+                                <div>Inicio</div>
+                            </div>
                         </div>
                     </a>
-
+                    
                     <a href="../facturas/introduccion-facturas.html" class="nav-item next">
                         <div class="nav-btn next">
-                            <span>Siguiente</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Siguiente</div>
+                                <div>Introducción a Facturas</div>
+                            </div>
                             <i class="fas fa-arrow-right"></i>
                         </div>
                     </a>
-                </nav>
-
-                <!-- Información del Módulo -->
+                </div>
+                
                 <div class="nav-info">
-                    <p>
-                        <strong>Módulo 6 de 6:</strong> Fin del Módulo: Gestión de Contratos | 
-                        <strong>Anterior:</strong> Pagar Retroventa | 
-                        <strong>Siguiente:</strong> Introducción a Facturas
-                    </p>
-                    <p style="margin-top: var(--spacing-sm); font-size: 0.8rem;">
-                        <i class="fas fa-graduation-cap"></i>
-                        Curso Sinnut ERP - OroExpress s.a.s
-                    </p>
+                    <p><i class="fas fa-info-circle"></i> Módulo 6 de 6 en el curso de Contratos • Progreso: 100%</p>
                 </div>
             </div>
-        </footer>
+        </div>
     </div>
 
     <!-- JavaScript principal -->

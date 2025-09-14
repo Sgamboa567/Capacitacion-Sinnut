@@ -19,6 +19,7 @@
             --neutral-50: #f8fafc;
             --neutral-100: #f1f5f9;
             --neutral-200: #e2e8f0;
+            --neutral-300: #cbd5e1;
             --neutral-500: #64748b;
             --neutral-600: #475569;
             --neutral-700: #334155;
@@ -160,6 +161,12 @@
             color: var(--primary-light);
         }
 
+        .nav-breadcrumb [aria-current="page"] {
+            font-weight: 700;
+            color: var(--primary-color);
+            text-shadow: 0 1px 2px rgba(13, 35, 57, 0.1);
+        }
+
         .separator {
             margin: 0 var(--spacing-sm);
             color: var(--neutral-500);
@@ -185,33 +192,193 @@
             gap: var(--spacing-sm);
         }
 
-        /* Video Container */
+        /* Video Container - Limpio sin bordes ni fondos */
+        .responsive-video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: var(--spacing-xl) auto;
+            background: transparent;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
+            border: none;
+            transition: none;
+        }
+
+        .responsive-video-wrapper:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: transparent;
+        }
+
+        .responsive-video-wrapper::before {
+            display: none;
+        }
+
         .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%;
-            background: linear-gradient(135deg, var(--neutral-100) 0%, var(--neutral-200) 100%);
-            border-radius: var(--radius-xl);
+            height: 0;
+            padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+            background: #000;
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.1);
-            margin: var(--spacing-xl) 0;
-            border: 3px solid var(--neutral-200);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        .video-container:hover {
-            border-color: var(--primary-color);
-            transform: scale(1.02);
-            box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.15);
+        .video-container:focus-within {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
         }
 
-        .video-container video {
+        /* Video player optimizado para todos los dispositivos */
+        .video-player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            border: none;
+            border-radius: var(--radius-lg);
+            object-fit: cover;
+            background: #000;
+            z-index: 2;
+        }
+
+        /* Asegurar que funcione en iOS Safari */
+        .video-player::-webkit-media-controls {
+            display: flex !important;
+        }
+
+        .video-player::-webkit-media-controls-panel {
+            display: flex !important;
+        }
+
+        /* Poster personalizado */
+        .video-poster {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            background: linear-gradient(135deg, rgba(13, 35, 57, 0.9) 0%, rgba(13, 35, 57, 0.7) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f1f5f9"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            z-index: 3;
+            transition: all 0.3s ease;
             border-radius: var(--radius-lg);
+        }
+
+        .video-poster:hover {
+            background: linear-gradient(135deg, rgba(13, 35, 57, 0.8) 0%, rgba(13, 35, 57, 0.6) 100%);
+            transform: scale(1.02);
+        }
+
+        .poster-content {
+            text-align: center;
+            padding: var(--spacing-xl);
+        }
+
+        .poster-content i {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-lg);
+            color: white;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        .poster-content h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .poster-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin: 0;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Video fallback mejorado */
+        .video-fallback {
+            width: 100%;
+            background: linear-gradient(135deg, var(--danger-color) 0%, #dc2626 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-lg);
+            box-shadow: 0 8px 32px rgba(239, 68, 68, 0.3);
+        }
+
+        .fallback-content i {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-lg);
+            opacity: 0.9;
+        }
+
+        .fallback-content h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .fallback-content p {
+            opacity: 0.9;
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.6;
+        }
+
+        .retry-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .retry-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* estados del video */
+        .video-loading {
+            position: relative;
+        }
+
+        .video-loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            margin: -20px 0 0 -20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            z-index: 4;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         /* Steps */
@@ -776,7 +943,7 @@
             margin-top: var(--spacing-2xl);
         }
 
-        /* Footer de Navegacií³n del Curso */
+        /* Footer de Navegación del Curso */
         .course-footer {
             background: linear-gradient(135deg, var(--neutral-50) 0%, white 100%);
             border: 2px solid var(--neutral-200);
@@ -848,7 +1015,7 @@
             align-items: center;
             gap: var(--spacing-sm);
             padding: var(--spacing-md) var(--spacing-lg);
-            border: 2px solid var(--neutral-300);
+            border: none;
             border-radius: var(--radius-lg);
             background: white;
             color: var(--text-primary);
@@ -1014,6 +1181,31 @@
             .discount-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .nav-breadcrumb {
+                padding: var(--spacing-sm);
+                font-size: 0.75rem;
+                position: relative;
+                top: auto;
+                margin-bottom: var(--spacing-lg);
+            }
+            
+            .nav-breadcrumb::after {
+                content: '';
+                position: absolute;
+                bottom: -1px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 60%;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            
+            .nav-breadcrumb.scrolled::after {
+                opacity: 1;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1062,28 +1254,31 @@
         }
     </style>
 </head>
-<<body>
-    <div class="container animate-in">
-        <!-- Navigation -->
-        <nav class="nav-breadcrumb">
-            <a href="../../index.html"><i class="fas fa-home"></i> Inicio</a>
-            <span class="separator">â€¢</span>
-            <a href="introduccion-contratos.html">Introduccií³n</a>
-            <span class="separator">â€¢</span>
+<body>
+    <div class="container">
+        <!-- Navegación Breadcrumb -->
+        <div class="nav-breadcrumb animate-left">
+            <i class="fas fa-home" style="color: var(--primary-color);"></i>
+            <a href="../../index.html">Inicio</a>
+            <span class="separator">></span>
+            <a href="introduccion-contratos.html">Introducción</a>
+            <span class="separator">></span>
             <a href="crear-contrato.html">Crear Contrato</a>
-            <span class="separator">â€¢</span>
+            <span class="separator">></span>
             <a href="consultar-contrato.html">Consultar Contrato</a>
-            <span class="separator">â€¢</span>
-            <a href="pagar-prorroga.html">Pagar Prí³rroga</a>
-            <span class="separator">â€¢</span>
-            <span style="color: var(--primary-color); font-weight: 600;">Pagar Retroventa</span>
-        </nav>
+            <span class="separator">></span>
+            <a href="pagar-prorroga.html">Pagar Prórroga</a>
+            <span class="separator">></span>
+            <span aria-current="page">Pagar Retroventa</span>
+            <span class="separator">></span>
+            <a href="fin-modulo-contratos.html">Fin del Módulo</a>
+        </div>
 
         <!-- Header -->
         <header class="header">
             <div class="header-content">
                 <h1><i class="fas fa-undo-alt"></i> Pagar Retroventa</h1>
-                <p>Aprende a procesar la retroventa en contratos, permitiendo que el cliente recupere su artí­culo mediante el pago del valor acordado</p>
+                <p>Aprende a procesar la retroventa en contratos, permitiendo que el cliente recupere su artículo mediante el pago del valor acordado</p>
                 <div class="header-badges">
                     <div class="badge">
                         <i class="fas fa-video"></i>
@@ -1105,7 +1300,7 @@
         <section class="section">
             <h2><i class="fas fa-lightbulb"></i> Conceptos Fundamentales</h2>
             <p style="font-size: 1.125rem; line-height: 1.7; margin-bottom: var(--spacing-lg);">
-                Una retroventa permite que el cliente recupere el artí­culo entregado en contrato, 
+                Una retroventa permite que el cliente recupere el artículo entregado en contrato, 
                 pagando el valor previamente pactado. Este proceso se realiza desde el detalle del contrato.
             </p>
             
@@ -1113,36 +1308,56 @@
                 <i class="fas fa-stopwatch" style="font-size: 1.5rem;"></i>
                 <div>
                     <strong>Tiempo estimado:</strong> El proceso de retroventa toma aproximadamente 1 minuto 
-                    una vez que tengas toda la informacií³n del contrato.
+                    una vez que tengas toda la información del contrato.
                 </div>
             </div>
         </section>
 
         <!-- Video Tutorial -->
-        <section class="section">
-            <h2><i class="fas fa-play-circle"></i> Video Tutorial</h2>
-            <p style="margin-bottom: var(--spacing-lg); color: var(--text-secondary);">
-                Observa el proceso completo de retroventa paso a paso
+        <section class="section animate-scale">
+            <h2><i class="fas fa-play-circle" style="color: var(--success-color);"></i> Video Tutorial</h2>
+            <p style="font-size: 1rem; color: var(--text-secondary); margin-bottom: var(--spacing-md);">
+                Observa el proceso completo para pagar una retroventa paso a paso
             </p>
             
-            <div class="video-container">
-                <video id="videoPlayer" 
-                       controls 
-                       preload="none"
-                       playsinline="true"
-                       webkit-playsinline="true"
-                       muted="true">
-                    <source src="../../assets/videos/Contratos/contratos 4 (retroventa).mp4" type="video/mp4">
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                        <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: var(--warning-color); margin-bottom: var(--spacing-md);"></i>
-                        <p>Tu navegador no soporta este formato de video.</p>
-                        <a href="../../assets/videos/Contratos/contratos 4 (retroventa).mp4" 
-                           download 
-                           class="btn btn-primary">
-                            <i class="fas fa-download"></i> Descargar Video
-                        </a>
+            <!-- Video Container optimizado igual que consultar-contrato -->
+            <div class="responsive-video-wrapper">
+                <div class="video-container" id="videoContainer3">
+                    <div class="video-poster" id="videoPoster3" onclick="VideoHandler3().playVideo()">
+                        <div class="poster-content">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>Tutorial: Pagar Retroventa</h4>
+                            <p>Aprende paso a paso</p>
+                        </div>
                     </div>
-                </video>
+                    
+                    <video class="video-player" 
+                           id="videoPlayer3"
+                           controls
+                           preload="none"
+                           playsinline
+                           webkit-playsinline
+                           data-setup='{}'>
+                        <source src="../../assets/videos/Contratos/pagar-retroventa/pagar-retroventa.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                        <p>
+                            <a href="../../assets/videos/Contratos/pagar-retroventa/pagar-retroventa.mp4" download>
+                                Descargar video directamente
+                            </a>
+                        </p>
+                    </video>
+                    
+                    <div class="video-fallback" id="videoFallback3" style="display: none;">
+                        <div class="fallback-content">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h4>Video no disponible</h4>
+                            <p>Lo sentimos, el video no se puede reproducir en este momento.</p>
+                            <button class="retry-btn" onclick="VideoHandler3().retryLoad()">
+                                <i class="fas fa-redo"></i> Intentar de nuevo
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1161,13 +1376,13 @@
                         <div class="step-title">Buscar el Contrato</div>
                     </div>
                     <div class="step-description">
-                        Desde el mí³dulo <strong>Gestií³n de contratos</strong>, usa la barra de bíºsqueda para 
+                        Desde el módulo <strong>Gestión de contratos</strong>, usa la barra de búsqueda para 
                         ingresar la secuencia del contrato o el documento del cliente.
                     </div>
                     <div class="alert alert-info">
                         <i class="fas fa-search"></i>
                         <div>
-                            <strong>Consejo:</strong> Puedes buscar por níºmero de contrato, documento de identidad o nombre del cliente.
+                            <strong>Consejo:</strong> Puedes buscar por número de contrato, documento de identidad o nombre del cliente.
                         </div>
                     </div>
                 </div>
@@ -1215,13 +1430,13 @@
                         <div class="step-title">Revisar y Configurar</div>
                     </div>
                     <div class="step-description">
-                        Revisa el monto total y selecciona el medio de pago. Si cuentas con un cí³digo de descuento 
-                        para retroventa, aplí­calo en esta etapa.
+                        Revisa el monto total y selecciona el medio de pago. Si cuentas con un código de descuento 
+                        para retroventa, aplícalo en esta etapa.
                     </div>
                     <div class="alert alert-info">
                         <i class="fas fa-percentage"></i>
                         <div>
-                            <strong>Cí³digos de descuento:</strong> Solo el jefe de zona puede autorizar y generar cí³digos de descuento especiales.
+                            <strong>Códigos de descuento:</strong> Solo el jefe de zona puede autorizar y generará códigos de descuento especiales.
                         </div>
                     </div>
                 </div>
@@ -1255,19 +1470,19 @@
 
             <div class="payment-grid">
                 <div class="payment-card">
-                    <div class="payment-icon" style="color: var(--success-color);">ðŸ’µ</div>
+                    <div class="payment-icon" style="color: var(--success-color);">💵</div>
                     <div class="payment-title">Efectivo</div>
                     <div class="payment-desc">Pago inmediato en dinero en efectivo</div>
                 </div>
 
                 <div class="payment-card">
-                    <div class="payment-icon" style="color: var(--info-color);">ðŸ’³</div>
+                    <div class="payment-icon" style="color: var(--info-color);">💳</div>
                     <div class="payment-title">Tarjeta</div>
-                    <div class="payment-desc">Débito o crédito con validacií³n en lí­nea</div>
+                    <div class="payment-desc">Débito o crédito con validación en línea</div>
                 </div>
 
                 <div class="payment-card">
-                    <div class="payment-icon" style="color: #9c27b0;">ðŸ“±</div>
+                    <div class="payment-icon" style="color: #9c27b0;">📱</div>
                     <div class="payment-title">Digital</div>
                     <div class="payment-desc">Por la página oficial</div>
                 </div>
@@ -1276,35 +1491,35 @@
 
         <!-- Discount Information -->
         <section class="section">
-            <h2><i class="fas fa-ticket-alt"></i> Cí³digos de Descuento en Retroventa</h2>
+            <h2><i class="fas fa-ticket-alt"></i> códigos de Descuento en Retroventa</h2>
             <p style="margin-bottom: var(--spacing-xl); color: var(--text-secondary);">
-                Informacií³n importante sobre el manejo de descuentos especiales
+                Información importante sobre el manejo de descuentos especiales
             </p>
 
             <div class="alert alert-warning">
                 <i class="fas fa-shield-alt" style="font-size: 1.5rem;"></i>
                 <div>
-                    <strong>Autorizacií³n requerida:</strong> Los cí³digos de descuento en retroventa solo pueden 
-                    ser generados y autorizados por el jefe de zona segíºn criterios comerciales especí­ficos.
+                    <strong>Autorización requerida:</strong> Los códigos de descuento en retroventa solo pueden
+                    ser generados y autorizados por el jefe de zona según criterios comerciales específicos.
                 </div>
             </div>
 
             <div class="discount-grid">
                 <div class="discount-item">
-                    <div class="discount-icon">ðŸ‘¨â€ðŸ’¼</div>
-                    <div class="discount-title">Autorizacií³n Requerida</div>
+                    <div class="discount-icon">👨‍💼</div>
+                    <div class="discount-title">Autorización Requerida</div>
                     <div class="discount-desc">Solo jefe de zona puede autorizar</div>
                 </div>
 
                 <div class="discount-item">
-                    <div class="discount-icon">ðŸ“Š</div>
+                    <div class="discount-icon">📊</div>
                     <div class="discount-title">Porcentaje Variable</div>
-                    <div class="discount-desc">Segíºn criterio comercial especí­fico</div>
+                    <div class="discount-desc">Según criterio comercial específico</div>
                 </div>
 
                 <div class="discount-item">
-                    <div class="discount-icon">â°</div>
-                    <div class="discount-title">Aplicacií³n Inmediata</div>
+                    <div class="discount-icon">⏰</div>
+                    <div class="discount-title">Aplicación Inmediata</div>
                     <div class="discount-desc">Se aplica durante el proceso</div>
                 </div>
             </div>
@@ -1326,7 +1541,7 @@
                 <i class="fas fa-percentage" style="font-size: 1.5rem;"></i>
                 <div>
                     <strong>Descuentos especiales:</strong> Al realizar una retroventa, el jefe de zona 
-                    podrá emitir cí³digo de descuento para cobrar un porcentaje diferente segíºn la situacií³n comercial.
+                    podrá emitir código de descuento para cobrar un porcentaje diferente según la situación comercial.
                 </div>
             </div>
         </section>
@@ -1334,89 +1549,151 @@
         <!-- Practice Exercise -->
         <section class="section">
             <div class="exercise-card">
-                <div class="exercise-icon">ðŸŽ¯</div>
-                <h3 class="exercise-title">Â¡Ahora es tu turno!</h3>
+                <div class="exercise-icon">🎯</div>
+                <h3 class="exercise-title">¡Ahora es tu turno!</h3>
                 <p class="exercise-desc">
                     Practica el proceso de retroventa con diferentes contratos para familiarizarte 
                     con los cálculos y opciones de pago.
                 </p>
                 <div class="exercise-suggestion">
                     <strong>Ejercicio sugerido:</strong> Simula una retroventa con diferentes medios de pago 
-                    y cí³digos de descuento para dominar completamente el proceso.
+                    y códigos de descuento para dominar completamente el proceso.
                 </div>
             </div>
         </section>
 
-        <!-- Footer de Navegacií³n del Curso -->
-        <footer class="course-footer">
+        <!-- Footer de Navegación del Curso -->
+        <div class="course-footer animate-in">
             <div class="course-footer-content">
-                <h3>
-                    <i class="fas fa-route"></i>
-                    Navegacií³n del Curso
-                </h3>
+                <h3><i class="fas fa-route"></i> Navegación del Curso</h3>
                 
-                <!-- Indicador de Progreso -->
                 <div class="progress-indicator">
-                    <div class="progress-dot completed" title="Introduccií³n a Contratos"></div>
-                    <div class="progress-dot completed" title="Crear Contratos"></div>
-                    <div class="progress-dot completed" title="Consultar Contratos"></div>
-                    <div class="progress-dot completed" title="Pagar Prí³rroga"></div>
-                    <div class="progress-dot current" title="Pagar Retroventa - Mí³dulo Actual"></div>
+                    <div class="progress-dot completed"></div>
+                    <div class="progress-dot completed"></div>
+                    <div class="progress-dot completed"></div>
+                    <div class="progress-dot completed"></div>
+                    <div class="progress-dot current"></div>
+                    <div class="progress-dot"></div>
                 </div>
-
-                <!-- Navegacií³n Principal -->
-                <nav class="course-navigation">
+                
+                <div class="course-navigation">
                     <a href="pagar-prorroga.html" class="nav-item prev">
                         <div class="nav-btn prev">
                             <i class="fas fa-arrow-left"></i>
-                            <span>Anterior</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Anterior</div>
+                                <div>Pagar Prórroga</div>
+                            </div>
                         </div>
                     </a>
-
+                    
                     <a href="../../index.html" class="nav-item home">
                         <div class="nav-btn home">
                             <i class="fas fa-home"></i>
-                            <span>Inicio</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Módulo</div>
+                                <div>Contratos</div>
+                            </div>
                         </div>
                     </a>
-
+                    
                     <a href="fin-modulo-contratos.html" class="nav-item next">
                         <div class="nav-btn next">
-                            <span>Siguiente</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Siguiente</div>
+                                <div>Fin del Módulo</div>
+                            </div>
                             <i class="fas fa-arrow-right"></i>
                         </div>
                     </a>
-                </nav>
-
-                <!-- Informacií³n del Mí³dulo -->
+                </div>
+                
                 <div class="nav-info">
-                    <p>
-                        <strong>Mí³dulo 5 de 5:</strong> Pagar Retroventa | 
-                        <strong>Anterior:</strong> Pagar Prí³rroga | 
-                        <strong>Siguiente:</strong> Fin del Mí³dulo: Gestií³n de Contratos
-                    </p>
-                    <p style="margin-top: var(--spacing-sm); font-size: 0.8rem;">
-                        <i class="fas fa-graduation-cap"></i>
-                        Curso Sinnut ERP - OroExpress s.a.s
-                    </p>
+                    <p><i class="fas fa-info-circle"></i> Módulo 5 de 6 en el curso de Contratos - Progreso: 83%</p>
                 </div>
             </div>
-        </footer>
+        </div>
     </div>
 
     <!-- JavaScript principal -->
     <script src="../../assets/js/main.js"></script>
-    <!-- Script para mejorar compatibilidad de videos en mí³viles -->
+    <!-- Script para mejorar compatibilidad de videos en móviles -->
     <script src="../../fix-mobile-videos.js"></script>
+
+    <!-- Script específico para mejorar experiencia del video -->
     <script>
-        // Estado moderno del documento
+        // Video Handler optimizado para el video de pagar retroventa
+        const VideoHandler3 = () => {
+            const container = document.getElementById('videoContainer3');
+            const poster = document.getElementById('videoPoster3');
+            const player = document.getElementById('videoPlayer3');
+            const fallback = document.getElementById('videoFallback3');
+
+            const playVideo = () => {
+                if (poster) poster.style.display = 'none';
+                if (player) {
+                    player.style.display = 'block';
+                    container.classList.add('video-loading');
+                    
+                    player.load();
+                    const playPromise = player.play();
+                    
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            container.classList.remove('video-loading');
+                        }).catch((error) => {
+                            console.warn('Error al reproducir video:', error);
+                            container.classList.remove('video-loading');
+                            showFallback();
+                        });
+                    }
+                }
+            };
+
+            const showFallback = () => {
+                if (poster) poster.style.display = 'none';
+                if (player) player.style.display = 'none';
+                if (fallback) fallback.style.display = 'block';
+            };
+
+            const retryLoad = () => {
+                if (fallback) fallback.style.display = 'none';
+                if (poster) poster.style.display = 'flex';
+                container.classList.remove('video-loading');
+            };
+
+            return {
+                playVideo,
+                retryLoad,
+                showFallback
+            };
+        };
+
+        // Configurar manejadores de error para el video
+        document.addEventListener('DOMContentLoaded', () => {
+            const player = document.getElementById('videoPlayer3');
+            if (player) {
+                player.addEventListener('error', () => {
+                    console.warn('Error cargando video de pagar retroventa');
+                    VideoHandler3().showFallback();
+                });
+
+                player.addEventListener('loadeddata', () => {
+                    document.getElementById('videoContainer3')?.classList.remove('video-loading');
+                });
+            }
+        });
+    </script>
+    
+    <script>
+        // estado moderno del documento
         const PagarRetroventaModule = {
             init() {
                 this.setupAnimations();
                 this.setupInteractions();
                 this.initializeTracking();
                 this.setupCourseNavigation();
-                console.log('ðŸš€ Mí³dulo Pagar Retroventa inicializado');
+                console.log('?? Módulo Pagar Retroventa inicializado');
             },
 
             // Sistema de animaciones mejorado
@@ -1437,7 +1714,7 @@
                     });
                 }, observerOptions);
 
-                // Observar diferentes tipos de elementos con animaciones especí­ficas
+                // Observar diferentes tipos de elementos con animaciones específicas
                 document.querySelectorAll('.section').forEach((el, index) => {
                     el.style.opacity = '0';
                     el.style.transform = 'translateY(30px)';
@@ -1538,21 +1815,21 @@
                 card.style.transform = '';
             },
 
-            // Seleccií³n de método de pago
+            // Selección de método de pago
             selectPaymentMethod(card) {
-                // Remover seleccií³n previa
+                // Remover selección previa
                 document.querySelectorAll('.payment-card').forEach(c => {
                     c.classList.remove('selected');
                     c.style.borderColor = '';
                 });
 
-                // Aplicar seleccií³n
+                // Aplicar selección
                 card.classList.add('selected');
                 card.style.borderColor = 'var(--success-color)';
-                
-                // Crear efecto de confirmacií³n
+
+                // Crear efecto de confirmación
                 const checkmark = document.createElement('div');
-                checkmark.innerHTML = 'âœ“';
+                checkmark.innerHTML = '✓';
                 checkmark.style.cssText = `
                     position: absolute;
                     top: 10px;
@@ -1618,11 +1895,11 @@
                 });
             },
 
-            // Feedback de finalizacií³n de video
+            // Feedback de finalización de video
             showVideoCompletionFeedback() {
                 if (typeof SinnutTraining !== 'undefined') {
                     SinnutTraining.showNotification(
-                        'ðŸŽ¬ Video completado',
+                        '🎬 Video completado',
                         'Has visualizado todo el contenido del video tutorial',
                         'success'
                     );
@@ -1656,16 +1933,16 @@
                 }
             },
 
-            // Configurar navegacií³n del curso
+            // Configurar navegación del curso
             setupCourseNavigation() {
-                // Aí±adir efectos hover mejorados a los botones de navegacií³n
+                // Añadir efectos hover mejorados a los botones de navegación
                 document.querySelectorAll('.nav-btn').forEach(btn => {
                     btn.addEventListener('mouseenter', (e) => {
                         this.createNavigationRipple(e);
                     });
                 });
 
-                // Aí±adir atajos de teclado para navegacií³n
+                // Añadir atajos de teclado para navegación
                 document.addEventListener('keydown', (e) => {
                     if (e.ctrlKey || e.metaKey) {
                         switch(e.key) {
@@ -1689,7 +1966,7 @@
                 this.animateCourseFooter();
             },
 
-            // Navegacií³n con teclado
+            // Navegación con teclado
             navigateToPrevious() {
                 const prevLink = document.querySelector('.nav-item.prev');
                 if (prevLink) {
@@ -1717,7 +1994,7 @@
                 }
             },
 
-            // Efecto de transicií³n de página
+            // Efecto de transición de página
             createPageTransition(callback) {
                 const overlay = document.createElement('div');
                 overlay.style.cssText = `
@@ -1741,7 +2018,7 @@
                 }, 50);
             },
 
-            // Ripple effect para navegacií³n
+            // Ripple effect para navegación
             createNavigationRipple(e) {
                 const button = e.currentTarget;
                 const rect = button.getBoundingClientRect();
@@ -1819,7 +2096,7 @@
                         timestamp: new Date().toISOString()
                     });
 
-                    // Tracking de navegacií³n a siguiente mí³dulo
+                    // Tracking de navegación a siguiente módulo
                     const nextModuleLink = document.querySelector('a[href*="fin-modulo"]');
                     if (nextModuleLink) {
                         nextModuleLink.addEventListener('click', function() {
@@ -1859,7 +2136,7 @@
         style.textContent = additionalCSS;
         document.head.appendChild(style);
 
-        // Inicializar cuando el DOM esté listo
+        // Inicializar cuando el DOM está listo
         document.addEventListener('DOMContentLoaded', () => {
             PagarRetroventaModule.init();
         });
@@ -1869,5 +2146,38 @@
     <script src="../../ios-video-fix.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

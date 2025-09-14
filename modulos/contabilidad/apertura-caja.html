@@ -122,8 +122,8 @@
             margin: 0 auto;
             padding: var(--space-4);
             background: var(--text-white);
-            border-radius: var(--radius-2xl);
-            box-shadow: var(--shadow-xl);
+            border-radius: 0;
+            box-shadow: none;
             position: relative;
         }
 
@@ -173,11 +173,11 @@
         /* Header Moderno */
         .header {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
-            color: var(--text-white);
-            padding: var(--space-16) var(--space-8);
+            color: white;
+            padding: var(--spacing-2xl) var(--spacing-lg);
             border-radius: var(--radius-xl);
             text-align: center;
-            margin-bottom: var(--space-8);
+            margin-bottom: var(--spacing-xl);
             position: relative;
             overflow: hidden;
         }
@@ -190,7 +190,12 @@
             width: 200%;
             height: 200%;
             background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            pointer-events: none;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translateX(-20px) translateY(-20px); }
+            50% { transform: translateX(20px) translateY(20px); }
         }
 
         .header-content {
@@ -199,23 +204,23 @@
         }
 
         .header h1 {
-            font-size: var(--font-size-4xl);
-            font-weight: var(--font-weight-bold);
-            margin-bottom: var(--space-4);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
             text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .header p {
-            font-size: var(--font-size-lg);
+            font-size: 1.125rem;
             opacity: 0.95;
             max-width: 600px;
-            margin: 0 auto var(--space-6);
+            margin: 0 auto var(--spacing-lg);
         }
 
         .header-badges {
             display: flex;
             justify-content: center;
-            gap: var(--space-4);
+            gap: var(--spacing-md);
             flex-wrap: wrap;
         }
 
@@ -223,13 +228,13 @@
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: var(--space-3) var(--space-4);
-            border-radius: var(--radius-full);
-            font-size: var(--font-size-sm);
-            font-weight: var(--font-weight-medium);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
             display: flex;
             align-items: center;
-            gap: var(--space-2);
+            gap: var(--spacing-xs);
         }
 
         /* Secciones */
@@ -257,40 +262,28 @@
             gap: var(--space-3);
         }
 
-        /* Video Container - Optimizado para videos H.264 re-codificados */
+        /* Video Container - Limpio sin bordes ni fondos */
         .responsive-video-wrapper {
             position: relative;
             width: 100%;
             max-width: 900px;
             margin: var(--space-8) auto;
-            background: linear-gradient(135deg, var(--neutral-50) 0%, white 100%);
-            border-radius: var(--radius-xl);
-            padding: var(--space-6);
-            box-shadow: 
-                0 10px 30px rgba(0, 0, 0, 0.08),
-                0 1px 8px rgba(0, 0, 0, 0.06),
-                inset 0 1px 0 rgba(255, 255, 255, 0.7);
-            border: 1px solid var(--neutral-200);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
+            border: none;
+            transition: none;
         }
 
         .responsive-video-wrapper:hover {
-            transform: translateY(-4px);
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.12),
-                0 8px 16px rgba(0, 0, 0, 0.08),
-                inset 0 1px 0 rgba(255, 255, 255, 0.7);
-            border-color: var(--primary-color);
+            transform: none;
+            box-shadow: none;
+            border-color: transparent;
         }
 
         .responsive-video-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--success-color), var(--info-color));
+            display: none;
         }
 
         .video-container {
@@ -1123,21 +1116,20 @@
 
         <!-- Introduction -->
         <section class="section" role="main">
-            <h2><i class="fas fa-info-circle" aria-hidden="true"></i> Introducción</h2>
-            <p>La apertura de caja es el primer proceso que debes realizar al inicio de tu turno de trabajo. Este procedimiento es fundamental para establecer el saldo inicial correcto y garantizar un control adecuado del flujo de efectivo durante toda la jornada.</p>
+            <h2><i class="fas fa-lightbulb" aria-hidden="true"></i> ¿Qué es la Apertura de Caja?</h2>
+            <p style="font-size: 1.125rem; line-height: 1.7; margin-bottom: var(--spacing-lg);">La apertura de caja es el proceso fundamental que inicia tu jornada laboral, donde registras el efectivo inicial disponible y configuras el sistema para las operaciones del día.</p>
             
             <div class="alert alert-info" role="alert">
-                <i class="fas fa-lightbulb" aria-hidden="true"></i>
+                <i class="fas fa-info-circle" aria-hidden="true"></i>
                 <div>
-                    <strong>¿Por qué es importante?</strong>
-                    <p>Una apertura de caja correcta te permite tener un control preciso de los ingresos y egresos, facilitando el arqueo al final del día y evitando discrepancias en la contabilidad.</p>
+                    <strong>Objetivo:</strong> Inicializar correctamente el sistema de caja para garantizar un control preciso de todas las transacciones durante la jornada laboral.
                 </div>
             </div>
         </section>
 
         <!-- Video Tutorial 1 -->
         <section class="section">
-            <h2><i class="fas fa-play-circle" aria-hidden="true"></i> Video Tutorial: Proceso Completo</h2>
+            <h2><i class="fas fa-play-circle" aria-hidden="true"></i> Video Tutorial: Apertura de Caja</h2>
             <p>Observa paso a paso cómo realizar una apertura de caja correcta en el sistema Sinnut ERP.</p>
             
             <!-- Contenedor responsivo del video -->
@@ -1184,133 +1176,28 @@
                 </div>
             </div>
 
-            <div class="alert alert-success" role="alert">
-                <i class="fas fa-check-circle" aria-hidden="true"></i>
+            <div class="alert alert-info" role="alert">
+                <i class="fas fa-list-ol" aria-hidden="true"></i>
                 <div>
-                    <strong>Puntos clave del video:</strong>
-                    <ul>
-                        <li>Acceso al módulo de caja en Sinnut ERP</li>
-                        <li>Verificación del estado de la caja</li>
-                        <li>Registro del saldo inicial</li>
-                        <li>Confirmación de la apertura</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Pasos Detallados -->
-        <section class="section">
-            <h2><i class="fas fa-list-ol" aria-hidden="true"></i> Pasos Detallados</h2>
-            <p>Sigue estos pasos para realizar una apertura de caja exitosa:</p>
-
-            <div class="steps-container">
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number" aria-hidden="true">1</div>
-                        <div class="step-title">Acceder al Módulo de Caja</div>
-                    </div>
-                    <div class="step-description">
-                        Inicia sesión en Sinnut ERP y navega hasta el módulo de Caja desde el menú principal.
-                    </div>
-                    
-                    <ul class="checklist">
-                        <li>
-                            <input type="checkbox" id="step1-1" aria-describedby="step1-1-desc">
-                            <label for="step1-1" id="step1-1-desc">Abrir navegador web e ir a la URL del sistema</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="step1-2" aria-describedby="step1-2-desc">
-                            <label for="step1-2" id="step1-2-desc">Iniciar sesión con usuario y contraseña</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="step1-3" aria-describedby="step1-3-desc">
-                            <label for="step1-3" id="step1-3-desc">Hacer clic en el módulo "Caja" del menú principal</label>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number" aria-hidden="true">2</div>
-                        <div class="step-title">Verificar Estado de la Caja</div>
-                    </div>
-                    <div class="step-description">
-                        Antes de abrir la caja, verifica que esté cerrada y lista para una nueva apertura.
-                    </div>
-                    
-                    <div class="alert alert-warning" role="alert">
-                        <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
-                        <div>
-                            <strong>Importante:</strong> Si la caja ya está abierta, debes cerrarla primero antes de realizar una nueva apertura.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number" aria-hidden="true">3</div>
-                        <div class="step-title">Registrar Saldo Inicial</div>
-                    </div>
-                    <div class="step-description">
-                        Cuenta el efectivo disponible y registra el monto inicial en el sistema.
-                    </div>
-                    
-                    <ul class="checklist">
-                        <li>
-                            <input type="checkbox" id="step3-1" aria-describedby="step3-1-desc">
-                            <label for="step3-1" id="step3-1-desc">Contar billetes y monedas físicamente</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="step3-2" aria-describedby="step3-2-desc">
-                            <label for="step3-2" id="step3-2-desc">Ingresar el monto total en el campo "Saldo Inicial"</label>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="step3-3" aria-describedby="step3-3-desc">
-                            <label for="step3-3" id="step3-3-desc">Verificar que el monto sea correcto</label>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number" aria-hidden="true">4</div>
-                        <div class="step-title">Confirmar Apertura</div>
-                    </div>
-                    <div class="step-description">
-                        Guarda la información y confirma la apertura de caja en el sistema.
-                    </div>
-                    
-                    <div class="alert alert-info" role="alert">
-                        <i class="fas fa-info-circle" aria-hidden="true"></i>
-                        <div>
-                            <strong>Tip:</strong> Una vez confirmada la apertura, el sistema registrará automáticamente la fecha y hora del proceso.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number" aria-hidden="true">5</div>
-                        <div class="step-title">Verificar Confirmación</div>
-                    </div>
-                    <div class="step-description">
-                        Asegúrate de que el sistema muestre la confirmación de apertura exitosa.
-                    </div>
-                    
-                    <div class="alert alert-success" role="alert">
-                        <i class="fas fa-check-circle" aria-hidden="true"></i>
-                        <div>
-                            <strong>¡Listo!</strong> Tu caja está ahora abierta y lista para procesar transacciones durante tu turno.
-                        </div>
-                    </div>
+                    <strong>Paso a Paso - Apertura de Caja Normal:</strong>
+                    <ol style="margin-top: var(--spacing-sm); padding-left: var(--spacing-lg);">
+                        <li>Abrir el módulo <strong>Gestión de Contabilidad</strong></li>
+                        <li>Ingresar al sub-módulo <strong>Control de Caja</strong></li>
+                        <li>Seleccionar nuevamente <strong>Control de Caja</strong></li>
+                        <li>Oprimir el <strong>icono más (+)</strong> para crear una nueva caja</li>
+                        <li>Seleccionar la <strong>joyería</strong> correspondiente</li>
+                        <li>Elegir el <strong>tipo de operación</strong></li>
+                        <li>Configurar la <strong>fecha de la caja</strong></li>
+                        <li>Confirmar la apertura</li>
+                    </ol>
                 </div>
             </div>
         </section>
 
         <!-- Video Tutorial 2 -->
         <section class="section">
-            <h2><i class="fas fa-play-circle" aria-hidden="true"></i> Video Tutorial: Casos Especiales</h2>
-            <p>Aprende a manejar situaciones especiales durante la apertura de caja.</p>
+            <h2><i class="fas fa-play-circle" aria-hidden="true"></i> Video Tutorial: Apertura de Caja de Contingencia</h2>
+            <p>Procedimiento específico para casos de contingencia (30 segundos).</p>
             
             <!-- Contenedor responsivo del video -->
             <div class="responsive-video-wrapper">
@@ -1336,7 +1223,7 @@
                     <div class="video-poster" id="videoPoster2">
                         <div class="poster-content">
                             <i class="fas fa-play-circle"></i>
-                            <h4>Video Tutorial: Casos Especiales</h4>
+                            <h4>Video Tutorial: Apertura de Caja de Contingencia</h4>
                             <p>Toca para reproducir</p>
                         </div>
                     </div>
@@ -1352,6 +1239,83 @@
                             <i class="fas fa-redo"></i>
                             Intentar de nuevo
                         </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="alert alert-warning" role="alert">
+                <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+                <div>
+                    <strong>Proceso de Contingencia:</strong>
+                    <ul style="margin-top: var(--spacing-sm); padding-left: var(--spacing-lg);">
+                        <li><strong>Comunicación previa:</strong> Debe comunicarse con el área encargada antes de proceder</li>
+                        <li><strong>Confirmación:</strong> Una vez confirmado por el área correspondiente, seleccionar la caja de contingencia</li>
+                        <li><strong>Tipo de operación:</strong> Seleccionar "Contingencia" como tipo de operación</li>
+                        <li><strong>Aprobación:</strong> Este proceso requiere autorización especial</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tipos de Operación de Caja -->
+        <section class="section">
+            <h2><i class="fas fa-cogs" aria-hidden="true"></i> Tipos de Operación de Caja</h2>
+            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-xl);">Comprende las diferencias entre los tipos de apertura disponibles</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: var(--spacing-xl); margin-top: var(--spacing-lg);">
+                <!-- Tarjeta Apertura Normal -->
+                <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid #22c55e; border-radius: var(--radius-xl); padding: var(--spacing-xl); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 15px; right: 15px; background: #22c55e; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-check" style="font-size: 1.2rem;"></i>
+                    </div>
+                    
+                    <div style="margin-bottom: var(--spacing-lg);">
+                        <h3 style="color: #16a34a; font-size: 1.5rem; font-weight: 600; margin-bottom: var(--spacing-sm); display: flex; align-items: center; gap: var(--spacing-sm);">
+                            <i class="fas fa-cash-register" style="color: #22c55e;"></i>
+                            Apertura Normal
+                        </h3>
+                    </div>
+                    
+                    <ul style="list-style: none; padding: 0; margin-bottom: var(--spacing-lg);">
+                        <li style="margin-bottom: var(--spacing-sm); color: var(--text-secondary);"><strong style="color: var(--text-primary);">Uso:</strong> Operaciones diarias regulares</li>
+                        <li style="margin-bottom: var(--spacing-sm); color: var(--text-secondary);"><strong style="color: var(--text-primary);">Proceso:</strong> Seguir los 8 pasos estándar</li>
+                        <li style="margin-bottom: var(--spacing-sm); color: var(--text-secondary);"><strong style="color: var(--text-primary);">Autorización:</strong> No requiere aprobación especial</li>
+                        <li style="margin-bottom: var(--spacing-sm); color: var(--text-secondary);"><strong style="color: var(--text-primary);">Duración:</strong> Proceso completo en el video</li>
+                    </ul>
+                    
+                    <div style="background: rgba(34, 197, 94, 0.1); border-left: 4px solid #22c55e; padding: var(--spacing-md); border-radius: var(--radius-md);">
+                        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                            <i class="fas fa-check-circle" style="color: #22c55e; font-size: 1.1rem;"></i>
+                            <strong style="color: #16a34a;">Recomendado para uso diario</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Apertura de Contingencia -->
+                <div style="background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border: 2px solid #f59e0b; border-radius: var(--radius-xl); padding: var(--spacing-xl); position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 15px; right: 15px; background: #f59e0b; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 1.2rem;"></i>
+                    </div>
+                    
+                    <div style="margin-bottom: var(--spacing-lg);">
+                        <h3 style="color: #d97706; font-size: 1.5rem; font-weight: 600; margin-bottom: var(--spacing-sm); display: flex; align-items: center; gap: var(--spacing-sm);">
+                            <i class="fas fa-shield-alt" style="color: #f59e0b;"></i>
+                            Apertura de Contingencia
+                        </h3>
+                    </div>
+                    
+                    <ul style="list-style: none; padding: 0; margin-bottom: var(--spacing-lg);">
+                        <li style="margin-bottom: var(--spacing-sm); color: var(--text-secondary);"><strong style="color: var(--text-primary);">Uso:</strong> Situaciones excepcionales</li>
+                        <li style="margin-bottom: var(--spacing-sm); color: var(--text-secondary);"><strong style="color: var(--text-primary);">Proceso:</strong> Comunicación previa obligatoria</li>
+                        <li style="margin-bottom: var(--spacing-sm); color: var(--text-secondary);"><strong style="color: var(--text-primary);">Autorización:</strong> Requiere confirmación del área encargada</li>
+                        <li style="margin-bottom: var(--spacing-sm); color: var(--text-secondary);"><strong style="color: var(--text-primary);">Duración:</strong> Video corto (30 segundos)</li>
+                    </ul>
+                    
+                    <div style="background: rgba(245, 158, 11, 0.1); border-left: 4px solid #f59e0b; padding: var(--spacing-md); border-radius: var(--radius-md);">
+                        <div style="display: flex; align-items: center; gap: var(--spacing-sm);">
+                            <i class="fas fa-exclamation-triangle" style="color: #f59e0b; font-size: 1.1rem;"></i>
+                            <strong style="color: #d97706;">Solo con autorización previa</strong>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1402,7 +1366,7 @@
                 </div>
                 
                 <div class="nav-info">
-                    <p><i class="fas fa-info-circle"></i> Módulo 1 de 3 en el curso de Contabilidad • Progreso: 10%</p>
+                    <p><i class="fas fa-info-circle"></i> Módulo 3 de 4 en el curso de Contabilidad • Progreso: 75%</p>
                 </div>
             </div>
         </footer>

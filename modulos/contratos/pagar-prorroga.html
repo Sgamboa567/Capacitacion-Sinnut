@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagar Prí³rroga - Curso Sinnut ERP</title>
+    <title>Pagar Prórroga - Curso Sinnut ERP</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
@@ -19,6 +19,7 @@
             --neutral-50: #f8fafc;
             --neutral-100: #f1f5f9;
             --neutral-200: #e2e8f0;
+            --neutral-300: #cbd5e1;
             --neutral-500: #64748b;
             --neutral-600: #475569;
             --neutral-700: #334155;
@@ -160,6 +161,12 @@
             color: var(--primary-light);
         }
 
+        .nav-breadcrumb [aria-current="page"] {
+            font-weight: 700;
+            color: var(--primary-color);
+            text-shadow: 0 1px 2px rgba(13, 35, 57, 0.1);
+        }
+
         .separator {
             margin: 0 var(--spacing-sm);
             color: var(--neutral-500);
@@ -185,33 +192,193 @@
             gap: var(--spacing-sm);
         }
 
-        /* Video Container */
+        /* Video Container - Limpio sin bordes ni fondos */
+        .responsive-video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: var(--spacing-xl) auto;
+            background: transparent;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
+            border: none;
+            transition: none;
+        }
+
+        .responsive-video-wrapper:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: transparent;
+        }
+
+        .responsive-video-wrapper::before {
+            display: none;
+        }
+
         .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%;
-            background: linear-gradient(135deg, var(--neutral-100) 0%, var(--neutral-200) 100%);
-            border-radius: var(--radius-xl);
+            height: 0;
+            padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+            background: #000;
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.1);
-            margin: var(--spacing-xl) 0;
-            border: 3px solid var(--neutral-200);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        .video-container:hover {
-            border-color: var(--primary-color);
-            transform: scale(1.02);
-            box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.15);
+        .video-container:focus-within {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
         }
 
-        .video-container video {
+        /* Video player optimizado para todos los dispositivos */
+        .video-player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            border: none;
+            border-radius: var(--radius-lg);
+            object-fit: cover;
+            background: #000;
+            z-index: 2;
+        }
+
+        /* Asegurar que funcione en iOS Safari */
+        .video-player::-webkit-media-controls {
+            display: flex !important;
+        }
+
+        .video-player::-webkit-media-controls-panel {
+            display: flex !important;
+        }
+
+        /* Poster personalizado */
+        .video-poster {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            background: linear-gradient(135deg, rgba(13, 35, 57, 0.9) 0%, rgba(13, 35, 57, 0.7) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f1f5f9"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            z-index: 3;
+            transition: all 0.3s ease;
             border-radius: var(--radius-lg);
+        }
+
+        .video-poster:hover {
+            background: linear-gradient(135deg, rgba(13, 35, 57, 0.8) 0%, rgba(13, 35, 57, 0.6) 100%);
+            transform: scale(1.02);
+        }
+
+        .poster-content {
+            text-align: center;
+            padding: var(--spacing-xl);
+        }
+
+        .poster-content i {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-lg);
+            color: white;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        .poster-content h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .poster-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin: 0;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Video fallback mejorado */
+        .video-fallback {
+            width: 100%;
+            background: linear-gradient(135deg, var(--danger-color) 0%, #dc2626 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-top: var(--spacing-lg);
+            box-shadow: 0 8px 32px rgba(239, 68, 68, 0.3);
+        }
+
+        .fallback-content i {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-lg);
+            opacity: 0.9;
+        }
+
+        .fallback-content h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .fallback-content p {
+            opacity: 0.9;
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.6;
+        }
+
+        .retry-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .retry-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Estados del video */
+        .video-loading {
+            position: relative;
+        }
+
+        .video-loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            margin: -20px 0 0 -20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            z-index: 4;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         /* Steps */
@@ -607,7 +774,7 @@
             align-items: center;
             gap: var(--spacing-sm);
             padding: var(--spacing-md) var(--spacing-lg);
-            border: 2px solid var(--neutral-300);
+            border: none;
             border-radius: var(--radius-lg);
             background: white;
             color: var(--text-primary);
@@ -618,6 +785,7 @@
             overflow: hidden;
             min-width: 150px;
             justify-content: center;
+            box-shadow: var(--shadow-sm);
         }
 
         .nav-btn::before {
@@ -669,8 +837,8 @@
         .progress-indicator {
             display: flex;
             justify-content: center;
-            gap: var(--spacing-sm);
-            margin-bottom: var(--spacing-lg);
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-2xl);
         }
 
         .progress-dot {
@@ -679,14 +847,21 @@
             border-radius: 50%;
             background: var(--neutral-300);
             transition: var(--transition);
+            cursor: pointer;
         }
 
         .progress-dot.completed {
             background: var(--success-color);
+            box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
         }
 
         .progress-dot.current {
             background: var(--primary-color);
+            transform: scale(1.3);
+            box-shadow: 0 0 0 3px rgba(13, 35, 57, 0.2);
+        }
+
+        .progress-dot:hover {
             transform: scale(1.2);
         }
 
@@ -792,25 +967,29 @@
     </style>
 </head>
 <body>
-    <div class="container animate-in">
-        <!-- Navigation -->
-        <nav class="nav-breadcrumb">
-            <a href="../../index.html"><i class="fas fa-home"></i> Inicio</a>
-            <span class="separator">â€¢</span>
-            <a href="introduccion-contratos.html">Introduccií³n</a>
-            <span class="separator">â€¢</span>
+    <div class="container">
+        <!-- Navegación Breadcrumb -->
+        <div class="nav-breadcrumb animate-left">
+            <i class="fas fa-home" style="color: var(--primary-color);"></i>
+            <a href="../../index.html">Inicio</a>
+            <span class="separator">></span>
+            <a href="introduccion-contratos.html">Introducción</a>
+            <span class="separator">></span>
             <a href="crear-contrato.html">Crear Contrato</a>
-            <span class="separator">â€¢</span>
+            <span class="separator">></span>
             <a href="consultar-contrato.html">Consultar Contrato</a>
-            <span class="separator">â€¢</span>
-            <span style="color: var(--primary-color); font-weight: 600;">Pagar Prí³rroga</span>
-        </nav>
-
+            <span class="separator">></span>
+            <span aria-current="page">Pagar Prórroga</span>
+            <span class="separator">></span>
+            <a href="pagar-retroventa.html">Pagar Retroventa</a>
+            <span class="separator">></span>
+            <a href="fin-modulo-contratos.html">Fin del Módulo</a>
+        </div>
         <!-- Header -->
-        <header class="header">
+        <header class="header animate-in">
             <div class="header-content">
-                <h1><i class="fas fa-clock"></i> Pagar Prí³rroga</h1>
-                <p>Aprende a gestionar prí³rrogas de contratos de manera eficiente en el sistema Sinnut ERP, aplicando extensiones de tiempo antes del vencimiento</p>
+                <h1><i class="fas fa-clock"></i> Pagar Prórroga</h1>
+                <p>Aprende a gestionar prórrogas de contratos de manera eficiente en el sistema Sinnut ERP, aplicando extensiones de tiempo antes del vencimiento</p>
                 <div class="header-badges">
                     <div class="badge">
                         <i class="fas fa-video"></i>
@@ -829,18 +1008,18 @@
         </header>
 
         <!-- Introduction -->
-        <section class="section">
-            <h2><i class="fas fa-lightbulb"></i> Â¿Qué es una Prí³rroga?</h2>
+        <section class="section animate-right">
+            <h2><i class="fas fa-lightbulb"></i> ¿Qué es una Prórroga?</h2>
             <p style="font-size: 1.125rem; line-height: 1.7; margin-bottom: var(--spacing-lg);">
-                Una prí³rroga permite extender el tiempo del contrato antes de llegar al vencimiento, 
-                calculando automáticamente el valor correspondiente segíºn los meses a prorrogar.
+                Una prórroga permite extender el tiempo del contrato antes de llegar al vencimiento, 
+                calculando automáticamente el valor correspondiente según los meses a prorrogar.
             </p>
             
             <div class="alert alert-warning">
                 <i class="fas fa-exclamation-triangle" style="font-size: 1.5rem;"></i>
                 <div>
-                    <strong>Â¿Cuándo usar una prí³rroga?</strong><br>
-                    Las prí³rrogas deben aplicarse <strong>antes del vencimiento</strong> del contrato 
+                    <strong>¿Cuándo usar una prórroga?</strong><br>
+                    Las prórrogas deben aplicarse <strong>antes del vencimiento</strong> del contrato 
                     y solo por los meses adeudados pendientes.
                 </div>
             </div>
@@ -848,36 +1027,56 @@
             <div class="alert alert-info">
                 <i class="fas fa-stopwatch" style="font-size: 1.5rem;"></i>
                 <div>
-                    <strong>Tiempo estimado de operacií³n:</strong> 1 minuto por contrato
+                    <strong>Tiempo estimado de operación:</strong> 1 minuto por contrato
                 </div>
             </div>
         </section>
 
         <!-- Video Tutorial -->
-        <section class="section">
-            <h2><i class="fas fa-play-circle"></i> Video Tutorial</h2>
-            <p style="margin-bottom: var(--spacing-lg); color: var(--text-secondary);">
-                Observa el proceso completo para pagar una prí³rroga paso a paso
+        <section class="section animate-scale">
+            <h2><i class="fas fa-play-circle" style="color: var(--success-color);"></i> Video Tutorial</h2>
+            <p style="font-size: 1rem; color: var(--text-secondary); margin-bottom: var(--spacing-md);">
+                Observa el proceso completo para pagar una prórroga paso a paso
             </p>
             
-            <div class="video-container">
-                <video id="videoPlayer" 
-                       controls 
-                       preload="none"
-                       playsinline="true"
-                       webkit-playsinline="true"
-                       muted="true">
-                    <source src="../../assets/videos/Contratos/contratos 3 (prí³rroga).mp4" type="video/mp4">
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                        <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: var(--warning-color); margin-bottom: var(--spacing-md);"></i>
-                        <p>Video no disponible. Contacta con soporte técnico.</p>
-                        <a href="../../assets/videos/Contratos/contratos 3 (prí³rroga).mp4" 
-                           download 
-                           class="btn btn-primary" style="margin-top: var(--spacing-md);">
-                            <i class="fas fa-download"></i> Descargar Video
-                        </a>
+            <!-- Video Container optimizado igual que consultar-contrato -->
+            <div class="responsive-video-wrapper">
+                <div class="video-container" id="videoContainer2">
+                    <div class="video-poster" id="videoPoster2" onclick="VideoHandler2().playVideo()">
+                        <div class="poster-content">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>Tutorial: Pagar Prórroga</h4>
+                            <p>Aprende paso a paso</p>
+                        </div>
                     </div>
-                </video>
+                    
+                    <video class="video-player" 
+                           id="videoPlayer2"
+                           controls
+                           preload="none"
+                           playsinline
+                           webkit-playsinline
+                           data-setup='{}'>
+                        <source src="../../assets/videos/Contratos/pagar-prorroga/pagar-prorroga.mp4" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                        <p>
+                            <a href="../../assets/videos/Contratos/pagar-prorroga/pagar-prorroga.mp4" download>
+                                Descargar video directamente
+                            </a>
+                        </p>
+                    </video>
+                    
+                    <div class="video-fallback" id="videoFallback2" style="display: none;">
+                        <div class="fallback-content">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h4>Video no disponible</h4>
+                            <p>Lo sentimos, el video no se puede reproducir en este momento.</p>
+                            <button class="retry-btn" onclick="VideoHandler2().retryLoad()">
+                                <i class="fas fa-redo"></i> Intentar de nuevo
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -885,7 +1084,7 @@
         <section class="section">
             <h2><i class="fas fa-list-ol"></i> Pasos del Proceso</h2>
             <p style="margin-bottom: var(--spacing-xl); color: var(--text-secondary);">
-                Sigue estos pasos para pagar una prí³rroga exitosamente
+                Sigue estos pasos para pagar una prórroga exitosamente
             </p>
 
             <div class="steps-container">
@@ -896,13 +1095,13 @@
                         <div class="step-title">Buscar el Contrato</div>
                     </div>
                     <div class="step-description">
-                        Desde el mí³dulo <strong>Gestií³n de contratos</strong>, usa la barra de bíºsqueda 
+                        Desde el módulo <strong>Gestión de contratos</strong>, usa la barra de búsqueda 
                         para ingresar la secuencia del contrato o el documento del cliente.
                     </div>
                     <div class="alert alert-info">
                         <i class="fas fa-search"></i>
                         <div>
-                            <strong>Consejo:</strong> Puedes buscar por níºmero de contrato o cédula del cliente.
+                            <strong>Consejo:</strong> Puedes buscar por número de contrato o cédula del cliente.
                         </div>
                     </div>
                 </div>
@@ -929,10 +1128,10 @@
                 <div class="step">
                     <div class="step-header">
                         <div class="step-number">3</div>
-                        <div class="step-title">Iniciar Prí³rroga</div>
+                        <div class="step-title">Iniciar Prórroga</div>
                     </div>
                     <div class="step-description">
-                        En la parte superior derecha haz clic en el í­cono de <strong>Pagar prí³rroga</strong>.
+                        En la parte superior derecha haz clic en el ícono de <strong>Pagar prórroga</strong>.
                     </div>
                     <div class="alert alert-warning">
                         <i class="fas fa-calendar-alt"></i>
@@ -956,7 +1155,7 @@
                         <i class="fas fa-calculator"></i>
                         <div>
                             <strong>Cálculo automático:</strong> El sistema aplica la tasa de interés 
-                            configurada segíºn el tipo de contrato.
+                            configurada según el tipo de contrato.
                         </div>
                     </div>
                 </div>
@@ -968,8 +1167,8 @@
                         <div class="step-title">Finalizar Proceso</div>
                     </div>
                     <div class="step-description">
-                        Haz clic en <strong>Causar y pagar</strong> para aplicar la prí³rroga. 
-                        El sistema actualizará automáticamente el estado del contrato y mostrará la factura de prí³rroga.
+                        Haz clic en <strong>Causar y pagar</strong> para aplicar la prórroga. 
+                        El sistema actualizará automáticamente el estado del contrato y mostrará la factura de prórroga.
                     </div>
                     <div class="alert alert-success">
                         <i class="fas fa-check-circle"></i>
@@ -984,9 +1183,9 @@
 
         <!-- Calculation Details -->
         <section class="section">
-            <h2><i class="fas fa-chart-line"></i> Â¿Cí³mo se Calcula el Valor?</h2>
+            <h2><i class="fas fa-chart-line"></i> ¿Cómo se Calcula el Valor?</h2>
             <p style="margin-bottom: var(--spacing-lg); color: var(--text-secondary);">
-                El sistema calcula automáticamente el valor de la prí³rroga basándose en estos factores:
+                El sistema calcula automáticamente el valor de la prórroga basándose en estos factores:
             </p>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-lg);">
@@ -1012,15 +1211,15 @@
 
         <!-- Practice Section -->
         <section class="section">
-            <h2><i class="fas fa-graduation-cap"></i> Â¡Ahora es tu Turno!</h2>
+            <h2><i class="fas fa-graduation-cap"></i> ¡Ahora es tu Turno!</h2>
             <div style="background: linear-gradient(135deg, #e8f4fd 0%, #f0f8ff 100%); border: 2px solid var(--info-color); padding: var(--spacing-xl); border-radius: var(--radius-lg); text-align: center;">
-                <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">ðŸŽ¯</div>
+                <div style="font-size: 3rem; margin-bottom: var(--spacing-md);">🎯</div>
                 <h4 style="color: var(--primary-color); margin-bottom: var(--spacing-md);">Ejercicio Práctico</h4>
                 <p style="margin-bottom: var(--spacing-lg); color: var(--text-primary);">
-                    Practica el proceso de prí³rroga con diferentes contratos para familiarizarte con los cálculos.
+                    Practica el proceso de prórroga con diferentes contratos para familiarizarte con los cálculos.
                 </p>
                 <div style="background: rgba(255, 255, 255, 0.8); padding: var(--spacing-md); border-radius: var(--radius-md); margin-top: var(--spacing-lg);">
-                    <strong>Ejercicio sugerido:</strong> Busca un contrato prí³ximo a vencer y calcula una prí³rroga de 2 meses.
+                    <strong>Ejercicio sugerido:</strong> Busca un contrato próximo a vencer y calcula una prórroga de 2 meses.
                 </div>
             </div>
         </section>
@@ -1032,21 +1231,21 @@
                 <div class="alert alert-success">
                     <i class="fas fa-check-circle" style="font-size: 1.5rem;"></i>
                     <div>
-                        <strong>Verificacií³n:</strong> Solo se pueden pagar prí³rrogas de los meses adeudados del contrato.
+                        <strong>Verificación:</strong> Solo se pueden pagar prórrogas de los meses adeudados del contrato.
                     </div>
                 </div>
                 
                 <div class="alert alert-warning">
                     <i class="fas fa-exclamation-triangle" style="font-size: 1.5rem;"></i>
                     <div>
-                        <strong>Timing:</strong> Las prí³rrogas deben aplicarse antes del vencimiento del contrato.
+                        <strong>Timing:</strong> Las prórrogas deben aplicarse antes del vencimiento del contrato.
                     </div>
                 </div>
                 
                 <div class="alert alert-info">
                     <i class="fas fa-file-invoice-dollar" style="font-size: 1.5rem;"></i>
                     <div>
-                        <strong>Facturacií³n:</strong> El sistema genera automáticamente la factura de prí³rroga al completar el proceso.
+                        <strong>Facturación:</strong> El sistema genera automáticamente la factura de prórroga al completar el proceso.
                     </div>
                 </div>
             </div>
@@ -1059,76 +1258,72 @@
                 <div style="border: 2px solid var(--neutral-200); border-radius: var(--radius-lg); padding: var(--spacing-lg); text-align: center; transition: var(--transition);" onmouseover="this.style.borderColor='var(--primary-color)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--neutral-200)'; this.style.transform='translateY(0)'">
                     <i class="fas fa-file-pdf" style="font-size: 2.5rem; color: var(--danger-color); margin-bottom: var(--spacing-md);"></i>
                     <h4 style="color: var(--primary-color); margin-bottom: var(--spacing-sm);">Manual PDF</h4>
-                    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">Guí­a detallada paso a paso</p>
-                    <a href="../../assets/documents/instructivos/Modulo-contratos/Instructivo CONTRATOS.pdf" 
+                    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">Guía detallada paso a paso</p>
+                    <a href="../../assets/documents/instructivos/Contratos/Instructivo GESTION DE CONTRATOS.pdf" 
                        class="btn btn-primary" target="_blank">
                         <i class="fas fa-download"></i> Descargar
                     </a>
                 </div>
                 
                 <div style="border: 2px solid var(--neutral-200); border-radius: var(--radius-lg); padding: var(--spacing-lg); text-align: center; transition: var(--transition);" onmouseover="this.style.borderColor='var(--success-color)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--neutral-200)'; this.style.transform='translateY(0)'">
-                    <i class="fas fa-headset" style="font-size: 2.5rem; color: var(--success-color); margin-bottom: var(--spacing-md);"></i>
+                    <i class="fab fa-whatsapp" style="font-size: 2.5rem; color: var(--success-color); margin-bottom: var(--spacing-md);"></i>
                     <h4 style="color: var(--primary-color); margin-bottom: var(--spacing-sm);">Soporte Técnico</h4>
                     <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">Obtén ayuda especializada</p>
-                    <a href="mailto:soporte.ti@oroexpress.com.co" class="btn btn-success">
-                        <i class="fas fa-envelope"></i> Contactar
+                    <a href="https://wa.me/573164706103?text=Hola,%20necesito%20ayuda%20con%20el%20módulo%20de%20contratos" class="btn btn-success" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- Footer de Navegacií³n del Curso -->
-        <footer class="course-footer">
+        <!-- Footer de Navegación del Curso -->
+        <footer class="course-footer animate-in">
             <div class="course-footer-content">
-                <h3>
-                    <i class="fas fa-route"></i>
-                    Navegacií³n del Curso
-                </h3>
+                <h3><i class="fas fa-route"></i> Navegación del Curso</h3>
                 
-                <!-- Indicador de Progreso -->
                 <div class="progress-indicator">
-                    <div class="progress-dot completed" title="Introduccií³n a Contratos"></div>
-                    <div class="progress-dot completed" title="Crear Contratos"></div>
-                    <div class="progress-dot completed" title="Consultar Contratos"></div>
-                    <div class="progress-dot current" title="Pagar Prí³rroga - Mí³dulo Actual"></div>
-                    <div class="progress-dot" title="Pagar Retroventa"></div>
+                    <div class="progress-dot completed"></div>
+                    <div class="progress-dot completed"></div>
+                    <div class="progress-dot completed"></div>
+                    <div class="progress-dot current"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
                 </div>
-
-                <!-- Navegacií³n Principal -->
-                <nav class="course-navigation">
+                
+                <div class="course-navigation">
                     <a href="consultar-contrato.html" class="nav-item prev">
                         <div class="nav-btn prev">
                             <i class="fas fa-arrow-left"></i>
-                            <span>Anterior</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Anterior</div>
+                                <div>Consultar Contrato</div>
+                            </div>
                         </div>
                     </a>
-
+                    
                     <a href="../../index.html" class="nav-item home">
                         <div class="nav-btn home">
                             <i class="fas fa-home"></i>
-                            <span>Inicio</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Módulo</div>
+                                <div>Contratos</div>
+                            </div>
                         </div>
                     </a>
-
+                    
                     <a href="pagar-retroventa.html" class="nav-item next">
                         <div class="nav-btn next">
-                            <span>Siguiente</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Siguiente</div>
+                                <div>Pagar Retroventa</div>
+                            </div>
                             <i class="fas fa-arrow-right"></i>
                         </div>
                     </a>
-                </nav>
-
-                <!-- Informacií³n del Mí³dulo -->
+                </div>
+                
                 <div class="nav-info">
-                    <p>
-                        <strong>Mí³dulo 4 de 5:</strong> Pagar Prí³rroga | 
-                        <strong>Anterior:</strong> Consultar Contrato | 
-                        <strong>Siguiente:</strong> Pagar Retroventa
-                    </p>
-                    <p style="margin-top: var(--spacing-sm); font-size: 0.8rem;">
-                        <i class="fas fa-graduation-cap"></i>
-                        Curso Sinnut ERP - OroExpress s.a.s
-                    </p>
+                    <p><i class="fas fa-info-circle"></i> Módulo 4 de 6 en el curso de Contratos • Progreso: 67%</p>
                 </div>
             </div>
         </footer>
@@ -1136,8 +1331,74 @@
 
     <!-- JavaScript principal -->
     <script src="../../assets/js/main.js"></script>
-    <!-- Script para mejorar compatibilidad de videos en mí³viles -->
+    <!-- Script para mejorar compatibilidad de videos en móviles -->
     <script src="../../fix-mobile-videos.js"></script>
+    
+    <!-- Script específico para mejorar experiencia del video -->
+    <script>
+        // Video Handler optimizado para el video de pagar prórroga
+        const VideoHandler2 = () => {
+            const container = document.getElementById('videoContainer2');
+            const poster = document.getElementById('videoPoster2');
+            const player = document.getElementById('videoPlayer2');
+            const fallback = document.getElementById('videoFallback2');
+
+            const playVideo = () => {
+                if (poster) poster.style.display = 'none';
+                if (player) {
+                    player.style.display = 'block';
+                    container.classList.add('video-loading');
+                    
+                    player.load();
+                    const playPromise = player.play();
+                    
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            container.classList.remove('video-loading');
+                        }).catch((error) => {
+                            console.warn('Error al reproducir video:', error);
+                            container.classList.remove('video-loading');
+                            showFallback();
+                        });
+                    }
+                }
+            };
+
+            const showFallback = () => {
+                if (poster) poster.style.display = 'none';
+                if (player) player.style.display = 'none';
+                if (fallback) fallback.style.display = 'block';
+            };
+
+            const retryLoad = () => {
+                if (fallback) fallback.style.display = 'none';
+                if (poster) poster.style.display = 'flex';
+                container.classList.remove('video-loading');
+            };
+
+            return {
+                playVideo,
+                retryLoad,
+                showFallback
+            };
+        };
+
+        // Configurar manejadores de error para el video
+        document.addEventListener('DOMContentLoaded', () => {
+            const player = document.getElementById('videoPlayer2');
+            if (player) {
+                player.addEventListener('error', () => {
+                    console.warn('Error cargando video de pagar prórroga');
+                    VideoHandler2().showFallback();
+                });
+
+                player.addEventListener('loadeddata', () => {
+                    document.getElementById('videoContainer2')?.classList.remove('video-loading');
+                });
+            }
+        });
+    </script>
+    
     <script>
         // Estado moderno del documento
         const PagarProrrogaModule = {
@@ -1146,7 +1407,7 @@
                 this.setupInteractions();
                 this.initializeTracking();
                 this.setupCourseNavigation();
-                console.log('ðŸš€ Mí³dulo Pagar Prí³rroga inicializado');
+                console.log('🚀 Módulo Pagar Prórroga inicializado');
             },
 
             // Sistema de animaciones mejorado
@@ -1425,7 +1686,7 @@
                 if (typeof SinnutTraining !== 'undefined') {
                     SinnutTraining.trackEvent('module_started', {
                         moduleId: 'pagar-prorroga',
-                        moduleName: 'Pagar Prí³rroga',
+                        moduleName: 'Pagar Prórroga',
                         timestamp: new Date().toISOString()
                     });
                 }
@@ -1437,7 +1698,7 @@
                         if (typeof SinnutTraining !== 'undefined') {
                             SinnutTraining.trackEvent('video_started', {
                                 moduleId: 'pagar-prorroga',
-                                videoTitle: 'Pagar prí³rroga'
+                                videoTitle: 'Pagar prórroga'
                             });
                         }
                     });
@@ -1446,7 +1707,7 @@
                         if (typeof SinnutTraining !== 'undefined') {
                             SinnutTraining.trackEvent('video_completed', {
                                 moduleId: 'pagar-prorroga',
-                                videoTitle: 'Pagar prí³rroga'
+                                videoTitle: 'Pagar prórroga'
                             });
                         }
                     });

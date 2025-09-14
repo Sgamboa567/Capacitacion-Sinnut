@@ -269,6 +269,11 @@
             transform: translateY(-1px);
         }
 
+        .nav-breadcrumb [aria-current="page"] {
+            font-weight: 700;
+            color: #0D2339;
+        }
+
         .separator {
             margin: 0 var(--spacing-sm);
             color: var(--neutral-500);
@@ -388,58 +393,6 @@
             font-weight: var(--font-weight-bold);
             flex-shrink: 0;
             box-shadow: var(--shadow-md);
-        }
-
-        /* Module Progress */
-        .module-progress {
-            background: white;
-            border: 2px solid var(--neutral-200);
-            border-radius: var(--radius-2xl);
-            padding: var(--spacing-2xl);
-            margin: var(--spacing-xl) 0;
-            box-shadow: var(--shadow-lg);
-            transition: var(--transition);
-        }
-
-        .module-progress:hover {
-            border-color: var(--primary-color);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .progress-bar {
-            background: var(--neutral-200);
-            border-radius: var(--radius-lg);
-            height: 12px;
-            overflow: hidden;
-            margin: var(--spacing-lg) 0;
-            position: relative;
-        }
-
-        .progress-fill {
-            background: linear-gradient(90deg, var(--primary-color) 0%, var(--primary-light) 100%);
-            height: 100%;
-            width: 0%;
-            border-radius: var(--radius-lg);
-            transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            animation: progressShine 2s infinite;
-        }
-
-        @keyframes progressShine {
-            0% { left: -100%; }
-            100% { left: 100%; }
         }
 
         /* Importance Section */
@@ -770,7 +723,7 @@
             align-items: center;
             gap: var(--spacing-sm);
             padding: var(--spacing-lg) var(--spacing-2xl);
-            border: 2px solid var(--neutral-300);
+            border: none;
             border-radius: var(--radius-2xl);
             background: white;
             color: var(--text-primary);
@@ -1000,20 +953,11 @@
             }
             
             .nav-breadcrumb {
-                font-size: var(--font-size-xs);
                 padding: var(--spacing-sm);
-                top: var(--spacing-xs);
+                font-size: 0.75rem;
+                position: relative;
+                top: auto;
                 margin-bottom: var(--spacing-2xl);
-            }
-            
-            .nav-breadcrumb a {
-                display: inline-flex;
-                align-items: center;
-                gap: var(--spacing-xs);
-            }
-            
-            .separator {
-                display: none;
             }
             
             .nav-breadcrumb::after {
@@ -1037,14 +981,23 @@
 </head>
 <body>
     <div class="container">
-        <!-- Navigation Breadcrumb -->
-        <nav class="nav-breadcrumb" id="breadcrumb">
-            <a href="../../index.html"><i class="fas fa-home"></i> Inicio</a>
-            <span class="separator">•</span>
-            <span style="color: var(--primary-color); font-weight: var(--font-weight-semibold);">
-                 Introducción
-            </span>
-        </nav>
+        <!-- Navegación Breadcrumb -->
+        <div class="nav-breadcrumb animate-left">
+            <i class="fas fa-home" style="color: var(--primary-color);"></i>
+            <a href="../../index.html">Inicio</a>
+            <span class="separator">></span>
+            <span aria-current="page">Introducción</span>
+            <span class="separator">></span>
+            <a href="crear-contrato.html">Crear Contrato</a>
+            <span class="separator">></span>
+            <a href="consultar-contrato.html">Consultar Contrato</a>
+            <span class="separator">></span>
+            <a href="pagar-prorroga.html">Pagar Prórroga</a>
+            <span class="separator">></span>
+            <a href="pagar-retroventa.html">Pagar Retroventa</a>
+            <span class="separator">></span>
+            <a href="fin-modulo-contratos.html">Fin del Módulo</a>
+        </div>
 
         <!-- Header -->
         <header class="header animate-scale">
@@ -1067,25 +1020,6 @@
                 </div>
             </div>
         </header>
-
-        <!-- Module Progress -->
-        <section class="section animate-in">
-            <div class="module-progress">
-                <h3 style="color: var(--primary-color); margin-bottom: var(--spacing-lg); display: flex; align-items: center; gap: var(--spacing-sm);">
-                    <i class="fas fa-chart-bar"></i> Progreso del Módulo
-                </h3>
-                <div style="display: flex; justify-content: space-between; font-size: var(--font-size-sm); color: var(--text-secondary); margin-bottom: var(--spacing-sm);">
-                    <span>Introducción a Contratos</span>
-                    <span id="progressPercentage">15% completado</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="moduleProgress"></div>
-                </div>
-                <p style="font-size: var(--font-size-sm); color: var(--text-muted); margin-top: var(--spacing-sm); margin-bottom: 0;">
-                    <i class="fas fa-info-circle"></i> Comenzando el módulo de Gestión de Contratos
-                </p>
-            </div>
-        </section>
 
         <!-- Introduction Content -->
         <section class="section animate-left">
@@ -1295,73 +1229,70 @@
             </div>
         </section>
 
-        <!-- Footer de Navegación del Curso -->
-        <footer class="course-footer animate-in">
+        <!-- Navegación del Curso -->
+        <div class="course-footer animate-in">
             <div class="course-footer-content">
-                <h3>
-                    <i class="fas fa-route"></i>
-                    Navegación del Curso
-                </h3>
+                <h3><i class="fas fa-route"></i> Navegación del Curso</h3>
                 
-                <!-- Indicador de Progreso -->
                 <div class="progress-indicator">
-                    <div class="progress-dot completed" title="Fin del módulo: Gestión de Contabilidad"></div>
-                    <div class="progress-dot current" title="Introducción a Contratos - Módulo Actual"></div>
-                    <div class="progress-dot" title="Crear contrato"></div>
-                    <div class="progress-dot" title="Consultar contrato"></div>
-                    <div class="progress-dot" title="Pagar prórroga"></div>
+                    <div class="progress-dot current"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
+                    <div class="progress-dot"></div>
                 </div>
-
-                <!-- Navegación Principal -->
-                <nav class="course-navigation">
+                
+                <div class="course-navigation">
                     <a href="../contabilidad/fin-modulo-contabilidad.html" class="nav-item prev">
                         <div class="nav-btn prev">
                             <i class="fas fa-arrow-left"></i>
-                            <span>Anterior</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Anterior</div>
+                                <div>Fin Contabilidad</div>
+                            </div>
                         </div>
                     </a>
-
+                    
                     <a href="../../index.html" class="nav-item home">
                         <div class="nav-btn home">
                             <i class="fas fa-home"></i>
-                            <span>Inicio</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Curso</div>
+                                <div>Inicio</div>
+                            </div>
                         </div>
                     </a>
-
+                    
                     <a href="crear-contrato.html" class="nav-item next">
                         <div class="nav-btn next">
-                            <span>Siguiente</span>
+                            <div>
+                                <div style="font-size: 0.75rem; color: var(--neutral-500);">Siguiente</div>
+                                <div>Crear Contrato</div>
+                            </div>
                             <i class="fas fa-arrow-right"></i>
                         </div>
                     </a>
-                </nav>
-
-                <!-- Información del Módulo -->
+                </div>
+                
                 <div class="nav-info">
-                    <p>
-                        <strong>Módulo 2 de 3:</strong> Introducción a Contratos | 
-                        <strong>Anterior:</strong> Fin del módulo: Gestión de Contabilidad | 
-                        <strong>Siguiente:</strong> Crear contrato
-                    </p>
-                    <p style="margin-top: var(--spacing-sm); font-size: 0.8rem;">
-                        <i class="fas fa-graduation-cap"></i>
-                        Curso Sinnut ERP - OroExpress
-                    </p>
+                    <p><i class="fas fa-info-circle"></i> Módulo 1 de 6 en el curso de Contratos • Progreso: 17%</p>
                 </div>
             </div>
-        </footer>
+        </div>
     </div>
 
     <script>
-        // Funcionalidad del breadcrumb sticky
-        function handleBreadcrumbScroll() {
-            const breadcrumb = document.getElementById('breadcrumb');
-            if (window.scrollY > 100) {
-                breadcrumb.classList.add('scrolled');
+        // Navbar scroll effect
+        const navbar = document.querySelector('.nav-breadcrumb');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
             } else {
-                breadcrumb.classList.remove('scrolled');
+                navbar.classList.remove('scrolled');
             }
-        }
+        });
 
         // Animaciones de entrada secuenciales
         function animateElements() {
@@ -1413,35 +1344,6 @@
             });
         }
 
-        // Animar barra de progreso
-        function animateProgressBar() {
-            const progressBar = document.getElementById('moduleProgress');
-            const progressPercentage = document.getElementById('progressPercentage');
-            
-            if (progressBar && progressPercentage) {
-                setTimeout(() => {
-                    progressBar.style.width = '15%';
-                    
-                    // Animación del texto del porcentaje
-                    let currentPercent = 0;
-                    const targetPercent = 15;
-                    const increment = targetPercent / 30; // 30 frames para la animación
-                    
-                    const updatePercent = () => {
-                        currentPercent += increment;
-                        if (currentPercent <= targetPercent) {
-                            progressPercentage.textContent = `${Math.round(currentPercent)}% completado`;
-                            requestAnimationFrame(updatePercent);
-                        } else {
-                            progressPercentage.textContent = `${targetPercent}% completado`;
-                        }
-                    };
-                    
-                    updatePercent();
-                }, 1500);
-            }
-        }
-
         // Efectos de hover mejorados para botones
         function enhanceButtonEffects() {
             const buttons = document.querySelectorAll('.btn, .nav-btn');
@@ -1484,14 +1386,10 @@
 
         // Inicialización
         document.addEventListener('DOMContentLoaded', function() {
-            // Configurar scroll del breadcrumb
-            window.addEventListener('scroll', handleBreadcrumbScroll);
-            
             // Iniciar animaciones secuenciales
             setTimeout(animateElements, 300);
             setTimeout(animateObjectives, 1000);
             setTimeout(animateBenefitCards, 1200);
-            setTimeout(animateProgressBar, 800);
             
             // Mejorar efectos de botones
             enhanceButtonEffects();
@@ -1515,16 +1413,6 @@
         });
 
         // Optimización de rendimiento
-        let ticking = false;
-        function optimizedScrollHandler() {
-            if (!ticking) {
-                requestAnimationFrame(handleBreadcrumbScroll);
-                ticking = true;
-                setTimeout(() => ticking = false, 16);
-            }
-        }
-        
-        window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
     </script>
 </body>
 </html>
