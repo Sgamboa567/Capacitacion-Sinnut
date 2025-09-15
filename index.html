@@ -2086,9 +2086,9 @@
     <script src="assets/js/main.js"></script>
     <script>
         // Funcionalidad para módulos colapsables
-        function toggleModule(moduleId) {
-            const content = document.getElementById(`i-content-${moduleId}`);
-            const toggle = document.getElementById(`i-toggle-${moduleId}`);
+function toggleModule(moduleId) {
+            const content = document.getElementById(`content-${moduleId}`);
+            const toggle = document.getElementById(`toggle-${moduleId}`);
             const header = toggle.closest('.module-header');
             
             if (content.classList.contains('expanded')) {
@@ -2279,6 +2279,49 @@
         if (window.self !== window.top) {
             console.log('Detectado iframe - Versión actualizada cargada');
         }
+    </script>
+
+    <script>
+        // Override: aislar y corregir toggle de Instructivos para usar IDs únicos (i-*)
+        window.toggleInstructivos = function(moduleId) {
+            const content = document.getElementById(`i-content-${moduleId}`);
+            const toggle = document.getElementById(`i-toggle-${moduleId}`);
+            if (!content || !toggle) {
+                console.error(`Instructivos: elementos no encontrados para ${moduleId}`);
+                return;
+            }
+
+            const isActive = content.classList.contains('active');
+
+            // Cerrar otros instructivos
+            document.querySelectorAll('.instructivos-content').forEach(other => {
+                if (other !== content) {
+                    other.classList.remove('active');
+                    other.style.maxHeight = '0';
+                    other.style.opacity = '0';
+                }
+            });
+
+            // Resetear otros toggles dentro de la grilla de instructivos
+            document.querySelectorAll('.instructivos-grid .toggle-icon').forEach(otherToggle => {
+                if (otherToggle !== toggle) {
+                    otherToggle.style.transform = 'rotate(0deg)';
+                }
+            });
+
+            if (!isActive) {
+                content.classList.add('active');
+                const actualHeight = content.scrollHeight;
+                content.style.maxHeight = actualHeight + 'px';
+                content.style.opacity = '1';
+                toggle.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.remove('active');
+                content.style.maxHeight = '0';
+                content.style.opacity = '0';
+                toggle.style.transform = 'rotate(0deg)';
+            }
+        };
     </script>
     
     <!-- Versión: 2025-09-05T20:00:00Z -->
