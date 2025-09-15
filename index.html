@@ -541,7 +541,23 @@
         
         .module-header.active {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
-            color: white;
+            color: #ffffff;
+        }
+        /* Mejorar contraste de textos y elementos dentro del header activo */
+        .module-header.active .module-title-text h3,
+        .module-header.active .module-description,
+        .module-header.active .module-meta,
+        .module-header.active .module-meta span,
+        .module-header.active .module-meta i,
+        .module-header.active .module-toggle {
+            color: #ffffff !important;
+        }
+        .module-header.active .module-toggle:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .module-header.active .module-icon,
+        .module-header.active .module-icon i {
+            color: #ffffff;
         }
         
         .module-title-wrapper {
@@ -1133,7 +1149,7 @@
             max-height: 0;
             opacity: 0;
             overflow: hidden;
-            transition: all 0.4s ease;
+            transition: max-height 0.4s ease, opacity 0.3s ease;
             background: white;
             padding: 0 20px;
         }
@@ -2296,9 +2312,18 @@ function toggleModule(moduleId) {
             // Cerrar otros instructivos
             document.querySelectorAll('.instructivos-content').forEach(other => {
                 if (other !== content) {
-                    other.classList.remove('active');
-                    other.style.maxHeight = '0';
+                    // preparar altura actual para transicionar a 0 de forma suave
+                    other.style.maxHeight = other.scrollHeight + 'px';
+                    // forzar reflow
+                    void other.offsetHeight;
+                    other.style.maxHeight = '0px';
                     other.style.opacity = '0';
+                    other.addEventListener('transitionend', function handler(e) {
+                        if (e.propertyName === 'max-height') {
+                            other.classList.remove('active');
+                            other.removeEventListener('transitionend', handler);
+                        }
+                    });
                 }
             });
 
@@ -2311,15 +2336,33 @@ function toggleModule(moduleId) {
 
             if (!isActive) {
                 content.classList.add('active');
-                const actualHeight = content.scrollHeight;
-                content.style.maxHeight = actualHeight + 'px';
+                // preparar desde 0 a altura destino y luego liberar a 'auto'
+                content.style.maxHeight = '0px';
                 content.style.opacity = '1';
+                // forzar reflow
+                void content.offsetHeight;
+                content.style.maxHeight = content.scrollHeight + 'px';
                 toggle.style.transform = 'rotate(180deg)';
+                content.addEventListener('transitionend', function handler(e) {
+                    if (e.propertyName === 'max-height') {
+                        content.style.maxHeight = 'none'; // permitir crecer si cambia el contenido
+                        content.removeEventListener('transitionend', handler);
+                    }
+                });
             } else {
-                content.classList.remove('active');
-                content.style.maxHeight = '0';
+                // cerrar con transición suave
+                content.style.maxHeight = content.scrollHeight + 'px';
+                // forzar reflow
+                void content.offsetHeight;
+                content.style.maxHeight = '0px';
                 content.style.opacity = '0';
                 toggle.style.transform = 'rotate(0deg)';
+                content.addEventListener('transitionend', function handler(e) {
+                    if (e.propertyName === 'max-height') {
+                        content.classList.remove('active');
+                        content.removeEventListener('transitionend', handler);
+                    }
+                });
             }
         };
     </script>
