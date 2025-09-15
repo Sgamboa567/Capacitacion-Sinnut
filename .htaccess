@@ -1,4 +1,4 @@
-# Configuración de caché para evitar problemas con iframes
+# Configuración de caché para evitar problemas con iframes y recursos
 <IfModule mod_headers.c>
     # Evitar caché para archivos HTML
     <FilesMatch "\.(html|htm)$">
@@ -8,31 +8,41 @@
         Header always set X-Frame-Options "SAMEORIGIN"
         Header always set X-Content-Type-Options "nosniff"
         Header always set X-XSS-Protection "1; mode=block"
+        # Forzar charset UTF-8 en HTML
+        Header set Content-Type "text/html; charset=UTF-8"
     </FilesMatch>
-    
+
     # Caché para recursos estáticos
     <FilesMatch "\.(css|js|png|jpg|jpeg|gif|ico|svg)$">
         Header set Cache-Control "public, max-age=31536000"
     </FilesMatch>
 </IfModule>
 
-# Configuración para GitHub Pages
+# Configuración para reescrituras (útil en algunos hostings)
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    
+
     # Forzar HTTPS
     RewriteCond %{HTTPS} off
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-    
+
     # Evitar caché para index.html
     RewriteRule ^index\.html$ - [E=no-cache:1]
     Header always set Cache-Control "no-cache, no-store, must-revalidate" env=no-cache
 </IfModule>
 
-# Configuración de tipos MIME
-AddType text/html .html
-AddType text/css .css
-AddType application/javascript .js
+# Configuración de tipos MIME y charset
+<IfModule mod_mime.c>
+    # Forzar UTF-8 como charset por defecto
+    AddDefaultCharset UTF-8
+    # Asegurar que HTML se sirva con UTF-8
+    AddType 'text/html; charset=UTF-8' .html
+    # Tipos comunes
+    AddType text/css .css
+    AddType application/javascript .js
+    # Declarar charset para otros textos si aplica
+    AddCharset UTF-8 .html .css .js .txt .xml .json
+</IfModule>
 
 # Compresión gzip
 <IfModule mod_deflate.c>
@@ -46,3 +56,4 @@ AddType application/javascript .js
     AddOutputFilterByType DEFLATE application/javascript
     AddOutputFilterByType DEFLATE application/x-javascript
 </IfModule>
+

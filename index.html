@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
@@ -1861,11 +1862,11 @@
                                 <p>1 instructivo disponible</p>
                             </div>
                         </div>
-                        <div class="toggle-icon" id="toggle-contabilidad">
+                        <div class="toggle-icon" id="i-toggle-contabilidad">
                             <i class="fas fa-chevron-down"></i>
                         </div>
                     </div>
-                    <div class="instructivos-content" id="content-contabilidad">
+                    <div class="instructivos-content" id="i-content-contabilidad">
                         <div class="instructivo-item">
                             <div class="instructivo-info">
                                 <i class="fas fa-balance-scale"></i>
@@ -1893,11 +1894,11 @@
                                 <p>1 instructivo disponible</p>
                             </div>
                         </div>
-                        <div class="toggle-icon" id="toggle-contratos">
+                        <div class="toggle-icon" id="i-toggle-contratos">
                             <i class="fas fa-chevron-down"></i>
                         </div>
                     </div>
-                    <div class="instructivos-content" id="content-contratos">
+                    <div class="instructivos-content" id="i-content-contratos">
                         <div class="instructivo-item">
                             <div class="instructivo-info">
                                 <i class="fas fa-file-contract"></i>
@@ -1925,11 +1926,11 @@
                                 <p>3 instructivos disponibles</p>
                             </div>
                         </div>
-                        <div class="toggle-icon" id="toggle-facturas">
+                        <div class="toggle-icon" id="i-toggle-facturas">
                             <i class="fas fa-chevron-down"></i>
                         </div>
                     </div>
-                    <div class="instructivos-content" id="content-facturas">
+                    <div class="instructivos-content" id="i-content-facturas">
                         <div class="instructivo-item">
                             <div class="instructivo-info">
                                 <i class="fas fa-file-invoice"></i>
@@ -2086,8 +2087,8 @@
     <script>
         // Funcionalidad para módulos colapsables
         function toggleModule(moduleId) {
-            const content = document.getElementById(`content-${moduleId}`);
-            const toggle = document.getElementById(`toggle-${moduleId}`);
+            const content = document.getElementById(`i-content-${moduleId}`);
+            const toggle = document.getElementById(`i-toggle-${moduleId}`);
             const header = toggle.closest('.module-header');
             
             if (content.classList.contains('expanded')) {
@@ -2138,7 +2139,7 @@
             
             // Cerrar otros instructivos abiertos
             const allContents = document.querySelectorAll('.instructivos-content');
-            const allToggles = document.querySelectorAll('.toggle-icon');
+            const allToggles = document.querySelectorAll('.instructivos-grid .toggle-icon');
             
             allContents.forEach(otherContent => {
                 if (otherContent !== content && otherContent.classList.contains('active')) {
