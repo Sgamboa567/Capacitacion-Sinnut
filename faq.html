@@ -87,6 +87,12 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        .nav-breadcrumb.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
         .nav-breadcrumb a {
             color: var(--primary-color);
             text-decoration: none;
@@ -389,14 +395,8 @@
         <!-- Navegación rápida -->
         <nav class="nav-breadcrumb">
             <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
-            <span class="separator">|</span>
-            <a href="#general">General</a>
-            <span class="separator">|</span>
-            <a href="#tecnico">Técnico</a>
-            <span class="separator">|</span>
-            <a href="#evaluacion">Evaluación</a>
-            <span class="separator">|</span>
-            <a href="#soporte">Soporte</a>
+            <span class="separator">></span>
+            <span aria-current="page">Preguntas Frecuentes</span>
         </nav>
 
         <!-- Búsqueda de FAQ -->
@@ -693,28 +693,42 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>📚 Sobre el Curso</h4>
-                    <p>Capacitación completa en el sistema ERP Sinnut para optimizar procesos contables y administrativos.</p>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>
+                            <i class="fas fa-graduation-cap"></i>
+                            Curso Sinnut
+                        </h4>
+                        <p>Plataforma oficial del curso para el ERP Sinnut. Desarrolla tus competencias 
+                        con contenido especializado y soporte técnico profesional.</p>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>
+                            <i class="fas fa-headset"></i>
+                            Soporte Técnico
+                        </h4>
+                        <p>Email: <a href="mailto:soporte.ti@oroexpress.com.co">soporte.ti@oroexpress.com.co</a></p>
+                        <p>Horario: Lunes a Viernes, 8:00 AM - 6:00 PM</p>
+                        <p>Sábado, 8:00 AM - 6:00 PM</p>
+                        <p>Respuesta promedio: 24 horas</p>
+                    </div>
+
+                    <div class="footer-section">
+                        <h4>
+                            <i class="fas fa-info-circle"></i>
+                            Información
+                        </h4>
+                        <p>Versión del sistema: 2.0.1</p>
+                        <p>Última actualización: Septiembre 2025</p>
+                        <p>Módulos disponibles: 3</p>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h4>🆘 Soporte</h4>
-                    <p>¿Necesitas ayuda?<br>
-                    <a href="mailto:soporte.ti@oroexpress.com.co">soporte.ti@oroexpress.com.co</a></p>
-                </div>
-                <div class="footer-section">
-                    <h4>🔗 Enlaces Rápidos</h4>
-                    <p><a href="index.html">Inicio</a><br>
-                    <a href="modulos/contabilidad/introduccion-contabilidad.html">Módulo Contabilidad</a><br>
-                    <a href="modulos/cierre-evaluacion/evaluacion-final.html">Evaluación Final</a></p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div>Sinnut © 2025 | FAQ actualizada: Septiembre 2025 | Versión 2.0</div>
-                <div>
-                    <a href="mailto:soporte.ti@oroexpress.com.co">soporte.ti@oroexpress.com.co</a> | 
-                    <a href="index.html">Volver al curso</a>
+
+                <div class="footer-bottom">
+                    <p>&copy; 2025 OroExpress - Todos los derechos reservados</p>
+                    <p>Plataforma educativa desarrollada para curso interno de OroExpress</p>
                 </div>
             </div>
         </footer>
@@ -786,6 +800,17 @@
                 if (section) {
                     section.scrollIntoView({ behavior: 'smooth' });
                 }
+            }
+        });
+
+        // Navbar scroll effect
+        const navbar = document.querySelector('.nav-breadcrumb');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
             }
         });
     </script>
