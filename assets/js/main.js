@@ -183,6 +183,7 @@ const SinnutTraining = {
         this.initTooltips();
         this.initModals();
         this.initCounters();
+        this.initModuleToggles();
         // this.initStickyNavigation(); // Desactivado - usando breadcrumb sticky en cada página
     },
 
@@ -355,6 +356,12 @@ const SinnutTraining = {
             const duration = parseInt(counter.dataset.duration) || 2000;
             this.animateCounter(counter, target, duration);
         });
+    },
+
+    // Inicializar toggles de módulos
+    initModuleToggles() {
+        // Los toggles se manejan con la función global toggleModule
+        console.log('Module toggles initialized');
     },
 
     // Animar contador
@@ -686,6 +693,94 @@ const SinnutTraining = {
         console.log('Progress panel toggled');
     }
 };
+
+// Función global para toggle de módulos
+function toggleModule(moduleId) {
+    const content = document.getElementById(`content-${moduleId}`);
+    const header = content?.previousElementSibling;
+    const toggleIcon = header?.querySelector('.module-toggle i');
+    
+    if (!content) {
+        console.error(`Module content not found: ${moduleId}`);
+        return;
+    }
+    
+    // Toggle la clase expanded
+    const isExpanded = content.classList.contains('expanded');
+    
+    if (isExpanded) {
+        // Cerrar módulo
+        content.classList.remove('expanded');
+        content.style.maxHeight = content.scrollHeight + 'px';
+        
+        // Forzar reflow
+        content.offsetHeight;
+        
+        // Animar a cerrado
+        content.style.maxHeight = '0px';
+        
+        // Cambiar ícono
+        if (toggleIcon) {
+            toggleIcon.style.transform = 'rotate(0deg)';
+        }
+        
+        // Remover clase después de la animación
+        setTimeout(() => {
+            content.style.maxHeight = '';
+        }, 300);
+        
+    } else {
+        // Cerrar otros módulos primero
+        document.querySelectorAll('.module-content.expanded').forEach(expandedContent => {
+            if (expandedContent !== content) {
+                const otherModuleId = expandedContent.id.replace('content-', '');
+                const otherHeader = expandedContent.previousElementSibling;
+                const otherToggleIcon = otherHeader?.querySelector('.module-toggle i');
+                
+                expandedContent.classList.remove('expanded');
+                expandedContent.style.maxHeight = expandedContent.scrollHeight + 'px';
+                expandedContent.offsetHeight; // Forzar reflow
+                expandedContent.style.maxHeight = '0px';
+                
+                if (otherToggleIcon) {
+                    otherToggleIcon.style.transform = 'rotate(0deg)';
+                }
+                
+                setTimeout(() => {
+                    expandedContent.style.maxHeight = '';
+                }, 300);
+            }
+        });
+        
+        // Abrir módulo actual
+        content.classList.add('expanded');
+        content.style.maxHeight = '0px';
+        
+        // Forzar reflow
+        content.offsetHeight;
+        
+        // Animar a abierto
+        content.style.maxHeight = content.scrollHeight + 'px';
+        
+        // Cambiar ícono
+        if (toggleIcon) {
+            toggleIcon.style.transform = 'rotate(180deg)';
+        }
+        
+        // Liberar altura después de la animación
+        setTimeout(() => {
+            content.style.maxHeight = '';
+        }, 300);
+    }
+    
+    // Tracking del evento
+    if (typeof SinnutTraining !== 'undefined') {
+        SinnutTraining.trackEvent('module_toggle', {
+            moduleId: moduleId,
+            action: isExpanded ? 'closed' : 'opened'
+        });
+    }
+}
 
 // Estilos adicionales para componentes JavaScript
 const additionalStyles = `

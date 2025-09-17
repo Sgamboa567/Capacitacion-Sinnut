@@ -855,44 +855,6 @@
             </div>
         </section>
 
-        <!-- Resources -->
-        <section class="section">
-            <h2><i class="fas fa-download"></i> Recursos Adicionales</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-lg);">
-                
-                <div style="border: 2px solid var(--neutral-200); border-radius: var(--radius-lg); padding: var(--spacing-lg); text-align: center; transition: var(--transition);" onmouseover="this.style.borderColor='var(--info-color)'; this.style.transform='translateY(-4px)'" onmouseout="this.style.borderColor='var(--neutral-200)'; this.style.transform='translateY(0)'">
-                    <i class="fas fa-headset" style="font-size: 2.5rem; color: var(--info-color); margin-bottom: var(--spacing-md);"></i>
-                    <h4 style="color: var(--primary-color); margin-bottom: var(--spacing-sm);">Soporte Técnico</h4>
-                    <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">¿Tienes dudas? Contacta soporte</p>
-                    <a href="mailto:soporte.ti@oroexpress.com.co" class="btn btn-primary">
-                        <i class="fas fa-envelope"></i> Contactar
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Final Message -->
-        <div class="completion-card">
-            <div style="position: relative; z-index: 1;">
-                <h3 style="color: var(--success-color); font-size: 1.75rem; margin-bottom: var(--spacing-md);">
-                    ¡Excelente trabajo!
-                </h3>
-                <p style="font-size: 1.125rem; margin-bottom: var(--spacing-lg);">
-                    Has demostrado dedicación y compromiso al completar este módulo. 
-                    Continúa aplicando estos conocimientos en tu trabajo diario.
-                </p>
-                <div style="display: flex; justify-content: center; align-items: center; gap: var(--spacing-sm); margin-bottom: var(--spacing-lg);">
-                    <img src="../../assets/images/Logos/Isotipo Negro.png" 
-                         alt="Isotipo SINNUT" 
-                         style="height: 40px;" 
-                         loading="lazy" />
-                    <span style="font-size: 0.875rem; color: var(--text-secondary);">
-                        Módulo completado · Puedes consultar el contenido cuando lo necesites
-                    </span>
-                </div>
-            </div>
-        </div>
-
         <!-- Footer de Navegación del Curso -->
         <footer class="course-footer">
             <div class="course-footer-content">
@@ -1254,13 +1216,6 @@
                 setTimeout(() => {
                     this.createConfetti();
                 }, 1000);
-
-                // Mostrar notificación de finalización
-                setTimeout(() => {
-                    if (typeof SinnutTraining !== 'undefined') {
-                        SinnutTraining.showNotification('🎉 ¡Felicidades! Has completado el módulo de Gestión de Contabilidad', 'success');
-                    }
-                }, 1500);
             },
 
             // Efecto confetti mejorado para celebración

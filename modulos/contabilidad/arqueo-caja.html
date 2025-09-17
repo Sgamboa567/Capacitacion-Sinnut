@@ -155,10 +155,19 @@
             text-decoration: none;
             font-weight: 500;
             transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
         }
 
         .nav-breadcrumb a:hover {
             color: var(--primary-light);
+            transform: translateY(-1px);
+        }
+
+        .nav-breadcrumb [aria-current="page"] {
+            font-weight: 700;
+            color: #0D2339;
         }
 
         .separator {
@@ -838,6 +847,23 @@
                 margin-bottom: var(--spacing-lg);
             }
             
+            .nav-breadcrumb::after {
+                content: '';
+                position: absolute;
+                bottom: -1px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 60%;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            
+            .nav-breadcrumb.scrolled::after {
+                opacity: 1;
+            }
+            
             .header-badges {
                 flex-direction: column;
                 align-items: center;
@@ -1132,7 +1158,7 @@
             <span class="separator">></span>
             <a href="introduccion-contabilidad.html">Introducción</a>
             <span class="separator">></span>
-            <span style="color: var(--primary-color); font-weight: 600;">Arqueo de Caja</span>
+            <span aria-current="page">Arqueo de Caja</span>
             <span class="separator">></span>
             <a href="apertura-caja.html">Apertura de Caja</a>
             <span class="separator">></span>
@@ -1227,89 +1253,19 @@
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Steps -->
-        <section class="section">
-            <h2><i class="fas fa-list-ol"></i> Pasos del Proceso</h2>
-            <p style="margin-bottom: var(--spacing-xl); color: var(--text-secondary);">
-                Sigue estos pasos para realizar un arqueo de caja exitoso
-            </p>
-
-            <div class="steps-container">
-                <!-- Step 1 -->
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">1</div>
-                        <div class="step-title">Acceder al Módulo</div>
-                    </div>
-                    <div class="step-description">
-                        Navega a <strong>Gestión de Contabilidad</strong> â†’ <strong>Arqueo de Caja</strong> 
-                        desde el menú principal del sistema.
-                    </div>
-                    <div class="alert alert-info">
-                        <i class="fas fa-lightbulb"></i>
-                        <div>
-                            <strong>Consejo:</strong> Confirma la joyería en la cual vas hacer arqueo.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">2</div>
-                        <div class="step-title">Crear Nuevo Arqueo</div>
-                    </div>
-                    <div class="step-description">
-                        Haz clic en el botón <strong>"+"</strong> para iniciar 
-                        un nuevo proceso de arqueo de caja.
-                    </div>
-                    <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <div>
-                            <strong>Importante:</strong> Asegúrate de tener todos los documentos y efectivo 
-                            disponibles antes de iniciar el proceso.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">3</div>
-                        <div class="step-title">Contar y Registrar</div>
-                    </div>
-                    <div class="step-description">
-                        Cuenta físicamente todo el efectivo, caja menor, caja fuerte y base nocturo.
-                        Registra cada cantidad en los campos correspondientes del sistema.
-                    </div>
-                    <div class="alert alert-success">
-                        <i class="fas fa-check-circle"></i>
-                        <div>
-                            <strong>Buena práctica:</strong> Cuenta dos veces para asegurar la precisión 
-                            y organiza el dinero por denominaciones.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 4 -->
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">4</div>
-                        <div class="step-title">Verificar y Confirmar</div>
-                    </div>
-                    <div class="step-description">
-                        Revisa las diferencias calculadas automáticamente por el sistema. 
-                        Si todo está correcto, confirma el arqueo para finalizar el proceso.
-                    </div>
-                    <div class="alert alert-info">
-                        <i class="fas fa-info-circle"></i>
-                        <div>
-                            <strong>Diferencias:</strong> Si hay discrepancias, verifica el conteo y 
-                            revisa si falta registrar alguna transacción antes de confirmar.
-                        </div>
-                    </div>
+            <div class="alert alert-info" role="alert">
+                <i class="fas fa-list-ol" aria-hidden="true"></i>
+                <div>
+                    <strong>Paso a Paso - Arqueo de Caja:</strong>
+                    <ol style="margin-top: var(--spacing-sm); padding-left: var(--spacing-lg);">
+                        <li>Navega a <strong>Gestión de Contabilidad</strong> → <strong>Arqueo de Caja</strong> desde el menú principal</li>
+                        <li>Haz clic en el botón <strong>"+"</strong> para iniciar un nuevo proceso de arqueo</li>
+                        <li>Cuenta físicamente todo el efectivo, caja menor, caja fuerte y base nocturno</li>
+                        <li>Registra cada cantidad en los campos correspondientes del sistema</li>
+                        <li>Revisa las diferencias calculadas automáticamente por el sistema</li>
+                        <li>Si todo está correcto, confirma el arqueo para finalizar el proceso</li>
+                    </ol>
                 </div>
             </div>
         </section>
@@ -1540,7 +1496,7 @@
             // Animación de check personalizada
             createCheckAnimation(container) {
                 const checkmark = document.createElement('div');
-                checkmark.innerHTML = 'âœ“';
+                checkmark.innerHTML = '✓';
                 checkmark.style.cssText = `
                     position: absolute;
                     right: 20px;

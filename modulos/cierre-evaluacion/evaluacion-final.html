@@ -9,7 +9,7 @@
     
     <style>
         :root {
-            /* Color Palette Institucional */
+            /* Color Palette Institucional - Consistent with the system */
             --primary-color: #0D2339;
             --primary-light: #1a3b5c;
             --primary-dark: #051119;
@@ -101,7 +101,7 @@
             padding: var(--spacing-lg);
         }
 
-        /* Header Moderno */
+        /* Header Moderno - Enhanced with system consistency */
         .header {
             background: linear-gradient(135deg, var(--success-color) 0%, var(--success-dark) 100%);
             color: var(--text-white);
@@ -164,7 +164,7 @@
             line-height: 1.7;
         }
 
-        /* Secciones */
+        /* Secciones - Consistent with other pages */
         .section {
             background: linear-gradient(135deg, white 0%, var(--neutral-50) 100%);
             padding: var(--spacing-4xl);
@@ -285,7 +285,7 @@
             z-index: 2;
         }
 
-        /* Tarjeta de redirección */
+        /* Tarjeta de redirección - Enhanced */
         .redirect-card {
             background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
             border: 3px solid var(--info-color);
@@ -343,7 +343,7 @@
             z-index: 2;
         }
 
-        /* Botones modernos */
+        /* Botones modernos - Consistent with system */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -406,7 +406,7 @@
             box-shadow: var(--shadow-2xl);
         }
 
-        /* Alertas modernas */
+        /* Alertas modernas - Consistent */
         .alert {
             padding: var(--spacing-xl);
             border-radius: var(--radius-2xl);
@@ -504,7 +504,7 @@
             font-weight: 600;
         }
 
-        /* Navegación */
+        /* Navegación - Consistent */
         .navigation {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -544,7 +544,7 @@
             color: var(--text-white);
         }
 
-        /* Footer */
+        /* Footer - Consistent */
         .footer {
             background: linear-gradient(135deg, var(--neutral-100) 0%, white 100%);
             border: 1px solid var(--neutral-200);
@@ -599,7 +599,7 @@
             font-size: 1.125rem;
         }
 
-        /* Animaciones */
+        /* Animaciones - Consistent */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -615,7 +615,7 @@
             animation: fadeInUp 0.6s ease-out forwards;
         }
 
-        /* Responsive */
+        /* Responsive - Enhanced */
         @media (max-width: 768px) {
             .container {
                 padding: var(--spacing-sm);
@@ -644,6 +644,17 @@
                 font-size: 1rem;
             }
         }
+
+        /* Accessibility improvements */
+        .btn:focus,
+        .nav-link:focus {
+            outline: 2px solid var(--info-color);
+            outline-offset: 2px;
+        }
+
+        .alert {
+            role: "alert";
+        }
     </style>
 </head>
 <body>
@@ -659,7 +670,7 @@
             </div>
         </div>
 
-        <!-- Resumen del Curso -->
+        <!-- Resumen del Curso - Enhanced with links to modules -->
         <div class="section animate-in">
             <h2>
                 <i class="fas fa-chart-line"></i>
@@ -673,6 +684,7 @@
                     </div>
                     <div class="stat-title">Módulo de Contratos</div>
                     <div class="stat-value">✓</div>
+                    <a href="../contratos/" class="btn btn-info" style="margin-top: var(--spacing-md); font-size: 0.875rem;">Repasar</a>
                 </div>
                 
                 <div class="stat-card">
@@ -681,6 +693,7 @@
                     </div>
                     <div class="stat-title">Módulo de Facturas</div>
                     <div class="stat-value">✓</div>
+                    <a href="../facturas/" class="btn btn-success" style="margin-top: var(--spacing-md); font-size: 0.875rem;">Repasar</a>
                 </div>
                 
                 <div class="stat-card">
@@ -689,6 +702,7 @@
                     </div>
                     <div class="stat-title">Módulo de Caja</div>
                     <div class="stat-value">✓</div>
+                    <a href="../contabilidad/" class="btn btn-warning" style="margin-top: var(--spacing-md); font-size: 0.875rem;">Repasar</a>
                 </div>
             </div>
             
@@ -698,7 +712,7 @@
             </p>
         </div>
 
-        <!-- Tarjeta de Redirección -->
+        <!-- Tarjeta de Redirección - Enhanced with better UX -->
         <div class="redirect-card animate-in">
             <h2>
                 <i class="fas fa-external-link-alt"></i>
@@ -709,18 +723,18 @@
             <div class="countdown" id="countdown">5</div>
             
             <div style="margin-top: var(--spacing-xl); display: flex; justify-content: center; gap: var(--spacing-lg); flex-wrap: wrap;">
-                <a href="https://aula.aynn.pro/courses/1/quizzes/4" target="_blank" class="btn btn-info">
+                <a href="https://aula.aynn.pro/courses/1/quizzes/4" target="_blank" class="btn btn-info" id="evaluation-link">
                     <i class="fas fa-play"></i>
                     Ir a Evaluación
                 </a>
-                <button onclick="cancelRedirect()" class="btn btn-primary">
+                <button onclick="cancelRedirect()" class="btn btn-primary" id="cancel-btn">
                     <i class="fas fa-pause"></i>
                     Cancelar Redirección
                 </button>
             </div>
         </div>
 
-        <!-- Instrucciones de la Evaluación -->
+        <!-- Instrucciones de la Evaluación - Enhanced -->
         <div class="section animate-in">
             <h2>
                 <i class="fas fa-clipboard-list"></i>
@@ -774,7 +788,7 @@
             </div>
         </div>
 
-        <!-- Consejos para la Evaluación -->
+        <!-- Consejos para la Evaluación - Enhanced -->
         <div class="section animate-in">
             <h2>
                 <i class="fas fa-lightbulb"></i>
@@ -791,6 +805,7 @@
                         <li>Revisa los puntos clave de cada módulo</li>
                         <li>Consulta los ejemplos prácticos</li>
                         <li>Repasa los pasos de cada proceso</li>
+                        <li>Descarga los instructivos PDF si los necesitas</li>
                     </ul>
                 </div>
                 
@@ -803,6 +818,7 @@
                         <li>Lee cuidadosamente cada pregunta</li>
                         <li>No te detengas demasiado en una pregunta</li>
                         <li>Revisa tus respuestas antes de enviar</li>
+                        <li>Utiliza el tiempo disponible eficientemente</li>
                     </ul>
                 </div>
                 
@@ -815,24 +831,25 @@
                         <li>Asegúrate de guardar tu progreso</li>
                         <li>Utiliza navegadores actualizados</li>
                         <li>Ten a mano el material de consulta</li>
+                        <li>Verifica que Canvas LMS esté funcionando</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Navegación -->
+        <!-- Navegación - Consistent -->
         <div class="navigation animate-in">
             <a href="../../index.html" class="nav-link primary">
                 <i class="fas fa-home"></i>
                 Inicio del Curso
             </a>
-            <a href="../caja/" class="nav-link success">
+            <a href="../facturas/introduccion-facturas.html" class="nav-link success">
                 <i class="fas fa-arrow-left"></i>
-                Módulo de Caja
+                Último Módulo
             </a>
         </div>
 
-        <!-- Footer -->
+        <!-- Footer - Consistent -->
         <div class="footer animate-in">
             <div class="footer-content">
                 <h4>¿Necesitas ayuda?</h4>
@@ -852,12 +869,14 @@
                 </div>
                 <p style="margin-top: var(--spacing-lg); color: var(--text-secondary); font-size: 0.875rem;">
                     <i class="fas fa-graduation-cap" style="color: var(--success-color);"></i>
-                    ¡Mucho éxito en tu evaluación final!
+                    ¡Mucho éxito en tu evaluación final! Tu esfuerzo será recompensado con una certificación oficial.
                 </p>
             </div>
         </div>
     </div>
 
+    <!-- JavaScript - Enhanced with tracking integration -->
+    <script src="../../assets/js/main.js"></script>
     <script>
         let countdown = 5;
         let redirectActive = true;
@@ -868,7 +887,8 @@
             document.getElementById('countdown').textContent = countdown;
             
             if (countdown === 0) {
-                window.open('https://aula.aynn.pro/courses/1/quizzes/4', '_blank');
+                const link = document.getElementById('evaluation-link');
+                link.click();
                 document.getElementById('countdown').textContent = '¡Redirigiendo...';
             } else {
                 countdown--;
@@ -879,6 +899,7 @@
         function cancelRedirect() {
             redirectActive = false;
             document.getElementById('countdown').textContent = 'Cancelado';
+            document.getElementById('cancel-btn').style.display = 'none';
         }
         
         // Iniciar el contador cuando se carga la página
@@ -891,6 +912,14 @@
             
             // Iniciar contador
             setTimeout(updateCountdown, 1000);
+            
+            // Track page view
+            if (typeof SinnutTraining !== 'undefined') {
+                SinnutTraining.trackEvent('page_view', {
+                    page: 'evaluacion-final',
+                    module: 'cierre-evaluacion'
+                });
+            }
         });
     </script>
 </body>

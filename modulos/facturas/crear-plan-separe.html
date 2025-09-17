@@ -741,6 +741,195 @@
             margin-bottom: var(--spacing-lg);
         }
 
+        /* Video Container */
+        .responsive-video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: var(--spacing-8) auto;
+            background: transparent;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
+            border: none;
+            transition: none;
+        }
+
+        .responsive-video-wrapper:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: transparent;
+        }
+
+        .responsive-video-wrapper::before {
+            display: none;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+            background: #000;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-container:focus-within {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* Video player optimizado para todos los dispositivos */
+        .video-player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            border: none;
+            border-radius: var(--radius-lg);
+            object-fit: cover;
+            background: #000;
+            z-index: 2;
+        }
+
+        /* Asegurar que funcione en iOS Safari */
+        .video-player::-webkit-media-controls {
+            display: flex !important;
+        }
+
+        .video-player::-webkit-media-controls-panel {
+            display: flex !important;
+        }
+
+        /* Poster personalizado */
+        .video-poster {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(13, 35, 57, 0.9) 0%, rgba(13, 35, 57, 0.7) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f1f5f9"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            z-index: 3;
+            transition: all 0.3s ease;
+            border-radius: var(--radius-lg);
+        }
+
+        .video-poster:hover {
+            background: linear-gradient(135deg, rgba(13, 35, 57, 0.8) 0%, rgba(13, 35, 57, 0.6) 100%);
+            transform: scale(1.02);
+        }
+
+        .poster-content {
+            text-align: center;
+            padding: var(--spacing-8);
+        }
+
+        .poster-content i {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-6);
+            color: white;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        .poster-content h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-2);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .poster-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin: 0;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Video fallback mejorado */
+        .video-fallback {
+            width: 100%;
+            background: linear-gradient(135deg, var(--error-color) 0%, #dc2626 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-8);
+            text-align: center;
+            margin-top: var(--spacing-6);
+            box-shadow: 0 8px 32px rgba(239, 68, 68, 0.3);
+        }
+
+        .fallback-content i {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-6);
+            opacity: 0.9;
+        }
+
+        .fallback-content h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-2);
+        }
+
+        .fallback-content p {
+            opacity: 0.9;
+            margin-bottom: var(--spacing-6);
+            line-height: 1.6;
+        }
+
+        .retry-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: var(--spacing-2) var(--spacing-6);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-2);
+        }
+
+        .retry-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Estados del video */
+        .video-loading {
+            position: relative;
+        }
+
+        .video-loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            margin: -20px 0 0 -20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            z-index: 4;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
     /* Footer de Navegación del Curso */
         .course-footer {
             background: linear-gradient(135deg, var(--neutral-50) 0%, white 100%);
@@ -881,6 +1070,7 @@
             height: 12px;
             border-radius: 50%;
             background: var(--neutral-300);
+            border: 2px solid var(--neutral-400);
             transition: var(--transition);
             cursor: pointer;
             position: relative;
@@ -963,7 +1153,7 @@
 
         <!-- Introduction -->
         <section class="section">
-            <h2><i class="fas fa-lightbulb"></i> Â¿Qué es el Plan Separe?</h2>
+            <h2><i class="fas fa-lightbulb"></i> ¿Qué es el Plan Separe?</h2>
             <p style="font-size: 1.125rem; line-height: 1.7; margin-bottom: var(--spacing-lg);">
                 El plan separe es una modalidad de venta que permite a los clientes reservar un producto 
                 mediante abonos hasta completar su pago total, asegurando trazabilidad en inventario, ventas y pagos.
@@ -992,146 +1182,63 @@
                 </div>
             </div>
             
-            <div class="video-container">
-                <video id="videoPlayer" 
-                       controls 
-                       preload="none"
-                       playsinline="true"
-                       webkit-playsinline="true"
-                       muted="true">
-                    <source src="../../assets/videos/Facturas/crear-plan-separe/crear-plan-separe.mp4" type="video/mp4">
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                        <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: var(--warning-color); margin-bottom: var(--spacing-md);"></i>
-                        <p>Video no disponible. Contacta con soporte técnico.</p>
-                        <a href="../../assets/videos/Facturas/plan separe 1.mp4" 
-                           download 
-                           class="btn btn-outline">
-                            <i class="fas fa-download"></i> Descargar video
-                        </a>
+            <!-- Contenedor responsivo del video -->
+            <div class="responsive-video-wrapper">
+                <div class="video-container">
+                    <!-- Video optimizado para máxima compatibilidad iOS Safari -->
+                    <video id="videoPlayer" 
+                           class="video-player"
+                           controls
+                           preload="metadata"
+                           playsinline
+                           webkit-playsinline
+                           muted
+                           disablePictureInPicture>
+                        <source src="../../assets/videos/Facturas/crear-plan-separe/crear-plan-separe.mp4" type="video/mp4">
+                        <p>Tu navegador no soporta la reproducción de video HTML5. 
+                           <a href="../../assets/videos/Facturas/crear-plan-separe/crear-plan-separe.mp4" target="_blank">
+                              Haz clic aquí para descargar el video
+                           </a>
+                        </p>
+                    </video>
+                    
+                    <!-- Poster de carga personalizado -->
+                    <div class="video-poster" id="videoPoster">
+                        <div class="poster-content">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>Video Tutorial: Crear Plan Separe</h4>
+                            <p>Toca para reproducir</p>
+                        </div>
                     </div>
-                </video>
+                </div>
+                
+                <!-- Fallback para errores (fuera del video) -->
+                <div class="video-fallback" id="videoFallback" style="display: none;">
+                    <div class="fallback-content">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h4>Video no disponible</h4>
+                        <p>Verifica tu conexión a internet o contacta con soporte técnico.</p>
+                        <button class="retry-btn" onclick="VideoHandler.retryLoad()">
+                            <i class="fas fa-redo"></i> Reintentar
+                        </button>
+                    </div>
+                </div>
             </div>
-        </section>
 
-        <!-- Steps -->
-        <section class="section">
-            <h2><i class="fas fa-list-ol"></i> Pasos del Proceso</h2>
-            <p style="margin-bottom: var(--spacing-xl); color: var(--text-secondary);">
-                Sigue estos pasos para crear un plan separe exitoso
-            </p>
-
-            <div class="steps-container">
-                <!-- Step 1 -->
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">1</div>
-                        <div class="step-title">Acceder al Módulo</div>
-                    </div>
-                    <div class="step-description">
-                        Ve al módulo <strong>Gestión de Ventas</strong> y selecciona <strong>Plan Separe</strong>. 
-                        Luego haz clic en el botón <strong>"+"</strong> para crear un nuevo plan.
-                    </div>
-                    <div class="alert alert-info">
-                        <i class="fas fa-lightbulb"></i>
-                        <div>
-                            <strong>Consejo:</strong> Asegúrate de estar en la joyerí­a correcta antes de iniciar el proceso.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">2</div>
-                        <div class="step-title">Buscar o Registrar Cliente</div>
-                    </div>
-                    <div class="step-description">
-                        Busca al cliente por número de documento. Si no existe en el sistema, 
-                        podrás registrarlo directamente desde esta pantalla.
-                    </div>
-                    <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <div>
-                            <strong>Importante:</strong> Verifica que la información del cliente sea correcta 
-                            antes de continuar con el proceso.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">3</div>
-                        <div class="step-title">Seleccionar Producto</div>
-                    </div>
-                    <div class="step-description">
-                        Ingresa el <strong>SKU</strong> del producto a separar y su <strong>código de bolsa de seguridad</strong>. 
-                        El sistema mostrará automáticamente la información del producto asociada.
-                    </div>
-                    <div class="alert alert-success">
-                        <i class="fas fa-check-circle"></i>
-                        <div>
-                            <strong>Buena práctica:</strong> Verifica que el SKU sea correcto y que el producto 
-                            se encuentre disponible en inventario.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 4 -->
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">4</div>
-                        <div class="step-title">Establecer Abono Inicial</div>
-                    </div>
-                    <div class="step-description">
-                        Establece el <strong>valor del abono inicial</strong>. Este valor puede ser editado 
-                        dependiendo de la política comercial vigente de la empresa.
-                    </div>
-                    <div class="alert alert-info">
-                        <i class="fas fa-info-circle"></i>
-                        <div>
-                            <strong>Información:</strong> Valida que el abono inicial cumpla con las condiciones 
-                            mínimas establecidas por la empresa.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 5 -->
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">5</div>
-                        <div class="step-title">Procesar Pago</div>
-                    </div>
-                    <div class="step-description">
-                        Selecciona el <strong>medio de pago</strong> del abono inicial y haz clic en 
-                        <strong>"Causar y pagar"</strong> para finalizar el registro del plan separe.
-                    </div>
-                    <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <div>
-                            <strong>Atención:</strong> Una vez procesado el pago, el producto quedará reservado 
-                            en el sistema hasta completar el pago total.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Step 6 -->
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">6</div>
-                        <div class="step-title">Generar Documentación</div>
-                    </div>
-                    <div class="step-description">
-                        Imprime el <strong>acuerdo del plan separe</strong>. Este documento debe ser entregado 
-                        al cliente como respaldo oficial de la transacción.
-                    </div>
-                    <div class="alert alert-success">
-                        <i class="fas fa-check-circle"></i>
-                        <div>
-                            <strong>Finalización:</strong> El plan separe ha sido creado exitosamente y 
-                            el producto está reservado para el cliente.
-                        </div>
-                    </div>
+            <!-- Paso a Paso dentro de la sección del video -->
+            <div class="alert alert-info" role="alert" style="margin-top: var(--spacing-xl);">
+                <i class="fas fa-list-ol" aria-hidden="true"></i>
+                <div>
+                    <strong>Paso a Paso - Crear Plan Separe:</strong>
+                    <ol style="margin-top: var(--spacing-sm); padding-left: var(--spacing-lg);">
+                        <li>Ingresa al módulo <strong>Gestión de Ventas</strong> desde el menú principal del sistema</li>
+                        <li>Selecciona <strong>Plan Separe</strong> y haz clic en el botón <strong>"+"</strong> para crear un nuevo plan</li>
+                        <li>Busca al cliente por número de documento. Si no existe, regístralo directamente desde esta pantalla</li>
+                        <li>Ingresa el <strong>SKU</strong> del producto a separar y su <strong>código de bolsa de seguridad</strong></li>
+                        <li>Establece el <strong>valor del abono inicial</strong> según la política comercial de la empresa</li>
+                        <li>Selecciona el <strong>medio de pago</strong> del abono inicial y haz clic en <strong>"Causar y pagar"</strong></li>
+                        <li>Imprime el <strong>acuerdo del plan separe</strong> como respaldo oficial de la transacción</li>
+                    </ol>
                 </div>
             </div>
         </section>
@@ -1179,9 +1286,9 @@
 
         <!-- Completion Card -->
         <div id="completionCard" class="completion-card" style="display: none;">
-            <div class="completion-icon">ðŸŽ‰</div>
+            <div class="completion-icon"><i class="fas fa-confetti"></i></div>
             <h3 style="color: var(--success-color); font-size: 1.75rem; margin-bottom: var(--spacing-md);">
-                Â¡Excelente trabajo!
+                ¡Excelente trabajo!
             </h3>
             <p style="font-size: 1.125rem; margin-bottom: var(--spacing-xl);">
                 Has completado exitosamente el módulo de Crear Plan Separe. 
@@ -1599,6 +1706,177 @@
 
     <!-- iOS Safari Video Fix - Solución específica para reproducción de videos en móviles -->
     <script src="../../ios-video-fix.js"></script>
+    
+    <!-- VideoHandler para gestión avanzada de videos -->
+    <script>
+        const VideoHandler = {
+            video: null,
+            poster: null,
+            fallback: null,
+            
+            init() {
+                this.video = document.getElementById('videoPlayer');
+                this.poster = document.getElementById('videoPoster');
+                this.fallback = document.getElementById('videoFallback');
+                
+                if (!this.video || !this.poster) return;
+                
+                this.setupEventListeners();
+                this.checkVideoLoad();
+                console.log('🎬 VideoHandler inicializado para Crear Plan Separe');
+            },
+            
+            setupEventListeners() {
+                // Click en el poster para reproducir
+                this.poster.addEventListener('click', () => this.playVideo());
+                
+                // Eventos del video
+                this.video.addEventListener('play', () => this.onPlay());
+                this.video.addEventListener('pause', () => this.onPause());
+                this.video.addEventListener('ended', () => this.onEnded());
+                this.video.addEventListener('error', () => this.onError());
+                this.video.addEventListener('loadeddata', () => this.onLoaded());
+                
+                // Touch events para móviles
+                this.poster.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    this.playVideo();
+                });
+            },
+            
+            checkVideoLoad() {
+                // Verificar si el video se carga correctamente
+                setTimeout(() => {
+                    if (this.video.readyState === 0) {
+                        this.showFallback();
+                    }
+                }, 5000);
+            },
+            
+            playVideo() {
+                if (this.video) {
+                    // Ocultar poster
+                    this.poster.style.display = 'none';
+                    
+                    // Reproducir video
+                    const playPromise = this.video.play();
+                    
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            console.log('🎬 Video reproduciéndose');
+                        }).catch(error => {
+                            console.warn('⚠️ Error al reproducir video:', error);
+                            this.showFallback();
+                        });
+                    }
+                }
+            },
+            
+            onPlay() {
+                this.poster.style.display = 'none';
+                this.fallback.style.display = 'none';
+                
+                // Tracking
+                if (typeof SinnutTraining !== 'undefined') {
+                    SinnutTraining.trackEvent('video_started', {
+                        moduleId: 'crear-plan-separe',
+                        videoTitle: 'Crear Plan Separe'
+                    });
+                }
+            },
+            
+            onPause() {
+                // Mostrar poster si el video está pausado al inicio
+                if (this.video.currentTime < 1) {
+                    this.poster.style.display = 'flex';
+                }
+            },
+            
+            onEnded() {
+                // Mostrar poster al finalizar
+                this.poster.style.display = 'flex';
+                
+                // Tracking
+                if (typeof SinnutTraining !== 'undefined') {
+                    SinnutTraining.trackEvent('video_completed', {
+                        moduleId: 'crear-plan-separe',
+                        videoTitle: 'Crear Plan Separe'
+                    });
+                }
+                
+                // Mostrar notificación de completado
+                this.showCompletionNotification();
+            },
+            
+            onError() {
+                console.error('❌ Error al cargar el video');
+                this.showFallback();
+            },
+            
+            onLoaded() {
+                console.log('✅ Video cargado correctamente');
+                this.fallback.style.display = 'none';
+            },
+            
+            showFallback() {
+                if (this.fallback) {
+                    this.fallback.style.display = 'flex';
+                    this.poster.style.display = 'none';
+                }
+            },
+            
+            retryLoad() {
+                if (this.video) {
+                    this.video.load();
+                    this.fallback.style.display = 'none';
+                    this.poster.style.display = 'flex';
+                    
+                    setTimeout(() => {
+                        if (this.video.readyState === 0) {
+                            this.showFallback();
+                        }
+                    }, 3000);
+                }
+            },
+            
+            showCompletionNotification() {
+                // Crear notificación de completado
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: linear-gradient(135deg, var(--success-color), #4ade80);
+                    color: white;
+                    padding: var(--spacing-md);
+                    border-radius: var(--radius-lg);
+                    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                    z-index: 1000;
+                    font-weight: 600;
+                    animation: slideInRight 0.5s ease-out;
+                    max-width: 300px;
+                `;
+                
+                notification.innerHTML = `
+                    <i class="fas fa-check-circle" style="margin-right: var(--spacing-sm);"></i>
+                    ¡Video completado! Ahora practica los pasos.
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Auto-remover después de 5 segundos
+                setTimeout(() => {
+                    notification.style.animation = 'slideOutRight 0.5s ease-out';
+                    setTimeout(() => notification.remove(), 500);
+                }, 5000);
+            }
+        };
+        
+        // Inicializar VideoHandler cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            VideoHandler.init();
+        });
+    </script>
 </body>
 </html>
 

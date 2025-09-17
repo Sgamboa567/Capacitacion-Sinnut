@@ -1218,7 +1218,7 @@
 
         <!-- Video Tutorial -->
         <div class="section animate-scale">
-            <h2><i class="fas fa-play-circle" style="color: var(--success-color);"></i> Video Tutorial</h2>
+            <h2><i class="fas fa-play-circle" style="color: var(--success-color);"></i> Video Tutorial: Consultar Contratos</h2>
             <p style="font-size: 1rem; color: var(--text-secondary); margin-bottom: var(--spacing-md);">
                 Mira cómo realizar consultas efectivas de contratos en el sistema
             </p>
@@ -1229,7 +1229,7 @@
                     <div class="video-poster" id="videoPoster1" onclick="VideoHandler1().playVideo()">
                         <div class="poster-content">
                             <i class="fas fa-play-circle"></i>
-                            <h4>Tutorial: Consultar Contratos</h4>
+                            <h4>Video Tutorial: Consultar Contratos</h4>
                             <p>Aprende paso a paso</p>
                         </div>
                     </div>
@@ -1263,218 +1263,24 @@
                 </div>
             </div>
 
+            <div class="alert alert-info" role="alert">
+                <i class="fas fa-list-ol" aria-hidden="true"></i>
+                <div>
+                    <strong>Paso a Paso - Consultar Contrato:</strong>
+                    <ol style="margin-top: var(--spacing-sm); padding-left: var(--spacing-lg);">
+                        <li>Accede al módulo de <strong>Gestión de contratos</strong> y selecciona la opción "Contratos" desde el menú principal</li>
+                        <li>Configura los filtros de búsqueda según tus necesidades (cliente, fecha, estado, monto, etc.)</li>
+                        <li>Ejecuta la búsqueda y revisa los resultados en la tabla de contratos encontrados</li>
+                        <li>Accede a los detalles del contrato haciendo clic en los tres puntos a la derecha y realiza acciones sobre los contratos seleccionados (ver detalles, imprimir, letra de cambio, etc.)</li>
+                    </ol>
+                </div>
+            </div>
+
             <div class="alert alert-warning">
                 <i class="fas fa-exclamation-triangle"></i>
                 <div>
                     <strong>Importante:</strong> 
                     Asegúrate de usar los filtros apropiados para optimizar tus búsquedas y obtener resultados precisos.
-                </div>
-            </div>
-        </div>
-
-        <!-- Proceso Paso a Paso -->
-        <div class="section animate-in">
-            <h2><i class="fas fa-list-ol" style="color: var(--primary-color);"></i> Proceso Paso a Paso</h2>
-            
-            <div class="steps-container">
-                <!-- Paso 1 -->
-                <div class="step animate-left">
-                    <div class="step-header">
-                        <div class="step-number">1</div>
-                        <div class="step-title">Acceder al Módulo de Consultas</div>
-                    </div>
-                    <div class="step-description">
-                        Navega al módulo de contratos y selecciona la opción "Consultar Contratos" desde el menú principal.
-                    </div>
-                    
-                    <div class="alert alert-info">
-                        <i class="fas fa-mouse-pointer"></i>
-                        <div>
-                            <strong>Ubicación del módulo:</strong> 
-                            Menú Principal â†’ Contratos â†’ Consultar Contratos
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Paso 2 -->
-                <div class="step animate-right">
-                    <div class="step-header">
-                        <div class="step-number">2</div>
-                        <div class="step-title">Configurar Filtros de Búsqueda</div>
-                    </div>
-                    <div class="step-description">
-                        Utiliza los diferentes filtros disponibles para delimitar tu búsqueda y encontrar exactamente los contratos que necesitas.
-                    </div>
-
-                    <h4 style="color: var(--primary-color); margin: var(--spacing-lg) 0 var(--spacing-md) 0; font-size: 1.125rem; font-weight: 600;">
-                        <i class="fas fa-filter" style="color: var(--success-color);"></i> Filtros Disponibles:
-                    </h4>
-                    
-                    <div class="documents-grid">
-                        <div class="document-card">
-                            <div class="document-icon" style="background: linear-gradient(135deg, var(--success-color) 0%, #16a34a 100%);">
-                                <i class="fas fa-calendar-alt"></i>
-                            </div>
-                            <div>
-                                <div class="document-title">Fecha de Contrato</div>
-                            </div>
-                        </div>
-                        
-                        <div class="document-card">
-                            <div class="document-icon" style="background: linear-gradient(135deg, var(--warning-color) 0%, #d97706 100%);">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div>
-                                <div class="document-title">Cliente</div>
-                            </div>
-                        </div>
-                        
-                        <div class="document-card">
-                            <div class="document-icon" style="background: linear-gradient(135deg, var(--info-color) 0%, #2563eb 100%);">
-                                <i class="fas fa-hashtag"></i>
-                            </div>
-                            <div>
-                                <div class="document-title">Número de Contrato</div>
-                            </div>
-                        </div>
-                        
-                        <div class="document-card">
-                            <div class="document-icon" style="background: linear-gradient(135deg, var(--danger-color) 0%, #dc2626 100%);">
-                                <i class="fas fa-tags"></i>
-                            </div>
-                            <div>
-                                <div class="document-title">Estado del Contrato</div>
-                            </div>
-                        </div>
-                        
-                        <div class="document-card">
-                            <div class="document-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
-                                <i class="fas fa-dollar-sign"></i>
-                            </div>
-                            <div>
-                                <div class="document-title">Rango de Montos</div>
-                            </div>
-                        </div>
-                        
-                        <div class="document-card">
-                            <div class="document-icon" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">
-                                <i class="fas fa-building"></i>
-                            </div>
-                            <div>
-                                <div class="document-title">Sucursal</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="alert alert-success">
-                        <i class="fas fa-magic"></i>
-                        <div>
-                            <strong>Tip Pro:</strong> 
-                            Combina múltiples filtros para búsquedas más precisas. Por ejemplo: Cliente + Fecha + Estado.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Paso 3 -->
-                <div class="step animate-left">
-                    <div class="step-header">
-                        <div class="step-number">3</div>
-                        <div class="step-title">Ejecutar Búsqueda y Revisar Resultados</div>
-                    </div>
-                    <div class="step-description">
-                        Ejecuta la búsqueda con los filtros configurados y revisa los contratos encontrados en la tabla de resultados.
-                    </div>
-
-                    <div class="alert alert-info">
-                        <i class="fas fa-table"></i>
-                        <div>
-                            <strong>Información mostrada:</strong><br>
-                            • Número de contrato<br>
-                            • Cliente y datos de contacto<br>
-                            • Fecha y estado del contrato<br>
-                            • Monto total y saldo pendiente<br>
-                            • Acciones disponibles (ver, editar, imprimir)
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Paso 4 -->
-                <div class="step animate-right">
-                    <div class="step-header">
-                        <div class="step-number">4</div>
-                        <div class="step-title">Acciones sobre Contratos Encontrados</div>
-                    </div>
-                    <div class="step-description">
-                        Una vez localizado el contrato deseado, puedes realizar diferentes acciones según tus necesidades operativas.
-                    </div>
-
-                    <h4 style="color: var(--primary-color); margin: var(--spacing-lg) 0 var(--spacing-md) 0; font-size: 1.125rem; font-weight: 600;">
-                        <i class="fas fa-cog" style="color: var(--info-color);"></i> Acciones Disponibles:
-                    </h4>
-
-                    <div class="documents-grid">
-                        <div class="document-card">
-                            <div class="document-icon" style="background: linear-gradient(135deg, var(--info-color) 0%, #2563eb 100%);">
-                                <i class="fas fa-eye"></i>
-                            </div>
-                            <div>
-                                <div class="document-title">Ver Detalles Completos</div>
-                            </div>
-                        </div>
-                        
-                        <div class="document-card">
-                            <div class="document-icon" style="background: linear-gradient(135deg, var(--warning-color) 0%, #d97706 100%);">
-                                <i class="fas fa-edit"></i>
-                            </div>
-                            <div>
-                                <div class="document-title">Editar Contrato</div>
-                            </div>
-                        </div>
-                        
-                        <div class="document-card">
-                            <div class="document-icon" style="background: linear-gradient(135deg, var(--success-color) 0%, #16a34a 100%);">
-                                <i class="fas fa-print"></i>
-                            </div>
-                            <div>
-                                <div class="document-title">Imprimir Contrato</div>
-                            </div>
-                        </div>
-                        
-                        <div class="document-card">
-                            <div class="document-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);">
-                                <i class="fas fa-download"></i>
-                            </div>
-                            <div>
-                                <div class="document-title">Exportar Datos</div>
-                            </div>
-                        </div>
-                        
-                        <div class="document-card">
-                            <div class="document-icon" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">
-                                <i class="fas fa-chart-bar"></i>
-                            </div>
-                            <div>
-                                <div class="document-title">Generar Reportes</div>
-                            </div>
-                        </div>
-                        
-                        <div class="document-card">
-                            <div class="document-icon" style="background: linear-gradient(135deg, var(--danger-color) 0%, #dc2626 100%);">
-                                <i class="fas fa-history"></i>
-                            </div>
-                            <div>
-                                <div class="document-title">Ver Historial</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="alert alert-success">
-                        <i class="fas fa-check-circle"></i>
-                        <div>
-                            <strong>¡Proceso Completado!</strong> 
-                            Ahora puedes consultar contratos de manera eficiente y realizar las acciones necesarias sobre cada uno.
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1500,20 +1306,6 @@
                     <strong>Seguridad y permisos:</strong><br>
                     Recuerda que solo puedes consultar contratos según tus permisos de usuario. Algunos datos pueden estar restringidos.
                 </div>
-            </div>
-        </div>
-
-        <!-- Ejercicio Práctico -->
-        <div class="exercise-card animate-in">
-            <div class="exercise-icon">
-                <i class="fas fa-graduation-cap" style="color: var(--info-color);"></i>
-            </div>
-            <div class="exercise-title">Ejercicio Práctico</div>
-            <div class="exercise-desc">
-                Realiza una búsqueda de contratos del último mes para un cliente específico y genera un reporte de los resultados encontrados.
-            </div>
-            <div class="exercise-suggestion">
-                <strong>Sugerencia:</strong> Utiliza los filtros de fecha, cliente y estado "Activo" para obtener información relevante y actualizada.
             </div>
         </div>
 

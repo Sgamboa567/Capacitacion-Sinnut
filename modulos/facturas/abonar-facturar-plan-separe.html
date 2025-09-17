@@ -976,6 +976,171 @@
                 align-items: center;
             }
         }
+
+        /* Video Container Mejorado con Poster y Fallback */
+        .responsive-video-wrapper {
+            position: relative;
+            width: 100%;
+            margin: var(--spacing-xl) 0;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            background: linear-gradient(135deg, var(--neutral-100) 0%, var(--neutral-200) 100%);
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            border: 3px solid var(--neutral-200);
+            transition: var(--transition);
+        }
+
+        .video-container:hover {
+            border-color: var(--primary-color);
+            transform: scale(1.01);
+            box-shadow: 0 25px 50px -12px rgba(13, 35, 57, 0.25);
+        }
+
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+        }
+
+        /* Poster personalizado del video */
+        .video-poster {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: var(--transition);
+            border-radius: var(--radius-lg);
+        }
+
+        .video-poster:hover {
+            background: linear-gradient(135deg, var(--primary-light) 0%, #2a5a7f 100%);
+            transform: scale(1.02);
+        }
+
+        .poster-content {
+            text-align: center;
+            color: var(--text-inverse);
+            padding: var(--spacing-2xl);
+            max-width: 400px;
+        }
+
+        .poster-content i {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-lg);
+            color: var(--accent-color);
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .poster-content h4 {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--spacing-md);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .poster-content p {
+            font-size: var(--font-size-lg);
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        /* Fallback para errores */
+        .video-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--danger-color) 0%, #dc2626 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 15;
+            border-radius: var(--radius-lg);
+        }
+
+        .fallback-content {
+            text-align: center;
+            color: var(--text-inverse);
+            padding: var(--spacing-2xl);
+            max-width: 400px;
+        }
+
+        .fallback-content i {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-inverse);
+        }
+
+        .fallback-content h4 {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .fallback-content p {
+            font-size: var(--font-size-base);
+            opacity: 0.9;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .retry-btn {
+            background: var(--text-inverse);
+            color: var(--danger-color);
+            border: none;
+            padding: var(--spacing-md) var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            font-weight: var(--font-weight-semibold);
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .retry-btn:hover {
+            background: var(--neutral-200);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Icono de completado */
+        .completion-icon {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-lg);
+            color: var(--success-color);
+            animation: bounceIn 0.8s ease-out;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -1060,61 +1225,62 @@
                 </div>
             </div>
             
-            <div class="video-container">
-                <video controls="controls" 
-                       preload="none"
-                       playsinline="true"
-                       webkit-playsinline="true"
-                       muted="true"
-                       poster="../../assets/images/video-placeholder.jpg">
-                    <source src="../../assets/videos/Facturas/abonar-facturar-plan-separe/abono-plan-separe.mp4" type="video/mp4">
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #666;">
-                        <p>Tu navegador no soporta este formato de video.</p>
-                        <a href="../../assets/videos/Facturas/abonar-facturar-plan-separe/abono-plan-separe.mp4" 
-                           download 
-                           style="color: var(--accent-color); text-decoration: none; font-weight: bold;">
-                            📥 Descargar video
-                        </a>
-                    </div>
-                </video>
-            </div>
-
-            <h3>
-                <i class="fas fa-list-ol"></i>
-                Pasos para registrar un abono
-            </h3>
-            
-            <div class="steps-container">
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">1</div>
-                        <div class="step-title">Acceder al Módulo</div>
-                    </div>
-                    <div class="step-description">
-                        En el módulo <strong>Gestión de ventas</strong>, selecciona <strong>Plan Separe</strong> y localiza el plan separe específico usando la secuencia o el documento del cliente.
+            <!-- Contenedor responsivo del video -->
+            <div class="responsive-video-wrapper">
+                <div class="video-container">
+                    <!-- Video optimizado para máxima compatibilidad iOS Safari -->
+                    <video id="videoPlayer1" 
+                           class="video-player"
+                           controls
+                           preload="metadata"
+                           playsinline
+                           webkit-playsinline
+                           muted
+                           disablePictureInPicture>
+                        <source src="../../assets/videos/Facturas/abonar-facturar-plan-separe/abono-plan-separe.mp4" type="video/mp4">
+                        <p>Tu navegador no soporta la reproducción de video HTML5. 
+                           <a href="../../assets/videos/Facturas/abonar-facturar-plan-separe/abono-plan-separe.mp4" target="_blank">
+                              Haz clic aquí para descargar el video
+                           </a>
+                        </p>
+                    </video>
+                    
+                    <!-- Poster de carga personalizado -->
+                    <div class="video-poster" id="videoPoster1">
+                        <div class="poster-content">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>Video Tutorial: Registrar Abonos</h4>
+                            <p>Toca para reproducir</p>
+                        </div>
                     </div>
                 </div>
-
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">2</div>
-                        <div class="step-title">Acceder al Plan</div>
-                    </div>
-                    <div class="step-description">
-                        Ingresa al plan separe seleccionado y localiza el botón <strong>Abonar</strong> para iniciar el proceso de registro del pago parcial.
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">3</div>
-                        <div class="step-title">Registrar Abono</div>
-                    </div>
-                    <div class="step-description">
-                        Ingresa el monto del abono que el cliente está realizando, selecciona el medio de pago correspondiente y haz clic en <strong>Causar y pagar</strong> para confirmar el registro.
+                
+                <!-- Fallback para errores (fuera del video) -->
+                <div class="video-fallback" id="videoFallback1" style="display: none;">
+                    <div class="fallback-content">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h4>Video no disponible</h4>
+                        <p>Verifica tu conexión a internet o contacta con soporte técnico.</p>
+                        <button class="retry-btn" onclick="VideoHandler.retryLoad(1)">
+                            <i class="fas fa-redo"></i> Reintentar
+                        </button>
                     </div>
                 </div>
             </div>
+
+            <!-- Paso a Paso dentro de la sección del video -->
+            <div class="alert alert-info" role="alert" style="margin-top: var(--spacing-xl);">
+                <i class="fas fa-list-ol" aria-hidden="true"></i>
+                <div>
+                    <strong>Paso a Paso - Registrar Abonos al Plan Separe:</strong>
+                    <ol style="margin-top: var(--spacing-sm); padding-left: var(--spacing-lg);">
+                        <li>En el módulo <strong>Gestión de ventas</strong>, selecciona <strong>Plan Separe</strong> y localiza el plan separe específico usando la secuencia o el documento del cliente</li>
+                        <li>Ingresa al plan separe seleccionado y localiza el botón <strong>Abonar</strong> para iniciar el proceso de registro del pago parcial</li>
+                        <li>Ingresa el monto del abono que el cliente está realizando, selecciona el medio de pago correspondiente y haz clic en <strong>Causar y pagar</strong> para confirmar el registro</li>
+                    </ol>
+                </div>
+            </div>
+
         </section>
 
         <!-- Segunda Sección: Facturar Plan Separe -->
@@ -1135,51 +1301,61 @@
                 </div>
             </div>
             
-            <div class="video-container">
-                <video controls="controls" 
-                       preload="none"
-                       playsinline="true"
-                       webkit-playsinline="true"
-                       muted="true"
-                       poster="../../assets/images/video-placeholder.jpg">
-                    <source src="../../assets/videos/Facturas/abonar-facturar-plan-separe/facturar-plan-separe.mp4" type="video/mp4">
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #666;">
-                        <p>Tu navegador no soporta este formato de video.</p>
-                        <a href="../../assets/videos/Facturas/abonar-facturar-plan-separe/facturar-plan-separe.mp4" 
-                           download 
-                           style="color: var(--accent-color); text-decoration: none; font-weight: bold;">
-                            📥 Descargar video
-                        </a>
-                    </div>
-                </video>
-            </div>
-
-            <h3>
-                <i class="fas fa-list-ol"></i>
-                Pasos para facturar el plan separe
-            </h3>
-            
-            <div class="steps-container">
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">4</div>
-                        <div class="step-title">Abono Final</div>
-                    </div>
-                    <div class="step-description">
-                        Registra el abono final por el saldo pendiente y asegúrate de activar la casilla <strong>Facturar</strong> para indicar que se generará la factura definitiva.
+            <!-- Contenedor responsivo del video -->
+            <div class="responsive-video-wrapper">
+                <div class="video-container">
+                    <!-- Video optimizado para máxima compatibilidad iOS Safari -->
+                    <video id="videoPlayer2" 
+                           class="video-player"
+                           controls
+                           preload="metadata"
+                           playsinline
+                           webkit-playsinline
+                           muted
+                           disablePictureInPicture>
+                        <source src="../../assets/videos/Facturas/abonar-facturar-plan-separe/facturar-plan-separe.mp4" type="video/mp4">
+                        <p>Tu navegador no soporta la reproducción de video HTML5. 
+                           <a href="../../assets/videos/Facturas/abonar-facturar-plan-separe/facturar-plan-separe.mp4" target="_blank">
+                              Haz clic aquí para descargar el video
+                           </a>
+                        </p>
+                    </video>
+                    
+                    <!-- Poster de carga personalizado -->
+                    <div class="video-poster" id="videoPoster2">
+                        <div class="poster-content">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>Video Tutorial: Facturar Plan Separe</h4>
+                            <p>Toca para reproducir</p>
+                        </div>
                     </div>
                 </div>
-
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">5</div>
-                        <div class="step-title">Completar Facturación</div>
-                    </div>
-                    <div class="step-description">
-                        Selecciona el medio de pago para el abono final y haz clic en <strong>Causar y pagar</strong>. El sistema generará automáticamente la factura y completará el proceso.
+                
+                <!-- Fallback para errores (fuera del video) -->
+                <div class="video-fallback" id="videoFallback2" style="display: none;">
+                    <div class="fallback-content">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h4>Video no disponible</h4>
+                        <p>Verifica tu conexión a internet o contacta con soporte técnico.</p>
+                        <button class="retry-btn" onclick="VideoHandler.retryLoad(2)">
+                            <i class="fas fa-redo"></i> Reintentar
+                        </button>
                     </div>
                 </div>
             </div>
+
+            <!-- Paso a Paso dentro de la sección del video -->
+            <div class="alert alert-info" role="alert" style="margin-top: var(--spacing-xl);">
+                <i class="fas fa-list-ol" aria-hidden="true"></i>
+                <div>
+                    <strong>Paso a Paso - Facturar el Plan Separe Completo:</strong>
+                    <ol style="margin-top: var(--spacing-sm); padding-left: var(--spacing-lg);">
+                        <li>Registra el abono final por el saldo pendiente y asegúrate de activar la casilla <strong>Facturar</strong> para indicar que se generará la factura definitiva</li>
+                        <li>Selecciona el medio de pago para el abono final y haz clic en <strong>Causar y pagar</strong>. El sistema generará automáticamente la factura y completará el proceso</li>
+                    </ol>
+                </div>
+            </div>
+
         </section>
 
         <!-- Consejos Importantes -->
@@ -1273,7 +1449,7 @@
                 this.setupVideoTracking();
                 this.setupNavigationEffects();
                 this.initializeProgressTracking();
-                console.log('ðŸš€ Módulo Abonar y Facturar Plan Separe inicializado');
+                console.log('🚀 Módulo Abonar y Facturar Plan Separe inicializado');
             },
 
             // Sistema de animaciones progresivas
@@ -1400,7 +1576,7 @@
                         if (!hasStarted) {
                             hasStarted = true;
                             this.trackVideoEvent('started', videoTitles[index], index + 1);
-                            console.log(`ðŸ“¹ Video ${index + 1} iniciado: ${videoTitles[index]}`);
+                            console.log(`📹 Video ${index + 1} iniciado: ${videoTitles[index]}`);
                         }
                     });
 
@@ -1408,7 +1584,7 @@
                         if (!hasCompleted) {
                             hasCompleted = true;
                             this.trackVideoEvent('completed', videoTitles[index], index + 1);
-                            console.log(`âœ… Video ${index + 1} completado: ${videoTitles[index]}`);
+                            console.log(`✅ Video ${index + 1} completado: ${videoTitles[index]}`);
                         }
                     });
 
@@ -1725,7 +1901,7 @@
                     SinnutTraining.trackEvent(eventType, eventData);
                 }
 
-                console.log(`ðŸ“Š Event tracked: ${eventType}`, eventData);
+                console.log(`📊 Event tracked: ${eventType}`, eventData);
             }
         };
 
@@ -1770,6 +1946,203 @@
 
     <!-- iOS Safari Video Fix - Solución específica para reproducción de videos en móviles -->
     <script src="../../ios-video-fix.js"></script>
+    
+    <!-- VideoHandler para gestión avanzada de videos múltiples -->
+    <script>
+        const VideoHandler = {
+            videos: [],
+            posters: [],
+            fallbacks: [],
+            
+            init() {
+                // Inicializar arrays para múltiples videos
+                this.videos = [
+                    document.getElementById('videoPlayer1'),
+                    document.getElementById('videoPlayer2')
+                ];
+                this.posters = [
+                    document.getElementById('videoPoster1'),
+                    document.getElementById('videoPoster2')
+                ];
+                this.fallbacks = [
+                    document.getElementById('videoFallback1'),
+                    document.getElementById('videoFallback2')
+                ];
+                
+                // Configurar cada video
+                this.videos.forEach((video, index) => {
+                    if (video && this.posters[index]) {
+                        this.setupVideoEvents(video, index);
+                        this.checkVideoLoad(video, index);
+                    }
+                });
+                
+                console.log('🎬 VideoHandler inicializado para Abonar y Facturar Plan Separe');
+            },
+            
+            setupVideoEvents(video, index) {
+                const poster = this.posters[index];
+                const fallback = this.fallbacks[index];
+                
+                // Click en el poster para reproducir
+                poster.addEventListener('click', () => this.playVideo(index));
+                
+                // Eventos del video
+                video.addEventListener('play', () => this.onPlay(index));
+                video.addEventListener('pause', () => this.onPause(index));
+                video.addEventListener('ended', () => this.onEnded(index));
+                video.addEventListener('error', () => this.onError(index));
+                video.addEventListener('loadeddata', () => this.onLoaded(index));
+                
+                // Touch events para móviles
+                poster.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    this.playVideo(index);
+                });
+            },
+            
+            checkVideoLoad(video, index) {
+                // Verificar si el video se carga correctamente
+                setTimeout(() => {
+                    if (video.readyState === 0) {
+                        this.showFallback(index);
+                    }
+                }, 5000);
+            },
+            
+            playVideo(index) {
+                const video = this.videos[index];
+                if (video) {
+                    // Ocultar poster
+                    this.posters[index].style.display = 'none';
+                    
+                    // Reproducir video
+                    const playPromise = video.play();
+                    
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            console.log(`🎬 Video ${index + 1} reproduciéndose`);
+                        }).catch(error => {
+                            console.warn(`⚠️ Error al reproducir video ${index + 1}:`, error);
+                            this.showFallback(index);
+                        });
+                    }
+                }
+            },
+            
+            onPlay(index) {
+                this.posters[index].style.display = 'none';
+                this.fallbacks[index].style.display = 'none';
+                
+                // Tracking
+                if (typeof SinnutTraining !== 'undefined') {
+                    const titles = ['Registrar Abonos', 'Facturar Plan Separe'];
+                    SinnutTraining.trackEvent('video_started', {
+                        moduleId: 'abonar-facturar-plan-separe',
+                        videoTitle: titles[index],
+                        videoNumber: index + 1
+                    });
+                }
+            },
+            
+            onPause(index) {
+                // Mostrar poster si el video está pausado al inicio
+                const video = this.videos[index];
+                if (video.currentTime < 1) {
+                    this.posters[index].style.display = 'flex';
+                }
+            },
+            
+            onEnded(index) {
+                // Mostrar poster al finalizar
+                this.posters[index].style.display = 'flex';
+                
+                // Tracking
+                if (typeof SinnutTraining !== 'undefined') {
+                    const titles = ['Registrar Abonos', 'Facturar Plan Separe'];
+                    SinnutTraining.trackEvent('video_completed', {
+                        moduleId: 'abonar-facturar-plan-separe',
+                        videoTitle: titles[index],
+                        videoNumber: index + 1
+                    });
+                }
+                
+                // Mostrar notificación de completado
+                this.showCompletionNotification(index);
+            },
+            
+            onError(index) {
+                console.error(`❌ Error al cargar el video ${index + 1}`);
+                this.showFallback(index);
+            },
+            
+            onLoaded(index) {
+                console.log(`✅ Video ${index + 1} cargado correctamente`);
+                this.fallbacks[index].style.display = 'none';
+            },
+            
+            showFallback(index) {
+                if (this.fallbacks[index]) {
+                    this.fallbacks[index].style.display = 'flex';
+                    this.posters[index].style.display = 'none';
+                }
+            },
+            
+            retryLoad(index) {
+                const video = this.videos[index];
+                if (video) {
+                    video.load();
+                    this.fallbacks[index].style.display = 'none';
+                    this.posters[index].style.display = 'flex';
+                    
+                    setTimeout(() => {
+                        if (video.readyState === 0) {
+                            this.showFallback(index);
+                        }
+                    }, 3000);
+                }
+            },
+            
+            showCompletionNotification(index) {
+                const titles = ['Registrar Abonos', 'Facturar Plan Separe'];
+                
+                // Crear notificación de completado
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: linear-gradient(135deg, var(--success-color), #4ade80);
+                    color: white;
+                    padding: var(--spacing-md);
+                    border-radius: var(--radius-lg);
+                    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                    z-index: 1000;
+                    font-weight: 600;
+                    animation: slideInRight 0.5s ease-out;
+                    max-width: 300px;
+                `;
+                
+                notification.innerHTML = `
+                    <i class="fas fa-check-circle" style="margin-right: var(--spacing-sm);"></i>
+                    ¡Video completado! ${titles[index]}
+                `;
+                
+                document.body.appendChild(notification);
+                
+                // Auto-remover después de 5 segundos
+                setTimeout(() => {
+                    notification.style.animation = 'slideOutRight 0.5s ease-out';
+                    setTimeout(() => notification.remove(), 500);
+                }, 5000);
+            }
+        };
+        
+        // Inicializar VideoHandler cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            VideoHandler.init();
+        });
+    </script>
 </body>
 </html>
 

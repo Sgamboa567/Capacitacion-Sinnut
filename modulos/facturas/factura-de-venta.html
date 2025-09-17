@@ -671,6 +671,195 @@
             box-shadow: var(--shadow-lg);
         }
 
+        /* Video Container */
+        .responsive-video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: var(--spacing-8) auto;
+            background: transparent;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
+            border: none;
+            transition: none;
+        }
+
+        .responsive-video-wrapper:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: transparent;
+        }
+
+        .responsive-video-wrapper::before {
+            display: none;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+            background: #000;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .video-container:focus-within {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* Video player optimizado para todos los dispositivos */
+        .video-player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important;
+            height: 100% !important;
+            border: none;
+            border-radius: var(--radius-lg);
+            object-fit: cover;
+            background: #000;
+            z-index: 2;
+        }
+
+        /* Asegurar que funcione en iOS Safari */
+        .video-player::-webkit-media-controls {
+            display: flex !important;
+        }
+
+        .video-player::-webkit-media-controls-panel {
+            display: flex !important;
+        }
+
+        /* Poster personalizado */
+        .video-poster {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(13, 35, 57, 0.9) 0%, rgba(13, 35, 57, 0.7) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f1f5f9"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            z-index: 3;
+            transition: all 0.3s ease;
+            border-radius: var(--radius-lg);
+        }
+
+        .video-poster:hover {
+            background: linear-gradient(135deg, rgba(13, 35, 57, 0.8) 0%, rgba(13, 35, 57, 0.6) 100%);
+            transform: scale(1.02);
+        }
+
+        .poster-content {
+            text-align: center;
+            padding: var(--spacing-8);
+        }
+
+        .poster-content i {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-6);
+            color: white;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        .poster-content h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-2);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .poster-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin: 0;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Video fallback mejorado */
+        .video-fallback {
+            width: 100%;
+            background: linear-gradient(135deg, var(--error-color) 0%, #dc2626 100%);
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-8);
+            text-align: center;
+            margin-top: var(--spacing-6);
+            box-shadow: 0 8px 32px rgba(239, 68, 68, 0.3);
+        }
+
+        .fallback-content i {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-6);
+            opacity: 0.9;
+        }
+
+        .fallback-content h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-2);
+        }
+
+        .fallback-content p {
+            opacity: 0.9;
+            margin-bottom: var(--spacing-6);
+            line-height: 1.6;
+        }
+
+        .retry-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: var(--spacing-2) var(--spacing-6);
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-2);
+        }
+
+        .retry-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Estados del video */
+        .video-loading {
+            position: relative;
+        }
+
+        .video-loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            margin: -20px 0 0 -20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            z-index: 4;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         /* Footer de Navegación del Curso */
         .course-footer {
             background: linear-gradient(135deg, var(--neutral-50) 0%, white 100%);
@@ -933,6 +1122,60 @@
             }
         }
 
+        /* Video responsive para móviles */
+        .responsive-video-wrapper {
+            margin: var(--spacing-6) 0;
+            padding: var(--spacing-3);
+            border-radius: var(--radius-lg);
+        }
+        
+        .video-container {
+            border-radius: var(--radius-md);
+        }
+        
+        .video-player {
+            border-radius: var(--radius-md);
+        }
+        
+        .poster-content {
+            padding: var(--spacing-6);
+        }
+        
+        .poster-content i {
+            font-size: 3rem;
+        }
+        
+        .poster-content h4 {
+            font-size: 1.25rem;
+        }
+
+        @media (max-width: 480px) {
+            .responsive-video-wrapper {
+                padding: var(--spacing-2);
+                margin: var(--spacing-4) 0;
+            }
+            
+            .video-container {
+                border-radius: var(--radius-sm);
+            }
+            
+            .poster-content {
+                padding: var(--spacing-4);
+            }
+            
+            .poster-content i {
+                font-size: 2.5rem;
+            }
+            
+            .poster-content h4 {
+                font-size: 1.125rem;
+            }
+            
+            .fallback-content {
+                padding: var(--spacing-6);
+            }
+        }
+
         /* Animaciones de entrada */
         @keyframes fadeInUp {
             from {
@@ -1048,84 +1291,60 @@
                 </div>
             </div>
             
-            <div class="video-container">
-                <video controls="controls" 
-                       preload="none"
-                       playsinline="true"
-                       webkit-playsinline="true"
-                       muted="true"
-                       poster="../../assets/images/video-placeholder.jpg">
-                    <source src="../../assets/videos/Facturas/factura-de-venta/factura-de-venta.mp4" type="video/mp4">
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #666;">
-                        <p>Tu navegador no soporta este formato de video.</p>
-                        <a href="../../assets/videos/Facturas/factura de ventas 1.mp4" 
-                           download 
-                           style="color: var(--accent-color); text-decoration: none; font-weight: bold;">
-                            📥 Descargar video
-                        </a>
+            <!-- Contenedor responsivo del video -->
+            <div class="responsive-video-wrapper">
+                <div class="video-container">
+                    <!-- Video optimizado para máxima compatibilidad iOS Safari -->
+                    <video id="videoPlayer" 
+                           class="video-player"
+                           controls
+                           preload="metadata"
+                           playsinline
+                           webkit-playsinline
+                           muted
+                           disablePictureInPicture>
+                        <source src="../../assets/videos/Facturas/factura-de-venta/factura-de-venta.mp4" type="video/mp4">
+                        <p>Tu navegador no soporta la reproducción de video HTML5. 
+                           <a href="../../assets/videos/Facturas/factura-de-venta/factura-de-venta.mp4" target="_blank">
+                              Haz clic aquí para descargar el video
+                           </a>
+                        </p>
+                    </video>
+                    
+                    <!-- Poster de carga personalizado -->
+                    <div class="video-poster" id="videoPoster">
+                        <div class="poster-content">
+                            <i class="fas fa-play-circle"></i>
+                            <h4>Video Tutorial: Factura de Venta</h4>
+                            <p>Toca para reproducir</p>
+                        </div>
                     </div>
-                </video>
+                </div>
+                
+                <!-- Fallback para errores (fuera del video) -->
+                <div class="video-fallback" id="videoFallback" style="display: none;">
+                    <div class="fallback-content">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h4>Video no disponible</h4>
+                        <p>Verifica tu conexión a internet o contacta con soporte técnico.</p>
+                        <button class="retry-btn" onclick="VideoHandler.retryLoad()">
+                            <i class="fas fa-redo"></i> Reintentar
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <!-- Sección de Pasos del Proceso -->
-        <div class="section animate-in">
-            <h2>
-                <i class="fas fa-list-ol"></i>
-                Pasos del Proceso de Facturación
-            </h2>
-            <p style="margin-bottom: var(--spacing-8); color: var(--text-secondary); font-size: var(--font-size-lg);">
-                Sigue estos pasos secuenciales para registrar una venta exitosa en el sistema Sinnut ERP:</p>
             
-            <div class="steps-container">
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">1</div>
-                        <div class="step-title">Acceder al Módulo</div>
-                    </div>
-                    <div class="step-description">
-                        Accede al módulo <strong>Gestión de ventas</strong> y haz clic en <strong>Facturas propias</strong> para iniciar el proceso de facturación.
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">2</div>
-                        <div class="step-title">Validar Cliente</div>
-                    </div>
-                    <div class="step-description">
-                        Haz clic en el botón <strong>+</strong> arriba a la derecha e ingresa el tipo y número de documento. Si el cliente no está registrado, el sistema te permitirá crear un nuevo registro.
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">3</div>
-                        <div class="step-title">Agregar Productos</div>
-                    </div>
-                    <div class="step-description">
-                        Ingresa el o los <strong>SKU's</strong> de los productos y oprime el botón <strong>Agregar</strong> para incorporarlos a la factura. Puedes filtrar por tipo, estado o familia si es necesario.
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">4</div>
-                        <div class="step-title">Revisar y Aplicar Descuentos</div>
-                    </div>
-                    <div class="step-description">
-                        Revisa el total de la venta y aplica un <strong>código de descuento</strong> si corresponde. Verifica que todos los datos sean correctos antes de proceder.
-                    </div>
-                </div>
-
-                <div class="step">
-                    <div class="step-header">
-                        <div class="step-number">5</div>
-                        <div class="step-title">Procesar Pago</div>
-                    </div>
-                    <div class="step-description">
-                        Selecciona el medio de pago apropiado y haz clic en <strong>Causar y pagar</strong>. El sistema generará la factura automáticamente y enviará el PDF correspondiente.
-                    </div>
+            <div class="alert alert-info" role="alert">
+                <i class="fas fa-list-ol" aria-hidden="true"></i>
+                <div>
+                    <strong>Paso a Paso - Factura de Venta:</strong>
+                    <ol style="margin-top: var(--spacing-3); padding-left: var(--spacing-6);">
+                        <li>Accede al módulo <strong>Gestión de ventas</strong> y selecciona <strong>Facturas propias</strong></li>
+                        <li>Haz clic en el botón <strong>+</strong> e ingresa el tipo y número de documento del cliente</li>
+                        <li>Ingresa los <strong>SKU's</strong> de los productos y haz clic en <strong>Agregar</strong></li>
+                        <li>Revisa el total y aplica un <strong>código de descuento</strong> si corresponde</li>
+                        <li>Selecciona el medio de pago y haz clic en <strong>Causar y pagar</strong></li>
+                    </ol>
                 </div>
             </div>
         </div>
@@ -1252,7 +1471,7 @@
                     if (!videoStarted) {
                         videoStarted = true;
                         localStorage.setItem('factura_venta_video_started', 'true');
-                        console.log('ðŸ“¹ Video iniciado: Factura de Venta');
+                        console.log('📹 Video iniciado: Factura de Venta');
                     }
                 });
 
@@ -1260,7 +1479,7 @@
                     if (!videoCompleted) {
                         videoCompleted = true;
                         localStorage.setItem('factura_venta_video_completed', 'true');
-                        console.log('âœ… Video completado: Factura de Venta');
+                        console.log('✅ Video completado: Factura de Venta');
                     }
                 });
             }
@@ -1301,6 +1520,208 @@
             });
         });
     </script>
+
+    <!-- Script específico para mejorar experiencia del video -->
+    <script>
+        // Video Handler - Simplificado para video re-codificado H.264 Baseline Profile
+        const VideoHandler = {
+            init() {
+                this.video = document.getElementById('videoPlayer');
+                this.poster = document.getElementById('videoPoster');
+                this.fallback = document.getElementById('videoFallback');
+                
+                if (!this.video) return;
+                
+                this.isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+                this.isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+                
+                this.setupVideo();
+                this.setupEventListeners();
+                this.setupPoster();
+                
+                console.log(`🎬 Video optimizado inicializado - iOS: ${this.isIOS}, Safari: ${this.isSafari}`);
+            },
+            
+            setupVideo() {
+                // Video ya optimizado con H.264 Baseline Profile para iOS Safari
+                if (this.isIOS || this.isSafari) {
+                    this.video.setAttribute('playsinline', 'true');
+                    this.video.setAttribute('webkit-playsinline', 'true');
+                    this.video.preload = 'metadata';
+                }
+                
+                // Timeout simple para detectar problemas
+                this.loadTimeout = setTimeout(() => {
+                    if (this.video.readyState === 0) {
+                        this.showFallback('Error de carga del video');
+                    }
+                }, 8000);
+            },
+            
+            setupEventListeners() {
+                this.video.addEventListener('loadedmetadata', () => {
+                    console.log('✅ Video H.264 cargado correctamente');
+                    clearTimeout(this.loadTimeout);
+                });
+                
+                this.video.addEventListener('canplay', () => {
+                    console.log('▶️ Video listo para reproducir');
+                    this.hidePoster();
+                    this.hideFallback();
+                });
+                
+                this.video.addEventListener('play', () => {
+                    console.log('▶️ Reproducción iniciada');
+                    this.hidePoster();
+                });
+                
+                this.video.addEventListener('ended', () => {
+                    console.log('🏁 Video finalizado');
+                    this.showCompletionMessage();
+                });
+                
+                this.video.addEventListener('error', (e) => {
+                    console.error('❌ Error de video:', e);
+                    this.showFallback('Error de reproducción - Video re-codificado disponible');
+                });
+            },
+            
+            setupPoster() {
+                if (this.poster) {
+                    this.poster.addEventListener('click', () => {
+                        this.playVideo();
+                    });
+                }
+            },
+            
+            playVideo() {
+                if (!this.video) return;
+                
+                // Unmute para iOS al hacer click
+                if (this.isIOS && this.video.muted) {
+                    this.video.muted = false;
+                }
+                
+                this.video.play()
+                    .then(() => {
+                        console.log('✅ Video iniciado correctamente');
+                        this.hidePoster();
+                    })
+                    .catch(error => {
+                        console.warn('⚠️ Autoplay bloqueado:', error.name);
+                        if (error.name === 'NotAllowedError') {
+                            // Normal en iOS Safari - usuario debe hacer click
+                            this.showFallback('Toca el video para iniciar reproducción');
+                        }
+                    });
+            },
+            
+            showFallback(message) {
+                if (this.fallback) {
+                    const messageElement = this.fallback.querySelector('p');
+                    if (messageElement) {
+                        messageElement.textContent = message;
+                    }
+                    this.fallback.style.display = 'block';
+                }
+                this.hidePoster();
+            },
+            
+            hideFallback() {
+                if (this.fallback) {
+                    this.fallback.style.display = 'none';
+                }
+            },
+            
+            showPoster() {
+                if (this.poster) {
+                    this.poster.style.display = 'flex';
+                }
+            },
+            
+            hidePoster() {
+                if (this.poster) {
+                    this.poster.style.display = 'none';
+                }
+            },
+            
+            showLoading() {
+                if (this.container) {
+                    this.container.classList.add('video-loading');
+                }
+            },
+            
+            hideLoading() {
+                if (this.container) {
+                    this.container.classList.remove('video-loading');
+                }
+            },
+            
+            retryLoad() {
+                console.log('🔄 Reintentando cargar video...');
+                this.hideFallback();
+                this.showLoading();
+                
+                // Reset video
+                this.video.load();
+                
+                // Nuevo timeout
+                this.loadTimeout = setTimeout(() => {
+                    if (this.video.readyState === 0) {
+                        this.showFallback('Reintentar falló - Verifica tu conexión');
+                    }
+                }, 15000);
+            },
+            
+            showCompletionMessage() {
+                // Crear notificación de finalización
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: linear-gradient(135deg, var(--success-color), #16a34a);
+                    color: white;
+                    padding: var(--spacing-6);
+                    border-radius: var(--radius-lg);
+                    box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+                    z-index: 10000;
+                    display: flex;
+                    align-items: center;
+                    gap: var(--spacing-2);
+                    font-weight: 600;
+                    transform: translateX(400px);
+                    transition: transform 0.3s ease;
+                `;
+                
+                notification.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    <span>¡Video completado! 🎉</span>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => notification.style.transform = 'translateX(0)', 100);
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(400px)';
+                    setTimeout(() => notification.remove(), 300);
+                }, 4000);
+            }
+        };
+
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            VideoHandler.init();
+        });
+
+        // Backup para navegadores que no soporten DOMContentLoaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', VideoHandler.init.bind(VideoHandler));
+        } else {
+            VideoHandler.init();
+        }
+    </script>
+
     <!-- Script para mejorar compatibilidad de videos en móviles -->
     <script src="../../fix-mobile-videos.js"></script>
 

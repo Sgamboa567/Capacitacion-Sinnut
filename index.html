@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -613,10 +613,14 @@
             background: rgba(0, 0, 0, 0.1);
         }
         
+        .module-toggle i {
+            transition: transform 0.3s ease;
+        }
+        
         .module-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height var(--transition-slow);
+            transition: max-height 0.3s ease;
             background: white;
         }
         
@@ -900,6 +904,8 @@
             font-weight: 600;
             margin-bottom: var(--spacing-md);
             font-size: 1.125rem;
+            color: white !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
         
         .footer-section p, .footer-section a {
@@ -1353,7 +1359,9 @@
         <div class="container">
             <div class="header-content">
                 <h1 class="header-title">
-                    <i class="fas fa-graduation-cap"></i>
+                    <img src="assets/images/Logos/Isotipo Blanco.png" 
+                         alt="Logo Sinnut ERP" 
+                         style="height: 60px; margin-right: var(--spacing-md); vertical-align: middle;">
                     Curso Sinnut ERP
                 </h1>
                 <p class="header-subtitle">Plataforma de Aprendizaje Institucional</p>
@@ -1410,11 +1418,11 @@
             </div>
             
             <div class="intro-text">
-                <p>🚀 <strong>Embárcate en una experiencia de aprendizaje revolucionaria</strong> donde cada lección te acerca más al dominio completo del ERP Sinnut. 
+                <p><i class="fas fa-rocket"></i> <strong>Embárcate en una experiencia de aprendizaje revolucionaria</strong> donde cada lección te acerca más al dominio completo del ERP Sinnut. 
                 Nuestro programa está meticulosamente diseñado con una metodología pedagógica progresiva que garantiza la adquisición de 
                 competencias sólidas, prácticas y directamente aplicables en tu entorno laboral actual.</p>
                 
-                <p>💡 <strong>Aprende haciendo:</strong> No solo teoria, sino experiencia práctica real que puedes implementar inmediatamente.</p>
+                <p><i class="fas fa-lightbulb"></i> <strong>Aprende haciendo:</strong> No solo teoria, sino experiencia práctica real que puedes implementar inmediatamente.</p>
             </div>
 
             <div class="alert alert-success">
@@ -1422,7 +1430,7 @@
                     <i class="fas fa-graduation-cap"></i>
                 </div>
                 <div>
-                    <strong>🎯 Metodología Comprobada:</strong> Cada módulo combina teoría sólida, demostraciones en video, 
+                    <strong><i class="fas fa-trophy"></i> Metodología Comprobada:</strong> Cada módulo combina teoría sólida, demostraciones en video, 
                     ejercicios prácticos interactivos y evaluaciones progresivas. Con una tasa de éxito del 95%, 
                     nuestros estudiantes dominan Sinnut ERP en tiempo récord.
                 </div>
@@ -1434,18 +1442,8 @@
                         <i class="fas fa-play-circle"></i>
                     </div>
                     <div class="feature-content">
-                        <h4>🎬 Videos HD Interactivos</h4>
+                        <h4><i class="fas fa-video"></i> Videos HD Interactivos</h4>
                         <p>Tutoriales profesionales con demostraciones paso a paso del sistema real</p>
-                    </div>
-                </div>
-
-                <div class="feature-item">
-                    <div class="feature-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <div class="feature-content">
-                        <h4>⚡ Práctica en Tiempo Real</h4>
-                        <p>Ejercicios interactivos en entorno simulado para aplicar conocimientos inmediatamente</p>
                     </div>
                 </div>
 
@@ -1454,7 +1452,7 @@
                         <i class="fas fa-trophy"></i>
                     </div>
                     <div class="feature-content">
-                        <h4>🏆 Certificación Oficial</h4>
+                        <h4><i class="fas fa-trophy"></i> Certificación Oficial</h4>
                         <p>Evaluación continua y certificado de competencias reconocido</p>
                     </div>
                 </div>
@@ -1464,7 +1462,7 @@
                         <i class="fas fa-user-tie"></i>
                     </div>
                     <div class="feature-content">
-                        <h4>👨‍💼 Soporte Experto</h4>
+                        <h4><i class="fas fa-user-tie"></i> Soporte Experto</h4>
                         <p>Acceso directo a soporte para resolver cualquier duda</p>
                     </div>
                 </div>
@@ -1849,7 +1847,7 @@
         </section>
 
         <!-- Recursos adicionales -->
-        <section class="resources-section">
+        <section class="resources-section" id="recursos">
             <h2 class="section-title">
                 <i class="fas fa-download"></i>
                 Instructivos por Módulo
@@ -1891,7 +1889,7 @@
                                     <p>Proceso de arqueo, verificación y conciliación</p>
                                 </div>
                             </div>
-                            <button onclick="downloadPDF('assets/documents/instructivos/Modulo-caja/Instructivo ARQUEO DE CAJA.pdf', 'Instructivo_Arqueo_Caja.pdf')" class="btn btn-sm btn-primary">
+                            <button onclick="downloadPDF(this, 'assets/documents/instructivos/Modulo-caja/Arqueo-caja/Instructivo-ARQUEO-CAJA.pdf', 'Instructivo-Arqueo-Caja.pdf')" class="btn btn-sm btn-primary">
                                 <i class="fas fa-download"></i> PDF
                             </button>
                         </div>
@@ -1923,7 +1921,7 @@
                                     <p>Crear, gestionar y dar seguimiento a contratos</p>
                                 </div>
                             </div>
-                            <button onclick="downloadPDF('assets/documents/instructivos/Contratos/Instructivo GESTION DE CONTRATOS.pdf', 'Instructivo_Gestion_Contratos.pdf')" class="btn btn-sm btn-primary">
+                            <button onclick="downloadPDF(this, 'assets/documents/instructivos/Contratos/Instructivo GESTION DE CONTRATOS.pdf', 'Instructivo_Gestion_Contratos.pdf')" class="btn btn-sm btn-primary">
                                 <i class="fas fa-download"></i> PDF
                             </button>
                         </div>
@@ -1955,7 +1953,7 @@
                                     <p>Proceso completo de facturación</p>
                                 </div>
                             </div>
-                            <button onclick="downloadPDF('assets/documents/instructivos/Facturas/Instructivo GESTION DE FACTURAS.pdf', 'Instructivo_Gestion_Facturas.pdf')" class="btn btn-sm btn-primary">
+                            <button onclick="downloadPDF(this, 'assets/documents/instructivos/Facturas/Instructivo GESTION DE FACTURAS.pdf', 'Instructivo_Gestion_Facturas.pdf')" class="btn btn-sm btn-primary">
                                 <i class="fas fa-download"></i> PDF
                             </button>
                         </div>
@@ -1967,7 +1965,7 @@
                                     <p>Actualizado Enero 2025</p>
                                 </div>
                             </div>
-                            <button onclick="downloadPDF('assets/documents/instructivos/Facturas/Instructivo CARGA DE SERVICIOS Enero 2025.pdf', 'Instructivo_Carga_Servicios.pdf')" class="btn btn-sm btn-success">
+                            <button onclick="downloadPDF(this, 'assets/documents/instructivos/Facturas/Instructivo CARGA DE SERVICIOS Enero 2025.pdf', 'Instructivo_Carga_Servicios.pdf')" class="btn btn-sm btn-success">
                                 <i class="fas fa-download"></i> PDF
                             </button>
                         </div>
@@ -1979,7 +1977,7 @@
                                     <p>Configuración del sistema de plan separe</p>
                                 </div>
                             </div>
-                            <button onclick="downloadPDF('assets/documents/instructivos/Facturas/Instructivo PLAN SEPARE.pdf', 'Instructivo_Plan_Separe.pdf')" class="btn btn-sm btn-info">
+                            <button onclick="downloadPDF(this, 'assets/documents/instructivos/Facturas/Instructivo PLAN SEPARE.pdf', 'Instructivo_Plan_Separe.pdf')" class="btn btn-sm btn-info">
                                 <i class="fas fa-download"></i> PDF
                             </button>
                         </div>
@@ -2050,7 +2048,13 @@
                 <p>Si tienes dudas antes de la evaluación, contacta con soporte técnico:</p>
                 <div class="support-links">
                     <a href="mailto:soporte.ti@oroexpress.com.co" class="btn btn-success">
-                        <i class="fas fa-envelope"></i> Contactar Soporte
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                    <a href="https://wa.me/573164706103?text=Hola,%20necesito%20ayuda%20con%20el%20curso%20Sinnut%20ERP" class="btn btn-success" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                    <a href="faq.html" class="btn btn-success">
+                        <i class="fas fa-question-circle"></i> FAQ
                     </a>
                 </div>
             </div>
@@ -2101,151 +2105,77 @@
     <!-- JavaScript para funcionalidad -->
     <script src="assets/js/main.js"></script>
     <script>
-        // Funcionalidad para módulos colapsables
-function toggleModule(moduleId) {
-            const content = document.getElementById(`content-${moduleId}`);
-            const toggle = document.getElementById(`toggle-${moduleId}`);
-            const header = toggle.closest('.module-header');
-            
-            if (content.classList.contains('expanded')) {
-                content.classList.remove('expanded');
-                toggle.style.transform = 'rotate(0deg)';
-                header.classList.remove('active');
-            } else {
-                // Cerrar otros módulos abiertos
-                document.querySelectorAll('.module-content.expanded').forEach(openContent => {
-                    openContent.classList.remove('expanded');
-                    openContent.closest('.module-card').querySelector('.module-header').classList.remove('active');
-                    openContent.closest('.module-card').querySelector('.module-toggle').style.transform = 'rotate(0deg)';
-                });
-                
-                content.classList.add('expanded');
-                toggle.style.transform = 'rotate(180deg)';
-                header.classList.add('active');
-                
-                // Scroll suave hacia el módulo
-                setTimeout(() => {
-                    content.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'nearest' 
-                    });
-                }, 300);
-            }
-        }
+        // Funcion mejorada para descargar PDFs - compatible con archivos locales y servidores
+        function downloadPDF(buttonReference, url, filename) {
+            const button = (typeof Event !== 'undefined' && buttonReference instanceof Event)
+                ? (buttonReference.currentTarget || buttonReference.target)
+                : buttonReference;
+            const target = button instanceof HTMLElement ? button : null;
+            const originalText = target ? target.innerHTML : null;
+            const downloadName = filename || (typeof url === 'string' ? url.split('/').pop() : '') || 'archivo.pdf';
 
-        // Funcionalidad para instructivos colapsables
-        function toggleInstructivos(moduleId) {
-            console.log(`Intentando toggle para módulo: ${moduleId}`);
-            
-            const content = document.getElementById(`content-${moduleId}`);
-            const toggle = document.getElementById(`toggle-${moduleId}`);
-            
-            if (!content || !toggle) {
-                console.error(`Elemento no encontrado para moduleId: ${moduleId}`);
-                console.log('Elementos encontrados:', {
-                    content: !!content,
-                    toggle: !!toggle
-                });
-                return;
-            }
-            
-            // Verificar si ya está activo
-            const isActive = content.classList.contains('active');
-            console.log(`Estado actual del módulo ${moduleId}: ${isActive ? 'activo' : 'inactivo'}`);
-            
-            // Cerrar otros instructivos abiertos
-            const allContents = document.querySelectorAll('.instructivos-content');
-            const allToggles = document.querySelectorAll('.instructivos-grid .toggle-icon');
-            
-            allContents.forEach(otherContent => {
-                if (otherContent !== content && otherContent.classList.contains('active')) {
-                    otherContent.classList.remove('active');
-                    otherContent.style.maxHeight = '0';
-                    otherContent.style.opacity = '0';
-                }
-            });
-            
-            allToggles.forEach(otherToggle => {
-                if (otherToggle !== toggle) {
-                    otherToggle.style.transform = 'rotate(0deg)';
-                }
-            });
-            
-            // Si no estaba activo, abrirlo
-            if (!isActive) {
-                content.classList.add('active');
-                // Calcular altura real del contenido
-                const actualHeight = content.scrollHeight;
-                content.style.maxHeight = actualHeight + 'px';
-                content.style.opacity = '1';
-                toggle.style.transform = 'rotate(180deg)';
-                
-                console.log(`Instructivos expandidos para: ${moduleId}, altura: ${actualHeight}px`);
-            } else {
-                // Si estaba activo, cerrarlo
-                content.classList.remove('active');
-                content.style.maxHeight = '0';
-                content.style.opacity = '0';
-                toggle.style.transform = 'rotate(0deg)';
-                
-                console.log(`Instructivos colapsados para: ${moduleId}`);
-            }
-        }
-
-        // Función mejorada para descargar PDFs
-        async function downloadPDF(url, filename) {
             try {
                 console.log(`Intentando descargar: ${url}`);
-                
-                // Mostrar indicador de carga
-                const originalText = event.target.innerHTML;
-                event.target.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Descargando...';
-                event.target.disabled = true;
-                
-                // Verificar si el archivo existe
-                const response = await fetch(url, { method: 'HEAD' });
-                
-                if (response.ok) {
-                    // Crear enlace de descarga
+
+                if (target) {
+                    target.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+                    target.disabled = true;
+                }
+
+                // Detectar si estamos en un servidor web o archivo local
+                const isLocalFile = window.location.protocol === 'file:';
+
+                if (isLocalFile) {
+                    // Para archivos locales, abrir en nueva pestaña (descarga no funciona desde file://)
+                    console.log('Modo archivo local detectado, abriendo en nueva pestaña');
+                    window.open(url, '_blank');
+
+                    if (target && originalText !== null) {
+                        target.innerHTML = '<i class="fas fa-external-link-alt"></i> Abierto';
+                        target.style.backgroundColor = 'var(--info-color)';
+                        window.setTimeout(() => {
+                            target.innerHTML = originalText;
+                            target.disabled = false;
+                            target.style.backgroundColor = '';
+                        }, 2000);
+                    }
+                } else {
+                    // Para servidores web, intentar descarga directa
                     const link = document.createElement('a');
                     link.href = url;
-                    link.download = filename;
-                    link.target = '_blank';
-                    
-                    // Agregar al DOM, hacer clic y remover
+                    link.download = downloadName;
+                    link.target = '_blank'; // Fallback
+
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
-                    
-                    // Mostrar mensaje de éxito
-                    event.target.innerHTML = '<i class="fas fa-check"></i> Descargado';
-                    event.target.style.backgroundColor = 'var(--success-color)';
-                    
-                    setTimeout(() => {
-                        event.target.innerHTML = originalText;
-                        event.target.disabled = false;
-                        event.target.style.backgroundColor = '';
-                    }, 2000);
-                    
-                    console.log(`Descarga iniciada para: ${filename}`);
-                } else {
-                    throw new Error(`Archivo no encontrado: ${response.status}`);
+
+                    if (target && originalText !== null) {
+                        target.innerHTML = '<i class="fas fa-check"></i> Descargado';
+                        target.style.backgroundColor = 'var(--success-color)';
+                        window.setTimeout(() => {
+                            target.innerHTML = originalText;
+                            target.disabled = false;
+                            target.style.backgroundColor = '';
+                        }, 2000);
+                    }
                 }
+
+                console.log(`Operación completada para: ${downloadName}`);
             } catch (error) {
                 console.error('Error en descarga:', error);
-                
-                // Mostrar mensaje de error
-                event.target.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error';
-                event.target.style.backgroundColor = 'var(--danger-color)';
-                
-                setTimeout(() => {
-                    event.target.innerHTML = originalText;
-                    event.target.disabled = false;
-                    event.target.style.backgroundColor = '';
-                }, 2000);
-                
-                // Mostrar alerta al usuario
-                alert(`Lo sentimos, el archivo "${filename}" no está disponible en este momento. Por favor, contacta con soporte técnico.`);
+
+                if (target && originalText !== null) {
+                    target.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error';
+                    target.style.backgroundColor = 'var(--danger-color)';
+                    window.setTimeout(() => {
+                        target.innerHTML = originalText;
+                        target.disabled = false;
+                        target.style.backgroundColor = '';
+                    }, 2000);
+                }
+
+                alert(`Lo sentimos, el archivo "${downloadName}" no esta disponible en este momento. Por favor, contacta con soporte tecnico.`);
             }
         }
 
@@ -2370,3 +2300,5 @@ function toggleModule(moduleId) {
     <!-- Versión: 2025-09-05T20:00:00Z -->
 </body>
 </html>
+
+
