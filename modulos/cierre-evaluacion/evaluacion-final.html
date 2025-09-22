@@ -6,6 +6,8 @@
     <title>Evaluación Final - Capacitación Sinnut ERP</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     
     <style>
         :root {
@@ -837,6 +839,59 @@
             </div>
         </div>
 
+        <!-- Sección de Certificación -->
+        <div class="section animate-in" id="certification-section">
+            <h2>
+                <i class="fas fa-certificate"></i>
+                Certificación de Capacitación
+            </h2>
+            
+            <div class="alert alert-info">
+                <h3>
+                    <i class="fas fa-info-circle"></i>
+                    Información del Certificado
+                </h3>
+                <p>Para generar tu certificado oficial de capacitación en Sinnut ERP, completa los siguientes datos. El certificado será generado automáticamente, descargado en PDF y enviado por correo electrónico tanto a ti como al departamento de gestión humana.</p>
+            </div>
+
+            <form id="certification-form" style="max-width: 600px; margin: 0 auto;">
+                <div style="margin-bottom: var(--spacing-lg);">
+                    <label for="full-name" style="display: block; font-weight: 600; margin-bottom: var(--spacing-sm); color: var(--text-primary);">
+                        <i class="fas fa-user"></i> Nombre Completo *
+                    </label>
+                    <input type="text" id="full-name" required style="width: 100%; padding: var(--spacing-md); border: 2px solid var(--neutral-300); border-radius: var(--radius-lg); font-size: 1rem; transition: var(--transition);">
+                </div>
+
+                <div style="margin-bottom: var(--spacing-lg);">
+                    <label for="email" style="display: block; font-weight: 600; margin-bottom: var(--spacing-sm); color: var(--text-primary);">
+                        <i class="fas fa-envelope"></i> Correo Electrónico *
+                    </label>
+                    <input type="email" id="email" required style="width: 100%; padding: var(--spacing-md); border: 2px solid var(--neutral-300); border-radius: var(--radius-lg); font-size: 1rem; transition: var(--transition);">
+                </div>
+
+                <div style="margin-bottom: var(--spacing-lg);">
+                    <label for="document" style="display: block; font-weight: 600; margin-bottom: var(--spacing-sm); color: var(--text-primary);">
+                        <i class="fas fa-id-card"></i> Número de Documento *
+                    </label>
+                    <input type="text" id="document" required style="width: 100%; padding: var(--spacing-md); border: 2px solid var(--neutral-300); border-radius: var(--radius-lg); font-size: 1rem; transition: var(--transition);">
+                </div>
+
+                <div style="margin-bottom: var(--spacing-lg);">
+                    <label for="completion-date" style="display: block; font-weight: 600; margin-bottom: var(--spacing-sm); color: var(--text-primary);">
+                        <i class="fas fa-calendar"></i> Fecha de Finalización
+                    </label>
+                    <input type="date" id="completion-date" style="width: 100%; padding: var(--spacing-md); border: 2px solid var(--neutral-300); border-radius: var(--radius-lg); font-size: 1rem; transition: var(--transition);" value="">
+                </div>
+
+                <div style="text-align: center; margin-top: var(--spacing-2xl);">
+                    <button type="submit" class="btn btn-success" style="font-size: 1.125rem;">
+                        <i class="fas fa-download"></i>
+                        Generar y Descargar Certificado
+                    </button>
+                </div>
+            </form>
+        </div>
+
         <!-- Navegación - Consistent -->
         <div class="navigation animate-in">
             <a href="../../index.html" class="nav-link primary">
@@ -920,6 +975,241 @@
                     module: 'cierre-evaluacion'
                 });
             }
+        });
+
+        // Función para generar certificado
+        function generateCertificate(data) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({
+                orientation: 'landscape',
+                unit: 'mm',
+                format: 'a4'
+            });
+
+            // Colores
+            const primaryColor = [13, 35, 57]; // #0D2339
+            const goldColor = [245, 158, 11]; // #f59e0b
+
+            // Fondo
+            doc.setFillColor(248, 250, 252); // neutral-50
+            doc.rect(0, 0, 297, 210, 'F');
+
+            // Borde decorativo
+            doc.setDrawColor(...primaryColor);
+            doc.setLineWidth(2);
+            doc.rect(10, 10, 277, 190);
+
+            // Logo/Encabezado
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(28);
+            doc.setTextColor(...primaryColor);
+            doc.text('OROEXPRESS', 148.5, 30, { align: 'center' });
+
+            doc.setFontSize(18);
+            doc.setTextColor(100, 116, 139); // neutral-500
+            doc.text('CERTIFICADO DE CAPACITACIÓN', 148.5, 45, { align: 'center' });
+
+            // Línea decorativa
+            doc.setDrawColor(...goldColor);
+            doc.setLineWidth(1);
+            doc.line(80, 50, 217, 50);
+
+            // Texto principal
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(14);
+            doc.setTextColor(15, 23, 42); // neutral-900
+            doc.text('Se certifica que:', 148.5, 70, { align: 'center' });
+
+            // Nombre del estudiante
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(20);
+            doc.setTextColor(...primaryColor);
+            doc.text(data.fullName.toUpperCase(), 148.5, 85, { align: 'center' });
+
+            // Documento
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(12);
+            doc.setTextColor(100, 116, 139);
+            doc.text(`C.C. ${data.document}`, 148.5, 95, { align: 'center' });
+
+            // Texto del curso
+            doc.setFontSize(14);
+            doc.setTextColor(15, 23, 42);
+            const courseText = 'ha completado satisfactoriamente el curso de capacitación en';
+            const courseLines = doc.splitTextToSize(courseText, 200);
+            doc.text(courseLines, 148.5, 110, { align: 'center' });
+
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(16);
+            doc.setTextColor(...primaryColor);
+            doc.text('SINNUT ERP', 148.5, 125, { align: 'center' });
+
+            // Módulos completados
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(12);
+            doc.setTextColor(100, 116, 139);
+            doc.text('Comprendiendo los módulos de:', 148.5, 140, { align: 'center' });
+
+            const modules = ['Contratos', 'Facturas', 'Caja y Contabilidad'];
+            doc.setFontSize(11);
+            modules.forEach((module, index) => {
+                doc.text(`• ${module}`, 148.5, 150 + (index * 5), { align: 'center' });
+            });
+
+            // Fecha
+            const completionDate = data.completionDate ? new Date(data.completionDate).toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            }) : new Date().toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            doc.setFontSize(12);
+            doc.text(`Fecha de finalización: ${completionDate}`, 148.5, 175, { align: 'center' });
+
+            // Firma
+            doc.setFont('helvetica', 'italic');
+            doc.setFontSize(10);
+            doc.setTextColor(100, 116, 139);
+            doc.text('Equipo de Capacitación Sinnut', 148.5, 185, { align: 'center' });
+
+            // Pie de página
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(8);
+            doc.setTextColor(148, 163, 184); // neutral-400
+            doc.text('Este certificado es válido únicamente en formato digital oficial.', 148.5, 195, { align: 'center' });
+
+            // Guardar y descargar
+            const fileName = `Certificado_${data.fullName.replace(/\s+/g, '_')}_${Date.now()}.pdf`;
+            doc.save(fileName);
+
+            return fileName;
+        }
+
+        // Manejar formulario de certificación
+        document.getElementById('certification-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const formData = {
+                fullName: document.getElementById('full-name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                document: document.getElementById('document').value.trim(),
+                completionDate: document.getElementById('completion-date').value,
+                timestamp: new Date().toISOString()
+            };
+
+            // Validar campos requeridos
+            if (!formData.fullName || !formData.email || !formData.document) {
+                alert('Por favor, completa todos los campos obligatorios.');
+                return;
+            }
+
+            // Mostrar loading
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generando...';
+            submitBtn.disabled = true;
+
+            try {
+                // Generar certificado PDF
+                const fileName = generateCertificate(formData);
+                
+                // Enviar correos
+                await sendEmails(formData, fileName);
+                
+                // Mostrar mensaje de éxito
+                alert(`¡Certificado generado exitosamente!\n\n� Archivo descargado: ${fileName}\n\n📧 Correos enviados automáticamente a:\n• ${formData.email} (usuario)\n• soporte.ti@oroexpress.com.co (gestión humana)\n\n¡Proceso completado!`);
+
+                // Limpiar formulario
+                this.reset();
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al procesar el certificado. Por favor, intenta nuevamente.');
+            } finally {
+                // Restaurar botón
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Función para enviar correos
+        async function sendEmails(formData, fileName) {
+            try {
+                // Mostrar mensaje de envío
+                const submitBtn = document.getElementById('submitBtn');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = '📧 Enviando correos...';
+                submitBtn.disabled = true;
+
+                // Preparar datos para enviar al servidor
+                const emailData = {
+                    ...formData,
+                    fileName,
+                    timestamp: new Date().toISOString()
+                };
+
+                console.log('Enviando datos al servidor:', emailData);
+
+                // Enviar datos al servidor Python
+                const response = await fetch('http://localhost:5000/send_certificate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(emailData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert(`✅ ¡Certificado generado y enviado exitosamente!\n\n📧 Correos enviados a:\n• ${formData.email}\n• Gestión Humana\n\n📄 PDF descargado: ${fileName}`);
+                    console.log('✅ Éxito:', result.message);
+                } else {
+                    throw new Error(result.message || 'Error desconocido en el servidor');
+                }
+
+            } catch (error) {
+                console.error('❌ Error:', error);
+
+                // Fallback: guardar datos para envío posterior
+                console.log('Usando fallback: guardando datos para envío posterior');
+                const emailData = {
+                    ...formData,
+                    fileName,
+                    timestamp: new Date().toISOString(),
+                    status: 'pending',
+                    error: error.message
+                };
+
+                // Guardar en localStorage como respaldo
+                const pendingEmails = JSON.parse(localStorage.getItem('pending_certificates') || '[]');
+                pendingEmails.push(emailData);
+                localStorage.setItem('pending_certificates', JSON.stringify(pendingEmails));
+
+                // Crear archivo JSON para descarga
+                const dataStr = JSON.stringify(emailData, null, 2);
+                const dataBlob = new Blob([dataStr], { type: 'application/json' });
+                const dataLink = document.createElement('a');
+                dataLink.href = URL.createObjectURL(dataBlob);
+                dataLink.download = `certificado_${formData.fullName.replace(/\s+/g, '_')}_${Date.now()}.json`;
+                dataLink.click();
+
+                alert(`⚠️ Error enviando correos automáticamente\n\n✅ PDF generado y descargado: ${fileName}\n✅ Datos guardados para envío posterior\n\n� Archivo JSON descargado para procesar manualmente\n\nPara enviar manualmente: python send_emails.py archivo.json`);
+
+            } finally {
+                // Restaurar botón
+                const submitBtn = document.getElementById('submitBtn');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        }        // Establecer fecha por defecto
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('completion-date').value = today;
         });
     </script>
 </body>
